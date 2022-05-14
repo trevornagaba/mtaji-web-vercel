@@ -5,6 +5,7 @@
 body {
   margin: 0;
   font-family: Poppins, Arial, Helvetica, sans-serif;
+  background-color: #f7f6fe;
 }
 
 .nav-bar {
@@ -14,37 +15,50 @@ body {
   padding: 16px;
 }
 
-.nav-bar .logo {
+.nav-bar .logo,
+.footer .contact-links .logo {
   display: flex;
   align-items: center;
 }
 
-.nav-bar .logo img {
-  /* display: inline-block; */
-  /* border: 1px solid yellow; */
-}
-
-.nav-bar .logo span {
-  /* display: inline-block; */
-  /* border: 1px solid green; */
+.nav-bar .logo span,
+.footer .contact-links .logo span {
+  color: #2518b8;
+  font-weight: bold;
   padding-left: 4px;
 }
 
-.nav-bar .links {
+.nav-bar .links span,
+.nav-bar .auth span,
+.other-links-container p {
+  padding: 0 16px;
+  cursor: pointer;
 }
 
-.nav-bar .links span {
-  padding: 0 16px;
+.nav-bar .links span:hover,
+.nav-bar .auth span:hover,
+.other-links-container p:hover {
+  color: #01bbc8;
 }
 
-.nav-bar .auth span {
-  padding: 0 16px;
+.nav-bar .auth button,
+.sign-up-section button {
+  background-color: #01bbc8;
+  border-radius: 5px;
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-bar .auth button:hover,
+.sign-up-section button:hover {
+  background-color: #09062d;
 }
 
 .tagline {
   display: flex;
   height: 100vh;
-  /* background-image: url("../public/assets/media_illustration.svg"); */
   background-image: url("../public/assets/illustration_2.svg");
   background-position: right;
   background-size: 60%;
@@ -52,35 +66,47 @@ body {
   align-items: center;
 }
 
+/* TODO: Make responsive */
 .tagline .proposition {
-  /* border: 2px solid green; */
-  width: 50%; /* should be responsive */
+  width: 50%;
   padding: 32px;
 }
 
 .tagline .proposition h1 {
-  color: #09062D;
-  font-size: 58px;
+  color: #09062d;
+  font-size: 54px;
   font-weight: 700;
   font-style: bold;
 }
 
 .tagline .proposition .btn {
   padding: 16px 0;
-  /* border: 2px solid green; */
-  /* width: 50%; should be responsive */
-  /* padding: 16px; */
-  /* margin: auto; */
 }
 
-.tagline .proposition .btn button {
+.tagline .proposition .btn button,
+.companies-section button {
+  background: #2518b8;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 19px;
+  border-radius: 5px;
+  cursor: pointer;
   display: block;
   margin: auto;
+  padding: 8px 24px;
+}
+
+.tagline .proposition .btn button:hover,
+.companies-section button:hover {
+  background-color: #01bbc8;
 }
 
 .section-header {
   padding: 16px;
   text-align: center;
+  font-size: 32px;
+  color: #09062d;
 }
 
 .benefits {
@@ -88,12 +114,12 @@ body {
   flex-wrap: wrap;
   padding: 0 16px;
   justify-content: space-between;
+  color: #09062d;
 }
 
 .benefits-list-1 div {
   display: flex;
   align-items: center;
-  /* padding: 8px 0; */
 }
 
 .benefits-list-1 div p {
@@ -102,7 +128,6 @@ body {
 
 .benefits-list-1,
 .benefits-list-2 {
-  /* border: 2px solid green; */
   padding: 16px;
   flex-basis: 50%;
 }
@@ -110,7 +135,6 @@ body {
 .benefits-list-2 .list-item {
   display: flex;
   align-items: flex-start;
-  /* border: 2px solid yellow; */
 }
 
 .benefits-list-2 div div {
@@ -119,17 +143,15 @@ body {
 }
 
 .benefits-list-2 .list-item div {
-  /* border: 2px solid black; */
   margin-left: 16px;
 }
 
 .benefits-list-2 .list-item .list-item-title {
   margin: 0;
-  /* border: 3px solid blue; */
+  font-weight: bold;
 }
 
 .companies-section {
-  /* border: 2px solid yellow; */
   padding-bottom: 16px;
 }
 
@@ -137,15 +159,21 @@ body {
   display: flex;
   justify-content: space-evenly;
   overflow: auto;
+  padding-bottom: 16px;
 }
 
-.company {
-  padding: 16px;
-  min-width: min-content;
+/* TODO: Make the width responsive */
+.companies .company {
+  background-color: white;
+  min-width: 25%;
+  max-width: 25%;
+  border-radius: 32px;
+  margin: 8px;
 }
 
 .company .company-image {
   display: block;
+  width: 100%;
 }
 
 .company .company-logo {
@@ -161,9 +189,7 @@ body {
 .company .company-details {
   display: flex;
   justify-content: space-between;
-}
-
-.company .company-details .company-target {
+  padding: 16px;
 }
 
 .company .company-details p {
@@ -171,6 +197,8 @@ body {
 }
 
 .company .company-details .detail-title {
+  color: #8c8c8c;
+  font-size: 0.8rem;
   margin: 0;
 }
 
@@ -179,28 +207,20 @@ body {
 }
 
 .company .company-summary {
-}
-
-.companies-section button {
-  display: block;
-  margin: auto;
+  padding: 0 16px;
+  width: 100%;
 }
 
 .sign-up-section {
-  padding: 32px;
+  color: white;
+  padding: 64px 16px;
   text-align: center;
-  background-color: rgb(24, 24, 123); /* change this color */
+  background-color: #1c2854;
 }
 
 .sign-up-section .title {
-}
-
-.sign-up-section .description {
-}
-
-.sign-up-section button {
-  display: block;
-  margin: auto;
+  font-size: 38px;
+  font-weight: bold;
 }
 
 .footer {
@@ -217,13 +237,22 @@ body {
   flex-grow: 1;
 }
 
+.contact-links .logo {
+  margin-bottom: 24px;
+}
+
 .contact-links .link {
   display: flex;
   padding: 8px 0;
 }
 
 .contact-links .link span {
-  padding-left: 4px;
+  cursor: pointer;
+  padding-left: 8px;
+}
+
+.contact-links .link span:hover {
+  color: #01bbc8;
 }
 
 .contact-links .image-links {
@@ -233,10 +262,11 @@ body {
 .contact-links .image-links img {
   display: inline-block;
   padding: 8px;
+  cursor: pointer;
 }
 
 .other-links {
-  flex-grow: 2;
+  flex-grow: 1.8;
 }
 
 .other-links .other-links-container {
