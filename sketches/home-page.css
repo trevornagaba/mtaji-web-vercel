@@ -40,23 +40,22 @@
   cursor: pointer;
 }
 
-.section-header {
+.portfolio-section .header {
   padding: 16px 16px 0;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
-  color: #09062d;
 }
 
 .portfolio {
   display: flex;
   padding: 16px;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .cash-portfolio {
   background-color: white;
   border-radius: 24px;
-  flex-basis: 35%;
+  flex-basis: 40%;
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -102,7 +101,7 @@
 .investments-portfolio {
   background-color: white;
   border-radius: 24px;
-  flex-basis: 50%;
+  flex-basis: 54%;
   padding: 24px;
   margin-left: 16px;
 }
@@ -111,6 +110,7 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 16px;
+  align-items: center;
 }
 
 .investments-portfolio .header button {
@@ -120,6 +120,7 @@
   border-radius: 10px;
   color: white;
   background-color: #01bbc8;
+  height: 50%;
 }
 
 .investments-portfolio .header button:hover {
@@ -155,10 +156,33 @@
   color: #8c8c8c;
 }
 
+.companies-section .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.companies-section .header .title {
+  padding: 16px 16px 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.companies-section .header .link {
+  padding-right: 24px;
+  cursor: pointer;
+  color: #2518b8;
+}
+
+.companies-section .header .link:hover {
+  color: #01bbc8;
+}
+
 .companies {
   display: flex;
   padding: 16px;
-  justify-content: space-around;
+  justify-content: left;
   overflow: auto;
 }
 
@@ -201,9 +225,10 @@
   }
 
   .investments-portfolio .header button {
-    padding: 8px 18px;
+    padding: 8px 16px;
   }
 
+  .investments-portfolio .header,
   .investments-portfolio .investment {
     font-size: 0.8rem;
     flex-wrap: wrap;

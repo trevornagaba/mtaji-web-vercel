@@ -58,8 +58,13 @@
 
     <script>
       let loginLink = document.querySelector(".sign-in-prompt .link");
+      let signUpButton = document.querySelector(".signup-form button");
       loginLink.addEventListener("click", function () {
         window.location.href = "login.html";
+      });
+      signUpButton.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.location.href = "home-page.html";
       });
     </script>
   </body>
