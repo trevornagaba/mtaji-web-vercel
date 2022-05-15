@@ -1,0 +1,248 @@
+* {
+  color: #09062d;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 16px;
+}
+
+.nav-bar .logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar .logo span {
+  color: #2518b8;
+  font-weight: bold;
+  padding-left: 4px;
+}
+
+.nav-bar .links span,
+.nav-bar .account span {
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.nav-bar .links span:hover,
+.nav-bar .account span:hover {
+  color: #01bbc8;
+}
+
+.nav-bar .account {
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar .account img {
+  cursor: pointer;
+}
+
+.section-header {
+  padding: 16px 16px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #09062d;
+}
+
+.portfolio {
+  display: flex;
+  padding: 16px;
+  justify-content: space-evenly;
+}
+
+.cash-portfolio {
+  background-color: white;
+  border-radius: 24px;
+  flex-basis: 35%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cash-portfolio .header {
+}
+
+.cash-portfolio .balance {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.cash-portfolio .buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.cash-portfolio .buttons button {
+  padding: 16px 24px;
+  border: none;
+  margin: 0 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cash-portfolio .buttons button:hover {
+  color: white;
+  background-color: #01bbc8;
+}
+
+.cash-portfolio .buttons .fund-button {
+  color: white;
+  background-color: #01bbc8;
+}
+
+.cash-portfolio .buttons .fund-button:hover {
+  background-color: black;
+}
+
+.investments-portfolio {
+  background-color: white;
+  border-radius: 24px;
+  flex-basis: 50%;
+  padding: 24px;
+  margin-left: 16px;
+}
+
+.investments-portfolio .header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 16px;
+}
+
+.investments-portfolio .header button {
+  border: none;
+  cursor: pointer;
+  padding: 16px 24px;
+  border-radius: 10px;
+  color: white;
+  background-color: #01bbc8;
+}
+
+.investments-portfolio .header button:hover {
+  background-color: black;
+}
+
+.investments-portfolio .investment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.investment .company {
+  display: flex;
+  align-items: center;
+}
+
+.investment .company img {
+  width: 32px;
+  height: 32px;
+}
+
+.investment .balance .amount {
+  margin: 0;
+  line-height: 12px;
+  text-align: end;
+}
+
+.investment .balance .label {
+  margin: 0;
+  font-size: 0.8rem;
+  text-align: end;
+  color: #8c8c8c;
+}
+
+.companies {
+  display: flex;
+  padding: 16px;
+  justify-content: space-around;
+  overflow: auto;
+}
+
+.companies .company-card {
+  background-color: white;
+  border-radius: 30px;
+  flex-basis: 28%;
+  padding: 32px;
+  margin: 0 16px;
+}
+
+.company-card img {
+  display: block;
+  width: 30%;
+  margin: auto;
+}
+
+.company-card .company-name {
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Adjust for smartphone screen sizes. */
+@media only screen and (max-width: 600px) {
+  .portfolio {
+    flex-direction: column;
+  }
+
+  .cash-portfolio {
+    margin-bottom: 16px;
+  }
+
+  .cash-portfolio .buttons button {
+    padding: 8px 16px;
+    margin: 0 8px;
+  }
+
+  .investments-portfolio {
+    margin-left: 0;
+  }
+
+  .investments-portfolio .header button {
+    padding: 8px 18px;
+  }
+
+  .investments-portfolio .investment {
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .companies {
+    justify-content: left;
+  }
+
+  .companies .company-card {
+    min-width: 60%;
+    max-width: 60%;
+  }
+
+  .company-card img {
+    width: 70%;
+  }
+}
+
+/* Adjust for tablet screen sizes. */
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .portfolio {
+    flex-direction: column;
+  }
+
+  .cash-portfolio {
+    margin-bottom: 16px;
+  }
+
+  .investments-portfolio {
+    margin-left: 0;
+  }
+
+  .companies {
+    justify-content: left;
+  }
+
+  .companies .company-card {
+    min-width: 35%;
+    max-width: 35%;
+  }
+}
