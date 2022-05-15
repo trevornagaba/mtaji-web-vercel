@@ -259,9 +259,13 @@
     </div>
 
     <script>
-      const signInButton = document.querySelector(".nav-bar .auth span");
-      signInButton.addEventListener("click", function () {
+      const signInLink = document.querySelector(".nav-bar .auth span");
+      const signUpButton = document.querySelector(".nav-bar .auth button");
+      signInLink.addEventListener("click", function () {
         window.location.href = "login.html";
+      });
+      signUpButton.addEventListener("click", function () {
+        window.location.href = "signup.html";
       });
     </script>
   </body>
