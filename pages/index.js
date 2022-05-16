@@ -29,7 +29,7 @@ export default function Home() {
       <div className="tagline">
         <div className="proposition">
           <h1>
-            Invest in Africa's <br />
+            Invest in Africa&apos;s <br />
             next big company
           </h1>
           <p>
