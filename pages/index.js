@@ -1,30 +1,10 @@
 import Link from "next/link";
+import LandingNavBar from "../components/LandingNavBar";
 
 export default function Home() {
   return (
     <>
-      <div className="nav-bar">
-        <div className="logo">
-          <img src="/assets/logo.svg" alt="logo" />
-          <span>mtaji</span>
-        </div>
-
-        <div className="links">
-          <span>Explore</span>
-          <span>Investment 101</span>
-          <span>FAQs</span>
-        </div>
-
-        <div className="auth">
-          <Link href="/login">
-            <span>Sign In</span>
-          </Link>
-
-          <Link href="/signup">
-            <button>Sign Up</button>
-          </Link>
-        </div>
-      </div>
+      <LandingNavBar />
 
       <div className="tagline">
         <div className="proposition">
@@ -250,50 +230,24 @@ export default function Home() {
 
       <style jsx>
         {`
-          .nav-bar {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            padding: 16px;
-          }
-
-          .nav-bar .logo,
           .footer .contact-links .logo {
             display: flex;
             align-items: center;
           }
 
-          .nav-bar .logo span,
           .footer .contact-links .logo span {
             color: #2518b8;
             font-weight: bold;
             padding-left: 4px;
           }
 
-          .nav-bar .links span,
-          .nav-bar .auth span,
           .other-links-container p {
             padding: 0 16px;
             cursor: pointer;
           }
 
-          .nav-bar .links span:hover,
-          .nav-bar .auth span:hover,
           .other-links-container p:hover {
             color: #01bbc8;
-          }
-
-          .nav-bar .auth button {
-            background-color: #01bbc8;
-            border-radius: 5px;
-            color: white;
-            padding: 8px;
-            border: none;
-            cursor: pointer;
-          }
-
-          .nav-bar .auth button:hover {
-            background-color: #09062d;
           }
 
           .tagline {

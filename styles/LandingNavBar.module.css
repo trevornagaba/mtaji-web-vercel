@@ -1,0 +1,41 @@
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 16px;
+}
+
+.navBar .logo {
+  display: flex;
+  align-items: center;
+}
+
+.navBar .logo span {
+  color: #2518b8;
+  font-weight: bold;
+  padding-left: 4px;
+}
+
+.navBar .links span,
+.navBar .auth span {
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.navBar .links span:hover,
+.navBar .auth span:hover {
+  color: #01bbc8;
+}
+
+.navBar .auth button {
+  background-color: #01bbc8;
+  border-radius: 5px;
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.navBar .auth button:hover {
+  background-color: #09062d;
+}
