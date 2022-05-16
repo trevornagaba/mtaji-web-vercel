@@ -263,31 +263,6 @@
   border-bottom: 3px solid #535fd7;
 }
 
-.sign-up-section {
-  color: white;
-  padding: 64px 16px;
-  text-align: center;
-  background-color: #1c2854;
-}
-
-.sign-up-section .title {
-  font-size: 38px;
-  font-weight: bold;
-}
-
-.sign-up-section button {
-  background-color: #01bbc8;
-  border-radius: 5px;
-  color: white;
-  padding: 8px;
-  border: none;
-  cursor: pointer;
-}
-
-.sign-up-section button:hover {
-  background-color: #09062d;
-}
-
 .footer {
   padding: 16px;
 }

@@ -247,6 +247,325 @@ export default function Home() {
 
         <p className="copyright">&copy; Mansa Finance. All Rights Reserved.</p>
       </div>
+
+      <style jsx>
+        {`
+          .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 16px;
+          }
+
+          .nav-bar .logo,
+          .footer .contact-links .logo {
+            display: flex;
+            align-items: center;
+          }
+
+          .nav-bar .logo span,
+          .footer .contact-links .logo span {
+            color: #2518b8;
+            font-weight: bold;
+            padding-left: 4px;
+          }
+
+          .nav-bar .links span,
+          .nav-bar .auth span,
+          .other-links-container p {
+            padding: 0 16px;
+            cursor: pointer;
+          }
+
+          .nav-bar .links span:hover,
+          .nav-bar .auth span:hover,
+          .other-links-container p:hover {
+            color: #01bbc8;
+          }
+
+          .nav-bar .auth button {
+            background-color: #01bbc8;
+            border-radius: 5px;
+            color: white;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+          }
+
+          .nav-bar .auth button:hover {
+            background-color: #09062d;
+          }
+
+          .tagline {
+            display: flex;
+            height: 100vh;
+            background-image: url("/assets/illustration_2.svg");
+            background-position: right;
+            background-size: 60%;
+            background-repeat: no-repeat;
+            align-items: center;
+          }
+
+          .tagline .proposition {
+            width: 50%;
+            padding: 32px;
+          }
+
+          .tagline .proposition h1 {
+            color: #09062d;
+            font-size: 54px;
+            font-weight: 700;
+            font-style: bold;
+          }
+
+          .tagline .proposition .btn {
+            padding: 16px 0;
+          }
+
+          .tagline .proposition .btn button,
+          .companies-section button {
+            background: #2518b8;
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 19px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+            padding: 8px 24px;
+          }
+
+          .tagline .proposition .btn button:hover,
+          .companies-section button:hover {
+            background-color: #01bbc8;
+          }
+
+          .section-header {
+            padding: 16px;
+            text-align: center;
+            font-size: 24px;
+            color: #09062d;
+            margin: 0;
+          }
+
+          .benefits {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 16px;
+            justify-content: space-between;
+            color: #09062d;
+          }
+
+          .benefits-list-1 div {
+            display: flex;
+            align-items: center;
+          }
+
+          .benefits-list-1 div p {
+            padding-left: 8px;
+          }
+
+          .benefits-list-1,
+          .benefits-list-2 {
+            padding: 16px;
+            flex-basis: 50%;
+          }
+
+          .benefits-list-2 .list-item {
+            display: flex;
+            align-items: flex-start;
+          }
+
+          .benefits-list-2 div div {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .benefits-list-2 .list-item div {
+            margin-left: 16px;
+          }
+
+          .benefits-list-2 .list-item .list-item-title {
+            margin: 0;
+            font-weight: bold;
+          }
+
+          .companies-section {
+            padding-bottom: 16px;
+          }
+
+          .companies {
+            display: flex;
+            justify-content: space-evenly;
+            overflow: auto;
+            padding: 16px;
+            width: 100%;
+          }
+
+          .companies .company {
+            background-color: white;
+            min-width: 25%;
+            max-width: 25%;
+            border-radius: 32px;
+            margin: 0 16px;
+          }
+
+          .company .company-image {
+            display: block;
+            width: 100%;
+          }
+
+          .company .company-logo {
+            display: block;
+            margin: auto;
+          }
+
+          .company .company-name {
+            text-align: center;
+            margin: 8px 0;
+          }
+
+          .company .company-details {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px;
+          }
+
+          .company .company-details p {
+            margin: 0;
+          }
+
+          .company .company-details .detail-title {
+            color: #8c8c8c;
+            font-size: 0.8rem;
+            margin: 0;
+          }
+
+          .company .company-details .company-deadline {
+            text-align: end;
+          }
+
+          .company .company-summary {
+            padding: 0 16px;
+            width: 100%;
+          }
+
+          .footer {
+            padding: 16px;
+          }
+
+          .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+          }
+
+          .contact-links {
+            flex-grow: 1;
+          }
+
+          .contact-links .logo {
+            margin-bottom: 24px;
+          }
+
+          .contact-links .link {
+            display: flex;
+            padding: 8px 0;
+          }
+
+          .contact-links .link span {
+            cursor: pointer;
+            padding-left: 8px;
+          }
+
+          .contact-links .link span:hover {
+            color: #01bbc8;
+          }
+
+          .contact-links .image-links {
+            padding: 16px 0;
+          }
+
+          .contact-links .image-links img {
+            display: inline-block;
+            padding: 8px;
+            cursor: pointer;
+          }
+
+          .other-links {
+            flex-grow: 1.8;
+          }
+
+          .other-links .other-links-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+          }
+
+          .other-links .title {
+            text-align: center;
+          }
+
+          .copyright {
+            text-align: center;
+          }
+
+          /* Adjust for smartphone screen sizes. */
+          @media only screen and (max-width: 600px) {
+            .nav-bar {
+              flex-direction: column;
+            }
+
+            .tagline .proposition {
+              padding: 8px;
+              width: 100%;
+            }
+
+            .tagline .proposition h1 {
+              font-size: 48px;
+            }
+
+            .benefits {
+              padding: 0;
+            }
+
+            .benefits-list-1,
+            .benefits-list-2 {
+              flex-basis: 100%;
+            }
+
+            .companies {
+              justify-content: left;
+            }
+
+            .companies .company {
+              min-width: 80%;
+              max-width: 80%;
+            }
+          }
+
+          /* Adjust for tablet screen sizes. */
+          @media only screen and (min-width: 600px) and (max-width: 800px) {
+            .tagline .proposition {
+              width: 100%;
+            }
+
+            .tagline .proposition h1 {
+              font-size: 48px;
+            }
+
+            .companies {
+              justify-content: left;
+            }
+
+            .companies .company {
+              min-width: 35%;
+              max-width: 35%;
+            }
+          }
+        `}
+      </style>
     </>
   );
 }

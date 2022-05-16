@@ -31,8 +31,7 @@
   color: #01bbc8;
 }
 
-.nav-bar .auth button,
-.sign-up-section button {
+.nav-bar .auth button {
   background-color: #01bbc8;
   border-radius: 5px;
   color: white;
@@ -41,8 +40,7 @@
   cursor: pointer;
 }
 
-.nav-bar .auth button:hover,
-.sign-up-section button:hover {
+.nav-bar .auth button:hover {
   background-color: #09062d;
 }
 
@@ -199,18 +197,6 @@
 .company .company-summary {
   padding: 0 16px;
   width: 100%;
-}
-
-.sign-up-section {
-  color: white;
-  padding: 64px 16px;
-  text-align: center;
-  background-color: #1c2854;
-}
-
-.sign-up-section .title {
-  font-size: 38px;
-  font-weight: bold;
 }
 
 .footer {
