@@ -1,5 +1,5 @@
-import Link from "next/link";
 import HomeNavBar from "../components/HomeNavBar";
+import InvestCard from "../components/InvestCard";
 
 export default function CompanyInfo() {
   return (
@@ -35,60 +35,7 @@ export default function CompanyInfo() {
           <iframe src="https://www.youtube.com/embed/e0H_fXxVn8k"></iframe>
         </div>
 
-        <div className="company-details">
-          <div className="valuation">
-            <p className="label">
-              Current <br />
-              Evaluation
-            </p>
-            <div>
-              <p className="valuation-dollars">$ 10,000,000</p>
-              <p className="valuation-ugx">UGX 35 trillion</p>
-            </div>
-          </div>
-
-          <div className="amount-raised">
-            <p className="label">
-              Amount <br />
-              raised
-            </p>
-
-            <div className="amount-details">
-              <p className="total">$ 901,000 / $ 1,000,000 raised</p>
-              <div className="amount-percentage-indicator">
-                <div></div>
-              </div>
-              <p className="amount-percentage">90.17%</p>
-            </div>
-          </div>
-
-          <div className="invest">
-            <div className="invest-label">
-              <p className="invest-label-title">Invest</p>
-              <p className="invest-label-minimum">min $1</p>
-            </div>
-
-            <div className="invest-amount">
-              <div className="invest-amount-selector">
-                <select name="currency" id="currency">
-                  <option value="dollars">$</option>
-                  <option value="shillings">UGX</option>
-                </select>
-
-                <p>20.00</p>
-              </div>
-
-              <p className="invest-transaction-fee">+Transaction fee: $0.50</p>
-            </div>
-          </div>
-
-          <button className="invest-button">INVEST</button>
-
-          <div className="wishlist-button">
-            <img src="/assets/heart.svg" alt="heart" />
-            <p>Add to Watchlist</p>
-          </div>
-        </div>
+        <InvestCard />
       </div>
 
       <div className="content-2">
@@ -112,60 +59,7 @@ export default function CompanyInfo() {
           </p>
         </div>
 
-        <div className="company-details">
-          <div className="valuation">
-            <p className="label">
-              Current <br />
-              Evaluation
-            </p>
-            <div>
-              <p className="valuation-dollars">$ 10,000,000</p>
-              <p className="valuation-ugx">UGX 35 trillion</p>
-            </div>
-          </div>
-
-          <div className="amount-raised">
-            <p className="label">
-              Amount <br />
-              raised
-            </p>
-
-            <div className="amount-details">
-              <p className="total">$ 901,000 / $ 1,000,000 raised</p>
-              <div className="amount-percentage-indicator">
-                <div></div>
-              </div>
-              <p className="amount-percentage">90.17%</p>
-            </div>
-          </div>
-
-          <div className="invest">
-            <div className="invest-label">
-              <p className="invest-label-title">Invest</p>
-              <p className="invest-label-minimum">min $1</p>
-            </div>
-
-            <div className="invest-amount">
-              <div className="invest-amount-selector">
-                <select name="currency" id="currency">
-                  <option value="dollars">$</option>
-                  <option value="shillings">UGX</option>
-                </select>
-
-                <p>20.00</p>
-              </div>
-
-              <p className="invest-transaction-fee">+Transaction fee: $0.50</p>
-            </div>
-          </div>
-
-          <button className="invest-button">INVEST</button>
-
-          <div className="wishlist-button">
-            <img src="/assets/heart.svg" alt="heart" />
-            <p>Add to Watchlist</p>
-          </div>
-        </div>
+        <InvestCard />
       </div>
 
       <div className="sign-up-section">
@@ -313,154 +207,6 @@ export default function CompanyInfo() {
           width: 100%;
           height: 100%;
           border-radius: 24px;
-        }
-
-        .company-details {
-          width: 35%;
-          background-color: white;
-          border-radius: 24px;
-          padding: 24px;
-        }
-
-        .valuation {
-          display: flex;
-          align-items: center;
-        }
-
-        .valuation .label,
-        .amount-raised .label {
-          width: 30%;
-          color: #8c8c8c;
-        }
-
-        .valuation div {
-          padding-left: 24px;
-        }
-
-        .valuation div p {
-          margin: 0;
-        }
-
-        .valuation .valuation-dollars {
-          font-weight: bold;
-        }
-
-        .valuation .valuation-ugx {
-          font-size: 0.8rem;
-        }
-
-        .amount-raised {
-          display: flex;
-          align-items: center;
-        }
-
-        .amount-details {
-          padding-left: 24px;
-        }
-
-        .amount-details p {
-          margin: 0;
-        }
-
-        .amount-details .total {
-          font-weight: bold;
-        }
-
-        .amount-percentage-indicator {
-          height: 6px;
-          background-color: #c4c4c4;
-        }
-
-        .amount-percentage-indicator div {
-          background-color: #01bbc8;
-          height: 100%;
-          width: 90%;
-        }
-
-        .amount-percentage {
-          text-align: end;
-          font-size: 0.8rem;
-          color: #8c8c8c;
-        }
-
-        .invest {
-          display: flex;
-        }
-
-        .invest-label {
-          width: 30%;
-        }
-
-        .invest-label p {
-          margin: 0;
-        }
-
-        .invest-label-minimum {
-          font-size: 0.8rem;
-          color: #8c8c8c;
-        }
-
-        .invest-amount {
-          padding-left: 24px;
-        }
-
-        .invest-amount-selector {
-          border: 1px solid #01bbc8;
-          border-radius: 5px;
-          display: flex;
-          justify-content: space-between;
-          padding: 16px;
-        }
-
-        .invest-amount-selector select {
-          padding: 4px;
-        }
-
-        .invest-amount-selector p {
-          margin: 0;
-          padding: 0;
-        }
-
-        .invest-transaction-fee {
-          text-align: end;
-          margin: 0;
-          color: #8c8c8c;
-          font-size: 0.8rem;
-        }
-
-        .invest-button {
-          background-color: #01bbc8;
-          border: none;
-          border-radius: 5px;
-          color: white;
-          display: block;
-          margin: 16px 0;
-          width: 100%;
-          cursor: pointer;
-          padding: 16px;
-        }
-
-        .invest-button:hover {
-          background-color: black;
-        }
-
-        .wishlist-button {
-          border: 1px solid #01bbc8;
-          cursor: pointer;
-          color: #01bbc8;
-          border-radius: 5px;
-          display: flex;
-          justify-content: center;
-          padding: 16px;
-        }
-
-        .wishlist-button:hover {
-          border: 1px solid black;
-        }
-
-        .wishlist-button p {
-          margin: 0;
-          padding-left: 16px;
         }
 
         .content-2 {
