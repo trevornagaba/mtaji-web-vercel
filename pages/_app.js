@@ -1,5 +1,4 @@
 import "../styles/styles.css";
-import "../styles/home-nav-bar.css";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {

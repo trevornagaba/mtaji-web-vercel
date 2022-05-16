@@ -1,37 +1,37 @@
-.nav-bar {
+.navBar {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 16px;
 }
 
-.nav-bar .logo {
+.navBar .logo {
   display: flex;
   align-items: center;
 }
 
-.nav-bar .logo span {
+.navBar .logo span {
   color: #2518b8;
   font-weight: bold;
   padding-left: 4px;
 }
 
-.nav-bar .links span,
-.nav-bar .account span {
+.navBar .links span,
+.navBar .account span {
   padding: 0 16px;
   cursor: pointer;
 }
 
-.nav-bar .links span:hover,
-.nav-bar .account span:hover {
+.navBar .links span:hover,
+.navBar .account span:hover {
   color: #01bbc8;
 }
 
-.nav-bar .account {
+.navBar .account {
   display: flex;
   align-items: center;
 }
 
-.nav-bar .account img {
+.navBar .account img {
   cursor: pointer;
 }

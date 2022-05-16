@@ -1,28 +1,10 @@
 import Link from "next/link";
+import HomeNavBar from "../components/HomeNavBar";
 
 export default function HomePage() {
   return (
     <>
-      <div className="nav-bar">
-        <div className="logo">
-          <img src="/assets/logo.svg" alt="logo" />
-          <span>mtaji</span>
-        </div>
-
-        <div className="links">
-          <Link href="/explore">
-            <span>Explore</span>
-          </Link>
-
-          <span>Portfolio</span>
-          <span>Marketplace</span>
-        </div>
-
-        <div className="account">
-          <span>FAQs</span>
-          <img src="/assets/account.svg" alt="account" />
-        </div>
-      </div>
+      <HomeNavBar />
 
       <div className="portfolio-section">
         <p className="header">Portfolio</p>
