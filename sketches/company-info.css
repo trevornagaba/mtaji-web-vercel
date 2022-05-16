@@ -76,13 +76,12 @@
 
 .video {
   width: 55%;
-  border: 1px solid black;
 }
 
-.video video {
+.video iframe {
   width: 100%;
   height: 100%;
-  border: 2px solid green;
+  border-radius: 24px;
 }
 
 .company-details {
@@ -235,11 +234,12 @@
 
 .content-2 {
   display: flex;
-  border: 1px solid green;
   padding: 16px;
+  justify-content: space-evenly;
 }
 
 .company-literature {
+  width: 55%;
   background-color: white;
   border-radius: 24px;
   padding: 16px;
@@ -263,33 +263,129 @@
   border-bottom: 3px solid #535fd7;
 }
 
+.sign-up-section {
+  color: white;
+  padding: 64px 16px;
+  text-align: center;
+  background-color: #1c2854;
+}
+
+.sign-up-section .title {
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.sign-up-section button {
+  background-color: #01bbc8;
+  border-radius: 5px;
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.sign-up-section button:hover {
+  background-color: #09062d;
+}
+
+.footer {
+  padding: 16px;
+}
+
+.footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.contact-links {
+  flex-grow: 1;
+}
+
+.contact-links .logo {
+  margin-bottom: 24px;
+}
+
+.contact-links .link {
+  display: flex;
+  padding: 8px 0;
+}
+
+.contact-links .link span {
+  cursor: pointer;
+  padding-left: 8px;
+}
+
+.contact-links .link span:hover {
+  color: #01bbc8;
+}
+
+.contact-links .image-links {
+  padding: 16px 0;
+}
+
+.contact-links .image-links img {
+  display: inline-block;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.other-links {
+  flex-grow: 1.8;
+}
+
+.other-links .other-links-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.other-links .title {
+  text-align: center;
+}
+
+.copyright {
+  text-align: center;
+}
+
 /* Adjust for smartphone screen sizes. */
 @media only screen and (max-width: 600px) {
   .header {
     flex-wrap: wrap;
   }
 
-  .content-1 {
+  .content-1,
+  .content-2 {
     flex-direction: column;
     padding: 0;
+  }
+
+  .content-2 {
+    margin-top: 16px;
   }
 
   .video {
     width: 100%;
   }
 
-  .company-details {
+  .company-details,
+  .company-literature {
     width: 100%;
   }
 
   .content-2 {
     padding: 0;
   }
+
+  .company-literature {
+    margin-bottom: 16px;
+  }
 }
 
 /* Adjust for tablet screen sizes. */
 @media only screen and (min-width: 600px) and (max-width: 800px) {
-  .content-1 {
+  .content-1,
+  .content-2 {
     flex-direction: column;
   }
 
@@ -297,7 +393,12 @@
     width: 100%;
   }
 
-  .company-details {
+  .company-details,
+  .company-literature {
     width: 100%;
+  }
+
+  .company-literature {
+    margin-bottom: 16px;
   }
 }

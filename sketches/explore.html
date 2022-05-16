@@ -144,5 +144,16 @@
         </div>
       </div>
     </div>
+
+    <script>
+      let viewButtons = document.querySelectorAll(
+        ".remaining-days .view-button"
+      );
+      viewButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          window.location.href = "company-info.html";
+        });
+      });
+    </script>
   </body>
 </html>
