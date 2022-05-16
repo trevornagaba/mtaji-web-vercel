@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <>
@@ -14,8 +16,13 @@ export default function Home() {
         </div>
 
         <div className="auth">
-          <span>Sign In</span>
-          <button>Sign Up</button>
+          <Link href="/login">
+            <span>Sign In</span>
+          </Link>
+
+          <Link href="/signup">
+            <button>Sign Up</button>
+          </Link>
         </div>
       </div>
 
@@ -29,7 +36,9 @@ export default function Home() {
             Be a part owner of a thriving business with as little as UGX 50,000
           </p>
           <div className="btn">
-            <button>Get Started</button>
+            <Link href="/signup">
+              <button>Get Started</button>
+            </Link>
           </div>
         </div>
       </div>
@@ -185,7 +194,10 @@ export default function Home() {
           Get connected with mission driven investors and your community <br />
           of users, customers and friends.
         </p>
-        <button>Sign Up Here</button>
+
+        <Link href="/signup">
+          <button>Sign Up Here</button>
+        </Link>
       </div>
 
       <div className="footer">

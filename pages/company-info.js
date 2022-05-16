@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function CompanyInfo() {
   return (
     <>
@@ -8,7 +10,9 @@ export default function CompanyInfo() {
         </div>
 
         <div className="links">
-          <span>Explore</span>
+          <Link href="/explore">
+            <span>Explore</span>
+          </Link>
           <span>Portfolio</span>
           <span>Marketplace</span>
         </div>

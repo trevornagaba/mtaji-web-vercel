@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function HomePage() {
   return (
     <>
@@ -8,7 +10,10 @@ export default function HomePage() {
         </div>
 
         <div className="links">
-          <span>Explore</span>
+          <Link href="/explore">
+            <span>Explore</span>
+          </Link>
+
           <span>Portfolio</span>
           <span>Marketplace</span>
         </div>
@@ -38,7 +43,10 @@ export default function HomePage() {
           <div className="investments-portfolio">
             <div className="header">
               <p>My Investments</p>
-              <button>Explore</button>
+
+              <Link href="/explore">
+                <button>Explore</button>
+              </Link>
             </div>
 
             <div className="investment">

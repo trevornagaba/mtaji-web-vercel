@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Login() {
   return (
     <>
@@ -24,7 +26,9 @@ export default function Login() {
               <p className="password-reset">Forgot password?</p>
             </div>
 
-            <button>Sign in</button>
+            <Link href="/home">
+              <button>Sign in</button>
+            </Link>
 
             <div className="or-option">
               <div></div>
@@ -32,14 +36,19 @@ export default function Login() {
               <div></div>
             </div>
 
-            <div className="google-button">
-              <img src="/assets/google_icon.svg" alt="google_icon" />
-              <span>Sign in with Google</span>
-            </div>
+            <Link href="/home">
+              <div className="google-button">
+                <img src="/assets/google_icon.svg" alt="google_icon" />
+                <span>Sign in with Google</span>
+              </div>
+            </Link>
 
             <div className="sign-up-prompt">
               <p className="question">New Here?</p>
-              <p className="link">Create an account</p>
+
+              <Link href="signup">
+                <p className="link">Create an account</p>
+              </Link>
             </div>
           </form>
         </div>

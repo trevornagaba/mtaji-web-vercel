@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Explore() {
   return (
     <>
@@ -8,7 +10,9 @@ export default function Explore() {
         </div>
 
         <div className="links">
-          <span>Explore</span>
+          <Link href="/explore">
+            <span>Explore</span>
+          </Link>
           <span>Portfolio</span>
           <span>Marketplace</span>
         </div>
@@ -62,7 +66,9 @@ export default function Explore() {
                 <p className="label">days</p>
               </div>
 
-              <button className="view-button">View</button>
+              <Link href="/company-info">
+                <button className="view-button">View</button>
+              </Link>
             </div>
           </div>
           <div className="table-row">
@@ -94,7 +100,9 @@ export default function Explore() {
                 <p className="label">days</p>
               </div>
 
-              <button className="view-button">View</button>
+              <Link href="/company-info">
+                <button className="view-button">View</button>
+              </Link>
             </div>
           </div>
           <div className="table-row">
@@ -126,7 +134,9 @@ export default function Explore() {
                 <p className="label">days</p>
               </div>
 
-              <button className="view-button">View</button>
+              <Link href="/company-info">
+                <button className="view-button">View</button>
+              </Link>
             </div>
           </div>
         </div>
