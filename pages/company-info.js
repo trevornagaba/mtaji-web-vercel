@@ -1,5 +1,6 @@
 import HomeNavBar from "../components/HomeNavBar";
 import InvestCard from "../components/InvestCard";
+import Footer from "../components/Footer";
 
 export default function CompanyInfo() {
   return (
@@ -74,53 +75,7 @@ export default function CompanyInfo() {
         <button>Sign Up Here</button>
       </div>
 
-      <div className="footer">
-        <div className="container">
-          <div className="contact-links">
-            <div className="logo">
-              <img src="/assets/logo.svg" alt="logo" />
-              <span>mtaji</span>
-            </div>
-
-            <div className="link">
-              <img src="/assets/email.svg" alt="email" />
-              <span> support@mtaji.io </span>
-            </div>
-
-            <div className="link">
-              <img src="/assets/phone.svg" alt="phone" />
-              <span>01222845686</span>
-            </div>
-
-            <div className="image-links">
-              <img src="/assets/linked_in.svg" alt="linkedin" />
-              <img src="/assets/facebook.svg" alt="facebook" />
-              <img src="/assets/twitter.svg" alt="twitter" />
-              <img src="/assets/instagram.svg" alt="instagram" />
-            </div>
-          </div>
-
-          <div className="other-links">
-            <p className="title">Other Links</p>
-
-            <div className="other-links-container">
-              <div className="group-1">
-                <p>About</p>
-                <p>FAQs</p>
-                <p>Blog</p>
-              </div>
-
-              <div className="group-2">
-                <p>Terms of Service</p>
-                <p>Privacy Policy</p>
-                <p>AML Policy</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p className="copyright">&copy; Mansa Finance. All Rights Reserved.</p>
-      </div>
+      <Footer />
 
       <style jsx>{`
         .header {
@@ -238,66 +193,6 @@ export default function CompanyInfo() {
 
         .literature-types .selected {
           border-bottom: 3px solid #535fd7;
-        }
-
-        .footer {
-          padding: 16px;
-        }
-
-        .footer .container {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-        }
-
-        .contact-links {
-          flex-grow: 1;
-        }
-
-        .contact-links .logo {
-          margin-bottom: 24px;
-        }
-
-        .contact-links .link {
-          display: flex;
-          padding: 8px 0;
-        }
-
-        .contact-links .link span {
-          cursor: pointer;
-          padding-left: 8px;
-        }
-
-        .contact-links .link span:hover {
-          color: #01bbc8;
-        }
-
-        .contact-links .image-links {
-          padding: 16px 0;
-        }
-
-        .contact-links .image-links img {
-          display: inline-block;
-          padding: 8px;
-          cursor: pointer;
-        }
-
-        .other-links {
-          flex-grow: 1.8;
-        }
-
-        .other-links .other-links-container {
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-        }
-
-        .other-links .title {
-          text-align: center;
-        }
-
-        .copyright {
-          text-align: center;
         }
 
         /* Adjust for smartphone screen sizes. */
