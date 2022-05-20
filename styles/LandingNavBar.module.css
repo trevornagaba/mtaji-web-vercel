@@ -47,13 +47,40 @@
   .navBar {
     flex-wrap: nowrap;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
   }
 
   .navBar .links {
-    flex-wrap: wrap;
-    padding: 16px 8px;
     width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: left;
+    padding: 0;
+  }
+
+  .navBar .links span {
+    cursor: pointer;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+    margin: 0;
+  }
+
+  .navBar .auth {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .navBar .auth span {
+    display: inline;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .navBar .auth button {
+    display: inline;
+    margin-top: 16px;
+    width: 100px;
   }
 }
 
@@ -62,10 +89,39 @@
   .navBar {
     flex-wrap: nowrap;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
   }
 
   .navBar .links {
-    width: 80%;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: left;
+    padding: 0;
+  }
+
+  .navBar .links span {
+    cursor: pointer;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+    margin: 0;
+  }
+
+  .navBar .auth {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .navBar .auth span {
+    display: inline;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .navBar .auth button {
+    display: inline;
+    margin-top: 16px;
+    width: 100px;
   }
 }

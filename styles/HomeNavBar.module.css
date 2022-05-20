@@ -5,9 +5,16 @@
   padding: 16px;
 }
 
+.navBar .links {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  width: 40%;
+}
+
 .navBar .links span,
 .navBar .account span {
-  padding: 0 16px;
+  padding: 0 8px;
   cursor: pointer;
 }
 
@@ -23,4 +30,86 @@
 
 .navBar .account img {
   cursor: pointer;
+}
+
+/* Adjust for smartphone screen sizes. */
+@media only screen and (max-width: 600px) {
+  .navBar {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .navBar .links {
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: left;
+    padding: 0;
+  }
+
+  .navBar .links span {
+    cursor: pointer;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+    margin: 0;
+  }
+
+  .navBar .account {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navBar .account span {
+    width: 100%;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .navBar .account img {
+    margin-top: 8px 0;
+    padding: 8px 0;
+  }
+}
+
+/* Adjust for tablet screen sizes. */
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .navBar {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .navBar .links {
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: left;
+    padding: 0;
+  }
+
+  .navBar .links span {
+    cursor: pointer;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+    margin: 0;
+  }
+
+  .navBar .account {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navBar .account span {
+    width: 100%;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .navBar .account img {
+    margin-top: 8px 0;
+    padding: 8px 0;
+  }
 }
