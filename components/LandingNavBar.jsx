@@ -10,9 +10,17 @@ const LandingNavBar = () => {
       </div>
 
       <div className={styles.links}>
-        <span>Explore</span>
-        <span>Investment 101</span>
-        <span>FAQs</span>
+        <Link href="/explore">
+          <span>Explore</span>
+        </Link>
+
+        <Link href="/investment">
+          <span>Investment 101</span>
+        </Link>
+
+        <Link href="/faqs">
+          <span>FAQs</span>
+        </Link>
       </div>
 
       <div className={styles.auth}>

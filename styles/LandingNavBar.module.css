@@ -16,9 +16,20 @@
   padding-left: 4px;
 }
 
-.navBar .links span,
+.navBar .links {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  width: 40%;
+}
+
+.navBar .links span {
+  cursor: pointer;
+  padding: 0 8px;
+}
+
 .navBar .auth span {
-  padding: 0 16px;
+  padding-right: 24px;
   cursor: pointer;
 }
 
@@ -28,14 +39,44 @@
 }
 
 .navBar .auth button {
-  background-color: #01bbc8;
+  background-color: #2518b8;
   border-radius: 5px;
+  font-weight: bold;
   color: white;
-  padding: 8px;
+  padding: 8px 16px;
   border: none;
   cursor: pointer;
+  box-shadow: 2px 2px 12px rgba(37, 24, 184, 0.6);
 }
 
 .navBar .auth button:hover {
   background-color: #09062d;
+}
+
+/* Adjust for smartphone screen sizes. */
+@media only screen and (max-width: 600px) {
+  .navBar {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navBar .links {
+    flex-wrap: wrap;
+    padding: 16px 8px;
+    width: 100%;
+  }
+}
+
+/* Adjust for tablet screen sizes. */
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .navBar {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navBar .links {
+    width: 80%;
+  }
 }
