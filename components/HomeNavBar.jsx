@@ -1,13 +1,11 @@
 import Link from "next/link";
 import styles from "../styles/HomeNavBar.module.css";
+import HomeLogo from "./HomeLogo";
 
 const HomeNavBar = () => {
   return (
     <div className={styles.navBar}>
-      <div className={styles.logo}>
-        <img src="/assets/logo.svg" alt="logo" />
-        <span>mtaji</span>
-      </div>
+      <HomeLogo />
 
       <div className={styles.links}>
         <Link href="/explore">

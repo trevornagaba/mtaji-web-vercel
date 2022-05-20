@@ -1,14 +1,12 @@
 import styles from "../styles/Footer.module.css";
+import HomeLogo from "./HomeLogo";
 
 const Footer = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.contactLinks}>
-          <div className={styles.logo}>
-            <img src="/assets/logo.svg" alt="logo" />
-            <span>mtaji</span>
-          </div>
+          <HomeLogo />
 
           <div className={styles.link}>
             <img src="/assets/email.svg" alt="email" />

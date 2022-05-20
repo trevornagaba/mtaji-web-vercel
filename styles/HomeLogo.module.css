@@ -1,0 +1,11 @@
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo span {
+  color: #2518b8;
+  font-weight: bold;
+  padding-left: 4px;
+}

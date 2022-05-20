@@ -5,17 +5,6 @@
   padding: 16px;
 }
 
-.navBar .logo {
-  display: flex;
-  align-items: center;
-}
-
-.navBar .logo span {
-  color: #2518b8;
-  font-weight: bold;
-  padding-left: 4px;
-}
-
 .navBar .links span,
 .navBar .account span {
   padding: 0 16px;

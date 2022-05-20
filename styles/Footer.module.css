@@ -12,21 +12,9 @@
   flex-grow: 1;
 }
 
-.contactLinks .logo {
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-}
-
-.contactLinks .logo span {
-  color: #2518b8;
-  font-weight: bold;
-  padding-left: 4px;
-}
-
 .contactLinks .link {
   display: flex;
-  padding: 8px 0;
+  padding-top: 16px;
 }
 
 .contactLinks .link span {
