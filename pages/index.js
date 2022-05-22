@@ -3,6 +3,7 @@ import LandingNavBar from "../components/landing/LandingNavBar";
 import Footer from "../components/Footer";
 import WhyMtaji from "../components/landing/WhyMtaji";
 import BenefitsSection from "../components/landing/BenefitsSection";
+import CompaniesSection from "../components/landing/CompaniesSection";
 
 export default function Home() {
   return (
@@ -37,86 +38,7 @@ export default function Home() {
         <BenefitsSection />
       </div>
 
-      <p className="section-header">
-        Companies currently raising capital on mtaji
-      </p>
-      <div className="companies-section">
-        <div className="companies">
-          <div className="company">
-            <img className="company-image" src="/assets/bike.jpg" alt="bike" />
-            <img
-              className="company-logo"
-              src="/assets/logo_in_card.svg"
-              alt="logo_in_card"
-            />
-            <p className="company-name">Safe Boda</p>
-
-            <div className="company-details">
-              <div className="company-target">
-                <p className="detail-title">Target</p>
-                <p>UGX 50M</p>
-              </div>
-              <div className="company-deadline">
-                <p className="detail-title">To end in</p>
-                <p>21h: 30m: 0s</p>
-              </div>
-            </div>
-
-            <p className="company-summary">
-              Lorem ipsum dolor, a short description of what the company is all
-              about...
-            </p>
-          </div>
-
-          <div className="company">
-            <img className="company-image" src="/assets/bike.jpg" alt="bike" />
-            <img
-              className="company-logo"
-              src="/assets/logo_in_card.svg"
-              alt="logo_in_card"
-            />
-            <p className="company-name">Safe Boda</p>
-
-            <div className="company-details">
-              <div className="company-target">
-                <p className="detail-title">Target</p>
-                <p>UGX 50M</p>
-              </div>
-              <div className="company-deadline">
-                <p className="detail-title">To end in</p>
-                <p>21h: 30m: 0s</p>
-              </div>
-            </div>
-
-            <p className="company-summary">Lorem ipsum dolorlldl ddkdl</p>
-          </div>
-
-          <div className="company">
-            <img className="company-image" src="/assets/bike.jpg" alt="bike" />
-            <img
-              className="company-logo"
-              src="/assets/logo_in_card.svg"
-              alt="logo_in_card"
-            />
-            <p className="company-name">Safe Boda</p>
-
-            <div className="company-details">
-              <div className="company-target">
-                <p className="detail-title">Target</p>
-                <p>UGX 50M</p>
-              </div>
-              <div className="company-deadline">
-                <p className="detail-title">To end in</p>
-                <p>21h: 30m: 0s</p>
-              </div>
-            </div>
-
-            <p className="company-summary">Lorem ipsum dolorlldl ddkdl</p>
-          </div>
-        </div>
-
-        <button>Explore</button>
-      </div>
+      <CompaniesSection />
 
       <div className="sign-up-section">
         <p className="title">
@@ -176,8 +98,7 @@ export default function Home() {
             padding: 16px 0;
           }
 
-          .tagline .proposition .btn button,
-          .companies-section button {
+          .tagline .proposition .btn button {
             background: #2518b8;
             border: none;
             box-shadow: 2px 2px 12px rgba(37, 24, 184, 0.6);
@@ -191,8 +112,7 @@ export default function Home() {
             padding: 8px 24px;
           }
 
-          .tagline .proposition .btn button:hover,
-          .companies-section button:hover {
+          .tagline .proposition .btn button:hover {
             background-color: #01bbc8;
           }
 
@@ -208,66 +128,6 @@ export default function Home() {
             text-align: center;
             color: #09062d;
             margin: 0;
-          }
-
-          .companies-section {
-            padding-bottom: 16px;
-          }
-
-          .companies {
-            display: flex;
-            justify-content: space-evenly;
-            overflow: auto;
-            padding: 16px;
-            width: 100%;
-          }
-
-          .companies .company {
-            background-color: white;
-            min-width: 25%;
-            max-width: 25%;
-            border-radius: 32px;
-            margin: 0 16px;
-          }
-
-          .company .company-image {
-            display: block;
-            width: 100%;
-          }
-
-          .company .company-logo {
-            display: block;
-            margin: auto;
-          }
-
-          .company .company-name {
-            text-align: center;
-            margin: 8px 0;
-          }
-
-          .company .company-details {
-            display: flex;
-            justify-content: space-between;
-            padding: 16px;
-          }
-
-          .company .company-details p {
-            margin: 0;
-          }
-
-          .company .company-details .detail-title {
-            color: #8c8c8c;
-            font-size: 0.8rem;
-            margin: 0;
-          }
-
-          .company .company-details .company-deadline {
-            text-align: end;
-          }
-
-          .company .company-summary {
-            padding: 0 16px;
-            width: 100%;
           }
 
           /* Adjust for smartphone screen sizes. */
@@ -292,15 +152,6 @@ export default function Home() {
             .benefits {
               padding: 0;
             }
-
-            .companies {
-              justify-content: left;
-            }
-
-            .companies .company {
-              min-width: 80%;
-              max-width: 80%;
-            }
           }
 
           /* Adjust for tablet screen sizes. */
@@ -319,15 +170,6 @@ export default function Home() {
 
             .benefits {
               padding: 0;
-            }
-
-            .companies {
-              justify-content: left;
-            }
-
-            .companies .company {
-              min-width: 35%;
-              max-width: 35%;
             }
           }
         `}

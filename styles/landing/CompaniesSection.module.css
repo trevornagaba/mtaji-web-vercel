@@ -1,0 +1,110 @@
+.sectionHeader {
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 16px;
+  text-align: center;
+  color: #09062d;
+  margin: 0;
+}
+
+.companiesSection {
+  padding-bottom: 16px;
+}
+
+.companies {
+  display: flex;
+  justify-content: space-evenly;
+  overflow: auto;
+  padding: 16px;
+  width: 100%;
+}
+
+.companies .company {
+  background-color: white;
+  min-width: 25%;
+  max-width: 25%;
+  border-radius: 32px;
+  margin: 0 16px;
+}
+
+.company .companyImage {
+  display: block;
+  width: 100%;
+}
+
+.company .companyLogo {
+  display: block;
+  margin: auto;
+}
+
+.company .companyName {
+  text-align: center;
+  margin: 8px 0;
+}
+
+.company .companyDetails {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.company .companyDetails p {
+  margin: 0;
+}
+
+.company .companyDetails .detailTitle {
+  color: #8c8c8c;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.company .companyDetails .companyDeadline {
+  text-align: end;
+}
+
+.company .companySummary {
+  padding: 0 16px;
+  width: 100%;
+}
+
+.companiesSection button {
+  background: #2518b8;
+  border: none;
+  box-shadow: 2px 2px 12px rgba(37, 24, 184, 0.6);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  padding: 8px 24px;
+}
+
+.companiesSection button:hover {
+  background-color: #01bbc8;
+}
+
+/* Adjust for smartphone screen sizes. */
+@media only screen and (max-width: 600px) {
+  .companies {
+    justify-content: left;
+  }
+
+  .companies .company {
+    min-width: 80%;
+    max-width: 80%;
+  }
+}
+
+/* Adjust for tablet screen sizes. */
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .companies {
+    justify-content: left;
+  }
+
+  .companies .company {
+    min-width: 35%;
+    max-width: 35%;
+  }
+}

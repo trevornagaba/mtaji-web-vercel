@@ -1,4 +1,4 @@
-import styles from "../../styles/WhyMtaji.module.css";
+import styles from "../../styles/landing/WhyMtaji.module.css";
 
 const WhyMtaji = () => {
   return (
