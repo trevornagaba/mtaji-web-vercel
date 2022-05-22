@@ -1,7 +1,7 @@
 .sectionHeader {
   font-size: 1.4rem;
   font-weight: bold;
-  padding: 16px;
+  padding: 24px 0 16px;
   text-align: center;
   color: #09062d;
   margin: 0;
@@ -19,52 +19,64 @@
   width: 100%;
 }
 
-.companies .company {
+.company {
   background-color: white;
   min-width: 25%;
   max-width: 25%;
-  border-radius: 32px;
+  border-radius: 15px;
   margin: 0 16px;
+  padding: 24px 16px;
 }
 
-.company .companyImage {
-  display: block;
-  width: 100%;
-}
-
-.company .companyLogo {
+.companyLogo {
   display: block;
   margin: auto;
 }
 
-.company .companyName {
+.companyName {
   text-align: center;
+  font-weight: bold;
+  color: #09062d;
   margin: 8px 0;
 }
 
-.company .companyDetails {
-  display: flex;
-  justify-content: space-between;
-  padding: 16px;
+.companyDescription {
+  color: #666666;
+  font-size: 0.9rem;
 }
 
-.company .companyDetails p {
+.raisingLabel {
   margin: 0;
-}
-
-.company .companyDetails .detailTitle {
-  color: #8c8c8c;
+  color: #666666;
   font-size: 0.8rem;
+}
+
+.companyTarget {
+  color: #09062d;
+  font-weight: bold;
+  font-size: 1.2rem;
   margin: 0;
 }
 
-.company .companyDetails .companyDeadline {
-  text-align: end;
+.targetDeadline {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: flex-start;
 }
 
-.company .companySummary {
-  padding: 0 16px;
-  width: 100%;
+.targetDeadline .endsInLabel {
+  padding: 0;
+  margin: 0;
+  color: #666666;
+  font-size: 0.8rem;
+}
+
+.targetDeadline .timeLeft {
+  padding-left: 8px;
+  margin: 0;
+  color: red;
+  font-size: 0.8rem;
 }
 
 .companiesSection button {

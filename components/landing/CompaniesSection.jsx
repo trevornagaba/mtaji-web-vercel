@@ -8,100 +8,41 @@ const CompaniesSection = () => {
       </p>
       <div className={styles.companiesSection}>
         <div className={styles.companies}>
-          <div className={styles.company}>
-            <img
-              className={styles.companyImage}
-              src="/assets/bike.jpg"
-              alt="bike"
-            />
-            <img
-              className={styles.companyLogo}
-              src="/assets/logo_in_card.svg"
-              alt="logo_in_card"
-            />
-            <p className={styles.companyName}>Safe Boda</p>
-
-            <div className={styles.companyDetails}>
-              <div className={styles.companyTarget}>
-                <p className={styles.detailTitle}>Target</p>
-                <p>UGX 50M</p>
-              </div>
-              <div className={styles.companyDeadline}>
-                <p className={styles.detailTitle}>To end in</p>
-                <p>21h: 30m: 0s</p>
-              </div>
-            </div>
-
-            <p className={styles.companySummary}>
-              Lorem ipsum dolor, a short description of what the company is all
-              about...
-            </p>
-          </div>
-
-          <div className={styles.company}>
-            <img
-              className={styles.companyImage}
-              src="/assets/bike.jpg"
-              alt="bike"
-            />
-            <img
-              className={styles.companyLogo}
-              src="/assets/logo_in_card.svg"
-              alt="logo_in_card"
-            />
-            <p className={styles.companyName}>Safe Boda</p>
-
-            <div className={styles.companyDetails}>
-              <div className={styles.companyTarget}>
-                <p className={styles.detailTitle}>Target</p>
-                <p>UGX 50M</p>
-              </div>
-              <div className={styles.companyDeadline}>
-                <p className={styles.detailTitle}>To end in</p>
-                <p>21h: 30m: 0s</p>
-              </div>
-            </div>
-
-            <p className={styles.companySummary}>
-              Lorem ipsum dolor, a short description of what the company is all
-              about...
-            </p>
-          </div>
-
-          <div className={styles.company}>
-            <img
-              className={styles.companyImage}
-              src="/assets/bike.jpg"
-              alt="bike"
-            />
-            <img
-              className={styles.companyLogo}
-              src="/assets/logo_in_card.svg"
-              alt="logo_in_card"
-            />
-            <p className={styles.companyName}>Safe Boda</p>
-
-            <div className={styles.companyDetails}>
-              <div className={styles.companyTarget}>
-                <p className={styles.detailTitle}>Target</p>
-                <p>UGX 50M</p>
-              </div>
-              <div className={styles.companyDeadline}>
-                <p className={styles.detailTitle}>To end in</p>
-                <p>21h: 30m: 0s</p>
-              </div>
-            </div>
-
-            <p className={styles.companySummary}>
-              Lorem ipsum dolor, a short description of what the company is all
-              about...
-            </p>
-          </div>
+          <CompanyCard />
+          <CompanyCard />
+          <CompanyCard />
         </div>
 
         <button>Explore</button>
       </div>
     </>
+  );
+};
+
+const CompanyCard = () => {
+  return (
+    <div className={styles.company}>
+      <img
+        className={styles.companyLogo}
+        src="/assets/logo_in_card.svg"
+        alt="logo_in_card"
+      />
+
+      <p className={styles.companyName}>Safe Boda</p>
+
+      <p className={styles.companyDescription}>
+        Nulla quis lorem ut libero male suada feu giat. Nulla quis lorem ut
+        libero male suada feugiat. Lorem ipsum dolor sit amet, con se ct etur
+        adipis cing elit. nfleare
+      </p>
+
+      <p className={styles.raisingLabel}>Raising</p>
+      <p className={styles.companyTarget}>UGX 50M</p>
+      <div className={styles.targetDeadline}>
+        <p className={styles.endsInLabel}>Ends in:</p>
+        <p className={styles.timeLeft}>21h: 30m: 09s</p>
+      </div>
+    </div>
   );
 };
 
