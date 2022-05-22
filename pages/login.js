@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HomeLogo from "../components/HomeLogo";
 
 export default function Login() {
   return (
@@ -9,10 +10,7 @@ export default function Login() {
         <div className="content">
           <div className="top-container">
             <div className="logo-container">
-              <div className="logo">
-                <img src="/assets/logo.svg" alt="logo" />
-                <span>mtaji</span>
-              </div>
+              <HomeLogo />
             </div>
           </div>
 
@@ -78,17 +76,6 @@ export default function Login() {
         .logo-container {
           display: inline-block;
           margin: 0 auto;
-        }
-
-        .logo {
-          display: flex;
-          align-items: center;
-        }
-
-        .logo span {
-          color: #2518b8;
-          font-weight: bold;
-          padding-left: 4px;
         }
 
         .title {
