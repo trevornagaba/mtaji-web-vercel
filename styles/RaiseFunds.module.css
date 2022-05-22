@@ -1,0 +1,94 @@
+.container {
+  position: relative;
+  margin: 64px;
+  padding-bottom: 64px;
+}
+
+.section {
+  color: white;
+  padding: 16px;
+  border-radius: 20px;
+  background-color: #1c2854;
+  display: flex;
+  background-image: url("/assets/semi_circle_background.svg");
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.section div {
+  width: 85%;
+  margin: 16px;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.section button {
+  align-self: center;
+  background-color: #01bbc8;
+  border-radius: 5px;
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.section button:hover {
+  background-color: #09062d;
+}
+
+.circles {
+  position: absolute;
+  right: 32px;
+  bottom: 0;
+  width: 132px;
+  height: 132px;
+}
+
+/* Adjust for smartphone screen sizes. */
+@media only screen and (max-width: 600px) {
+  .container {
+    padding-bottom: 16px;
+    margin: 8px;
+  }
+
+  .section {
+    flex-direction: column;
+  }
+
+  .section div {
+    width: 100%;
+    margin: 8px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .circles {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Adjust for tablet screen sizes. */
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .container {
+    padding-bottom: 16px;
+  }
+
+  .section {
+    flex-direction: column;
+  }
+
+  .section div {
+    width: 100%;
+  }
+
+  .circles {
+    width: 32px;
+    height: 32px;
+  }
+}
