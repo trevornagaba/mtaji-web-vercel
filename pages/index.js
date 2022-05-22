@@ -1,6 +1,7 @@
 import Link from "next/link";
 import LandingNavBar from "../components/LandingNavBar";
 import Footer from "../components/Footer";
+import WhyMtaji from "../components/WhyMtaji";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
       <LandingNavBar />
 
       <div className="tagline">
-        <div className="tagline-background"></div>
+        <div className="tagline-background" />
 
         <div className="proposition">
           <h1>
@@ -26,66 +27,11 @@ export default function Home() {
         </div>
       </div>
 
+      <WhyMtaji />
+
       <p className="section-header">
         Mtaji is a marketplace for investors and founders in Africa
       </p>
-      <div className="benefits">
-        <div className="benefits-list-1">
-          <div>
-            <img src="/assets/info_vector.svg" alt="info" />
-            <p>
-              90% of revenue generating businesses in Africa need additional
-              capital to move from good to gread
-            </p>
-          </div>
-
-          <div>
-            <img src="/assets/info_vector.svg" alt="info" />
-            <p>
-              Millenials and professionals in diaspora are looking for a source
-              of passive income
-            </p>
-          </div>
-          <div>
-            <img src="/assets/info_vector.svg" alt="info" />
-            <p>
-              Millenials and professionals in diaspora are looking for a source
-              of passive income
-            </p>
-          </div>
-        </div>
-
-        <div className="benefits-list-2">
-          <div className="list-item">
-            <img src="/assets/checkmark.svg" alt="checkmark" />
-            <div>
-              <p className="list-item-title">Unlock Opportunities</p>
-              <p>
-                Explore list of thriving African companies looking for capital
-              </p>
-            </div>
-          </div>
-
-          <div className="list-item">
-            <img src="/assets/checkmark.svg" alt="checkmark" />
-            <div>
-              <p className="list-item-title">Affordable</p>
-              <p>Invest with as little as UGX 50,000</p>
-            </div>
-          </div>
-
-          <div className="list-item">
-            <img src="/assets/checkmark.svg" alt="checkmark" />
-            <div>
-              <p className="list-item-title">Transparent</p>
-              <p>
-                See financials, past performance and team of companies looking
-                for capital
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <p className="section-header">
         Companies currently raising capital on mtaji
@@ -255,48 +201,6 @@ export default function Home() {
             margin: 0;
           }
 
-          .benefits {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 0 16px;
-            justify-content: space-between;
-            color: #09062d;
-          }
-
-          .benefits-list-1 div {
-            display: flex;
-            align-items: center;
-          }
-
-          .benefits-list-1 div p {
-            padding-left: 8px;
-          }
-
-          .benefits-list-1,
-          .benefits-list-2 {
-            padding: 16px;
-            flex-basis: 50%;
-          }
-
-          .benefits-list-2 .list-item {
-            display: flex;
-            align-items: flex-start;
-          }
-
-          .benefits-list-2 div div {
-            display: flex;
-            flex-direction: column;
-          }
-
-          .benefits-list-2 .list-item div {
-            margin-left: 16px;
-          }
-
-          .benefits-list-2 .list-item .list-item-title {
-            margin: 0;
-            font-weight: bold;
-          }
-
           .companies-section {
             padding-bottom: 16px;
           }
@@ -374,15 +278,6 @@ export default function Home() {
 
             .tagline .proposition h1 {
               font-size: 48px;
-            }
-
-            .benefits {
-              padding: 0;
-            }
-
-            .benefits-list-1,
-            .benefits-list-2 {
-              flex-basis: 100%;
             }
 
             .companies {

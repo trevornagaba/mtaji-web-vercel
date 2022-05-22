@@ -1,0 +1,85 @@
+.section {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 10%;
+  margin-bottom: 32px;
+  position: relative;
+  background-image: url("/assets/illustration_7.png");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: contain;
+}
+
+.content {
+  z-index: 1000;
+  width: 60%;
+  padding: 0 16px;
+}
+
+.title {
+  color: #09062d;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.underline {
+  background-color: #01bbc8;
+  height: 2px;
+  width: 50px;
+}
+
+.pointsList {
+  padding-top: 24px;
+}
+
+.point {
+  display: flex;
+  align-items: center;
+}
+
+.point img {
+  padding-right: 16px;
+}
+
+/* Adjust for smartphone screen sizes. */
+@media only screen and (max-width: 600px) {
+  .section {
+    margin-left: 0;
+  }
+
+  .backgroundCover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: #f7f6fe;
+    opacity: 0.88;
+  }
+
+  .content {
+    width: 100%;
+  }
+}
+
+/* Adjust for tablet screen sizes. */
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .section {
+    margin-left: 0;
+  }
+
+  .backgroundCover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: #f7f6fe;
+    opacity: 0.88;
+  }
+
+  .content {
+    width: 100%;
+  }
+}
