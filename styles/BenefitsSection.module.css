@@ -1,0 +1,38 @@
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px;
+  justify-content: space-evenly;
+  background-color: white;
+}
+
+.card {
+  padding: 24px;
+  border-radius: 12px;
+  background-color: #f7f7f7;
+  text-align: center;
+  margin: 16px;
+}
+
+.card .title {
+  color: #202223;
+  font-weight: bold;
+}
+
+.card .description {
+  color: #666666;
+}
+
+/* Adjust for smartphone screen sizes. */
+@media only screen and (max-width: 600px) {
+  .section {
+    padding: 0;
+  }
+}
+
+/* Adjust for tablet screen sizes. */
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .section {
+    padding: 0;
+  }
+}

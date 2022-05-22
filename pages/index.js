@@ -2,6 +2,7 @@ import Link from "next/link";
 import LandingNavBar from "../components/LandingNavBar";
 import Footer from "../components/Footer";
 import WhyMtaji from "../components/WhyMtaji";
+import BenefitsSection from "../components/BenefitsSection";
 
 export default function Home() {
   return (
@@ -27,11 +28,14 @@ export default function Home() {
         </div>
       </div>
 
-      <WhyMtaji />
+      <div className="benefits">
+        <WhyMtaji />
 
-      <p className="section-header">
-        Mtaji is a marketplace for investors and founders in Africa
-      </p>
+        <p className="section-header">
+          Mtaji is a marketplace for investors and founders in Africa
+        </p>
+        <BenefitsSection />
+      </div>
 
       <p className="section-header">
         Companies currently raising capital on mtaji
@@ -165,8 +169,7 @@ export default function Home() {
           .tagline .proposition h1 {
             color: #09062d;
             font-size: 2.6rem;
-            font-weight: 700;
-            font-style: bold;
+            font-weight: bold;
           }
 
           .tagline .proposition .btn {
@@ -193,10 +196,16 @@ export default function Home() {
             background-color: #01bbc8;
           }
 
+          .benefits {
+            background-color: white;
+            padding: 32px;
+          }
+
           .section-header {
+            font-size: 1.4rem;
+            font-weight: bold;
             padding: 16px;
             text-align: center;
-            font-size: 24px;
             color: #09062d;
             margin: 0;
           }
@@ -277,7 +286,11 @@ export default function Home() {
             }
 
             .tagline .proposition h1 {
-              font-size: 48px;
+              font-size: 2rem;
+            }
+
+            .benefits {
+              padding: 0;
             }
 
             .companies {
@@ -301,7 +314,11 @@ export default function Home() {
             }
 
             .tagline .proposition h1 {
-              font-size: 48px;
+              font-size: 2rem;
+            }
+
+            .benefits {
+              padding: 0;
             }
 
             .companies {
