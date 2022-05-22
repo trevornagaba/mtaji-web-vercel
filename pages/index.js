@@ -4,7 +4,6 @@ import TaglineSection from "../components/landing/TaglineSection";
 import BenefitsSection from "../components/landing/BenefitsSection";
 import CompaniesSection from "../components/landing/CompaniesSection";
 import RaiseFunds from "../components/RaiseFunds";
-import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -14,7 +13,6 @@ export default function Home() {
       <BenefitsSection />
       <CompaniesSection />
       <RaiseFunds />
-      <Footer />
     </>
   );
 }

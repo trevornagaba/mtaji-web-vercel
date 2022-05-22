@@ -1,7 +1,6 @@
 import HomeNavBar from "../components/HomeNavBar";
 import InvestCard from "../components/InvestCard";
 import RaiseFunds from "../components/RaiseFunds";
-import Footer from "../components/Footer";
 
 export default function CompanyInfo() {
   return (
@@ -65,7 +64,6 @@ export default function CompanyInfo() {
       </div>
 
       <RaiseFunds />
-      <Footer />
 
       <style jsx>{`
         .header {
