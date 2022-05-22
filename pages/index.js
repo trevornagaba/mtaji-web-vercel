@@ -1,7 +1,6 @@
 import Link from "next/link";
 import LandingNavBar from "../components/landing/LandingNavBar";
 import Footer from "../components/Footer";
-import WhyMtaji from "../components/landing/WhyMtaji";
 import BenefitsSection from "../components/landing/BenefitsSection";
 import CompaniesSection from "../components/landing/CompaniesSection";
 
@@ -29,14 +28,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="benefits">
-        <WhyMtaji />
-
-        <p className="section-header">
-          Mtaji is a marketplace for investors and founders in Africa
-        </p>
-        <BenefitsSection />
-      </div>
+      <BenefitsSection />
 
       <CompaniesSection />
 
@@ -116,26 +108,8 @@ export default function Home() {
             background-color: #01bbc8;
           }
 
-          .benefits {
-            background-color: white;
-            padding: 32px;
-          }
-
-          .section-header {
-            font-size: 1.4rem;
-            font-weight: bold;
-            padding: 16px;
-            text-align: center;
-            color: #09062d;
-            margin: 0;
-          }
-
           /* Adjust for smartphone screen sizes. */
           @media only screen and (max-width: 600px) {
-            .nav-bar {
-              flex-direction: column;
-            }
-
             .tagline-background {
               opacity: 0.88;
             }
@@ -147,10 +121,6 @@ export default function Home() {
 
             .tagline .proposition h1 {
               font-size: 2rem;
-            }
-
-            .benefits {
-              padding: 0;
             }
           }
 
@@ -166,10 +136,6 @@ export default function Home() {
 
             .tagline .proposition h1 {
               font-size: 2rem;
-            }
-
-            .benefits {
-              padding: 0;
             }
           }
         `}

@@ -1,3 +1,17 @@
+.benefits {
+  background-color: white;
+  padding: 32px;
+}
+
+.sectionHeader {
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 16px;
+  text-align: center;
+  color: #09062d;
+  margin: 0;
+}
+
 .section {
   display: flex;
   flex-wrap: wrap;
@@ -12,6 +26,10 @@
   background-color: #f7f7f7;
   text-align: center;
   margin: 16px;
+  background-image: url("/assets/ellipse_background.svg");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 32px;
 }
 
 .card .title {
@@ -25,6 +43,10 @@
 
 /* Adjust for smartphone screen sizes. */
 @media only screen and (max-width: 600px) {
+  .benefits {
+    padding: 0;
+  }
+
   .section {
     padding: 0;
   }
@@ -32,6 +54,10 @@
 
 /* Adjust for tablet screen sizes. */
 @media only screen and (min-width: 600px) and (max-width: 800px) {
+  .benefits {
+    padding: 0;
+  }
+
   .section {
     padding: 0;
   }

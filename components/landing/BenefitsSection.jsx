@@ -1,12 +1,23 @@
+import WhyMtaji from "./WhyMtaji";
 import styles from "../../styles/landing/BenefitsSection.module.css";
 
-const BenefitsSection = () => {
+const Benefits = () => {
   return (
-    <div className={styles.section}>
-      <BenefitCard />
-      <BenefitCard />
-      <BenefitCard />
-    </div>
+    <>
+      <div className={styles.benefits}>
+        <WhyMtaji />
+
+        <p className={styles.sectionHeader}>
+          Mtaji is a marketplace for investors and founders in Africa
+        </p>
+
+        <div className={styles.section}>
+          <BenefitCard />
+          <BenefitCard />
+          <BenefitCard />
+        </div>
+      </div>
+    </>
   );
 };
 
@@ -23,4 +34,4 @@ const BenefitCard = () => {
   );
 };
 
-export default BenefitsSection;
+export default Benefits;
