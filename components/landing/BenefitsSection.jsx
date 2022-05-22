@@ -1,4 +1,4 @@
-import styles from "../styles/BenefitsSection.module.css";
+import styles from "../../styles/BenefitsSection.module.css";
 
 const BenefitsSection = () => {
   return (

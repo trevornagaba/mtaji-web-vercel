@@ -1,8 +1,8 @@
 import Link from "next/link";
-import LandingNavBar from "../components/LandingNavBar";
+import LandingNavBar from "../components/landing/LandingNavBar";
 import Footer from "../components/Footer";
-import WhyMtaji from "../components/WhyMtaji";
-import BenefitsSection from "../components/BenefitsSection";
+import WhyMtaji from "../components/landing/WhyMtaji";
+import BenefitsSection from "../components/landing/BenefitsSection";
 
 export default function Home() {
   return (

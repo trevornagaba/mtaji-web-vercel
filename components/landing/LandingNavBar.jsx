@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styles from "../styles/LandingNavBar.module.css";
-import HomeLogo from "./HomeLogo";
+import styles from "../../styles/LandingNavBar.module.css";
+import HomeLogo from "../HomeLogo";
 
 const LandingNavBar = () => {
   return (
