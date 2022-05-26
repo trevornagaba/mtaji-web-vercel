@@ -80,6 +80,10 @@
   font-size: 0.8rem;
 }
 
+.fourthCard {
+  display: none;
+}
+
 .companiesSection button {
   background: #2518b8;
   border: none;
@@ -146,5 +150,13 @@
 @media only screen and (min-width: 600px) and (max-width: 800px) {
   .companies {
     justify-content: left;
+  }
+}
+
+
+/* Adjust for large screen sizes. */
+@media only screen and (min-width: 1800px) {
+  .fourthCard {
+    display: block;
   }
 }

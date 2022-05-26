@@ -11,6 +11,7 @@ const CompaniesSection = () => {
           <CompanyCard />
           <CompanyCard />
           <CompanyCard />
+          <CompanyCard isFourthCard={true} />
         </div>
 
         <button>Explore</button>
@@ -25,9 +26,13 @@ const CompaniesSection = () => {
   );
 };
 
-const CompanyCard = () => {
+const CompanyCard = ({ isFourthCard = false }) => {
   return (
-    <div className={styles.company}>
+    <div
+      className={
+        isFourthCard ? `${styles.company} ${styles.fourthCard}` : styles.company
+      }
+    >
       <img
         className={styles.companyLogo}
         src="/assets/logo_in_card.svg"
