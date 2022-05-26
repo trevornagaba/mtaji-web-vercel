@@ -7,13 +7,19 @@ const CompaniesSection = () => {
         Companies currently raising capital on mtaji
       </p>
       <div className={styles.companiesSection}>
-        <div className={styles.companies}>
+        <div id="companies" className={styles.companies}>
           <CompanyCard />
           <CompanyCard />
           <CompanyCard />
         </div>
 
         <button>Explore</button>
+        <div className={styles.prevButton} onClick={() => onScroll("left")}>
+          <i className="material-icons">chevron_left</i>
+        </div>
+        <div className={styles.nextButton} onClick={() => onScroll("right")}>
+          <i className="material-icons">chevron_right</i>
+        </div>
       </div>
     </>
   );
@@ -44,6 +50,15 @@ const CompanyCard = () => {
       </div>
     </div>
   );
+};
+
+const onScroll = (direction) => {
+  const companiesContainer = document.getElementById("companies");
+  if (direction == "left") {
+    companiesContainer.scrollLeft -= 50;
+  } else {
+    companiesContainer.scrollLeft += 50;
+  }
 };
 
 export default CompaniesSection;

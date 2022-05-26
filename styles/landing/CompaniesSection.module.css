@@ -9,23 +9,24 @@
 
 .companiesSection {
   padding-bottom: 16px;
+  position: relative;
 }
 
 .companies {
   display: flex;
   justify-content: space-evenly;
-  overflow: auto;
+  overflow: hidden;
   padding: 16px;
   width: 100%;
 }
 
 .company {
   background-color: white;
-  min-width: 25%;
-  max-width: 25%;
+  min-width: 350px;
+  max-width: 350px;
   border-radius: 15px;
   margin: 0 16px;
-  padding: 24px 16px;
+  padding: 24px;
 }
 
 .companyLogo {
@@ -97,15 +98,47 @@
   background-color: #01bbc8;
 }
 
+.companiesSection i {
+  display: block;
+  font-size: 1.8rem;
+  color: #8c8c8c;
+  user-select: none;
+}
+
+.prevButton,
+.nextButton {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  background-color: white;
+  z-index: 1000;
+  top: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 100px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.prevButton:hover,
+.nextButton:hover {
+  cursor: pointer;
+}
+
+.prevButton {
+  left: 8px;
+}
+
+.nextButton {
+  right: 8px;
+}
+
 /* Adjust for smartphone screen sizes. */
 @media only screen and (max-width: 600px) {
   .companies {
     justify-content: left;
-  }
-
-  .companies .company {
-    min-width: 80%;
-    max-width: 80%;
+    padding: 0;
   }
 }
 
@@ -113,10 +146,5 @@
 @media only screen and (min-width: 600px) and (max-width: 800px) {
   .companies {
     justify-content: left;
-  }
-
-  .companies .company {
-    min-width: 35%;
-    max-width: 35%;
   }
 }
