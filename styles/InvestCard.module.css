@@ -1,0 +1,161 @@
+.companyDetails {
+  width: 35%;
+  background-color: white;
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.valuation {
+  display: flex;
+  align-items: center;
+}
+
+.valuation .label,
+.amountRaised .label {
+  width: 30%;
+  color: #8c8c8c;
+}
+
+.valuation div {
+  padding-left: 24px;
+}
+
+.valuation div p {
+  margin: 0;
+}
+
+.valuation .valuationDollars {
+  font-weight: bold;
+}
+
+.valuation .valuationUgx {
+  font-size: 0.8rem;
+}
+
+.amountRaised {
+  display: flex;
+  align-items: center;
+}
+
+.amountDetails {
+  padding-left: 24px;
+}
+
+.amountDetails p {
+  margin: 0;
+}
+
+.amountDetails .total {
+  font-weight: bold;
+}
+
+.amountPercentageIndicator {
+  height: 6px;
+  background-color: #c4c4c4;
+}
+
+.amountPercentageIndicator div {
+  background-color: #01bbc8;
+  height: 100%;
+  width: 90%;
+}
+
+.amountPercentage {
+  text-align: end;
+  font-size: 0.8rem;
+  color: #8c8c8c;
+}
+
+.invest {
+  display: flex;
+}
+
+.investLabel {
+  width: 30%;
+}
+
+.investLabel p {
+  margin: 0;
+}
+
+.investLabelMinimum {
+  font-size: 0.8rem;
+  color: #8c8c8c;
+}
+
+.investAmount {
+  padding-left: 24px;
+}
+
+.investAmountSelector {
+  border: 1px solid #01bbc8;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.investAmountSelector select {
+  padding: 4px;
+}
+
+.investAmountSelector p {
+  margin: 0;
+  padding: 0;
+}
+
+.investTransactionFee {
+  text-align: end;
+  margin: 0;
+  color: #8c8c8c;
+  font-size: 0.8rem;
+}
+
+.investButton {
+  background-color: #01bbc8;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  display: block;
+  margin: 16px 0;
+  width: 100%;
+  cursor: pointer;
+  padding: 16px;
+}
+
+.investButton:hover {
+  background-color: black;
+}
+
+.wishlistButton {
+  border: 1px solid #01bbc8;
+  cursor: pointer;
+  color: #01bbc8;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+.wishlistButton:hover {
+  border: 1px solid black;
+}
+
+.wishlistButton p {
+  margin: 0;
+  padding-left: 16px;
+}
+
+/* Adjust for smartphone screen sizes. */
+@media only screen and (max-width: 600px) {
+  .companyDetails {
+    width: 100%;
+  }
+}
+
+/* Adjust for tablet screen sizes. */
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .companyDetails {
+    width: 100%;
+  }
+}

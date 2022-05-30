@@ -1,0 +1,127 @@
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 16px;
+}
+
+.navBar .links {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  width: 40%;
+}
+
+.navBar .links span {
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.navBar .auth span {
+  padding-right: 24px;
+  cursor: pointer;
+}
+
+.navBar .links span:hover,
+.navBar .auth span:hover {
+  color: #01bbc8;
+}
+
+.navBar .auth button {
+  background-color: #2518b8;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 12px rgba(37, 24, 184, 0.6);
+}
+
+.navBar .auth button:hover {
+  background-color: #01bbc8;
+}
+
+/* Adjust for smartphone screen sizes. */
+@media only screen and (max-width: 600px) {
+  .navBar {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .navBar .links {
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: left;
+    padding: 0;
+  }
+
+  .navBar .links span {
+    cursor: pointer;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+    margin: 0;
+  }
+
+  .navBar .auth {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .navBar .auth span {
+    display: inline;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .navBar .auth button {
+    display: inline;
+    margin-top: 16px;
+    width: 100px;
+  }
+}
+
+/* Adjust for tablet screen sizes. */
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .navBar {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .navBar .links {
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: left;
+    padding: 0;
+  }
+
+  .navBar .links span {
+    cursor: pointer;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+    margin: 0;
+  }
+
+  .navBar .auth {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .navBar .auth span {
+    display: inline;
+    padding: 8px 0;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .navBar .auth button {
+    display: inline;
+    margin-top: 16px;
+    width: 100px;
+  }
+}

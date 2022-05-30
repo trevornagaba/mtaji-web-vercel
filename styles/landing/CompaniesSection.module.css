@@ -1,0 +1,162 @@
+.sectionHeader {
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 24px 0 16px;
+  text-align: center;
+  color: #09062d;
+  margin: 0;
+}
+
+.companiesSection {
+  padding-bottom: 16px;
+  position: relative;
+}
+
+.companies {
+  display: flex;
+  justify-content: space-evenly;
+  overflow: hidden;
+  padding: 16px;
+  width: 100%;
+}
+
+.company {
+  background-color: white;
+  min-width: 350px;
+  max-width: 350px;
+  border-radius: 15px;
+  margin: 0 16px;
+  padding: 24px;
+}
+
+.companyLogo {
+  display: block;
+  margin: auto;
+}
+
+.companyName {
+  text-align: center;
+  font-weight: bold;
+  color: #09062d;
+  margin: 8px 0;
+}
+
+.companyDescription {
+  color: #666666;
+  font-size: 0.9rem;
+}
+
+.raisingLabel {
+  margin: 0;
+  color: #666666;
+  font-size: 0.8rem;
+}
+
+.companyTarget {
+  color: #09062d;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.targetDeadline {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: flex-start;
+}
+
+.targetDeadline .endsInLabel {
+  padding: 0;
+  margin: 0;
+  color: #666666;
+  font-size: 0.8rem;
+}
+
+.targetDeadline .timeLeft {
+  padding-left: 8px;
+  margin: 0;
+  color: red;
+  font-size: 0.8rem;
+}
+
+.fourthCard {
+  display: none;
+}
+
+.companiesSection button {
+  background: #2518b8;
+  border: none;
+  box-shadow: 2px 2px 12px rgba(37, 24, 184, 0.6);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  padding: 8px 24px;
+}
+
+.companiesSection button:hover {
+  background-color: #01bbc8;
+}
+
+.companiesSection i {
+  display: block;
+  font-size: 1.8rem;
+  color: #8c8c8c;
+  user-select: none;
+}
+
+.prevButton,
+.nextButton {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  background-color: white;
+  z-index: 1000;
+  top: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 100px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.prevButton:hover,
+.nextButton:hover {
+  cursor: pointer;
+}
+
+.prevButton {
+  left: 8px;
+}
+
+.nextButton {
+  right: 8px;
+}
+
+/* Adjust for smartphone screen sizes. */
+@media only screen and (max-width: 600px) {
+  .companies {
+    justify-content: left;
+    padding: 0;
+  }
+}
+
+/* Adjust for tablet screen sizes. */
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .companies {
+    justify-content: left;
+  }
+}
+
+
+/* Adjust for large screen sizes. */
+@media only screen and (min-width: 1800px) {
+  .fourthCard {
+    display: block;
+  }
+}
