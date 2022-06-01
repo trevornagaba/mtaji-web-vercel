@@ -1,7 +1,120 @@
+import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import axios from "axios";
+
 import HomeLogo from "../components/HomeLogo";
+import TextInput from "../components/TextInput/TextInput";
+import Alert from "../components/Alert/Alert";
 
 export default function SignUp() {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [fetchError, setFetchError] = useState("");
+  const [touched, setTouched] = useState({});
+  const router = useRouter();
+
+  const verifyUserData = () => {
+    let errorsObject = {};
+    let touchedObject = {};
+    let isValid = true;
+
+    // validate username
+    if (!formData.username) {
+      errorsObject.username = "Username is required.";
+      touchedObject.username = false;
+      isValid = false;
+    }
+
+    // validate email
+    const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!formData.email) {
+      errorsObject.email = "Email address is required.";
+      touchedObject.email = false;
+      isValid = false;
+    } 
+    // else if (!emailRegex.test(email)) {
+    //   errorsObject.email = "Invalid Email: Input correct email address format.";
+    //   touchedObject.email = false;
+    //   isValid = false;
+    // }
+
+    // validate password
+    if (!formData.password) {
+      errorsObject.password = "Password is required.";
+      touchedObject.password = false;
+      isValid = false;
+    } else if (formData.password.length < 6) {
+      errorsObject.password = "Password must be at least 6 characters.";
+      touchedObject.password = false;
+      isValid = false;
+    }
+
+    // validate password confirmation
+    if (
+      formData.password !== formData.passwordConfirmation ||
+      !formData.passwordConfirmation
+    ) {
+      errorsObject.passwordConfirmation = "Passwords do not match.";
+      isValid = false;
+    }
+
+    setTouched(touchedObject);
+    setErrors(errorsObject);
+    return isValid;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: value,
+      };
+    });
+    setTouched({ ...touched, [name]: true });
+  };
+
+  const handleSignUp = async (e) => {
+    setFetchError("");
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`,
+        {
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        }
+      );
+      if (response.status === 201) {
+        router.push("/login");
+        setLoading(false);
+      } else {
+        setFetchError(response.data.message);
+        setLoading(false);
+      }
+    } catch (error) {
+      setFetchError("Oops! Something went wrong. Please try again.");
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let validData = verifyUserData();
+    if (validData) {
+      handleSignUp();
+    }
+  };
+
   return (
     <>
       <div className="main-container">
@@ -13,19 +126,48 @@ export default function SignUp() {
               <HomeLogo />
             </div>
           </div>
-
           <p className="title">Sign Up</p>
-
-          <form className="signup-form" action="#">
+          {/* Fetch or Server errors */}
+          {fetchError && <Alert message={fetchError} />}
+          <form className="signup-form" onSubmit={handleSubmit}>
             <div className="inputs">
-              <input type="text" placeholder="Name" />
-              <input type="text" placeholder="Email" />
-              <input type="text" placeholder="Password" />
-
-              <Link href="/home">
-                <button>Sign Up</button>
-              </Link>
-
+              <TextInput
+                type="text"
+                name="username"
+                placeholder="Username"
+                onChange={handleChange}
+                value={formData.username}
+                touched={touched.username}
+                error={errors.username}
+              />
+              <TextInput
+                type="text"
+                name="email"
+                placeholder="Email"
+                onChange={handleChange}
+                value={formData.email}
+                touched={touched.email}
+                error={errors.email}
+              />
+              <TextInput
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={handleChange}
+                value={formData.password}
+                touched={touched.password}
+                error={errors.password}
+              />
+              <TextInput
+                type="password"
+                name="passwordConfirmation"
+                placeholder="Confirm Password"
+                onChange={handleChange}
+                value={formData.passwordConfirmation}
+                touched={touched.passwordConfirmation}
+                error={errors.passwordConfirmation}
+              />
+              <button>{loading ? "Loading..." : "Sign Up"}</button>
               <div className="sign-in-prompt">
                 <p className="question">Already have an account?</p>
 
@@ -33,13 +175,11 @@ export default function SignUp() {
                   <p className="link">Login</p>
                 </Link>
               </div>
-
               <div className="or-option">
                 <div></div>
                 <span>or</span>
                 <div></div>
               </div>
-
               <Link href="/home">
                 <div className="google-button">
                   <img src="/assets/google_icon.svg" alt="google_icon" />

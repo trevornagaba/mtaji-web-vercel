@@ -1,7 +1,98 @@
+import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import axios from "axios";
+
+import cookieCutter from "cookie-cutter";
+
 import HomeLogo from "../components/HomeLogo";
+import TextInput from "../components/TextInput/TextInput";
+import Alert from "../components/Alert/Alert";
 
 export default function Login() {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [fetchError, setFetchError] = useState("");
+  const [touched, setTouched] = useState("");
+  const router = useRouter();
+
+  const verifyUserSigninData = () => {
+    let errorsObject = {};
+    let touchedObject = {};
+    let isValid = true;
+
+    // validate username
+    if (!formData.username) {
+      errorsObject.username = "Username is required.";
+      touchedObject.username = false;
+      isValid = false;
+    }
+
+    // validate password
+    if (!formData.password) {
+      errorsObject.password = "Password is required.";
+      touchedObject.password = false;
+      isValid = false;
+    }
+
+    setTouched(touchedObject);
+    setErrors(errorsObject);
+    return isValid;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: value,
+      };
+    });
+    setTouched({ ...touched, [name]: true });
+  };
+
+  const handleSignin = async (e) => {
+    setFetchError("");
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth`,
+        {
+          username: formData.username,
+          password: formData.password,
+        }
+      );
+      console.log(response);
+      if (response.data === "Incorrect password") {
+        setFetchError(response.data);
+        setLoading(false);
+      } else if (response.data === "No user found") {
+        setFetchError(response.data);
+        setLoading(false);
+      } else {
+        cookieCutter.set("myCookieName", "some-value"); // dummy cookie for testing
+        router.push("/home");
+        setLoading(false);
+      }
+    } catch (error) {
+      setFetchError("Oops! Something went wrong. Please try again.");
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let validData = verifyUserSigninData();
+    if (validData) {
+      handleSignin();
+    }
+  };
+
   return (
     <>
       <div className="main-container">
@@ -16,17 +107,29 @@ export default function Login() {
 
           <p className="title">Welcome back</p>
           <p className="subtitle">Please sign in to your account</p>
-
-          <form className="login-form" action="#">
+          {/* Fetch or Server errors */}
+          {fetchError && <Alert message={fetchError} />}
+          <form className="login-form" onSubmit={handleSubmit}>
             <div className="inputs">
-              <input type="text" placeholder="Email" />
-              <input type="text" placeholder="Password" />
+              <TextInput
+                type="text"
+                name="username"
+                placeholder="Username"
+                onChange={handleChange}
+                value={formData.username}
+                error={errors.username}
+              />
+              <TextInput
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={handleChange}
+                value={formData.password}
+                error={errors.password}
+              />
               <p className="password-reset">Forgot password?</p>
             </div>
-
-            <Link href="/home">
-              <button>Sign in</button>
-            </Link>
+            <button>{loading ? "Loading..." : "Sign In"}</button>
 
             <div className="or-option">
               <div></div>

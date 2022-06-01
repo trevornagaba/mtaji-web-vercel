@@ -1,7 +1,8 @@
 import Link from "next/link";
+import withAuth from "../components/HOC/withAuth";
 import HomeNavBar from "../components/HomeNavBar";
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <>
       <HomeNavBar />
@@ -353,4 +354,6 @@ export default function HomePage() {
       `}</style>
     </>
   );
-}
+};
+
+export default withAuth(HomePage);
