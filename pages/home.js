@@ -56,7 +56,6 @@ const HomePage = () => {
 
             <div className="buttons">
               <button type="button" onClick={() => {
-                console.log(process.env.NEXT_PUBLIC_FLW_PUBK)
                 handleFlutterPayment({
                   callback: (response) => {
                     console.log(response);
