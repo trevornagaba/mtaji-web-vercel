@@ -3,12 +3,13 @@ import withAuth from "../components/HOC/withAuth";
 import HomeNavBar from "../components/HomeNavBar";
 import React from 'react';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 
 const HomePage = () => {
   const config = {
     public_key: `${process.env.NEXT_PUBLIC_FLW_PUBK}`,
-    tx_ref: "mtaji-48981487343MDI0Nzoq",
+    tx_ref: uuidv4(),
     amount: 50000,
     currency: "UGX",
     payment_options: "card, mobilemoneyuganda",
