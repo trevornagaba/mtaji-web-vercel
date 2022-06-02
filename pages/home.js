@@ -8,7 +8,7 @@ import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 const HomePage = () => {
   const config = {
     public_key: `${process.env.NEXT_PUBLIC_FLW_PUBK}`,
-    tx_ref: "mtaji-48981487343MDI0NzMq",
+    tx_ref: "mtaji-48981487343MDI0Nzoq",
     amount: 50000,
     currency: "UGX",
     payment_options: "card, mobilemoneyuganda",
@@ -16,7 +16,7 @@ const HomePage = () => {
       axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`, {
         amount: payment.amount,
         id: payment.tx_ref
-      })
+      },  { withCredentials: true })
         .then(function (response) {
           console.log(response);
         })
@@ -59,10 +59,10 @@ const HomePage = () => {
                 handleFlutterPayment({
                   callback: (response) => {
                     console.log(response);
-                    axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}`, {
+                    axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`, {
                       amount: response.amount,
                       id: response.tx_ref
-                    })
+                    },  { withCredentials: true })
                       .then(function (response) {
                         console.log(response);
                       })
