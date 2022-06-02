@@ -13,18 +13,6 @@ const HomePage = () => {
     amount: 50000,
     currency: "UGX",
     payment_options: "card, mobilemoneyuganda",
-    callback: function (payment) {
-      axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`, {
-        amount: payment.amount,
-        id: payment.tx_ref
-      },  { withCredentials: true })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    },
     meta: {
       consumer_id: 23,
       consumer_mac: "92a3-912ba-1192a",
@@ -60,10 +48,14 @@ const HomePage = () => {
                 handleFlutterPayment({
                   callback: (response) => {
                     console.log(response);
-                    axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`, {
-                      amount: response.amount,
-                      id: response.tx_ref
-                    },  { withCredentials: true })
+                    fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`, {
+                      method: 'POST',
+                      body: JSON.stringify({
+                        amount: response.amount,
+                        id: response.tx_ref
+                      }),
+                      credentials: 'include'
+                    })
                       .then(function (response) {
                         console.log(response);
                       })
