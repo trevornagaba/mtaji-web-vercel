@@ -65,7 +65,7 @@ export default function Login() {
         {
           username: formData.username,
           password: formData.password,
-        }
+        },  { withCredentials: true }
       );
       console.log(response);
       if (response.data === "Incorrect password") {

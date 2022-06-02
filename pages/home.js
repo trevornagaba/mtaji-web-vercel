@@ -1,8 +1,46 @@
 import Link from "next/link";
 import withAuth from "../components/HOC/withAuth";
 import HomeNavBar from "../components/HomeNavBar";
+import React from 'react';
+import axios from 'axios';
+import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 
 const HomePage = () => {
+  const config = {
+    public_key: `${process.env.NEXT_PUBLIC_FLW_PUBK}`,
+    tx_ref: "mtaji-48981487343MDI0NzMq",
+    amount: 50000,
+    currency: "UGX",
+    payment_options: "card, mobilemoneyuganda",
+    callback: function (payment) {
+      axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`, {
+        amount: payment.amount,
+        id: payment.tx_ref
+      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    meta: {
+      consumer_id: 23,
+      consumer_mac: "92a3-912ba-1192a",
+    },
+    customer: {
+      email: "trevornagaba@gmail.com",
+      phone_number: "08102909304",
+      name: "Rose DeWitt Bukater",
+    },
+    customizations: {
+      title: "mtaji",
+      description: "Investment in Tubayo",
+      logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+    },
+  };
+  const handleFlutterPayment = useFlutterwave(config);
+
   return (
     <>
       <HomeNavBar />
@@ -17,7 +55,26 @@ const HomePage = () => {
             <p className="balance">$0.00</p>
 
             <div className="buttons">
-              <button className="fund-button">Fund</button>
+              <button type="button" onClick={() => {
+                console.log(process.env.NEXT_PUBLIC_FLW_PUBK)
+                handleFlutterPayment({
+                  callback: (response) => {
+                    console.log(response);
+                    axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}`, {
+                      amount: response.amount,
+                      id: response.tx_ref
+                    })
+                      .then(function (response) {
+                        console.log(response);
+                      })
+                      .catch(function (error) {
+                        console.log(error);
+                      });
+                    closePaymentModal() // this will close the modal programmatically
+                  },
+                  onClose: () => { },
+                });
+              }} className="fund-button">Fund</button>
               <button>Send</button>
               <button>Withdraw</button>
             </div>
