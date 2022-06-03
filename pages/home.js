@@ -30,6 +30,37 @@ const HomePage = () => {
   };
   const handleFlutterPayment = useFlutterwave(config);
 
+  function cashBalance() {
+    const response = axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/id`, { withCredentials: true })
+      .then((result) => {
+        console.log(result.data.cashBalance)
+        return result.data.cashBalance;
+      })
+  }
+
+  function handeCallBack() {
+    // TO-DO: Repace with axios request, test content-type is still 
+    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`, {
+      method: 'POST',
+      body: JSON.stringify({
+        amount: config.amount,
+        id: config.tx_ref,
+        type: "cash"
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    closePaymentModal() // this will close the modal programmatically
+  }
+
   return (
     <>
       <HomeNavBar />
@@ -41,28 +72,18 @@ const HomePage = () => {
           <div className="cash-portfolio">
             <p className="header">Cash</p>
 
-            <p className="balance">$0.00</p>
+            <p className="balance">{cashBalance()}</p>
 
             <div className="buttons">
               <button type="button" onClick={() => {
                 handleFlutterPayment({
                   callback: (response) => {
                     console.log(response);
-                    fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`, {
-                      method: 'POST',
-                      body: JSON.stringify({
-                        amount: response.amount,
-                        id: response.tx_ref
-                      }),
-                      credentials: 'include'
-                    })
-                      .then(function (response) {
-                        console.log(response);
-                      })
-                      .catch(function (error) {
-                        console.log(error);
-                      });
-                    closePaymentModal() // this will close the modal programmatically
+                    try {
+                      handeCallBack()
+                    } catch (error) {
+                      console.log(error)
+                    }
                   },
                   onClose: () => { },
                 });
