@@ -5,8 +5,13 @@ import React from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
+  // Setup state management
+  const [items, setItems] = useState([]);
+  useEffect(() => {getCashBalance();}, []);
+
   const config = {
     public_key: `${process.env.NEXT_PUBLIC_FLW_PUBK}`,
     tx_ref: uuidv4(),
@@ -30,12 +35,19 @@ const HomePage = () => {
   };
   const handleFlutterPayment = useFlutterwave(config);
 
-  function cashBalance() {
-    const response = axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/id`, { withCredentials: true })
+  async function getCashBalance() {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/id`, { withCredentials: true })
       .then((result) => {
-        console.log(result.data.cashBalance)
-        return result.data.cashBalance;
-      })
+        console.log(typeof(result))
+        console.log(result.data)
+        // TO-DO: Update after sorting out auth
+        if (result.data=="Please login"){
+          setItems("$")
+        }
+        else {
+        setItems(result.data)}
+      }).catch((error) => {console.log(error)
+      setItems("$")})
   }
 
   function handeCallBack() {
@@ -72,7 +84,7 @@ const HomePage = () => {
           <div className="cash-portfolio">
             <p className="header">Cash</p>
 
-            <p className="balance">{cashBalance()}</p>
+            {<p className="balance">${items.cashBalance}</p>}
 
             <div className="buttons">
               <button type="button" onClick={() => {
