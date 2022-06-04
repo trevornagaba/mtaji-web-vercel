@@ -1,7 +1,78 @@
 import Link from "next/link";
+import withAuth from "../components/HOC/withAuth";
 import HomeNavBar from "../components/HomeNavBar";
+import React from 'react';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
+import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
+import { useEffect, useState } from "react";
 
-export default function HomePage() {
+const HomePage = () => {
+  // Setup state management
+  const [items, setItems] = useState([]);
+  useEffect(() => {getCashBalance();}, []);
+
+  const config = {
+    public_key: `${process.env.NEXT_PUBLIC_FLW_PUBK}`,
+    tx_ref: uuidv4(),
+    amount: 50000,
+    currency: "UGX",
+    payment_options: "card, mobilemoneyuganda",
+    meta: {
+      consumer_id: 23,
+      consumer_mac: "92a3-912ba-1192a",
+    },
+    customer: {
+      email: "trevornagaba@gmail.com",
+      phone_number: "08102909304",
+      name: "Rose DeWitt Bukater",
+    },
+    customizations: {
+      title: "mtaji",
+      description: "Investment in Tubayo",
+      logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+    },
+  };
+  const handleFlutterPayment = useFlutterwave(config);
+
+  async function getCashBalance() {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/id`, { withCredentials: true })
+      .then((result) => {
+        console.log(typeof(result))
+        console.log(result.data)
+        // TO-DO: Update after sorting out auth
+        if (result.data=="Please login"){
+          setItems("$")
+        }
+        else {
+        setItems(result.data)}
+      }).catch((error) => {console.log(error)
+      setItems("$")})
+  }
+
+  function handeCallBack() {
+    // TO-DO: Repace with axios request, test content-type is still 
+    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`, {
+      method: 'POST',
+      body: JSON.stringify({
+        amount: config.amount,
+        id: config.tx_ref,
+        type: "cash"
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    closePaymentModal() // this will close the modal programmatically
+  }
+
   return (
     <>
       <HomeNavBar />
@@ -13,10 +84,22 @@ export default function HomePage() {
           <div className="cash-portfolio">
             <p className="header">Cash</p>
 
-            <p className="balance">$0.00</p>
+            {<p className="balance">${items.cashBalance}</p>}
 
             <div className="buttons">
-              <button className="fund-button">Fund</button>
+              <button type="button" onClick={() => {
+                handleFlutterPayment({
+                  callback: (response) => {
+                    console.log(response);
+                    try {
+                      handeCallBack()
+                    } catch (error) {
+                      console.log(error)
+                    }
+                  },
+                  onClose: () => { },
+                });
+              }} className="fund-button">Fund</button>
               <button>Send</button>
               <button>Withdraw</button>
             </div>
@@ -353,4 +436,6 @@ export default function HomePage() {
       `}</style>
     </>
   );
-}
+};
+
+export default withAuth(HomePage);
