@@ -1,20 +1,21 @@
 import Link from "next/link";
 import styles from "../styles/ExploreTableRow.module.css";
 
-const ExploreTableRow = () => {
+const ExploreTableRow = (props) => {
   return (
     <div className={styles.tableRow}>
       <div className={styles.companySummary}>
         <img src="/assets/logo_in_card.svg" alt="logo" />
 
         <div>
-          <p className={styles.companyName}>SafeBoda</p>
-          <p className={styles.companyTag}>Logistics Startup</p>
+        {console.log(props.company)}
+          <p className={styles.companyName}>{props.company.name}</p>
+          <p className={styles.companyTag}>{props.company.industry}</p>
         </div>
       </div>
 
       <div className={styles.companyTarget}>
-        <p className={styles.amount}>UGX 50M</p>
+        <p className={styles.amount}>{props.company.targetAmount}</p>
 
         <div className={styles.targetIndicator}>
           <div className={styles.targetBar}>

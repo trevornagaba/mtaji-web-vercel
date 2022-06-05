@@ -1,7 +1,38 @@
 import HomeNavBar from "../components/HomeNavBar";
 import ExploreTableRow from "../components/ExploreTableRow";
+import Link from "next/link";
+import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Explore() {
+  // Setup state management
+  const [company, setCompanies] = useState([]);
+  useEffect(() => {
+    getCompanies();
+  }, []);
+
+  async function getCompanies() {
+    const response = await axios
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies`, {
+        withCredentials: true,
+      })
+      .then((result) => {
+        console.log(typeof result);
+        console.log(result.data);
+        // TO-DO: Update after sorting out auth
+        if (result.data == "Please login") {
+          setCompanies("$");
+        } else {
+          setCompanies(result.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setCompanies("$");
+      });
+  }
+
   return (
     <>
       <HomeNavBar />
@@ -20,10 +51,7 @@ export default function Explore() {
             <p className="days-left">Days Left</p>
           </div>
 
-          <ExploreTableRow />
-          <ExploreTableRow />
-          <ExploreTableRow />
-          <ExploreTableRow />
+          {company.map((company, index) => (<ExploreTableRow company={company} />))}
         </div>
       </div>
 
