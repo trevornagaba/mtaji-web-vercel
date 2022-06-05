@@ -1,16 +1,22 @@
 import Link from "next/link";
 import withAuth from "../components/HOC/withAuth";
 import HomeNavBar from "../components/HomeNavBar";
-import React from 'react';
-import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
-import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
+import React from "react";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { useEffect, useState } from "react";
 
 const HomePage = () => {
   // Setup state management
-  const [items, setItems] = useState([]);
-  useEffect(() => {getCashBalance();}, []);
+  const [user, setUsers] = useState([]);
+  const [portfolio, setPortfolio] = useState([]);
+  const [company, setCompanies] = useState([]);
+  useEffect(() => {
+    getUser();
+    getPortfolio();
+    getCompanies();
+  }, []);
 
   const config = {
     public_key: `${process.env.NEXT_PUBLIC_FLW_PUBK}`,
@@ -35,42 +41,89 @@ const HomePage = () => {
   };
   const handleFlutterPayment = useFlutterwave(config);
 
-  async function getCashBalance() {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/id`, { withCredentials: true })
+  async function getUser() {
+    const response = await axios
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/id`, {
+        withCredentials: true,
+      })
       .then((result) => {
-        console.log(typeof(result))
-        console.log(result.data)
         // TO-DO: Update after sorting out auth
-        if (result.data=="Please login"){
-          setItems("$")
+        if (result.data == "Please login") {
+          setUsers("$");
+        } else {
+          setUsers(result.data);
         }
-        else {
-        setItems(result.data)}
-      }).catch((error) => {console.log(error)
-      setItems("$")})
+      })
+      .catch((error) => {
+        console.log(error);
+        setUsers("$");
+      });
+  }
+
+  async function getPortfolio() {
+    const response = await axios
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/id`, {
+        withCredentials: true,
+      })
+      .then((result) => {
+        // TO-DO: Update after sorting out auth
+        if (result.data == "Please login") {
+          setPortfolio("$");
+        } else {
+          setPortfolio(result.data.portfolio);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setPortfolio("$");
+      });
+  }
+
+  async function getCompanies() {
+    const response = await axios
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies`, {
+        withCredentials: true,
+      })
+      .then((result) => {
+        console.log(typeof result);
+        console.log(result.data);
+        // TO-DO: Update after sorting out auth
+        if (result.data == "Please login") {
+          setCompanies("$");
+        } else {
+          setCompanies(result.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setCompanies("$");
+      });
   }
 
   function handeCallBack() {
-    // TO-DO: Repace with axios request, test content-type is still 
-    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`, {
-      method: 'POST',
-      body: JSON.stringify({
-        amount: config.amount,
-        id: config.tx_ref,
-        type: "cash"
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include'
-    })
+    // TO-DO: Repace with axios request, test content-type is still
+    const response = axios
+      .post(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
+        {
+          amount: config.amount,
+          id: config.tx_ref,
+          type: "cash",
+        },
+        { withCredentials: true },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
-    closePaymentModal() // this will close the modal programmatically
+    closePaymentModal(); // this will close the modal programmatically
   }
 
   return (
@@ -84,22 +137,28 @@ const HomePage = () => {
           <div className="cash-portfolio">
             <p className="header">Cash</p>
 
-            {<p className="balance">${items.cashBalance}</p>}
+            {<p className="balance">${user.cashBalance}</p>}
 
             <div className="buttons">
-              <button type="button" onClick={() => {
-                handleFlutterPayment({
-                  callback: (response) => {
-                    console.log(response);
-                    try {
-                      handeCallBack()
-                    } catch (error) {
-                      console.log(error)
-                    }
-                  },
-                  onClose: () => { },
-                });
-              }} className="fund-button">Fund</button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleFlutterPayment({
+                    callback: (response) => {
+                      console.log(response);
+                      try {
+                        handeCallBack();
+                      } catch (error) {
+                        console.log(error);
+                      }
+                    },
+                    onClose: () => {},
+                  });
+                }}
+                className="fund-button"
+              >
+                Fund
+              </button>
               <button>Send</button>
               <button>Withdraw</button>
             </div>
@@ -114,46 +173,22 @@ const HomePage = () => {
               </Link>
             </div>
 
-            <div className="investment">
-              <div className="company">
-                <img src="/assets/logo_in_card.svg" alt="logo" />
-                <p>SafeBoda</p>
-              </div>
+            <div>
+              {portfolio.map((portfolio, index) => (
+                <div className="investment">
+                  <div key={index} className="company">
+                    <img src="/assets/logo_in_card.svg" alt="logo" />
+                    <p>{portfolio.companyName}</p>
+                  </div>
 
-              <p className="description">Payment Startup</p>
+                  <p className="description">{portfolio.briefDescription}</p>
 
-              <div className="balance">
-                <p className="amount">$17.23</p>
-                <p className="label">debt</p>
-              </div>
-            </div>
-
-            <div className="investment">
-              <div className="company">
-                <img src="/assets/logo_in_card.svg" alt="logo" />
-                <p>SafeBoda</p>
-              </div>
-
-              <p className="description">Payment Startup</p>
-
-              <div className="balance">
-                <p className="amount">$17.23</p>
-                <p className="label">debt</p>
-              </div>
-            </div>
-
-            <div className="investment">
-              <div className="company">
-                <img src="/assets/logo_in_card.svg" alt="logo" />
-                <p>SafeBoda</p>
-              </div>
-
-              <p className="description">Payment Startup</p>
-
-              <div className="balance">
-                <p className="amount">$17.23</p>
-                <p className="label">debt</p>
-              </div>
+                  <div className="balance">
+                    <p className="amount">{portfolio.amount}</p>
+                    <p className="label">{portfolio.debtVsEquity}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -164,39 +199,14 @@ const HomePage = () => {
           <p className="title">Currently Raising</p>
           <p className="link">See all</p>
         </div>
-
         <div className="companies">
-          <div className="company-card">
-            <img src="/assets/logo_in_card.svg" alt="logo" />
-            <p className="company-name">Chipper Cash</p>
-            <p className="company-summary">
-              Some short description of the company at hand...
-            </p>
-          </div>
-
-          <div className="company-card">
-            <img src="/assets/logo_in_card.svg" alt="logo" />
-            <p className="company-name">Chipper Cash</p>
-            <p className="company-summary">
-              Some short description of the company at hand...
-            </p>
-          </div>
-
-          <div className="company-card">
-            <img src="/assets/logo_in_card.svg" alt="logo" />
-            <p className="company-name">Chipper Cash</p>
-            <p className="company-summary">
-              Some short description of the company at hand...
-            </p>
-          </div>
-
-          <div className="company-card">
-            <img src="/assets/logo_in_card.svg" alt="logo" />
-            <p className="company-name">Chipper Cash</p>
-            <p className="company-summary">
-              Some short description of the company at hand...
-            </p>
-          </div>
+          {company.map((company, index) => (
+              <div key={index} className="company-card">
+                <img src="/assets/logo_in_card.svg" alt="logo" />
+                <p className="company-name">{company.companyName}</p>
+                <p className="company-summary">{company.briefDescription}</p>
+            </div>
+          ))}
         </div>
       </div>
 
