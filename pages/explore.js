@@ -51,7 +51,7 @@ export default function Explore() {
             <p className="days-left">Days Left</p>
           </div>
 
-          {company.map((company, index) => (<ExploreTableRow company={company} />))}
+          {company.map((company, index) => (<ExploreTableRow key={index} company={company} />))}
         </div>
       </div>
 

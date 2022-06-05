@@ -173,10 +173,10 @@ const HomePage = () => {
               </Link>
             </div>
 
-            <div>
+            <div>{console.log(portfolio)}
               {portfolio.map((portfolio, index) => (
-                <div className="investment">
-                  <div key={index} className="company">
+                <div key={index} className="investment">
+                  <div className="company">
                     <img src="/assets/logo_in_card.svg" alt="logo" />
                     <p>{portfolio.companyName}</p>
                   </div>
