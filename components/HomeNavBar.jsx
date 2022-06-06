@@ -12,7 +12,7 @@ const HomeNavBar = () => {
     cookieCutter.set("myCookieName", "", { expires: new Date(0) });
     try {
       const response = axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth`, {}, 
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/logout`, {}, 
         { withCredentials: true }
       );    
     router.push("/login");
