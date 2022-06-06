@@ -31,6 +31,13 @@ export default function Login() {
       touchedObject.username = false;
       isValid = false;
     }
+    
+    // validate not admin
+    if (formData.username=="admin") {
+      errorsObject.username = "Username is not permitted.";
+      touchedObject.username = false;
+      isValid = false;
+    }
 
     // validate password
     if (!formData.password) {

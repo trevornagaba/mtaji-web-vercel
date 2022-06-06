@@ -43,7 +43,7 @@ const HomePage = () => {
 
   async function getUser() {
     const response = await axios
-      .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/id`, {
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`, {
         withCredentials: true,
       })
       .then((result) => {
@@ -62,7 +62,7 @@ const HomePage = () => {
 
   async function getPortfolio() {
     const response = await axios
-      .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/id`, {
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`, {
         withCredentials: true,
       })
       .then((result) => {
