@@ -29,7 +29,7 @@ export default function Explore() {
 
       <style jsx>{`
         .content {
-          padding: 16px;
+          padding: 16px 5vw;
         }
 
         .content .heading {

@@ -5,7 +5,7 @@ export default function Login() {
   return (
     <>
       <div className="main-container">
-        <div className="background-container"></div>
+        <div className="background-container" />
 
         <div className="content">
           <div className="top-container">
@@ -66,7 +66,7 @@ export default function Login() {
 
         .content {
           flex-basis: 50%;
-          padding: 16px;
+          padding: 2vw;
         }
 
         .top-container {
