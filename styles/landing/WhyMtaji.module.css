@@ -1,7 +1,6 @@
 .section {
   display: flex;
   justify-content: flex-end;
-  margin-left: 10%;
   margin-bottom: 32px;
   position: relative;
   background-image: url("/assets/illustration_7.png");

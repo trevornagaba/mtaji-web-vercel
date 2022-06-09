@@ -1,4 +1,3 @@
-import Link from "next/link";
 import LandingNavBar from "../components/landing/LandingNavBar";
 import TaglineSection from "../components/landing/TaglineSection";
 import BenefitsSection from "../components/landing/BenefitsSection";
