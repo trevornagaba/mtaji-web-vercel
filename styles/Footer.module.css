@@ -1,5 +1,5 @@
 .footer {
-  padding: 24px 16px;
+  padding: 24px 5vw;
 }
 
 .footer .container {
@@ -20,7 +20,7 @@
 
 .socialLinks .imageLinks img {
   display: inline-block;
-  padding: 8px;
+  padding: 8px 16px 8px 0;
   cursor: pointer;
 }
 

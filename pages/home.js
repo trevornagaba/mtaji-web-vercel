@@ -215,15 +215,17 @@ const HomePage = () => {
           color: #09062d;
         }
 
+        .portfolio-section {
+          margin: 0 5vw;
+        }
+
         .portfolio-section .header {
-          padding: 16px 16px 0;
           font-size: 22px;
           font-weight: 600;
         }
 
         .portfolio {
           display: flex;
-          padding: 16px;
           justify-content: space-between;
         }
 
@@ -328,6 +330,11 @@ const HomePage = () => {
           color: #8c8c8c;
         }
 
+        .companies-section {
+          margin: 0 5vw;
+          padding-bottom: 32px;
+        }
+
         .companies-section .header {
           display: flex;
           justify-content: space-between;
@@ -336,13 +343,12 @@ const HomePage = () => {
         }
 
         .companies-section .header .title {
-          padding: 16px 16px 0;
+          padding-top: 16px;
           font-size: 24px;
           font-weight: 600;
         }
 
         .companies-section .header .link {
-          padding-right: 24px;
           cursor: pointer;
           color: #2518b8;
         }
@@ -353,7 +359,6 @@ const HomePage = () => {
 
         .companies {
           display: flex;
-          padding: 16px;
           justify-content: left;
           overflow: auto;
         }
@@ -361,9 +366,11 @@ const HomePage = () => {
         .companies .company-card {
           background-color: white;
           border-radius: 30px;
-          flex-basis: 28%;
+          min-width: 290px;
+          max-width: 290px;
           padding: 32px;
-          margin: 0 16px;
+          margin-right: 2vw;
+          margin-bottom: 2vw;
         }
 
         .company-card img {
@@ -410,11 +417,6 @@ const HomePage = () => {
             justify-content: left;
           }
 
-          .companies .company-card {
-            min-width: 60%;
-            max-width: 60%;
-          }
-
           .company-card img {
             width: 70%;
           }
@@ -436,11 +438,6 @@ const HomePage = () => {
 
           .companies {
             justify-content: left;
-          }
-
-          .companies .company-card {
-            min-width: 35%;
-            max-width: 35%;
           }
         }
       `}</style>

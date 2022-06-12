@@ -109,7 +109,9 @@ export default function CompanyInfo() {
         .header {
           display: flex;
           justify-content: space-between;
-          padding: 16px;
+          align-items: center;
+          padding: 8px 0;
+          margin: 0 5vw;
         }
 
         .company-summary {
@@ -161,6 +163,7 @@ export default function CompanyInfo() {
         .countdown-unit {
           margin: 0;
           padding: 0;
+          color: #8C8C8C;
         }
 
         .share-button {
@@ -169,6 +172,14 @@ export default function CompanyInfo() {
           padding: 0 16px;
           border-radius: 10px;
           cursor: pointer;
+          height: 40px;
+          align-items: center;
+        }
+
+        .share-button img {
+          height: 24px;
+          width: 24px;
+          display: block;
         }
 
         .share-button p {
@@ -178,8 +189,9 @@ export default function CompanyInfo() {
 
         .content-1 {
           display: flex;
-          padding: 16px;
-          justify-content: space-evenly;
+          padding: 16px 0;
+          margin: 0 5vw;
+          justify-content: space-between;
         }
 
         .video {
@@ -194,8 +206,9 @@ export default function CompanyInfo() {
 
         .content-2 {
           display: flex;
-          padding: 16px;
-          justify-content: space-evenly;
+          padding: 16px 0;
+          margin: 0 5vw;
+          justify-content: space-between;
         }
 
         .company-literature {

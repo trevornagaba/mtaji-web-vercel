@@ -1,6 +1,6 @@
 .benefits {
   background-color: white;
-  padding: 32px;
+  padding: 32px 5vw;
 }
 
 .sectionHeader {
@@ -15,8 +15,8 @@
 .section {
   display: flex;
   flex-wrap: wrap;
-  padding: 16px;
-  justify-content: space-evenly;
+  padding: 16px 0;
+  justify-content: space-between;
   background-color: white;
 }
 
@@ -49,6 +49,7 @@
 
   .section {
     padding: 0;
+    justify-content: space-evenly;
   }
 }
 
@@ -60,5 +61,6 @@
 
   .section {
     padding: 0;
+    justify-content: space-evenly;
   }
 }
