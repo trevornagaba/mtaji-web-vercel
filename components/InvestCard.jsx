@@ -48,7 +48,7 @@ const InvestCard = (props) => {
         </div>
       </div>
 
-      <button className={styles.investButton}>INVEST</button> //TO-DO: Implement invest onClick
+      <button className={styles.investButton}>INVEST</button> {//TO-DO: Implement invest onClick}
 
       <div className={styles.wishlistButton}>
         <img src="/assets/heart.svg" alt="heart" />
