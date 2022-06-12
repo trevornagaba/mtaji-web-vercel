@@ -1,31 +1,30 @@
 import styles from "../styles/InvestCard.module.css";
 
-const InvestCard = () => {
+const InvestCard = (props) => {
   return (
     <div className={styles.companyDetails}>
       <div className={styles.valuation}>
         <p className={styles.label}>
-          Current <br />
-          Evaluation
+          Target
         </p>
         <div>
-          <p className={styles.valuationDollars}>$ 10,000,000</p>
-          <p className={styles.valuationUgx}>UGX 35 trillion</p>
+        {console.log(props.company.targetAmount)}
+          <p className={styles.valuationDollars}>${parseInt((props.company.targetAmount)/3500)}</p>
+          <p className={styles.valuationUgx}>UGX {props.company.targetAmount}</p>
         </div>
       </div>
 
       <div className={styles.amountRaised}>
         <p className={styles.label}>
-          Amount <br />
-          raised
+          Amount raised
         </p>
 
         <div className={styles.amountDetails}>
-          <p className={styles.total}>$ 901,000 / $ 1,000,000 raised</p>
+          <p className={styles.total}>$ {(props.company.amountRaised)/3500}</p>
           <div className={styles.amountPercentageIndicator}>
             <div></div>
           </div>
-          <p className={styles.amountPercentage}>90.17%</p>
+          <p className={styles.amountPercentage}>{(props.company.amountRaised)*100/(props.company.targetAmount)}%</p>
         </div>
       </div>
 
@@ -49,7 +48,7 @@ const InvestCard = () => {
         </div>
       </div>
 
-      <button className={styles.investButton}>INVEST</button>
+      <button className={styles.investButton}>INVEST</button> //TO-DO: Implement invest onClick
 
       <div className={styles.wishlistButton}>
         <img src="/assets/heart.svg" alt="heart" />

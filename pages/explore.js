@@ -15,21 +15,13 @@ export default function Explore() {
   async function getCompanies() {
     const response = await axios
       .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies`, {
-        withCredentials: true,
       })
       .then((result) => {
-        console.log(typeof result);
-        console.log(result.data);
         // TO-DO: Update after sorting out auth
-        if (result.data == "Please login") {
-          setCompanies("$");
-        } else {
           setCompanies(result.data);
-        }
       })
       .catch((error) => {
         console.log(error);
-        setCompanies("$");
       });
   }
 

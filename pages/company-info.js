@@ -1,8 +1,54 @@
 import HomeNavBar from "../components/HomeNavBar";
 import InvestCard from "../components/InvestCard";
 import RaiseFunds from "../components/RaiseFunds";
+import Link from "next/link";
+import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function CompanyInfo() {
+  // Setup state management
+  const [company, setCompany] = useState([]);
+  useEffect(() => {
+    getCompany();
+  }, []);
+
+  async function getCompany() {
+    const response = await axios
+      .get(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/626fde9f814d1b197742cab2`//TO-DO: route from explore page should pass a company id
+      )
+      .then((result) => {
+        setCompany(result.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  async function makeInvestment() {
+    const response = await axios
+      .post(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
+        {
+          amount: amount,
+          type: "company",
+          companyId: companyId //TO-DO: Collect once sorted out the navigation/router to include companyId 
+        },
+        { withCredentials: true },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((result) => {
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <>
       <HomeNavBar />
@@ -32,11 +78,13 @@ export default function CompanyInfo() {
       </div>
 
       <div className="content-1">
-        <div className="video">
-          <iframe src="https://www.youtube.com/embed/e0H_fXxVn8k"></iframe>
-        </div>
+        {
+          <div className="video">
+            <iframe src={company.videoUrl}></iframe>
+          </div>
+        }
 
-        <InvestCard />
+        <InvestCard company={company} />
       </div>
 
       <div className="content-2">
@@ -49,18 +97,10 @@ export default function CompanyInfo() {
             <p>Documents</p>
           </div>
 
-          <p className="description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          {<p className="description">{company.briefDescription}</p>}
         </div>
 
-        <InvestCard />
+        {<InvestCard company={company} />}
       </div>
 
       <RaiseFunds />
