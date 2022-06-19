@@ -170,7 +170,7 @@ export default function Login() {
 
         .background-container {
           flex-basis: 50%;
-          background: url("/assets/login_background.svg");
+          background: url("/assets/login.svg");
           background-repeat: no-repeat;
         }
 

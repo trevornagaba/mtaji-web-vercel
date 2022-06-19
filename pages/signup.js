@@ -199,7 +199,7 @@ export default function SignUp() {
 
         .background-container {
           flex-basis: 50%;
-          background: url("/assets/signup_background.svg");
+          background: url("/assets/signup.svg");
           background-repeat: no-repeat;
         }
 
