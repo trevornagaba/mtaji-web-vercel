@@ -129,15 +129,16 @@ const HomePage = () => {
   return (
     <>
       <HomeNavBar />
-
+      {/* TO-DO: Add parent component to handle background */}
       <div className="portfolio-section">
-        <p className="header">Portfolio</p>
+      {/* Remove the header portfolio, it was redundant */}
+        {/* <p className="header">Portfolio</p> */}
 
         <div className="portfolio">
           <div className="cash-portfolio">
             <p className="header">Cash</p>
-
-            {<p className="balance">${user.cashBalance}</p>}
+      {/* Remove the pargrap that holds balance element with a span to reduce the padding */}
+            {<span className="balance">${user.cashBalance}</span>}
 
             <div className="buttons">
               <button
@@ -159,18 +160,15 @@ const HomePage = () => {
               >
                 Fund
               </button>
-              <button>Send</button>
               <button>Withdraw</button>
             </div>
           </div>
 
           <div className="investments-portfolio">
             <div className="header">
-              <p>My Investments</p>
-
-              <Link href="/explore">
-                <button>Explore</button>
-              </Link>
+              <p>All Investments</p>
+      {/*TO-DO: Replace the explore button below with function to some value of current company portfolio*/}
+      <p>$300</p>
             </div>
 
             <div>{console.log(portfolio)}
@@ -216,11 +214,11 @@ const HomePage = () => {
         }
 
         .portfolio-section {
-          margin: 0 5vw;
+          margin: 0 12vw;
         }
 
         .portfolio-section .header {
-          font-size: 22px;
+          font-size: 16px;
           font-weight: 600;
         }
 
@@ -231,9 +229,9 @@ const HomePage = () => {
 
         .cash-portfolio {
           background-color: white;
-          border-radius: 24px;
+          border-radius: 20px;
           flex-basis: 40%;
-          padding: 24px;
+          padding: 0px 24px 24px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -241,8 +239,9 @@ const HomePage = () => {
 
         .cash-portfolio .balance {
           text-align: center;
-          font-size: 48px;
+          font-size: 24px;
           font-weight: 700;
+          padding: 0px 24px 12px;
         }
 
         .cash-portfolio .buttons {
@@ -274,9 +273,9 @@ const HomePage = () => {
 
         .investments-portfolio {
           background-color: white;
-          border-radius: 24px;
+          border-radius: 20px;
           flex-basis: 54%;
-          padding: 24px;
+          padding: 0px 24px 24px;
           margin-left: 16px;
         }
 
@@ -285,20 +284,6 @@ const HomePage = () => {
           justify-content: space-between;
           padding-bottom: 16px;
           align-items: center;
-        }
-
-        .investments-portfolio .header button {
-          border: none;
-          cursor: pointer;
-          padding: 16px 24px;
-          border-radius: 10px;
-          color: white;
-          background-color: #01bbc8;
-          height: 50%;
-        }
-
-        .investments-portfolio .header button:hover {
-          background-color: black;
         }
 
         .investments-portfolio .investment {
@@ -344,7 +329,7 @@ const HomePage = () => {
 
         .companies-section .header .title {
           padding-top: 16px;
-          font-size: 24px;
+          font-size: 16px;
           font-weight: 600;
         }
 
