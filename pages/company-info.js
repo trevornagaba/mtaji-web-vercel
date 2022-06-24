@@ -52,7 +52,7 @@ export default function CompanyInfo() {
         <div>
             <HomeNavBar />
             <main>
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-red-300">
+                <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
                     <p>Company Title</p>
                 </div>
             </main>
