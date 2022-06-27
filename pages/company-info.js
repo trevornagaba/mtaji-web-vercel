@@ -129,8 +129,8 @@ export default function CompanyInfo() {
                     >
                         <iframe
                             src="https://www.youtube.com/embed/UBOj6rqRUME"
-                            frameborder="0"
-                            allowfullscreen
+                            frameBorder="0"
+                            allowFullScreen
                             className="w-full h-full mt-4 rounded-xl lg:mt-8"
                         ></iframe>
                     </div>
