@@ -8,7 +8,13 @@ import HomeNavBar from "../components/HomeNavBar";
 import InvestCard from "../components/InvestCard";
 import RaiseFunds from "../components/RaiseFunds";
 
-import { ExternalLink, Button, ShareButton, StatCard } from "../components";
+import {
+    ExternalLink,
+    Button,
+    ShareButton,
+    StatCard,
+    Dot,
+} from "../components";
 
 import classNames from "../utils/classnames";
 
@@ -86,34 +92,46 @@ export default function CompanyInfo() {
         <div>
             <HomeNavBar />
             <main>
-                <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
                             <Image
                                 src="/assets/logo_in_card.svg"
                                 height={50}
                                 width={50}
                             />
-                            <h3 className="text-2xl font-bold leading-tight">
+                            <h3 className="text-lg font-bold leading-tight">
                                 Safe Boda
                             </h3>
+                            <div className="hidden lg:block">
+                                <Dot />
+                            </div>
+                            <div className="hidden lg:block">
+                                <ExternalLink href="https://www.safeboda.com/">
+                                    View website
+                                </ExternalLink>
+                            </div>
+                        </div>
+                        <div className="block px-4 py-2 border border-primary rounded-md lg:hidden">
                             <ExternalLink href="https://www.safeboda.com/">
                                 View website
                             </ExternalLink>
                         </div>
-                        <div className="flex items-center justify-between gap-2">
+                        <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
                             <ShareButton />
-                            <Button primary>Invest</Button>
+                            <Button primary className="px-14">
+                                Invest
+                            </Button>
                         </div>
                     </div>
-                    <div className="w-full h-[500px]">
+                    <div className="w-full h-[240px] lg:h-[500px]">
                         <iframe
                             src="https://www.youtube.com/watch?v=xotzaT5ppSE"
-                            className="w-full h-full aspect-video mt-8 rounded-xl"
+                            className="w-full h-full aspect-video mt-4 rounded-xl lg:mt-8"
                         ></iframe>
                     </div>
                     {/* Stats */}
-                    <div className="flex items-center justify-between gap-4 mt-10 bg-white rounded-xl py-4">
+                    <div className="flex items-center justify-between gap-4 mt-6 bg-white rounded-xl py-4 lg:mt-10">
                         <StatCard
                             title="Current Valuation"
                             dollarValue="10"
@@ -131,26 +149,36 @@ export default function CompanyInfo() {
                         />
                     </div>
                     {/* Info Tabs */}
-                    <div className="w-full p-6 mt-10 bg-white rounded-xl">
+                    <div className="w-full p-6 mt-6 bg-white rounded-xl lg:mt-10">
                         <Tab.Group>
-                            <Tab.List className="flex gap-4">
-                                {companyInfo.map((item) => (
-                                    <Tab
-                                        key={item.id}
-                                        className={({ selected }) =>
-                                            classNames(
-                                                "py-2.5 font-medium leading-5",
-                                                "ring-offset- focus:outline-none focus:ring-0",
-                                                selected
-                                                    ? "border-b-2 border-blue-500 bg-white"
-                                                    : "text-gray-400 bg-white hover:bg-gray-800 hover:text-gray-800 hover:bg-white"
-                                            )
-                                        }
-                                    >
-                                        {item.title}
-                                    </Tab>
-                                ))}
-                            </Tab.List>
+                            <div className="flex items-center justify-between">
+                                <Tab.List className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide">
+                                    {companyInfo.map((item) => (
+                                        <Tab
+                                            key={item.id}
+                                            className={({ selected }) =>
+                                                classNames(
+                                                    "py-2.5 font-medium leading-5",
+                                                    "ring-offset- focus:outline-none focus:ring-0",
+                                                    selected
+                                                        ? "border-b-2 border-blue-500 bg-white"
+                                                        : "text-gray-400 bg-white hover:bg-gray-800 hover:text-gray-800 hover:bg-white"
+                                                )
+                                            }
+                                        >
+                                            {item.title}
+                                        </Tab>
+                                    ))}
+                                </Tab.List>
+                                <div className="hidden lg:block">
+                                    <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
+                                        <ShareButton />
+                                        <Button primary className="px-14">
+                                            Invest
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
                             <Tab.Panels className="mt-10">
                                 {companyInfo.map((item) => (
                                     <Tab.Panel key={item.id}>
@@ -159,10 +187,17 @@ export default function CompanyInfo() {
                                 ))}
                             </Tab.Panels>
                         </Tab.Group>
+                        <div className="block mt-10 lg:hidden">
+                            <div className="flex items-center gap-2">
+                                <ShareButton />
+                                <Button primary className="px-10 w-full">
+                                    Invest
+                                </Button>
+                            </div>
+                        </div>
                     </div>
-                    {/* CTA */}
-                    <RaiseFunds />
                 </div>
+                <RaiseFunds />
             </main>
         </div>
     );
