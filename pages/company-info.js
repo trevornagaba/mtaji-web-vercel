@@ -1,12 +1,9 @@
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import axios from "axios";
-import { Tab, Dialog, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { Tab } from "@headlessui/react";
 
 import HomeNavBar from "../components/HomeNavBar";
-import InvestCard from "../components/InvestCard";
 import RaiseFunds from "../components/RaiseFunds";
 
 import {
@@ -15,8 +12,9 @@ import {
     ShareButton,
     StatCard,
     Dot,
-    TextInput,
     InvestmentModal,
+    InvestmentSuccessModal,
+    InvestmentErrorModal,
 } from "../components";
 
 import classNames from "../utils/classnames";
@@ -231,6 +229,18 @@ export default function CompanyInfo() {
                 openModal={openModal}
                 closeModal={closeModal}
             />
+
+            {/* <InvestmentSuccessModal
+                isOpen={isOpen}
+                openModal={openModal}
+                closeModal={closeModal}
+            /> */}
+
+            {/* <InvestmentErrorModal
+                isOpen={isOpen}
+                openModal={openModal}
+                closeModal={closeModal}
+            /> */}
         </div>
     );
 }
