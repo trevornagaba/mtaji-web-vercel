@@ -5,10 +5,10 @@ const proxy = httpProxy.createProxyServer();
 
 // Make sure that we don't parse JSON bodies on this route:
 export const config = {
-  api: {
-    bodyParser: false,
-  },
+    api: {
+        bodyParser: false,
+    },
 };
 export default (req, res) => {
-  proxy.web(req, res, { target: API_URL, changeOrigin: true });
+    proxy.web(req, res, { target: API_URL, changeOrigin: true });
 };
