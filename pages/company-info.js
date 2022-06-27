@@ -124,10 +124,14 @@ export default function CompanyInfo() {
                             </Button>
                         </div>
                     </div>
-                    <div className="w-full h-[240px] lg:h-[500px]">
+                    <div
+                        className="max-w-full w-full h-[240px] lg:h-[500px]"
+                    >
                         <iframe
-                            src="https://www.youtube.com/watch?v=xotzaT5ppSE"
-                            className="w-full h-full aspect-video mt-4 rounded-xl lg:mt-8"
+                            src="https://www.youtube.com/embed/UBOj6rqRUME"
+                            frameborder="0"
+                            allowfullscreen
+                            className="w-full h-full mt-4 rounded-xl lg:mt-8"
                         ></iframe>
                     </div>
                     {/* Stats */}
