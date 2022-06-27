@@ -2,6 +2,7 @@ import classNames from "../../utils/classnames";
 
 export default function Button({
     primary,
+    secondary,
     children,
     className,
     onClick,
@@ -10,9 +11,10 @@ export default function Button({
     return (
         <button
             className={classNames(
-                `inline-flex px-6 py-2 font-bold text-white justify-center rounded-md`,
+                `inline-flex px-6 py-2 justify-center rounded-md`,
                 `border border-transparent shadow-sm`,
-                primary && `bg-primary hover:bg-blue-700`,
+                primary && `text-white bg-primary hover:bg-blue-700`,
+                secondary && `bg-white border border-gray-300 hover:bg-gray-100`,
                 className
             )}
             onClick={onClick}

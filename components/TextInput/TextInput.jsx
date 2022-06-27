@@ -1,49 +1,49 @@
-export default function TextInput({
-  name,
-  type,
-  placeholder,
-  onChange,
-  onFocus,
-  value,
-  error,
-  touched,
-}) {
-  return (
-    <>
-      <div>
-        <input
-          id={name}
-          type={type}
-          placeholder={placeholder}
-          onChange={onChange}
-          onFocus={onFocus}
-          name={name}
-          value={value}
-        />
-        {!touched && error && <p className="error-message">{error}</p>}
-      </div>
+import classNames from "../../utils/classnames";
 
-      <style jsx>{`
-        div {
-          margin-bottom: 16px;
-        }
-        input {
-          display: block;
-          border: 1px solid #b0b0b0;
-          border-radius: 10px;
-          width: 100%;
-          padding: 16px;
-          margin: 0 auto;
-        }
-        inputs p:hover {
-          color: #01bbc8;
-        }
-        .error-message {
-          color: red;
-          font-size: 13px;
-          margin: 2px 0 0 0;
-        }
-      `}</style>
-    </>
-  );
+export default function TextInput({
+    label,
+    name,
+    type,
+    placeholder,
+    onChange,
+    onFocus,
+    value,
+    error,
+    touched,
+    leading,
+    leadingSymbol,
+}) {
+    return (
+        <div className="mb-4">
+            <label htmlFor="" className="font-medium">
+                {label}
+            </label>
+            <div className="relative">
+                {leading && (
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <span className="text-gray-500">
+                            {leadingSymbol}
+                        </span>
+                    </div>
+                )}
+                <input
+                    id={name}
+                    type={type}
+                    placeholder={placeholder}
+                    onChange={onChange}
+                    onFocus={onFocus}
+                    name={name}
+                    value={value}
+                    className={classNames(
+                        "block w-full px-3 py-3 rounded-md text-gray-700 border border-gray-300 mt-1",
+                        "focus:outline-none focus:border-gray-500 focus:shadow-outline-primary focus:border-primary",
+                        "text-right"
+                    )}
+                />
+                {!touched && error && (
+                    <small className="text-red-500 mt-2">{error}</small>
+                )}
+            </div>
+        </div>
+    );
 }

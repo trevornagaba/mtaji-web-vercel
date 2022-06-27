@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
-import { Tab } from "@headlessui/react";
+import { Tab, Dialog, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 
 import HomeNavBar from "../components/HomeNavBar";
 import InvestCard from "../components/InvestCard";
@@ -14,6 +15,8 @@ import {
     ShareButton,
     StatCard,
     Dot,
+    TextInput,
+    InvestmentModal,
 } from "../components";
 
 import classNames from "../utils/classnames";
@@ -48,6 +51,15 @@ export default function CompanyInfo() {
             desc: "5 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
         },
     ]);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
+    const openModal = () => {
+        setIsOpen(true);
+    };
 
     useEffect(() => {
         getCompany();
@@ -119,14 +131,16 @@ export default function CompanyInfo() {
                         </div>
                         <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
                             <ShareButton />
-                            <Button primary className="px-14">
+                            <Button
+                                primary
+                                onClick={openModal}
+                                className="px-14"
+                            >
                                 Invest
                             </Button>
                         </div>
                     </div>
-                    <div
-                        className="max-w-full w-full h-[240px] lg:h-[500px]"
-                    >
+                    <div className="max-w-full w-full h-[240px] lg:h-[500px]">
                         <iframe
                             src="https://www.youtube.com/embed/UBOj6rqRUME"
                             frameBorder="0"
@@ -177,7 +191,11 @@ export default function CompanyInfo() {
                                 <div className="hidden lg:block">
                                     <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
                                         <ShareButton />
-                                        <Button primary className="px-14">
+                                        <Button
+                                            primary
+                                            onClick={openModal}
+                                            className="px-14"
+                                        >
                                             Invest
                                         </Button>
                                     </div>
@@ -194,7 +212,11 @@ export default function CompanyInfo() {
                         <div className="block mt-10 lg:hidden">
                             <div className="flex items-center gap-2">
                                 <ShareButton />
-                                <Button primary className="px-10 w-full">
+                                <Button
+                                    primary
+                                    onClick={openModal}
+                                    className="px-10 w-full"
+                                >
                                     Invest
                                 </Button>
                             </div>
@@ -203,6 +225,12 @@ export default function CompanyInfo() {
                 </div>
                 <RaiseFunds />
             </main>
+            {/* Modals */}
+            <InvestmentModal
+                isOpen={isOpen}
+                openModal={openModal}
+                closeModal={closeModal}
+            />
         </div>
     );
 }
