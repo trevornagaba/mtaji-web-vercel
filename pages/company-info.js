@@ -25,7 +25,7 @@ export default function CompanyInfo() {
         {
             id: 1,
             title: "Overview",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
+            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
         },
         {
             id: 2,
@@ -89,18 +89,27 @@ export default function CompanyInfo() {
     }
 
     return (
-        <div>
+        <div className="bg-secondary">
             <HomeNavBar />
             <main>
                 <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <Image
-                                src="/assets/logo_in_card.svg"
-                                height={50}
-                                width={50}
-                            />
-                            <h3 className="text-lg font-bold leading-tight">
+                            <div className="hidden lg:block">
+                                <Image
+                                    src="/assets/logo_in_card.svg"
+                                    height={50}
+                                    width={50}
+                                />
+                            </div>
+                            <div className="block lg:hidden">
+                                <Image
+                                    src="/assets/logo_in_card.svg"
+                                    height={44}
+                                    width={44}
+                                />
+                            </div>
+                            <h3 className="text-[24px] font-bold leading-tight">
                                 Safe Boda
                             </h3>
                             <div className="hidden lg:block">
@@ -112,21 +121,19 @@ export default function CompanyInfo() {
                                 </ExternalLink>
                             </div>
                         </div>
-                        <div className="block px-4 py-2 border border-primary rounded-md lg:hidden">
-                            <ExternalLink href="https://www.safeboda.com/">
-                                View website
-                            </ExternalLink>
+                        <div className="block lg:hidden">
+                            <Button primary className="w-[125px]">
+                                Invest
+                            </Button>
                         </div>
                         <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
                             <ShareButton />
-                            <Button primary className="px-14">
+                            <Button primary className="w-[175px]">
                                 Invest
                             </Button>
                         </div>
                     </div>
-                    <div
-                        className="max-w-full w-full h-[240px] lg:h-[500px]"
-                    >
+                    <div className="max-w-full w-full h-[240px] lg:h-[500px]">
                         <iframe
                             src="https://www.youtube.com/embed/UBOj6rqRUME"
                             frameBorder="0"
@@ -140,16 +147,19 @@ export default function CompanyInfo() {
                             title="Current Valuation"
                             dollarValue="10"
                             ugxValue="35"
+                            textLeft
                         />
                         <StatCard
                             title="Target Amount"
                             dollarValue="1"
                             ugxValue="35"
+                            textCenter
                         />
                         <StatCard
                             title="Amount Raised"
                             dollarValue="90k.1/1"
                             ugxValue="35"
+                            textRight
                         />
                     </div>
                     {/* Info Tabs */}
@@ -162,11 +172,11 @@ export default function CompanyInfo() {
                                             key={item.id}
                                             className={({ selected }) =>
                                                 classNames(
-                                                    "py-2.5 font-medium leading-5",
+                                                    "py-2 text-[16px] font-medium",
                                                     "ring-offset- focus:outline-none focus:ring-0",
                                                     selected
-                                                        ? "border-b-2 border-blue-500 bg-white"
-                                                        : "text-gray-400 bg-white hover:bg-gray-800 hover:text-gray-800 hover:bg-white"
+                                                        ? "border-b-2 border-green bg-white"
+                                                        : "text-grey bg-white hover:bg-gray-800 hover:text-gray-800 hover:bg-white"
                                                 )
                                             }
                                         >
@@ -177,7 +187,7 @@ export default function CompanyInfo() {
                                 <div className="hidden lg:block">
                                     <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
                                         <ShareButton />
-                                        <Button primary className="px-14">
+                                        <Button primary className="w-[175px]">
                                             Invest
                                         </Button>
                                     </div>
@@ -201,6 +211,7 @@ export default function CompanyInfo() {
                         </div>
                     </div>
                 </div>
+                {/* <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8"> */}
                 <RaiseFunds />
             </main>
         </div>

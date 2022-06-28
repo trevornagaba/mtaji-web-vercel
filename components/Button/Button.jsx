@@ -10,7 +10,7 @@ export default function Button({
     return (
         <button
             className={classNames(
-                `inline-flex px-6 py-2 font-bold text-white justify-center rounded-md`,
+                `inline-flex px-6 py-2 font-medium text-white justify-center rounded-md`,
                 `border border-transparent shadow-sm`,
                 primary && `bg-primary hover:bg-blue-700`,
                 className

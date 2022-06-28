@@ -1,4 +1,3 @@
-import "../styles/styles.css";
 import "../styles/global.css";
 import Head from "next/head";
 import Footer from "../components/Footer";
@@ -17,9 +16,9 @@ function MyApp({ Component, pageProps }) {
                 />
                 <title>Mtaji</title>
             </Head>
-
-            <Component {...pageProps} />
-
+            <div className="font-poppins">
+                <Component {...pageProps} />
+            </div>
             <Footer />
         </>
     );

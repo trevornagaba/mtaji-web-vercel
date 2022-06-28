@@ -4,13 +4,13 @@ export default function ShareButton({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="inline-flex px-2.5 py-2.5 border border-primary rounded-md"
+            className="inline-flex px-2.5 py-2.5 border border-primary rounded-md lg:px-2 lg:py-2"
         >
             <Image
                 src="/assets/share.svg"
                 alt="share button"
-                height={20}
-                width={20}
+                height={25}
+                width={25}
             />
         </button>
     );
