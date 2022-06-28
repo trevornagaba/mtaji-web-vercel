@@ -1,0 +1,22 @@
+import Image from "next/image";
+import Link from "next/link";
+
+export default function Logo() {
+    return (
+        <div className="flex-shrink-0 flex items-center">
+            <Link href="/">
+                <div className="flex gap-2 items-center hover:cursor-pointer">
+                    <Image
+                        src="/assets/logo.svg"
+                        alt="logo"
+                        width={38}
+                        height={38}
+                    />
+                    <span className="text-primary text-2xl font-bold">
+                        mtaji
+                    </span>
+                </div>
+            </Link>
+        </div>
+    );
+}

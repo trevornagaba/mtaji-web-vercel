@@ -1,3 +1,4 @@
+import Navbar from "./Navbar/Navbar";
 import TextInput from "./TextInput/TextInput";
 import ExternalLink from "./ExternalLink/ExternalLink";
 import Button from "./Button/Button";
@@ -9,6 +10,7 @@ import InvestmentSuccessModal from "./InvestmentSuccessModal/InvestmentSuccessMo
 import InvestmentErrorModal from "./InvestmentErrorModal/InvestmentErrorModal";
 
 export {
+    Navbar,
     TextInput,
     ExternalLink,
     Button,

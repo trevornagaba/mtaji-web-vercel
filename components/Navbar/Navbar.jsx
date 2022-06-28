@@ -1,0 +1,163 @@
+import { Fragment } from "react";
+import Image from "next/image";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
+
+import Logo from "../Logo/Logo";
+import Navlink from "./Navlink";
+import MobileNavlink from "./MobileNavlink";
+
+import classNames from "../../utils/classnames";
+
+export default function Navbar() {
+    return (
+        <Disclosure as="nav" className="mb-4 lg:mb-8">
+            {({ open }) => (
+                <>
+                    <div className="max-w-full mx-auto px-4 lg:px-32">
+                        <div className="flex justify-between h-16">
+                            <Logo />
+                            <div className="hidden lg:ml-6 lg:flex lg:gap-14">
+                                <Navlink href="/">Portfolio</Navlink>
+                                <Navlink href="/">Learn</Navlink>
+                                <Navlink href="/">FAQs</Navlink>
+                            </div>
+
+                            <div className="flex items-center lg:hidden">
+                                {/* Mobile menu button */}
+                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                    <span className="sr-only">
+                                        Open main menu
+                                    </span>
+                                    {open ? (
+                                        <XIcon
+                                            className="block h-6 w-6"
+                                            aria-hidden="true"
+                                        />
+                                    ) : (
+                                        <MenuIcon
+                                            className="block h-6 w-6"
+                                            aria-hidden="true"
+                                        />
+                                    )}
+                                </Disclosure.Button>
+                            </div>
+                            <div className="hidden lg:ml-4 lg:flex lg:items-center">
+                                {/* User Profile dropdown */}
+                                <Menu
+                                    as="div"
+                                    className="ml-4 relative flex-shrink-0"
+                                >
+                                    <div>
+                                        <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-indigo-500">
+                                            <span className="sr-only">
+                                                Open user menu
+                                            </span>
+                                            <Image
+                                                className="rounded-full"
+                                                src="/assets/account.svg"
+                                                alt=""
+                                                width={38}
+                                                height={38}
+                                            />
+                                        </Menu.Button>
+                                    </div>
+                                    <Transition
+                                        as={Fragment}
+                                        enter="transition ease-out duration-100"
+                                        enterFrom="transform opacity-0 scale-95"
+                                        enterTo="transform opacity-100 scale-100"
+                                        leave="transition ease-in duration-75"
+                                        leaveFrom="transform opacity-100 scale-100"
+                                        leaveTo="transform opacity-0 scale-95"
+                                    >
+                                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                        href="#"
+                                                        className={classNames(
+                                                            active
+                                                                ? "bg-gray-100"
+                                                                : "",
+                                                            "block px-4 py-2 text-sm text-gray-700"
+                                                        )}
+                                                    >
+                                                        Profile
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                        href="#"
+                                                        className={classNames(
+                                                            active
+                                                                ? "bg-gray-100"
+                                                                : "",
+                                                            "block px-4 py-2 text-sm text-gray-700"
+                                                        )}
+                                                    >
+                                                        Settings
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                        href="#"
+                                                        className={classNames(
+                                                            active
+                                                                ? "bg-gray-100"
+                                                                : "",
+                                                            "block px-4 py-2 text-sm text-gray-700"
+                                                        )}
+                                                    >
+                                                        Logout
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                        </Menu.Items>
+                                    </Transition>
+                                </Menu>
+                            </div>
+                        </div>
+                    </div>
+                    <Disclosure.Panel className="lg:hidden">
+                        <div className="pt-2 pb-3 space-y-1">
+                            <MobileNavlink href="/">Portfolio</MobileNavlink>
+                            <MobileNavlink href="/">Learn</MobileNavlink>
+                            <MobileNavlink href="/">FAQs</MobileNavlink>
+                        </div>
+                        <div className="pt-4 pb-3 border-t border-gray-200">
+                            <div className="flex items-center px-4">
+                                <div className="flex-shrink-0">
+                                    <Image
+                                        className="rounded-full"
+                                        src="/assets/account.svg"
+                                        alt=""
+                                        width={38}
+                                        height={38}
+                                    />
+                                </div>
+                                <div className="ml-3 -mt-2">
+                                    <div className="text-base font-medium text-gray-800">
+                                        John Doe
+                                    </div>
+                                    <div className="text-sm font-medium text-gray-500">
+                                        email@example.com
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-3 space-y-1">
+                                <MobileNavlink href="/">Profile</MobileNavlink>
+                                <MobileNavlink href="/">Settings</MobileNavlink>
+                                <MobileNavlink href="/">Logout</MobileNavlink>
+                            </div>
+                        </div>
+                    </Disclosure.Panel>
+                </>
+            )}
+        </Disclosure>
+    );
+}

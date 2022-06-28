@@ -7,6 +7,7 @@ import HomeNavBar from "../components/HomeNavBar";
 import RaiseFunds from "../components/RaiseFunds";
 
 import {
+    Navbar,
     ExternalLink,
     Button,
     ShareButton,
@@ -100,7 +101,7 @@ export default function CompanyInfo() {
 
     return (
         <div>
-            <HomeNavBar />
+            <Navbar />
             <main>
                 <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8">
                     <div className="flex items-center justify-between">
