@@ -12,7 +12,7 @@ export default function Logo() {
                         width={23}
                         height={23}
                     />
-                    <span className="text-primary text-2xl font-bold">
+                    <span className="text-primary text-[24px] font-bold">
                         mtaji
                     </span>
                 </div>
