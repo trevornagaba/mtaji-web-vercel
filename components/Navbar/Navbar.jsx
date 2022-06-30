@@ -123,7 +123,7 @@ export default function Navbar() {
                             </div>
                         </div>
                     </div>
-                    <Disclosure.Panel className="lg:hidden">
+                    <Disclosure.Panel className="lg:hidden bg-white">
                         <div className="pt-2 pb-3 space-y-1">
                             <MobileNavlink href="/">Portfolio</MobileNavlink>
                             <MobileNavlink href="/">Learn</MobileNavlink>
