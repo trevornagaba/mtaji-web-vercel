@@ -38,7 +38,7 @@ export default function SignUp() {
       errorsObject.email = "Email address is required.";
       touchedObject.email = false;
       isValid = false;
-    } 
+    }
     // else if (!emailRegex.test(email)) {
     //   errorsObject.email = "Invalid Email: Input correct email address format.";
     //   touchedObject.email = false;
@@ -330,6 +330,8 @@ export default function SignUp() {
             height: 50vh;
             background-position: top;
             background-size: contain;
+            /*TO-DO: Replace this login_background with the actual signup background as was working on the intial develop/ui-prototype branch*/
+            background: url("/assets/login_background.svg");
           }
 
           .signup-form .inputs {
@@ -352,6 +354,8 @@ export default function SignUp() {
             height: 50vh;
             background-position: top;
             background-size: contain;
+            /*TO-DO: Replace this placeholder login_background with the actual signup background as was working on the intial develop/ui-prototype branch*/
+            background: url("/assets/login_background.svg");
           }
         }
       `}</style>

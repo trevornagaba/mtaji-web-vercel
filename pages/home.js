@@ -130,87 +130,102 @@ const HomePage = () => {
     <>
       <HomeNavBar />
       {/* TO-DO: Add parent component to handle background */}
-      <div className="portfolio-section">
-      {/* Remove the header portfolio, it was redundant */}
-        {/* <p className="header">Portfolio</p> */}
+      <div classname="home-page">
+        <div className="portfolio-section">
+          {/* Removed the header portfolio, it was redundant */}
+          {/* <p className="header">Portfolio</p> */}
 
-        <div className="portfolio">
-          <div className="cash-portfolio">
-            <p className="header">Cash</p>
-      {/* Remove the pargrap that holds balance element with a span to reduce the padding */}
-            {<span className="balance">${user.cashBalance}</span>}
+          <div className="portfolio">
+            <div className="cash-portfolio">
+              <p className="header">Cash</p>
+              {/* Removed the pargraph that holds balance element with a span to reduce the padding */}
+              {<span className="balance">${user.cashBalance}</span>}
 
-            <div className="buttons">
-              <button
-                type="button"
-                onClick={() => {
-                  handleFlutterPayment({
-                    callback: (response) => {
-                      console.log(response);
-                      try {
-                        handeCallBack();
-                      } catch (error) {
-                        console.log(error);
-                      }
-                    },
-                    onClose: () => {},
-                  });
-                }}
-                className="fund-button"
-              >
-                Fund
-              </button>
-              <button>Withdraw</button>
-            </div>
-          </div>
-
-          <div className="investments-portfolio">
-            <div className="header">
-              <p>All Investments</p>
-      {/*TO-DO: Replace the explore button below with function to some value of current company portfolio*/}
-      <p>$300</p>
+              <div className="buttons">
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleFlutterPayment({
+                      callback: (response) => {
+                        console.log(response);
+                        try {
+                          handeCallBack();
+                        } catch (error) {
+                          console.log(error);
+                        }
+                      },
+                      onClose: () => {},
+                    });
+                  }}
+                  className="fund-button"
+                >
+                  Fund
+                </button>
+                <button>Withdraw</button>
+              </div>
             </div>
 
-            <div>{console.log(portfolio)}
-              {portfolio.map((portfolio, index) => (
-                <div key={index} className="investment">
-                  <div className="company">
-                    <img src="/assets/logo_in_card.svg" alt="logo" />
-                    <p>{portfolio.companyName}</p>
-                  </div>
+            <div className="investments-portfolio">
+              <div className="header">
+                <p>All Investments</p>
+                {/*TO-DO: Replace the explore button below with function to some value of current company portfolio*/}
+                <p>$300</p>
+              </div>
 
-                  <p className="description">{portfolio.briefDescription}</p>
+              <div>
+                {console.log(portfolio)}
+                {portfolio.map((portfolio, index) => (
+                  <div key={index} className="investment">
+                    <div className="company">
+                      <img src="/assets/logo_in_card.svg" alt="logo" />
+                      <p>{portfolio.companyName}</p>
+                    </div>
 
-                  <div className="balance">
-                    <p className="amount">{portfolio.amount}</p>
-                    <p className="label">{portfolio.debtVsEquity}</p>
+                    <p className="description">{portfolio.briefDescription}</p>
+
+                    <div className="balance">
+                      <p className="amount">{portfolio.amount}</p>
+                      <p className="label">{portfolio.debtVsEquity}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="companies-section">
-        <div className="header">
-          <p className="title">Currently Raising</p>
-          <p className="link">See all</p>
-        </div>
-        <div className="companies">
-          {company.map((company, index) => (
+        <div className="companies-section">
+          <div className="header">
+            <p className="title">Currently Raising</p>
+            <p className="link">See all</p>
+          </div>
+          <div className="companies">
+            {company.map((company, index) => (
               <div key={index} className="company-card">
                 <img src="/assets/logo_in_card.svg" alt="logo" />
                 <p className="company-name">{company.companyName}</p>
                 <p className="company-summary">{company.briefDescription}</p>
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       <style jsx>{`
         * {
           color: #09062d;
+          background-color: F7F7F7;
+        }
+
+        .home-page {
+          background-color: blue;
+          background-url: ("/assets/Ellipse 9.svg");
+          position: absolute;
+          width: 298px;
+          height: 483px;
+          background: linear-gradient(180deg, #2518b8 4.17%, #02c0cd 100%);
+          mix-blend-mode: overlay;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
 
         .portfolio-section {
