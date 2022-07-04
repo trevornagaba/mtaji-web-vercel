@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import axios from "axios";
 import { Tab } from "@headlessui/react";
 
 import HomeNavBar from "../components/HomeNavBar";
-import InvestCard from "../components/InvestCard";
 import RaiseFunds from "../components/RaiseFunds";
 
 import {
+    Navbar,
     ExternalLink,
     Button,
     ShareButton,
     StatCard,
     Dot,
+    InvestmentModal,
+    InvestmentSuccessModal,
+    InvestmentErrorModal,
 } from "../components";
 
 import classNames from "../utils/classnames";
@@ -48,6 +50,15 @@ export default function CompanyInfo() {
             desc: "5 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
         },
     ]);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
+    const openModal = () => {
+        setIsOpen(true);
+    };
 
     useEffect(() => {
         getCompany();
@@ -89,8 +100,8 @@ export default function CompanyInfo() {
     }
 
     return (
-        <div className="bg-secondary">
-            <HomeNavBar />
+        <div>
+            <Navbar />
             <main>
                 <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8">
                     <div className="flex items-center justify-between">
@@ -128,7 +139,11 @@ export default function CompanyInfo() {
                         </div>
                         <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
                             <ShareButton />
-                            <Button primary className="w-[175px]">
+                            <Button
+                                primary
+                                onClick={openModal}
+                                className="px-14"
+                            >
                                 Invest
                             </Button>
                         </div>
@@ -187,7 +202,11 @@ export default function CompanyInfo() {
                                 <div className="hidden lg:block">
                                     <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
                                         <ShareButton />
-                                        <Button primary className="w-[175px]">
+                                        <Button
+                                            primary
+                                            onClick={openModal}
+                                            className="px-14"
+                                        >
                                             Invest
                                         </Button>
                                     </div>
@@ -204,7 +223,11 @@ export default function CompanyInfo() {
                         <div className="block mt-10 lg:hidden">
                             <div className="flex items-center gap-2">
                                 <ShareButton />
-                                <Button primary className="px-10 w-full">
+                                <Button
+                                    primary
+                                    onClick={openModal}
+                                    className="px-10 w-full"
+                                >
                                     Invest
                                 </Button>
                             </div>
@@ -214,6 +237,24 @@ export default function CompanyInfo() {
                 {/* <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8"> */}
                 <RaiseFunds />
             </main>
+            {/* Modals */}
+            <InvestmentModal
+                isOpen={isOpen}
+                openModal={openModal}
+                closeModal={closeModal}
+            />
+
+            {/* <InvestmentSuccessModal
+                isOpen={isOpen}
+                openModal={openModal}
+                closeModal={closeModal}
+            /> */}
+
+            {/* <InvestmentErrorModal
+                isOpen={isOpen}
+                openModal={openModal}
+                closeModal={closeModal}
+            /> */}
         </div>
     );
 }

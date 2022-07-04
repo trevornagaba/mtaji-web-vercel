@@ -1,11 +1,11 @@
 import Link from "next/link";
 import withAuth from "../components/HOC/withAuth";
-import HomeNavBar from "../components/HomeNavBar";
 import React from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { useEffect, useState } from "react";
+import { Navbar } from "../components";
 
 const HomePage = () => {
   // Setup state management
@@ -128,7 +128,7 @@ const HomePage = () => {
 
   return (
     <>
-      <HomeNavBar />
+      <Navbar />
 
       <div className="portfolio-section">
         <p className="header">Portfolio</p>
