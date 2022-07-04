@@ -37,7 +37,7 @@ export default function TextInput({
                     className={classNames(
                         "block w-full px-3 py-3 rounded-md text-gray-700 border border-gray-300 mt-1",
                         "focus:outline-none focus:border-gray-500 focus:shadow-outline-primary focus:border-primary",
-                        "text-right"
+                        "text-left"
                     )}
                 />
                 {!touched && error && (
