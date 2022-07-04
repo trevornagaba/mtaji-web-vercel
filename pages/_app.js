@@ -1,4 +1,3 @@
-import "../styles/styles.css";
 import "../styles/global.css";
 import Head from "next/head";
 import Footer from "../components/Footer";
@@ -76,6 +75,9 @@ function MyApp({ Component, pageProps }) {
                     </small>
                 </div>
             </footer>
+            <div className="font-poppins">
+                <Component {...pageProps} />
+            </div>
         </>
     );
 }

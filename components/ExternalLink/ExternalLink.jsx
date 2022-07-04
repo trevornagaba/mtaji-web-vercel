@@ -9,7 +9,7 @@ export default function ExternalLink({ href, children, className }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={classNames(
-                    "text-sm text-primary hover:text-blue-700 hover:underline",
+                    "text-[16px] text-primary hover:text-blue-700 hover:underline",
                     className
                 )}
             >
