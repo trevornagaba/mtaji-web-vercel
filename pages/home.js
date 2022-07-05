@@ -1,11 +1,11 @@
 import Link from "next/link";
 import withAuth from "../components/HOC/withAuth";
-import HomeNavBar from "../components/HomeNavBar";
 import React from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { useEffect, useState } from "react";
+import { Navbar } from "../components";
 
 const HomePage = () => {
   // Setup state management
@@ -128,7 +128,7 @@ const HomePage = () => {
 
   return (
     <>
-      <HomeNavBar />
+      <Navbar />
       {/* TO-DO: Add parent component to handle background */}
       <div classname="home-page">
         <div className="portfolio-section">
@@ -214,11 +214,9 @@ const HomePage = () => {
       <style jsx>{`
         * {
           color: #09062d;
-          background-color: F7F7F7;
         }
 
         .home-page {
-          background-color: blue;
           background-url: ("/assets/Ellipse 9.svg");
           position: absolute;
           width: 298px;
@@ -243,7 +241,7 @@ const HomePage = () => {
         }
 
         .cash-portfolio {
-          background-color: white;
+          background-color: #E5E5E5;
           border-radius: 20px;
           flex-basis: 40%;
           padding: 0px 24px 24px;
@@ -287,7 +285,7 @@ const HomePage = () => {
         }
 
         .investments-portfolio {
-          background-color: white;
+          background-color: #E5E5E5;
           border-radius: 20px;
           flex-basis: 54%;
           padding: 0px 24px 24px;
@@ -364,7 +362,7 @@ const HomePage = () => {
         }
 
         .companies .company-card {
-          background-color: white;
+          background-color: #E5E5E5;
           border-radius: 30px;
           min-width: 290px;
           max-width: 290px;

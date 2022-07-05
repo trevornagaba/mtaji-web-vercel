@@ -1,296 +1,260 @@
-import HomeNavBar from "../components/HomeNavBar";
-import InvestCard from "../components/InvestCard";
-import RaiseFunds from "../components/RaiseFunds";
-import Link from "next/link";
-import React from "react";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import axios from "axios";
+import { Tab } from "@headlessui/react";
+
+import HomeNavBar from "../components/HomeNavBar";
+import RaiseFunds from "../components/RaiseFunds";
+
+import {
+    Navbar,
+    ExternalLink,
+    Button,
+    ShareButton,
+    StatCard,
+    Dot,
+    InvestmentModal,
+    InvestmentSuccessModal,
+    InvestmentErrorModal,
+} from "../components";
+
+import classNames from "../utils/classnames";
 
 export default function CompanyInfo() {
-  // Setup state management
-  const [company, setCompany] = useState([]);
-  useEffect(() => {
-    getCompany();
-  }, []);
-
-  async function getCompany() {
-    const response = await axios
-      .get(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/626fde9f814d1b197742cab2`//TO-DO: route from explore page should pass a company id
-      )
-      .then((result) => {
-        setCompany(result.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  async function makeInvestment() {
-    const response = await axios
-      .post(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
+    // Setup state management
+    const [company, setCompany] = useState([]);
+    const [companyInfo, setCompanyInfo] = useState([
         {
-          amount: amount,
-          type: "company",
-          companyId: companyId //TO-DO: Collect once sorted out the navigation/router to include companyId 
+            id: 1,
+            title: "Overview",
+            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
         },
-        { withCredentials: true },
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((result) => {
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  return (
-    <>
-      <HomeNavBar />
-
-      <div className="header">
-        <div className="company-summary">
-          <img src="/assets/logo_in_card.svg" alt="logo" />
-          <div>
-            <p className="company-name">SafeBoda</p>
-            <p className="company-link">www.safeboda.com</p>
-          </div>
-        </div>
-
-        <div className="countdown">
-          <div className="countdown-number">
-            <img src="/assets/clock.svg" alt="clock" />
-            <p>7</p>
-          </div>
-
-          <p className="countdown-unit">Days</p>
-        </div>
-
-        <div className="share-button">
-          <img src="/assets/share.svg" alt="share" />
-          <p>Share</p>
-        </div>
-      </div>
-
-      <div className="content-1">
+            id: 2,
+            title: "Problem",
+            desc: "2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
+        },
         {
-          <div className="video">
-            <iframe src={company.videoUrl}></iframe>
-          </div>
-        }
+            id: 3,
+            title: "Solution",
+            desc: "3 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
+        },
+        {
+            id: 4,
+            title: "Team",
+            desc: "4 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
+        },
+        {
+            id: 5,
+            title: "Documents",
+            desc: "5 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
+        },
+    ]);
+    const [isOpen, setIsOpen] = useState(false);
 
-        <InvestCard company={company} />
-      </div>
+    const closeModal = () => {
+        setIsOpen(false);
+    };
 
-      <div className="content-2">
-        <div className="company-literature">
-          <div className="literature-types">
-            <p className="selected">Overview</p>
-            <p>Problem</p>
-            <p>Solution</p>
-            <p>Team</p>
-            <p>Documents</p>
-          </div>
+    const openModal = () => {
+        setIsOpen(true);
+    };
 
-          {<p className="description">{company.briefDescription}</p>}
+    useEffect(() => {
+        getCompany();
+    }, []);
+
+    async function getCompany() {
+        const response = await axios
+            .get(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/626fde9f814d1b197742cab2` //TO-DO: route from explore page should pass a company id
+            )
+            .then((result) => {
+                setCompany(result.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    async function makeInvestment() {
+        const response = await axios
+            .post(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
+                {
+                    amount: amount,
+                    type: "company",
+                    companyId: companyId, //TO-DO: Collect once sorted out the navigation/router to include companyId
+                },
+                { withCredentials: true },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then((result) => {})
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    return (
+        <div>
+            <Navbar />
+            <main>
+                <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <div className="hidden lg:block">
+                                <Image
+                                    src="/assets/logo_in_card.svg"
+                                    height={50}
+                                    width={50}
+                                />
+                            </div>
+                            <div className="block lg:hidden">
+                                <Image
+                                    src="/assets/logo_in_card.svg"
+                                    height={44}
+                                    width={44}
+                                />
+                            </div>
+                            <h3 className="text-[24px] font-bold leading-tight">
+                                Safe Boda
+                            </h3>
+                            <div className="hidden lg:block">
+                                <Dot />
+                            </div>
+                            <div className="hidden lg:block">
+                                <ExternalLink href="https://www.safeboda.com/">
+                                    View website
+                                </ExternalLink>
+                            </div>
+                        </div>
+                        <div className="block lg:hidden">
+                            <Button primary className="w-[125px]">
+                                Invest
+                            </Button>
+                        </div>
+                        <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
+                            <ShareButton />
+                            <Button
+                                primary
+                                onClick={openModal}
+                                className="px-14"
+                            >
+                                Invest
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="max-w-full w-full h-[240px] lg:h-[500px]">
+                        <iframe
+                            src="https://www.youtube.com/embed/UBOj6rqRUME"
+                            frameBorder="0"
+                            allowFullScreen
+                            className="w-full h-full mt-4 rounded-xl lg:mt-8"
+                        ></iframe>
+                    </div>
+                    {/* Stats */}
+                    <div className="flex items-center justify-between gap-4 mt-6 bg-white rounded-xl py-4 lg:mt-10">
+                        <StatCard
+                            title="Current Valuation"
+                            dollarValue="10"
+                            ugxValue="35"
+                            textLeft
+                        />
+                        <StatCard
+                            title="Target Amount"
+                            dollarValue="1"
+                            ugxValue="35"
+                            textCenter
+                        />
+                        <StatCard
+                            title="Amount Raised"
+                            dollarValue="90k.1/1"
+                            ugxValue="35"
+                            textRight
+                        />
+                    </div>
+                    {/* Info Tabs */}
+                    <div className="w-full p-6 mt-6 bg-white rounded-xl lg:mt-10">
+                        <Tab.Group>
+                            <div className="flex items-center justify-between">
+                                <Tab.List className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide">
+                                    {companyInfo.map((item) => (
+                                        <Tab
+                                            key={item.id}
+                                            className={({ selected }) =>
+                                                classNames(
+                                                    "py-2 text-[16px] font-medium",
+                                                    "ring-offset- focus:outline-none focus:ring-0",
+                                                    selected
+                                                        ? "border-b-2 border-green bg-white"
+                                                        : "text-grey bg-white hover:bg-gray-800 hover:text-gray-800 hover:bg-white"
+                                                )
+                                            }
+                                        >
+                                            {item.title}
+                                        </Tab>
+                                    ))}
+                                </Tab.List>
+                                <div className="hidden lg:block">
+                                    <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
+                                        <ShareButton />
+                                        <Button
+                                            primary
+                                            onClick={openModal}
+                                            className="px-14"
+                                        >
+                                            Invest
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                            <Tab.Panels className="mt-10">
+                                {companyInfo.map((item) => (
+                                    <Tab.Panel key={item.id}>
+                                        {item.desc}
+                                    </Tab.Panel>
+                                ))}
+                            </Tab.Panels>
+                        </Tab.Group>
+                        <div className="block mt-10 lg:hidden">
+                            <div className="flex items-center gap-2">
+                                <ShareButton />
+                                <Button
+                                    primary
+                                    onClick={openModal}
+                                    className="px-10 w-full"
+                                >
+                                    Invest
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8"> */}
+                <RaiseFunds />
+            </main>
+            {/* Modals */}
+            <InvestmentModal
+                isOpen={isOpen}
+                openModal={openModal}
+                closeModal={closeModal}
+            />
+
+            {/* <InvestmentSuccessModal
+                isOpen={isOpen}
+                openModal={openModal}
+                closeModal={closeModal}
+            /> */}
+
+            {/* <InvestmentErrorModal
+                isOpen={isOpen}
+                openModal={openModal}
+                closeModal={closeModal}
+            /> */}
         </div>
-
-        {<InvestCard company={company} />}
-      </div>
-
-      <RaiseFunds />
-
-      <style jsx>{`
-        .header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 8px 0;
-          margin: 0 5vw;
-        }
-
-        .company-summary {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-
-        .company-summary img {
-          display: block;
-          width: 32px;
-          height: 32px;
-        }
-
-        .company-summary div {
-          padding-left: 8px;
-          margin: 0;
-        }
-
-        .company-summary div p {
-          padding: 0;
-          margin: 0;
-        }
-
-        .company-summary .company-link {
-          color: #2518b8;
-          font-size: 0.8rem;
-          cursor: pointer;
-        }
-
-        .countdown {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .countdown-number {
-          display: flex;
-          align-items: center;
-          padding: 0;
-          margin: 0;
-        }
-
-        .countdown-number p {
-          padding-left: 8px;
-          margin: 0;
-        }
-
-        .countdown-unit {
-          margin: 0;
-          padding: 0;
-          color: #8C8C8C;
-        }
-
-        .share-button {
-          display: flex;
-          border: 2px solid #2518b8;
-          padding: 0 16px;
-          border-radius: 10px;
-          cursor: pointer;
-          height: 40px;
-          align-items: center;
-        }
-
-        .share-button img {
-          height: 24px;
-          width: 24px;
-          display: block;
-        }
-
-        .share-button p {
-          padding-left: 16px;
-          color: #2518b8;
-        }
-
-        .content-1 {
-          display: flex;
-          padding: 16px 0;
-          margin: 0 5vw;
-          justify-content: space-between;
-        }
-
-        .video {
-          width: 55%;
-        }
-
-        .video iframe {
-          width: 100%;
-          height: 100%;
-          border-radius: 24px;
-        }
-
-        .content-2 {
-          display: flex;
-          padding: 16px 0;
-          margin: 0 5vw;
-          justify-content: space-between;
-        }
-
-        .company-literature {
-          width: 55%;
-          background-color: white;
-          border-radius: 24px;
-          padding: 16px;
-        }
-
-        .literature-types {
-          display: flex;
-          justify-content: space-evenly;
-          flex-wrap: wrap;
-        }
-
-        .literature-types p {
-          cursor: pointer;
-        }
-
-        .literature-types p:hover {
-          color: #01bbc8;
-        }
-
-        .literature-types .selected {
-          border-bottom: 3px solid #535fd7;
-        }
-
-        /* Adjust for smartphone screen sizes. */
-        @media only screen and (max-width: 600px) {
-          .header {
-            flex-wrap: wrap;
-          }
-
-          .content-1,
-          .content-2 {
-            flex-direction: column;
-            padding: 0;
-          }
-
-          .content-2 {
-            margin-top: 16px;
-          }
-
-          .video {
-            width: 100%;
-          }
-
-          .company-details,
-          .company-literature {
-            width: 100%;
-          }
-
-          .content-2 {
-            padding: 0;
-          }
-
-          .company-literature {
-            margin-bottom: 16px;
-          }
-        }
-
-        /* Adjust for tablet screen sizes. */
-        @media only screen and (min-width: 600px) and (max-width: 800px) {
-          .content-1,
-          .content-2 {
-            flex-direction: column;
-          }
-
-          .video {
-            width: 100%;
-          }
-
-          .company-details,
-          .company-literature {
-            width: 100%;
-          }
-
-          .company-literature {
-            margin-bottom: 16px;
-          }
-        }
-      `}</style>
-    </>
-  );
+    );
 }
