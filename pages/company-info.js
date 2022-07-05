@@ -172,7 +172,7 @@ export default function CompanyInfo() {
                         />
                         <StatCard
                             title="Amount Raised"
-                            dollarValue="90k.1/1"
+                            dollarValue="90k.1"
                             ugxValue="35"
                             textRight
                         />
