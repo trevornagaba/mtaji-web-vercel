@@ -31,9 +31,9 @@ export default function Login() {
       touchedObject.username = false;
       isValid = false;
     }
-    
+
     // validate not admin
-    if (formData.username=="admin") {
+    if (formData.username == "admin") {
       errorsObject.username = "Username is not permitted.";
       touchedObject.username = false;
       isValid = false;
@@ -72,7 +72,8 @@ export default function Login() {
         {
           username: formData.username,
           password: formData.password,
-        },  { withCredentials: true }
+        },
+        { withCredentials: true }
       );
       console.log(response);
       if (response.data === "Incorrect password") {
@@ -170,7 +171,7 @@ export default function Login() {
 
         .background-container {
           flex-basis: 50%;
-          background: url("/assets/login_background.svg");
+          background: url("/assets/login.svg");
           background-repeat: no-repeat;
         }
 
@@ -313,6 +314,7 @@ export default function Login() {
             height: 50vh;
             background-position: top;
             background-size: contain;
+            background: url("/assets/login_background.svg");
           }
 
           .login-form .inputs {
@@ -335,6 +337,7 @@ export default function Login() {
             height: 50vh;
             background-position: top;
             background-size: contain;
+            background: url("/assets/login_background.svg");
           }
         }
       `}</style>

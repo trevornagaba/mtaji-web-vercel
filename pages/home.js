@@ -129,84 +129,85 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
+      {/* TO-DO: Add parent component to handle background */}
+      <div className="home-page">
+        <div className="portfolio-section">
+          {/* Removed the header portfolio, it was redundant */}
+          <div> <p className="header">Portfolio</p></div>
 
-      <div className="portfolio-section">
-        <p className="header">Portfolio</p>
+          <div className="portfolio">
+            <div className="cash-portfolio">
+              <p className="header">Cash</p>
+              {/* Removed the pargraph that holds balance element with a span to reduce the padding */}
+              {<span className="balance">${user.cashBalance}</span>}
 
-        <div className="portfolio">
-          <div className="cash-portfolio">
-            <p className="header">Cash</p>
-
-            {<p className="balance">${user.cashBalance}</p>}
-
-            <div className="buttons">
-              <button
-                type="button"
-                onClick={() => {
-                  handleFlutterPayment({
-                    callback: (response) => {
-                      console.log(response);
-                      try {
-                        handeCallBack();
-                      } catch (error) {
-                        console.log(error);
-                      }
-                    },
-                    onClose: () => {},
-                  });
-                }}
-                className="fund-button"
-              >
-                Fund
-              </button>
-              <button>Send</button>
-              <button>Withdraw</button>
-            </div>
-          </div>
-
-          <div className="investments-portfolio">
-            <div className="header">
-              <p>My Investments</p>
-
-              <Link href="/explore">
-                <button>Explore</button>
-              </Link>
+              <div className="buttons">
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleFlutterPayment({
+                      callback: (response) => {
+                        console.log(response);
+                        try {
+                          handeCallBack();
+                        } catch (error) {
+                          console.log(error);
+                        }
+                      },
+                      onClose: () => {},
+                    });
+                  }}
+                  className="fund-button"
+                >
+                  Fund
+                </button>
+                <button>Withdraw</button>
+              </div>
             </div>
 
-            <div>{console.log(portfolio)}
-              {portfolio.map((portfolio, index) => (
-                <div key={index} className="investment">
-                  <div className="company">
-                    <img src="/assets/logo_in_card.svg" alt="logo" />
-                    <p>{portfolio.companyName}</p>
-                  </div>
+            <div className="investments-portfolio">
+              <div className="header">
+                <p>All Investments</p>
+                {/*TO-DO: Replace the explore button below with function to some value of current company portfolio*/}
+                <p>$300</p>
+              </div>
 
-                  <p className="description">{portfolio.briefDescription}</p>
+              <div>
+                {console.log(portfolio)}
+                {portfolio.map((portfolio, index) => (
+                  <div key={index} className="investment">
+                    <div className="company">
+                      <img src="/assets/logo_in_card.svg" alt="logo" />
+                      <p>{portfolio.companyName}</p>
+                    </div>
 
-                  <div className="balance">
-                    <p className="amount">{portfolio.amount}</p>
-                    <p className="label">{portfolio.debtVsEquity}</p>
+                    <p className="description">{portfolio.briefDescription}</p>
+
+                    <div className="balance">
+                      <p className="amount">{portfolio.amount}</p>
+                      <p className="label">{portfolio.debtVsEquity}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="companies-section">
-        <div className="header">
-          <p className="title">Currently Raising</p>
-          <p className="link">See all</p>
-        </div>
-        <div className="companies">
-          {company.map((company, index) => (
+        <div className="companies-section">
+          <div className="header">
+            <p className="title">Currently Raising</p>
+            <p className="link">See all</p>
+          </div>
+          <div className="companies">
+            {company.map((company, index) => (
               <div key={index} className="company-card">
                 <img src="/assets/logo_in_card.svg" alt="logo" />
                 <p className="company-name">{company.companyName}</p>
                 <p className="company-summary">{company.briefDescription}</p>
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -215,13 +216,21 @@ const HomePage = () => {
           color: #09062d;
         }
 
+        .home-page {
+          background-color: #E5E5E5;
+          background-url: ("/assets/Ellipse 9.svg");
+          mix-blend-mode: overlay;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
         .portfolio-section {
-          margin: 0 5vw;
+          margin: 0 12vw;
         }
 
         .portfolio-section .header {
-          font-size: 22px;
+          font-size: 16px;
           font-weight: 600;
+          padding: 7px;
         }
 
         .portfolio {
@@ -230,10 +239,10 @@ const HomePage = () => {
         }
 
         .cash-portfolio {
-          background-color: white;
-          border-radius: 24px;
+          background-color: #FFFFFF;
+          border-radius: 20px;
           flex-basis: 40%;
-          padding: 24px;
+          padding: 0px 24px 24px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -241,8 +250,9 @@ const HomePage = () => {
 
         .cash-portfolio .balance {
           text-align: center;
-          font-size: 48px;
+          font-size: 24px;
           font-weight: 700;
+          padding: 0px 24px 12px;
         }
 
         .cash-portfolio .buttons {
@@ -273,10 +283,10 @@ const HomePage = () => {
         }
 
         .investments-portfolio {
-          background-color: white;
-          border-radius: 24px;
+          background-color: #FFFFFF;
+          border-radius: 20px;
           flex-basis: 54%;
-          padding: 24px;
+          padding: 0px 24px 24px;
           margin-left: 16px;
         }
 
@@ -285,20 +295,6 @@ const HomePage = () => {
           justify-content: space-between;
           padding-bottom: 16px;
           align-items: center;
-        }
-
-        .investments-portfolio .header button {
-          border: none;
-          cursor: pointer;
-          padding: 16px 24px;
-          border-radius: 10px;
-          color: white;
-          background-color: #01bbc8;
-          height: 50%;
-        }
-
-        .investments-portfolio .header button:hover {
-          background-color: black;
         }
 
         .investments-portfolio .investment {
@@ -343,8 +339,8 @@ const HomePage = () => {
         }
 
         .companies-section .header .title {
-          padding-top: 16px;
-          font-size: 24px;
+          padding: 16px;
+          font-size: 16px;
           font-weight: 600;
         }
 
@@ -364,7 +360,7 @@ const HomePage = () => {
         }
 
         .companies .company-card {
-          background-color: white;
+          background-color: #FFFFFF;
           border-radius: 30px;
           min-width: 290px;
           max-width: 290px;

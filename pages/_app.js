@@ -75,9 +75,6 @@ function MyApp({ Component, pageProps }) {
                     </small>
                 </div>
             </footer>
-            <div className="font-poppins">
-                <Component {...pageProps} />
-            </div>
         </>
     );
 }
