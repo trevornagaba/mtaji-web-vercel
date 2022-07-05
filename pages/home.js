@@ -130,10 +130,10 @@ const HomePage = () => {
     <>
       <Navbar />
       {/* TO-DO: Add parent component to handle background */}
-      <div classname="home-page">
+      <div className="home-page">
         <div className="portfolio-section">
           {/* Removed the header portfolio, it was redundant */}
-          {/* <p className="header">Portfolio</p> */}
+          <div> <p className="header">Portfolio</p></div>
 
           <div className="portfolio">
             <div className="cash-portfolio">
@@ -217,11 +217,8 @@ const HomePage = () => {
         }
 
         .home-page {
+          background-color: #E5E5E5;
           background-url: ("/assets/Ellipse 9.svg");
-          position: absolute;
-          width: 298px;
-          height: 483px;
-          background: linear-gradient(180deg, #2518b8 4.17%, #02c0cd 100%);
           mix-blend-mode: overlay;
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
@@ -233,6 +230,7 @@ const HomePage = () => {
         .portfolio-section .header {
           font-size: 16px;
           font-weight: 600;
+          padding: 7px;
         }
 
         .portfolio {
@@ -241,7 +239,7 @@ const HomePage = () => {
         }
 
         .cash-portfolio {
-          background-color: #E5E5E5;
+          background-color: #FFFFFF;
           border-radius: 20px;
           flex-basis: 40%;
           padding: 0px 24px 24px;
@@ -285,7 +283,7 @@ const HomePage = () => {
         }
 
         .investments-portfolio {
-          background-color: #E5E5E5;
+          background-color: #FFFFFF;
           border-radius: 20px;
           flex-basis: 54%;
           padding: 0px 24px 24px;
@@ -341,7 +339,7 @@ const HomePage = () => {
         }
 
         .companies-section .header .title {
-          padding-top: 16px;
+          padding: 16px;
           font-size: 16px;
           font-weight: 600;
         }
@@ -362,7 +360,7 @@ const HomePage = () => {
         }
 
         .companies .company-card {
-          background-color: #E5E5E5;
+          background-color: #FFFFFF;
           border-radius: 30px;
           min-width: 290px;
           max-width: 290px;
