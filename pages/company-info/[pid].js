@@ -3,7 +3,7 @@ import Image from "next/image";
 import axios from "axios";
 import { Tab } from "@headlessui/react";
 
-import RaiseFunds from "../components/RaiseFunds";
+import RaiseFunds from "/components/RaiseFunds";
 
 import {
     Navbar,
@@ -15,9 +15,9 @@ import {
     InvestmentModal,
     InvestmentSuccessModal,
     InvestmentErrorModal,
-} from "../components";
+} from "/components";
 
-import classNames from "../utils/classnames";
+import classNames from "/utils/classnames";
 
 export default function CompanyInfo() {
     // Setup state management

@@ -126,6 +126,7 @@ export default function SignUp() {
               <HomeLogo />
             </div>
           </div>
+          <div><br/></div>
           <p className="title">Sign Up</p>
           {/* Fetch or Server errors */}
           {fetchError && <Alert message={fetchError} />}
@@ -168,6 +169,7 @@ export default function SignUp() {
                 error={errors.passwordConfirmation}
               />
               <button>{loading ? "Loading..." : "Sign Up"}</button>
+              <div><br/></div>
               <div className="sign-in-prompt">
                 <p className="question">Already have an account?</p>
 
@@ -175,17 +177,6 @@ export default function SignUp() {
                   <p className="link">Login</p>
                 </Link>
               </div>
-              <div className="or-option">
-                <div></div>
-                <span>or</span>
-                <div></div>
-              </div>
-              <Link href="/home">
-                <div className="google-button">
-                  <img src="/assets/google_icon.svg" alt="google_icon" />
-                  <span>Sign in with Google</span>
-                </div>
-              </Link>
             </div>
           </form>
         </div>
