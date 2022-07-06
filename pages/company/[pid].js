@@ -22,10 +22,17 @@ import classNames from "/utils/classnames";
 
 
 
-export default function CompanyInfo() {
+export default function Company() {
+    // Create our number formatter.
+    var formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+    });
     // Setup use of router to get company id from url
     const router = useRouter()
     const { pid } = router.query
+    console.log(pid)
     // Setup state management
     const [company, setCompany] = useState([]);
     const [companyInfo, setCompanyInfo] = useState([
@@ -72,14 +79,15 @@ export default function CompanyInfo() {
     async function getCompany() {
         const response = await axios
             .get(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/${pid}` //TO-DO: route from explore page should pass a company id
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/`+pid //TO-DO: route from explore page should pass a company id
             )
             .then((result) => {
+                console.log(result.data)
                 setCompany(result.data);
-                console.log(`${pid}`)
+                console.log(pid)
             })
             .catch((error) => {
-                console.log(`${pid}`)
+                console.log(pid)
                 console.log(error);
             });
     }
@@ -91,7 +99,7 @@ export default function CompanyInfo() {
                 {
                     amount: amount,
                     type: "company",
-                    companyId: companyId, //TO-DO: Collect once sorted out the navigation/router to include companyId
+                    companyId: pid, //TO-DO: Collect once sorted out the navigation/router to include companyId
                 },
                 { withCredentials: true },
                 {
@@ -128,7 +136,7 @@ export default function CompanyInfo() {
                                 />
                             </div>
                             <h3 className="text-[24px] font-bold leading-tight">
-                                Tubayo
+                                {company.name}
                             </h3>
                             <div className="hidden lg:block">
                                 <Dot />
@@ -157,7 +165,7 @@ export default function CompanyInfo() {
                     </div>
                     <div className="max-w-full w-full h-[240px] lg:h-[500px]">
                         <iframe
-                            src="https://www.youtube.com/embed/RelkzR5Yn3I"
+                            src={company.videoUrl}
                             frameBorder="0"
                             allowFullScreen
                             className="w-full h-full mt-4 rounded-xl lg:mt-8"
@@ -167,20 +175,19 @@ export default function CompanyInfo() {
                     <div className="flex items-center justify-between gap-4 mt-6 bg-white rounded-xl py-4 lg:mt-10">
                         <StatCard
                             title="Current Valuation"
-                            dollarValue="15"
-                            ugxValue="56"
+                            // TO-DO: Update to read real time rates from yahoo, reuters etc
+                            dollarValue={15000000}
                             textLeft
                         />
                         <StatCard
                             title="Target Amount"
-                            dollarValue="3"
-                            ugxValue="11"
+                            dollarValue={company.targetAmount}
+                            // TO-DO: Update to read real time rates from yahoo, reuters etc
                             textCenter
                         />
                         <StatCard
                             title="Amount Raised"
-                            dollarValue="1.8"
-                            ugxValue="6.7"
+                            dollarValue={company.amountRaised}
                             textRight
                         />
                     </div>

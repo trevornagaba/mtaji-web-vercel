@@ -80,15 +80,6 @@ const HomePage = () => {
                     setPortfolio("$");
                 } else {
                     setPortfolio(result.data.portfolio);
-                    // Get total portfolio amount
-                    console.log(result.data.portfolio);
-                    result.data.portfolio.map(
-                        (portfolioItem) =>
-                            (portfolioValue =
-                                parseInt(portfolioValue) +
-                                parseInt(portfolioItem.amount))
-                    );
-                    // console.log(portfolioValue);
                 }
             })
             .catch((error) => {
@@ -162,7 +153,7 @@ const HomePage = () => {
                             {/* Removed the pargraph that holds balance element with a span to reduce the padding */}
                             {
                                 <span className="balance">
-                                    ${user.cashBalance}
+                                    {formatter.format(user.cashBalance)}
                                 </span>
                             }
 
@@ -198,7 +189,6 @@ const HomePage = () => {
                                 {portfolio.map((portfolio, index) => (
                                     <div key={index} className="investment">
                                         <p hidden>
-                                            $
                                             {
                                                 (portfolioValue =
                                                     parseInt(portfolioValue) +
@@ -207,17 +197,12 @@ const HomePage = () => {
                                         </p>
                                     </div>
                                 ))}
-                                <p>{portfolioValue}</p>
+                                <p>{formatter.format(portfolioValue)}</p>
                             </div>
 
                             <div>
                                 {portfolio.map((portfolio, index) => (
                                     <div key={index} className="investment">
-                                        <p hidden>
-                                            portfolioValue =
-                                            parseInt(portfolioValue) +
-                                            parseInt(portfolioItem.amount)
-                                        </p>
                                         <div className="company">
                                             <img
                                                 src="/assets/logo_in_card.svg"
@@ -232,11 +217,11 @@ const HomePage = () => {
 
                                         <div className="balance">
                                             <p className="amount">
-                                                {portfolio.amount}
+                                                {formatter.format(portfolio.amount)}
                                             </p>
-                                            <p className="label">
+                                            {/* <p className="label">
                                                 {portfolio.debtVsEquity}
-                                            </p>
+                                            </p> */}
                                         </div>
                                     </div>
                                 ))}
