@@ -263,7 +263,13 @@ const HomePage = () => {
                             </Link>
                         ))}
                     </div>
-                </div>
+                </div> 
+            {/* Modals */}
+            <FundSuccessModal
+                isSuccessful={isSuccessful}
+                openSuccessModal={openSuccessModal}
+                closeSuccessModal={closeSuccessModal}
+            />
             </div>
 
             <style jsx>{`

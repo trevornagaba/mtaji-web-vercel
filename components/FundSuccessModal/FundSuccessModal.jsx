@@ -1,9 +1,9 @@
+import { Link } from next/link;
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckCircleIcon } from "@heroicons/react/solid";
 
 import { Button } from "..";
-import Link from "next/link";
 
 export default function InvestmentSuccessModal({
     isSuccessful,
@@ -52,11 +52,11 @@ export default function InvestmentSuccessModal({
                                     </p>
                                 </div>
                                 <div className="p-8 flex items-center justify-between gap-3">
-                                    <Button secondary onclick={closeSuccessModal} className="w-full">
+                                    <Button secondary className="w-full">
                                         More...
                                     </Button>
                                     <Button primary className="w-full">
-                                        <Link href="/home">See Portfolio</Link>
+                                        See Portfolio
                                     </Button>
                                 </div>
                             </Dialog.Panel>

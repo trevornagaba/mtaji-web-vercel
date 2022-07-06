@@ -62,6 +62,8 @@ export default function Company() {
             desc: "Tubayo Mtaji June Pitch.pdf",
         },
     ]);
+
+    // For initial Investment modal
     const [isOpen, setIsOpen] = useState(false);
 
     const closeModal = () => {
@@ -70,6 +72,17 @@ export default function Company() {
 
     const openModal = () => {
         setIsOpen(true);
+    };
+
+    // For succesful Investment modal
+    const [isSuccessful, setIsSuccessful] = useState(false);
+
+    const closeSuccessModal = () => {
+        setIsSuccessful(false);
+    };
+
+    const openSuccessModal = () => {
+        setIsSuccessful(true);
     };
 
     useEffect(() => {
@@ -258,11 +271,11 @@ export default function Company() {
                 closeModal={closeModal}
             />
 
-            {/* <InvestmentSuccessModal
-                isOpen={isOpen}
-                openModal={openModal}
-                closeModal={closeModal}
-            /> */}
+            <InvestmentSuccessModal
+                isSuccessful={isSuccessful}
+                openSuccessModal={openSuccessModal}
+                closeSuccessModal={closeSuccessModal}
+            />
 
             {/* <InvestmentErrorModal
                 isOpen={isOpen}
