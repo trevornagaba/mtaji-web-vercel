@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { Tab } from "@headlessui/react";
+import { useRouter } from 'next/router'
 
 import RaiseFunds from "/components/RaiseFunds";
 
@@ -19,7 +20,12 @@ import {
 
 import classNames from "/utils/classnames";
 
+
+
 export default function CompanyInfo() {
+    // Setup use of router to get company id from url
+    const router = useRouter()
+    const { pid } = router.query
     // Setup state management
     const [company, setCompany] = useState([]);
     const [companyInfo, setCompanyInfo] = useState([
@@ -66,12 +72,14 @@ export default function CompanyInfo() {
     async function getCompany() {
         const response = await axios
             .get(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/626fde9f814d1b197742cab2` //TO-DO: route from explore page should pass a company id
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/${pid}` //TO-DO: route from explore page should pass a company id
             )
             .then((result) => {
                 setCompany(result.data);
+                console.log(`${pid}`)
             })
             .catch((error) => {
+                console.log(`${pid}`)
                 console.log(error);
             });
     }
@@ -126,7 +134,7 @@ export default function CompanyInfo() {
                                 <Dot />
                             </div>
                             <div className="hidden lg:block">
-                                <ExternalLink href="https://tubayo.com//">
+                                <ExternalLink href="https://tubayo.com/">
                                     View website
                                 </ExternalLink>
                             </div>

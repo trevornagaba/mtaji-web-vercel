@@ -9,6 +9,14 @@ import { Navbar } from "../components";
 import styles from "/styles/landing/CompaniesSection.module.css";
 
 const HomePage = () => {
+    // Create our number formatter.
+    var formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+    });
+    // Create value to hold the sum of the value of the portfolio
+    const portfolioValue = 0;
     // Setup state management
     const [user, setUsers] = useState([]);
     const [portfolio, setPortfolio] = useState([]);
@@ -72,6 +80,15 @@ const HomePage = () => {
                     setPortfolio("$");
                 } else {
                     setPortfolio(result.data.portfolio);
+                    // Get total portfolio amount
+                    console.log(result.data.portfolio);
+                    result.data.portfolio.map(
+                        (portfolioItem) =>
+                            (portfolioValue =
+                                parseInt(portfolioValue) +
+                                parseInt(portfolioItem.amount))
+                    );
+                    // console.log(portfolioValue);
                 }
             })
             .catch((error) => {
@@ -176,14 +193,31 @@ const HomePage = () => {
                         <div className="investments-portfolio">
                             <div className="header">
                                 <p>All Investments</p>
-                                {/*TO-DO: Replace the explore button below with function to some value of current company portfolio*/}
-                                <p>$300</p>
+                                {/* The function below iterates over the portfolio object and computes a sum of it's total value */}
+                                {/* This value is stored hidden html elements during the iteration and summation and finaly ready in the <p> element after */}
+                                {portfolio.map((portfolio, index) => (
+                                    <div key={index} className="investment">
+                                        <p hidden>
+                                            $
+                                            {
+                                                (portfolioValue =
+                                                    parseInt(portfolioValue) +
+                                                    parseInt(portfolio.amount))
+                                            }
+                                        </p>
+                                    </div>
+                                ))}
+                                <p>{portfolioValue}</p>
                             </div>
 
                             <div>
-                                {console.log(portfolio)}
                                 {portfolio.map((portfolio, index) => (
                                     <div key={index} className="investment">
+                                        <p hidden>
+                                            portfolioValue =
+                                            parseInt(portfolioValue) +
+                                            parseInt(portfolioItem.amount)
+                                        </p>
                                         <div className="company">
                                             <img
                                                 src="/assets/logo_in_card.svg"
@@ -217,7 +251,7 @@ const HomePage = () => {
                     </div>
                     <div className="companies">
                         {company.map((company, index) => (
-                            <Link href="/company-info/">
+                            <Link href={`/company/${company._id}`}>
                                 <div key={index} className="company-card">
                                     <img
                                         src="/assets/logo_in_card.svg"
@@ -230,7 +264,7 @@ const HomePage = () => {
                                         {company.briefDescription}
                                     </p>
                                     <p className={styles.companyTarget}>
-                                        UGX 50M
+                                        {formatter.format(company.targetAmount)}
                                     </p>
                                     <div className={styles.targetDeadline}>
                                         <p className={styles.endsInLabel}>
