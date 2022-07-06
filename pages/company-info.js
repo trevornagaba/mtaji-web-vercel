@@ -27,27 +27,27 @@ export default function CompanyInfo() {
         {
             id: 1,
             title: "Overview",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
+            desc: "Tubayo is the first Africa focused marketplace that lets travelers book rooms and experiences with locals. An online travel marketplace that makes it easy for locals to earn money by renting out their space to host travellers or lead them on exciting experiences around the community. Save money when travelling, make money when hosting, share culture and local insights of the community, availability of local currencies and payment options.",
         },
         {
             id: 2,
             title: "Problem",
-            desc: "2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
+            desc: "Travel in Africa is so expensive, it is difficult for many people to plan, book and pay for a trip. Price is a great concern for customers booking travel in Africa, Limited travel options for accomodation and experiences, Very fragmented travel industry making trip planning very stressful and hectic, No Africa focused travel marketplace exists to work around the realities on local currency, payment methods and language",
         },
         {
             id: 3,
             title: "Solution",
-            desc: "3 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
+            desc: "Tubayo is an online travel marketplace that makes it easy for locals to earn money by renting out their space to host travellers or lead them on exciting experiences around the community. Save money when travelling, make money when hosting, share culture and local insights of the community, availability of local currencies and payment options.",
         },
         {
             id: 4,
             title: "Team",
-            desc: "4 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
+            desc: "Tubayo Team.pdf",
         },
         {
             id: 5,
             title: "Documents",
-            desc: "5 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu elit vestibulum in ullamcorper metus, habitasse aliquam pellentesque. Facilisi eleifend quis arcu, dapibus sit cras tristique arcu. Pulvinar in egestas sit amet morbi diam tempor eu tristique. Est sed tortor amet, convallis habitant nunc.",
+            desc: "Tubayo Mtaji June Pitch.pdf",
         },
     ]);
     const [isOpen, setIsOpen] = useState(false);
@@ -108,26 +108,26 @@ export default function CompanyInfo() {
                         <div className="flex items-center gap-2">
                             <div className="hidden lg:block">
                                 <Image
-                                    src="/assets/logo_in_card.svg"
+                                    src="/assets/tubayo_logo.png"
                                     height={50}
                                     width={50}
                                 />
                             </div>
                             <div className="block lg:hidden">
                                 <Image
-                                    src="/assets/logo_in_card.svg"
+                                    src="/assets/tubayo_logo.png"
                                     height={44}
                                     width={44}
                                 />
                             </div>
                             <h3 className="text-[24px] font-bold leading-tight">
-                                Safe Boda
+                                Tubayo
                             </h3>
                             <div className="hidden lg:block">
                                 <Dot />
                             </div>
                             <div className="hidden lg:block">
-                                <ExternalLink href="https://www.safeboda.com/">
+                                <ExternalLink href="https://tubayo.com//">
                                     View website
                                 </ExternalLink>
                             </div>
@@ -150,7 +150,7 @@ export default function CompanyInfo() {
                     </div>
                     <div className="max-w-full w-full h-[240px] lg:h-[500px]">
                         <iframe
-                            src="https://www.youtube.com/embed/UBOj6rqRUME"
+                            src="https://www.youtube.com/embed/RelkzR5Yn3I"
                             frameBorder="0"
                             allowFullScreen
                             className="w-full h-full mt-4 rounded-xl lg:mt-8"
@@ -160,20 +160,20 @@ export default function CompanyInfo() {
                     <div className="flex items-center justify-between gap-4 mt-6 bg-white rounded-xl py-4 lg:mt-10">
                         <StatCard
                             title="Current Valuation"
-                            dollarValue="10"
-                            ugxValue="35"
+                            dollarValue="15"
+                            ugxValue="56"
                             textLeft
                         />
                         <StatCard
                             title="Target Amount"
-                            dollarValue="1"
-                            ugxValue="35"
+                            dollarValue="3"
+                            ugxValue="11"
                             textCenter
                         />
                         <StatCard
                             title="Amount Raised"
-                            dollarValue="90k.1"
-                            ugxValue="35"
+                            dollarValue="1.8"
+                            ugxValue="6.7"
                             textRight
                         />
                     </div>
