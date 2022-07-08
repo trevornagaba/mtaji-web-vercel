@@ -2,11 +2,10 @@ import Link from "next/link";
 import withAuth from "../components/HOC/withAuth";
 import React from "react";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
-import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { useEffect, useState } from "react";
 import { Navbar } from "../components";
 import styles from "/styles/landing/CompaniesSection.module.css";
+import FundWalletModal from "/components/FundWalletModal/FundWalletModal";
 
 const HomePage = () => {
     // Create our number formatter.
@@ -21,34 +20,23 @@ const HomePage = () => {
     const [user, setUsers] = useState([]);
     const [portfolio, setPortfolio] = useState([]);
     const [company, setCompanies] = useState([]);
+    // Setup to handle modal state
+    const [isOpen, setIsOpen] = useState(false);
     useEffect(() => {
         getUser();
         getPortfolio();
         getCompanies();
     }, []);
 
-    const config = {
-        public_key: `${process.env.NEXT_PUBLIC_FLW_PUBK}`,
-        tx_ref: uuidv4(),
-        amount: 50000,
-        currency: "UGX",
-        payment_options: "card, mobilemoneyuganda",
-        meta: {
-            consumer_id: 23,
-            consumer_mac: "92a3-912ba-1192a",
-        },
-        customer: {
-            email: "trevornagaba@gmail.com",
-            phone_number: "08102909304",
-            name: "Rose DeWitt Bukater",
-        },
-        customizations: {
-            title: "mtaji",
-            description: "Investment in Tubayo",
-            logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
-        },
+    // Define the close modal arrow method
+    const closeModal = () => {
+        setIsOpen(false);
     };
-    const handleFlutterPayment = useFlutterwave(config);
+
+    // Define the open modal arrow method
+    const openModal = () => {
+        setIsOpen(true);
+    };
 
     async function getUser() {
         const response = await axios
@@ -109,37 +97,10 @@ const HomePage = () => {
             });
     }
 
-    function handeCallBack() {
-        // TO-DO: Repace with axios request, test content-type is still
-        const response = axios
-            .post(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
-                {
-                    amount: config.amount,
-                    id: config.tx_ref,
-                    type: "cash",
-                },
-                { withCredentials: true },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            )
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        closePaymentModal(); // this will close the modal programmatically
-    }
-
     return (
-        <>
-            <Navbar />
+        <div  className="home-page">
+            <Navbar  className="navbar"/>
             {/* TO-DO: Add parent component to handle background */}
-            <div className="home-page">
                 <div className="portfolio-section">
                     {/* Removed the header portfolio, it was redundant */}
                     <div>
@@ -160,19 +121,7 @@ const HomePage = () => {
                             <div className="buttons">
                                 <button
                                     type="button"
-                                    onClick={() => {
-                                        handleFlutterPayment({
-                                            callback: (response) => {
-                                                console.log(response);
-                                                try {
-                                                    handeCallBack();
-                                                } catch (error) {
-                                                    console.log(error);
-                                                }
-                                            },
-                                            onClose: () => {},
-                                        });
-                                    }}
+                                    onClick={openModal}
                                     className="fund-button"
                                 >
                                     Fund
@@ -265,12 +214,11 @@ const HomePage = () => {
                     </div>
                 </div> 
             {/* Modals */}
-            <FundSuccessModal
-                isSuccessful={isSuccessful}
-                openSuccessModal={openSuccessModal}
-                closeSuccessModal={closeSuccessModal}
+            <FundWalletModal
+                isOpen={isOpen}
+                openModal={openModal}
+                closeModal={closeModal}
             />
-            </div>
 
             <style jsx>{`
                 * {
@@ -498,7 +446,7 @@ const HomePage = () => {
                     }
                 }
             `}</style>
-        </>
+        </div>
     );
 };
 

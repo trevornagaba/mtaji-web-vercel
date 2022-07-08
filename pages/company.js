@@ -99,8 +99,8 @@ export default function CompanyInfo() {
     }
 
     return (
-        <div>
-            <Navbar />
+        <div className="company-page">
+            <Navbar/>
             <main>
                 <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8">
                     <div className="flex items-center justify-between">
@@ -126,7 +126,7 @@ export default function CompanyInfo() {
                                 <Dot />
                             </div>
                             <div className="hidden lg:block">
-                                <ExternalLink href="https://tubayo.com//">
+                                <ExternalLink href="https://tubayo.com/">
                                     View website
                                 </ExternalLink>
                             </div>
@@ -254,6 +254,13 @@ export default function CompanyInfo() {
                 openModal={openModal}
                 closeModal={closeModal}
             /> */}
+            <style jsx>{`
+
+                .company-page {
+                    background-color: #e5e5e5 !important;
+                    }`}
+                    
+                    </style>
         </div>
     );
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { Tab } from "@headlessui/react";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 import RaiseFunds from "/components/RaiseFunds";
 
@@ -20,8 +20,6 @@ import {
 
 import classNames from "/utils/classnames";
 
-
-
 export default function Company() {
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -30,9 +28,9 @@ export default function Company() {
         maximumFractionDigits: 0,
     });
     // Setup use of router to get company id from url
-    const router = useRouter()
-    const { pid } = router.query
-    console.log(pid)
+    const router = useRouter();
+    const { pid } = router.query;
+    console.log(pid);
     // Setup state management
     const [company, setCompany] = useState([]);
     const [companyInfo, setCompanyInfo] = useState([
@@ -92,15 +90,15 @@ export default function Company() {
     async function getCompany() {
         const response = await axios
             .get(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/`+pid //TO-DO: route from explore page should pass a company id
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/` + pid //TO-DO: route from explore page should pass a company id
             )
             .then((result) => {
-                console.log(result.data)
+                console.log(result.data);
                 setCompany(result.data);
-                console.log(pid)
+                console.log(pid);
             })
             .catch((error) => {
-                console.log(pid)
+                console.log(pid);
                 console.log(error);
             });
     }
@@ -128,7 +126,7 @@ export default function Company() {
     }
 
     return (
-        <div>
+        <div className="company-page">
             <Navbar />
             <main>
                 <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8">
@@ -282,6 +280,13 @@ export default function Company() {
                 openModal={openModal}
                 closeModal={closeModal}
             /> */}
+            <style jsx>
+                {`
+                    .company-page {
+                        background-color: #e5e5e5 !important;
+                    }
+                `}
+            </style>
         </div>
     );
 }
