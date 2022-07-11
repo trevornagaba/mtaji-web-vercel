@@ -1,7 +1,9 @@
 .container {
   position: relative;
-  margin: 5vw;
+  margin: 0 5vw;
+  grid-column: 1/ 16;
   padding-bottom: 64px;
+
 }
 
 .section {
@@ -77,8 +79,14 @@
   }
 
   .circles {
-    width: 32px;
-    height: 32px;
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media screen and (max-width:769px) {
+  .container{
+      grid-column: 1/9;
   }
 }
 

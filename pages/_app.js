@@ -1,6 +1,7 @@
 import "../styles/global.css";
 import Head from "next/head";
 import Footer from "../components/Footer";
+import Link from "next/link";
 
 import HomeLogo from "../components/HomeLogo";
 
@@ -59,7 +60,7 @@ function MyApp({ Component, pageProps }) {
                         </div>
                     </div>
                     <div className="flex-col space-y-4">
-                        <p>About</p>
+                        <p><Link href="/about">About</Link></p>
                         <p>FAQs</p>
                         <p>Blog</p>
                     </div>

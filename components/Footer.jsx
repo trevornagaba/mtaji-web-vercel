@@ -1,5 +1,6 @@
 import styles from "../styles/Footer.module.css";
 import HomeLogo from "./HomeLogo";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -30,7 +31,7 @@ const Footer = () => {
 
         <div className={styles.otherLinks}>
           <div>
-            <p>About</p>
+            <p><Link href="/about">About</Link></p>
             <p>FAQs</p>
             <p>Blog</p>
           </div>
