@@ -33,7 +33,7 @@ const ExploreTableRow = (props) => {
           <p className={styles.label}>days</p>
         </div>
 
-        <Link href="/company-info">
+        <Link href="/company">
           <button className={styles.viewButton}>View</button>
         </Link>
       </div>

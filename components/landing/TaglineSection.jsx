@@ -9,7 +9,7 @@ const TaglineSection = () => {
       <div className={styles.proposition}>
         <h1>
           Invest in Africa&apos;s <br />
-          next big company
+          next giant
         </h1>
         <p>
           Be a part owner of a thriving business with as little as UGX 50,000
