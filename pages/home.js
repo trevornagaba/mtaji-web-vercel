@@ -226,7 +226,7 @@ const HomePage = () => {
                 }
 
                 .home-page {
-                    background-color: #e5e5e5;
+                    background-color: #f7f7f7;
                     background-url: ("/assets/Ellipse 9.svg");
                     mix-blend-mode: overlay;
                     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

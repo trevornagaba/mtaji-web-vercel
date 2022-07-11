@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckCircleIcon } from "@heroicons/react/solid";
@@ -53,7 +54,7 @@ export default function InvestmentSuccessModal({
                                 </div>
                                 <div className="p-8 flex items-center justify-between gap-3">
                                     <Button secondary onclick={closeSuccessModal} className="w-full">
-                                        More...
+                                        Close
                                     </Button>
                                     <Button primary className="w-full">
                                         <Link href="/home">See Portfolio</Link>

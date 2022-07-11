@@ -1,18 +1,17 @@
-import { Link } from "next/link";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { CheckCircleIcon } from "@heroicons/react/solid";
+import { ExclamationIcon } from "@heroicons/react/solid";
 
 import { Button } from "..";
 
-export default function InvestmentSuccessModal({
-    isSuccessful,
-    openSuccessModal,
-    closeSuccessModal,
+export default function FundErrorModal({
+    isOpen,
+    openModal,
+    closeModal,
 }) {
     return (
-        <Transition appear show={isSuccessful} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={closeSuccessModal}>
+        <Transition appear show={isOpen} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={closeModal}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -40,23 +39,20 @@ export default function InvestmentSuccessModal({
                                     as="h3"
                                     className="text-lg font-medium leading-6 text-white p-6 bg-primary text-center"
                                 >
-                                    Congratulations
+                                    Transaction Failed
                                 </Dialog.Title>
                                 <div className="mt-2 p-8 flex justify-center">
-                                    <CheckCircleIcon className="h-24 w-24 text-cyan-600" />
+                                    <ExclamationIcon className="h-24 w-24 text-red-600" />
                                 </div>
                                 <div className="px-8 text-center">
                                     <p>
-                                        Congratulations!
-                                        <br /> You have made a simple boss move.
+                                        Your transaction failed <br /> 
+                                        that's all we know
                                     </p>
                                 </div>
                                 <div className="p-8 flex items-center justify-between gap-3">
                                     <Button secondary className="w-full">
-                                        More...
-                                    </Button>
-                                    <Button primary className="w-full">
-                                        See Portfolio
+                                        Try again
                                     </Button>
                                 </div>
                             </Dialog.Panel>

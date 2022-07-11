@@ -49,6 +49,8 @@ export default function CompanyInfo() {
             desc: "Tubayo Mtaji June Pitch.pdf",
         },
     ]);
+
+    // Setup state management for initial Investment modal
     const [isOpen, setIsOpen] = useState(false);
 
     const closeModal = () => {
@@ -57,6 +59,17 @@ export default function CompanyInfo() {
 
     const openModal = () => {
         setIsOpen(true);
+    };
+
+    // For succesful Investment modal
+    const [isSuccessful, setIsSuccessful] = useState(false);
+
+    const closeSuccessModal = () => {
+        setIsSuccessful(false);
+    };
+
+    const openSuccessModal = () => {
+        setIsSuccessful(true);
     };
 
     useEffect(() => {
@@ -243,11 +256,11 @@ export default function CompanyInfo() {
                 closeModal={closeModal}
             />
 
-            {/* <InvestmentSuccessModal
-                isOpen={isOpen}
-                openModal={openModal}
-                closeModal={closeModal}
-            /> */}
+            <InvestmentSuccessModal
+                isSuccessful={isSuccessful}
+                openSuccessModal={openSuccessModal}
+                closeSuccessModal={closeSuccessModal}
+            />
 
             {/* <InvestmentErrorModal
                 isOpen={isOpen}

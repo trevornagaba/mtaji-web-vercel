@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { v4 as uuidv4 } from "uuid";
 
 import { TextInput, Button } from "../../components";
 
@@ -17,6 +18,36 @@ export default function InvestmentModal({ isOpen, openModal, closeModal }) {
 
     const openSuccessModal = () => {
         setIsSuccessful(true);
+    };
+
+    const handleInvestment = async (e) => {
+        // TO-DO: Add front end validation that compares value to cash balance
+        // Add validation that confirms if logged in
+        console.log(formData);
+        const response = axios
+            .post(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
+                {
+                    amount: "", //formData.amountUSD
+                    id: uuidv4(),
+                    type: "company",
+                    companyId: "",
+                },
+                { withCredentials: true },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then(function (response) {
+                console.log(response);
+                openSuccessModal();
+            })
+            .catch(function (error) {
+                console.log(error);
+                openErrorModal();
+            });
     };
 
     return (
@@ -103,7 +134,7 @@ export default function InvestmentModal({ isOpen, openModal, closeModal }) {
                                         </Button>
                                         <Button
                                             primary
-                                            onClick={openSuccessModal}
+                                            onClick={handleInvestment}
                                             className="w-full"
                                         >
                                             Invest

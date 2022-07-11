@@ -1,18 +1,22 @@
-import { Link } from "next/link";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckCircleIcon } from "@heroicons/react/solid";
 
 import { Button } from "..";
+import Link from "next/link";
 
-export default function InvestmentSuccessModal({
+export default function FundSuccessModal({
     isSuccessful,
     openSuccessModal,
     closeSuccessModal,
 }) {
     return (
         <Transition appear show={isSuccessful} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={closeSuccessModal}>
+            <Dialog
+                as="div"
+                className="relative z-10"
+                onClose={closeSuccessModal}
+            >
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -48,15 +52,20 @@ export default function InvestmentSuccessModal({
                                 <div className="px-8 text-center">
                                     <p>
                                         Congratulations!
-                                        <br /> You have made a simple boss move.
+                                        <br /> Your deposit is complete.
                                     </p>
+                                    <span>
+                                        Please refresh the home page is balance
+                                        does not update automatically
+                                    </span>
                                 </div>
                                 <div className="p-8 flex items-center justify-between gap-3">
-                                    <Button secondary className="w-full">
-                                        More...
-                                    </Button>
-                                    <Button primary className="w-full">
-                                        See Portfolio
+                                    <Button
+                                        onClick={closeSuccessModal}
+                                        primary
+                                        className="w-full"
+                                    >
+                                        Close
                                     </Button>
                                 </div>
                             </Dialog.Panel>

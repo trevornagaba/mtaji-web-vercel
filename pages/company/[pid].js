@@ -14,8 +14,6 @@ import {
     StatCard,
     Dot,
     InvestmentModal,
-    InvestmentSuccessModal,
-    InvestmentErrorModal,
 } from "/components";
 
 import classNames from "/utils/classnames";
@@ -61,7 +59,7 @@ export default function Company() {
         },
     ]);
 
-    // For initial Investment modal
+    // Setup state management for Investment modal
     const [isOpen, setIsOpen] = useState(false);
 
     const closeModal = () => {
@@ -70,17 +68,6 @@ export default function Company() {
 
     const openModal = () => {
         setIsOpen(true);
-    };
-
-    // For succesful Investment modal
-    const [isSuccessful, setIsSuccessful] = useState(false);
-
-    const closeSuccessModal = () => {
-        setIsSuccessful(false);
-    };
-
-    const openSuccessModal = () => {
-        setIsSuccessful(true);
     };
 
     useEffect(() => {
@@ -267,12 +254,8 @@ export default function Company() {
                 isOpen={isOpen}
                 openModal={openModal}
                 closeModal={closeModal}
-            />
-
-            <InvestmentSuccessModal
-                isSuccessful={isSuccessful}
-                openSuccessModal={openSuccessModal}
-                closeSuccessModal={closeSuccessModal}
+                companyId={pid}
+                // userId={userId} // RO-DO: Validate if logged in
             />
 
             {/* <InvestmentErrorModal
@@ -283,7 +266,7 @@ export default function Company() {
             <style jsx>
                 {`
                     .company-page {
-                        background-color: #e5e5e5 !important;
+                        background-color: #f7f7f7 !important;
                     }
                 `}
             </style>

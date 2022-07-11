@@ -6,31 +6,39 @@ const WhyMtaji = () => {
       <div className={styles.backgroundCover} />
 
       <div className={styles.content}>
-        <p className={styles.title}>Why you need mtaji</p>
+        <p className={styles.title}>Why we need mtaji</p>
         <div className={styles.underline} />
 
         <div className={styles.pointsList}>
           <div className={styles.point}>
             <img src="/assets/info_vector.svg" alt="info" />
             <p>
-              90% of revenue generating businesses in Africa
-              <br /> need additional capital to move from good to great
+            Africa’s finance gap for small and medium enterprises
+              <br /> (SMEs) stands at $331bn.
             </p>
           </div>
 
           <div className={styles.point}>
             <img src="/assets/info_vector.svg" alt="info" />
             <p>
-              Millenials and professionals in diaspora are looking
-              <br /> for a source of passive income
+            51% of Sub Saharan Africa's 44 million formal MSMEs require 
+              <br /> more finance than they can access to grow their businesses.
             </p>
           </div>
 
           <div className={styles.point}>
             <img src="/assets/info_vector.svg" alt="info" />
             <p>
-              Millenials and professionals in diaspora are looking
-              <br /> for a source of passive income
+            Micro, small and medium enterprises form the backbone of most
+              <br />African economies, leading employment in Sub-Saharan Africa.
+            </p>
+          </div>
+
+          <div className={styles.point}>
+            <img src="/assets/info_vector.svg" alt="info" />
+            <p>
+            Your investment in this critical sector will significantly enhance
+              <br /> job creation and wealth development.
             </p>
           </div>
         </div>

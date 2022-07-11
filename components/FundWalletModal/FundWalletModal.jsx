@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
@@ -7,17 +8,15 @@ import { v4 as uuidv4 } from "uuid";
 
 import { TextInput, Button } from "..";
 
-import { InvestmentSuccessModal } from "/components";
+import FundSuccessModal from "/components/FundWalletModal/FundSuccessModal";
+import FundErrorModal from "/components/FundWalletModal/FundErrorModal";
 
 export default function FundWalletModal({ isOpen, openModal, closeModal }) {
-    // Setup the flutterwave payment handler
-    const handleFlutterPayment = useFlutterwave(config);
-
-    // Flutterwave payment sample config
+    // Flutterwave payment config
     const config = {
         public_key: `${process.env.NEXT_PUBLIC_FLW_PUBK}`,
         tx_ref: uuidv4(),
-        amount: 50000,
+        amount: 100000,
         currency: "UGX",
         payment_options: "card, mobilemoneyuganda",
         meta: {
@@ -30,22 +29,27 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
             name: "Rose DeWitt Bukater",
         },
         customizations: {
+            //TO-DO: Update customizations
             title: "mtaji",
             description: "Investment in Tubayo",
             logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
         },
     };
+    // Setup the flutterwave payment handler
+    const handleFlutterPayment = useFlutterwave(config);
 
     // Flutterwave payment callback function
-    function handeCallBack() {
-        // TO-DO: Repace with axios request, test content-type is still
+    function handeCallBack(res) {
         const response = axios
             .post(
                 `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
                 {
-                    amount: config.amount,
-                    id: config.tx_ref,
+                    amount: res.amount,
+                    status: res.status,
+                    id: config.tx_ref, //TO-DO: Compare this to res.tx_ref
                     type: "cash",
+                    flw_txn_id: res.transaction_id,
+                    currency: res.currency,
                 },
                 { withCredentials: true },
                 {
@@ -56,14 +60,32 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
             )
             .then(function (response) {
                 console.log(response);
+                openSuccessModal();
             })
             .catch(function (error) {
                 console.log(error);
+                openErrorModal();
             });
         closePaymentModal(); // this will close the modal programmatically
     }
 
-    
+    // State management for fund wallet form data
+    const [formData, setFormData] = useState({
+        amountUSD: "",
+        amountUGX: "",
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setFormData((prevFormData) => {
+            return {
+                ...prevFormData,
+                [name]: value,
+            };
+        });
+    };
+
     // For succesful fund wallet modal
     const [isSuccessful, setIsSuccessful] = useState(false);
 
@@ -73,6 +95,32 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
 
     const openSuccessModal = () => {
         setIsSuccessful(true);
+    };
+
+    // For error fund wallet modal
+    const [isFailed, setIsFailed] = useState(false);
+
+    const closeErrorModal = () => {
+        setIsFailed(false);
+    };
+
+    const openErrorModal = () => {
+        setIsFailed(true);
+    };
+
+    const handleSubmit = async (e) => {
+        console.log(formData);
+        handleFlutterPayment({
+            callback: (response) => {
+                console.log(response);
+                try {
+                    handeCallBack(response);
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+            onClose: () => {},
+        });
     };
 
     return (
@@ -106,77 +154,59 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
                                         as="h3"
                                         className="text-lg font-medium leading-6 text-white p-6 bg-primary text-center"
                                     >
-                                        Invest
+                                        Fund Wallet
                                     </Dialog.Title>
-                                    <div className="mt-2 p-8">
-                                        <TextInput
-                                            label="Enter amount ($)"
-                                            type="text"
-                                            name="amount"
-                                            placeholder="20.00"
-                                            leading
-                                            // leadingSymbol={
-                                            //     <div className="flex items-center gap-1">
-                                            //         ${" "}
-                                            //         <ChevronDownIcon className="h-4 w-4" />
-                                            //     </div>
-                                            // }
-                                        />
-                                        <div className="flex justify-end -mt-2">
-                                            <small className="text-gray-600">
-                                                Avail Bal: $ 0.50
-                                            </small>
+                                        <div className="mt-2 p-8">
+                                            <TextInput
+                                                label="Enter amount ($)"
+                                                type="text"
+                                                name="amount USD"
+                                                placeholder="20.00"
+                                                // onChange={handleChange}
+                                                // value={formData.amountUSD}
+                                                leading
+                                                // leadingSymbol={
+                                                //     <div className="flex items-center gap-1">
+                                                //         ${" "}
+                                                //         <ChevronDownIcon className="h-4 w-4" />
+                                                //     </div>
+                                                // }
+                                            />
+                                            <TextInput
+                                                label="Enter amount (UGX)"
+                                                type="text"
+                                                name="amount UGX"
+                                                placeholder="7000.00"
+                                                // onChange={handleChange}
+                                                // value={formData.amountUGX}
+                                                leading
+                                                // leadingSymbol={
+                                                //     <div className="flex items-center gap-1">
+                                                //         UGX{" "}
+                                                //         <ChevronDownIcon className="h-4 w-4" />
+                                                //     </div>
+                                                // }
+                                            />
                                         </div>
-                                        <TextInput
-                                            label="Enter amount (UGX)"
-                                            type="text"
-                                            name="amount"
-                                            placeholder="7000.00"
-                                            leading
-                                            // leadingSymbol={
-                                            //     <div className="flex items-center gap-1">
-                                            //         UGX{" "}
-                                            //         <ChevronDownIcon className="h-4 w-4" />
-                                            //     </div>
-                                            // }
-                                        />
-                                        <div className="flex justify-end -mt-2">
-                                            <small className="text-gray-600">
-                                                Avail Bal: UGX 2,500
-                                            </small>
+                                        <div className="px-8">
+                                            <small>Transition Fee: 0</small>
                                         </div>
-                                    </div>
-                                    <div className="px-8">
-                                        <small>Transition Fee: 0</small>
-                                    </div>
-                                    <div className="p-8 flex items-center justify-between gap-3">
-                                        <Button
-                                            secondary
-                                            onClick={closeModal}
-                                            className="w-full"
-                                        >
-                                            Cancel
-                                        </Button>
-                                        <Button
-                                            primary
-                                            onClick={() => {
-                                                handleFlutterPayment({
-                                                    callback: (response) => {
-                                                        console.log(response);
-                                                        try {
-                                                            handeCallBack();
-                                                        } catch (error) {
-                                                            console.log(error);
-                                                        }
-                                                    },
-                                                    onClose: () => {},
-                                                });
-                                            }}
-                                            className="w-full"
-                                        >
-                                            Invest
-                                        </Button>
-                                    </div>
+                                        <div className="p-8 flex items-center justify-between gap-3">
+                                            <Button
+                                                secondary
+                                                onClick={closeModal}
+                                                className="w-full"
+                                            >
+                                                Cancel
+                                            </Button>
+                                            <Button
+                                                primary
+                                                onClick={handleSubmit}
+                                                className="w-full"
+                                            >
+                                                Invest
+                                            </Button>
+                                        </div>
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
@@ -184,11 +214,16 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
                 </Dialog>
             </Transition>
             {/* Modals */}
-            <InvestmentSuccessModal
+            <FundSuccessModal
                 isSuccessful={isSuccessful}
                 openSuccessModal={openSuccessModal}
                 closeSuccessModal={closeSuccessModal}
             />
+            {/* <FundErrorModal
+                isFailed={isFailed}
+                openErrorModal={openErrorModal}
+                closeErrorModal={closeErrorModal}
+                /> */}
         </div>
     );
 }
