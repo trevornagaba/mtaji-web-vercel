@@ -21,7 +21,9 @@
     justify-content: flex-end;
 }
 .aboutImg>div>Img{
-    min-height: 100%;
+    height: 100%;
+    object-fit:cover;
+    border-radius: 15px;
 }
 .ourStorySection {
     grid-column: 1/14;

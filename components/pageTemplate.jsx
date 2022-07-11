@@ -22,11 +22,11 @@ const PageTemplate = ({
             {hasWrapper ? 
                 (<Wrapper>
                     {children}
-                    {hasRaiseFunds && <RaiseFunds />}
                 </Wrapper>
                 ) : 
-                    {children} 
+                {children} 
             }
+            {hasRaiseFunds && <RaiseFunds />}
             {hasFooter && <Footer />}
         </div>
     );

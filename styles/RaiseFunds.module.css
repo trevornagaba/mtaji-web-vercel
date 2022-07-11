@@ -1,6 +1,7 @@
 .container {
   position: relative;
-  grid-column: 1/ 14;
+  margin: 0 5vw;
+  grid-column: 1/ 15;
   padding-bottom: 64px;
 
 }
