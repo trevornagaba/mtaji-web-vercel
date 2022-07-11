@@ -1,0 +1,28 @@
+.containerWrapper {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 8vw repeat(12, minmax(auto, auto)) 8vw;
+    column-gap: 1.5rem;
+}
+.Wrapper{
+    grid-column: 2/14;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(auto, 6rem));
+}
+
+@media screen and (max-width: 769px) {
+    .containerWrapper {
+        grid-template-columns: 2rem repeat(6, 1fr) 2rem;
+        column-gap: 1rem;
+    }
+    .Wrapper{
+        grid-column: 2/8;
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+    }
+}
+@media screnn and (max-width:400px){
+    .containerWrapper{
+        grid-template-columns: 1rem repeat(6, 1fr) 1rem;
+    }
+}
