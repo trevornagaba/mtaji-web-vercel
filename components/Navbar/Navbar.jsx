@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Image from "next/image";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import styles from "../../styles/navbar.module.css"
 
 import Logo from "../Logo/Logo";
 import Navlink from "./Navlink";
@@ -11,7 +12,7 @@ import classNames from "../../utils/classnames";
 
 export default function Navbar() {
     return (
-        <Disclosure as="nav" className="mb-4 lg:mb-8">
+        <Disclosure as="nav" className={"mb-4 lg:mb-8" && styles.navbar}>
             {({ open }) => (
                 <>
                     <div className="max-w-full mx-auto px-4 lg:px-32">

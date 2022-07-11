@@ -1,0 +1,103 @@
+.container {
+    margin: 0 5vw;
+}
+
+.aboutSection {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/14;
+    margin: 35px 0;
+}
+.aboutImg {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    column-gap: 2rem;
+}
+.aboutImg > div {
+    margin: 17.5px 0;
+}
+.aboutImg > div:nth-child(2) {
+    display: flex;
+    justify-content: flex-end;
+}
+.aboutImg > div > Img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+.ourStorySection {
+    grid-column: 1/14;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    margin: 35px 0;
+    column-gap: 2rem;
+}
+
+.ourStory > p {
+    max-width: 643.25px;
+}
+.storyImg {
+    display: flex;
+    justify-content: flex-end;
+}
+.heading {
+    font-family: Poppins;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 30px;
+}
+.text {
+    line-height: 24px;
+    margin: 30px 0;
+    color: #666666;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}
+.ourExperts {
+    grid-column: 1/14;
+    margin: 35px 0;
+}
+.experts {
+    grid-column: 1/14;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 399px));
+    height: fit-content;
+    row-gap: 2em;
+    column-gap: 2em;
+}
+.expertsText {
+    max-width: 643.25px;
+    /* background-color: black; */
+}
+
+@media screen and (max-width: 1137px) {
+    .storyImg,
+    .aboutImg > div:nth-child(2) {
+        justify-content: flex-start;
+        /* width: 100%; */
+    }
+    .storyImg>img,
+    .aboutImg > div> img {
+        width: 100%;
+        border-radius: 15px;
+    }
+    .aboutImg {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    .experts {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 230px));
+    }
+}
+@media screen and (max-width: 504px) {
+    .ourStorySection {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .aboutImg {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
