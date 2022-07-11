@@ -13,6 +13,7 @@ const HomePage = () => {
         style: "currency",
         currency: "USD",
         maximumFractionDigits: 0,
+        minimumFractionDigits: 0
     });
     // Create value to hold the sum of the value of the portfolio
     const portfolioValue = 0;

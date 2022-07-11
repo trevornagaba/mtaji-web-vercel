@@ -13,6 +13,7 @@ export default function StatCard({
         style: "currency",
         currency: "USD",
         maximumFractionDigits: 0,
+        minimumFractionDigits: 0
     });
     return (
         <div className="flex justify-center items-center mx-auto">

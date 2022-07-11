@@ -24,6 +24,7 @@ export default function Company() {
         style: "currency",
         currency: "USD",
         maximumFractionDigits: 0,
+        minimumFractionDigits: 0
     });
     // Setup use of router to get company id from url
     const router = useRouter();
