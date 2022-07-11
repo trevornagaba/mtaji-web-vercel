@@ -1,7 +1,7 @@
 .container {
   position: relative;
   margin: 0 5vw;
-  grid-column: 1/ 15;
+  grid-column: 1/ 16;
   padding-bottom: 64px;
 
 }
@@ -86,7 +86,7 @@
 
 @media screen and (max-width:769px) {
   .container{
-      grid-column: 1/span 6;
+      grid-column: 1/9;
   }
 }
 

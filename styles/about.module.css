@@ -16,13 +16,13 @@
 .aboutImg > div {
     margin: 17.5px 0;
 }
-.aboutImg>div:nth-child(2){
+.aboutImg > div:nth-child(2) {
     display: flex;
     justify-content: flex-end;
 }
-.aboutImg>div>Img{
+.aboutImg > div > Img {
     height: 100%;
-    object-fit:cover;
+    object-fit: cover;
     border-radius: 15px;
 }
 .ourStorySection {
@@ -36,7 +36,7 @@
 .ourStory > p {
     max-width: 643.25px;
 }
-.storyImg{
+.storyImg {
     display: flex;
     justify-content: flex-end;
 }
@@ -65,7 +65,7 @@
 .experts {
     grid-column: 1/14;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 399px));
+    grid-template-columns: repeat(3, minmax(200px, 399px));
     height: fit-content;
     row-gap: 2em;
     column-gap: 2em;
@@ -76,18 +76,28 @@
 }
 
 @media screen and (max-width: 1137px) {
-    .storyImg, .aboutImg>div:nth-child(2){
+    .storyImg,
+    .aboutImg > div:nth-child(2) {
         justify-content: flex-start;
         /* width: 100%; */
     }
-    .storyImg, .aboutImg>div:nth-child(2)>img{
+    .storyImg>img,
+    .aboutImg > div> img {
         width: 100%;
+        border-radius: 15px;
     }
+    .aboutImg {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    .experts {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 230px));
+    }
+}
+@media screen and (max-width: 504px) {
     .ourStorySection {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
-    .aboutImg{
+    .aboutImg {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
-
