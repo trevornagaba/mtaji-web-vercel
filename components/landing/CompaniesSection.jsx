@@ -49,8 +49,9 @@ async function getCompanies() {
                     </div>
                     <div className="companies">
                         {company.map((company, index) => (
-                            <Link href={`/company/${company._id}`}>
                                 <div key={index} className="company-card">
+                                
+                            <Link href={`/company/${company._id}`}>
                                     <img
                                         src="/assets/logo_in_card.svg"
                                         alt="logo"
@@ -72,8 +73,8 @@ async function getCompanies() {
                                             21h: 30m: 09s
                                         </p>
                                     </div>
-                                </div>
                             </Link>
+                                </div>
                         ))}
                     </div>
                 </div>

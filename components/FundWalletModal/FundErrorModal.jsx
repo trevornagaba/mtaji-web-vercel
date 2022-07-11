@@ -47,7 +47,7 @@ export default function FundErrorModal({
                                 <div className="px-8 text-center">
                                     <p>
                                         Your transaction failed <br /> 
-                                        that's all we know
+                                        that&apos;s all we know
                                     </p>
                                 </div>
                                 <div className="p-8 flex items-center justify-between gap-3">

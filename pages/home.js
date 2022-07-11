@@ -98,121 +98,119 @@ const HomePage = () => {
     }
 
     return (
-        <div  className="home-page">
-            <Navbar  className="navbar"/>
+        <div className="home-page">
+            <Navbar className="navbar" />
             {/* TO-DO: Add parent component to handle background */}
-                <div className="portfolio-section">
-                    {/* Removed the header portfolio, it was redundant */}
-                    <div>
-                        {" "}
-                        <p className="header">Portfolio</p>
+            <div className="portfolio-section">
+                {/* Removed the header portfolio, it was redundant */}
+                <div>
+                    {" "}
+                    <p className="header">Portfolio</p>
+                </div>
+
+                <div className="portfolio">
+                    <div className="cash-portfolio">
+                        <p className="header">Cash</p>
+                        {/* Removed the pargraph that holds balance element with a span to reduce the padding */}
+                        {
+                            <span className="balance">
+                                {formatter.format(user.cashBalance)}
+                            </span>
+                        }
+
+                        <div className="buttons">
+                            <button
+                                type="button"
+                                onClick={openModal}
+                                className="fund-button"
+                            >
+                                Fund
+                            </button>
+                            <button>Withdraw</button>
+                        </div>
                     </div>
 
-                    <div className="portfolio">
-                        <div className="cash-portfolio">
-                            <p className="header">Cash</p>
-                            {/* Removed the pargraph that holds balance element with a span to reduce the padding */}
-                            {
-                                <span className="balance">
-                                    {formatter.format(user.cashBalance)}
-                                </span>
-                            }
-
-                            <div className="buttons">
-                                <button
-                                    type="button"
-                                    onClick={openModal}
-                                    className="fund-button"
-                                >
-                                    Fund
-                                </button>
-                                <button>Withdraw</button>
-                            </div>
+                    <div className="investments-portfolio">
+                        <div className="header">
+                            <p>All Investments</p>
+                            {/* The function below iterates over the portfolio object and computes a sum of it's total value */}
+                            {/* This value is stored hidden html elements during the iteration and summation and finaly ready in the <p> element after */}
+                            {portfolio.map((portfolio, index) => (
+                                <div key={index} className="investment">
+                                    <p hidden>
+                                        {
+                                            (portfolioValue =
+                                                parseInt(portfolioValue) +
+                                                parseInt(portfolio.amount))
+                                        }
+                                    </p>
+                                </div>
+                            ))}
+                            <p>{formatter.format(portfolioValue)}</p>
                         </div>
 
-                        <div className="investments-portfolio">
-                            <div className="header">
-                                <p>All Investments</p>
-                                {/* The function below iterates over the portfolio object and computes a sum of it's total value */}
-                                {/* This value is stored hidden html elements during the iteration and summation and finaly ready in the <p> element after */}
-                                {portfolio.map((portfolio, index) => (
-                                    <div key={index} className="investment">
-                                        <p hidden>
-                                            {
-                                                (portfolioValue =
-                                                    parseInt(portfolioValue) +
-                                                    parseInt(portfolio.amount))
-                                            }
-                                        </p>
+                        <div>
+                            {portfolio.map((portfolio, index) => (
+                                <div key={index} className="investment">
+                                    <div className="company">
+                                        <img
+                                            src="/assets/logo_in_card.svg"
+                                            alt="logo"
+                                        />
+                                        <p>{portfolio.companyName}</p>
                                     </div>
-                                ))}
-                                <p>{formatter.format(portfolioValue)}</p>
-                            </div>
 
-                            <div>
-                                {portfolio.map((portfolio, index) => (
-                                    <div key={index} className="investment">
-                                        <div className="company">
-                                            <img
-                                                src="/assets/logo_in_card.svg"
-                                                alt="logo"
-                                            />
-                                            <p>{portfolio.companyName}</p>
-                                        </div>
+                                    <p className="industry">
+                                        {portfolio.industry}
+                                    </p>
 
-                                        <p className="industry">
-                                            {portfolio.industry}
+                                    <div className="balance">
+                                        <p className="amount">
+                                            {formatter.format(portfolio.amount)}
                                         </p>
-
-                                        <div className="balance">
-                                            <p className="amount">
-                                                {formatter.format(portfolio.amount)}
-                                            </p>
-                                            {/* <p className="label">
+                                        {/* <p className="label">
                                                 {portfolio.debtVsEquity}
                                             </p> */}
-                                        </div>
                                     </div>
-                                ))}
-                            </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div className="companies-section">
-                    <div className="header">
-                        <p className="title">Currently Raising</p>
-                    </div>
-                    <div className="companies">
-                        {company.map((company, index) => (
+            <div className="companies-section">
+                <div className="header">
+                    <p className="title">Currently Raising</p>
+                </div>
+                <div className="companies">
+                    {company.map((company, index) => (
+                        <div key={index} className="company-card">
                             <Link href={`/company/${company._id}`}>
-                                <div key={index} className="company-card">
-                                    <img
-                                        src="/assets/logo_in_card.svg"
-                                        alt="logo"
-                                    />
-                                    <p className="company-name">
-                                        {company.name}
+                                <img
+                                    src="/assets/logo_in_card.svg"
+                                    alt="logo"
+                                />
+                                <p className="company-name">{company.name}</p>
+                                <p className="company-summary">
+                                    {company.briefDescription}
+                                </p>
+                                <p className={styles.companyTarget}>
+                                    {formatter.format(company.targetAmount)}
+                                </p>
+                                <div className={styles.targetDeadline}>
+                                    <p className={styles.endsInLabel}>
+                                        Ends in:
                                     </p>
-                                    <p className="company-summary">
-                                        {company.briefDescription}
+                                    <p className={styles.timeLeft}>
+                                        21h: 30m: 09s
                                     </p>
-                                    <p className={styles.companyTarget}>
-                                        {formatter.format(company.targetAmount)}
-                                    </p>
-                                    <div className={styles.targetDeadline}>
-                                        <p className={styles.endsInLabel}>
-                                            Ends in:
-                                        </p>
-                                        <p className={styles.timeLeft}>
-                                            21h: 30m: 09s
-                                        </p>
-                                    </div>
                                 </div>
                             </Link>
-                        ))}
-                    </div>
-                </div> 
+                        </div>
+                    ))}
+                </div>
+            </div>
             {/* Modals */}
             <FundWalletModal
                 isOpen={isOpen}

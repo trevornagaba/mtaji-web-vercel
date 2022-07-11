@@ -21,7 +21,7 @@ const WhyMtaji = () => {
           <div className={styles.point}>
             <img src="/assets/info_vector.svg" alt="info" />
             <p>
-            51% of Sub Saharan Africa's 44 million formal MSMEs require 
+            51% of Sub Saharan Africa&apos;s 44 million formal MSMEs require 
               <br /> more finance than they can access to grow their businesses.
             </p>
           </div>
