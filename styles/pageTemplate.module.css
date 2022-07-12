@@ -4,6 +4,9 @@
     grid-template-columns: 8vw repeat(12, minmax(auto, auto)) 8vw;
     column-gap: 1.5rem;
 }
+.greyBackground{
+    background-color: #F7F7F7;
+}
 .Wrapper{
     grid-column: 2/14;
     display: grid;
@@ -21,7 +24,7 @@
         grid-template-columns: repeat(6,1fr);
     }
 }
-@media screnn and (max-width:400px){
+@media screen and (max-width:400px){
     .containerWrapper{
         grid-template-columns: 1rem repeat(6, 1fr) 1rem;
     }

@@ -15,16 +15,17 @@ const PageTemplate = ({
     hasRaiseFunds,
     hasWrapper,
     children,
+    isGreyBackgound
 }) => {
     return (
-        <div className={styles.containerWrapper}>
+        <div className={styles.containerWrapper} style={isGreyBackgound && {backgroundColor:"#F7F7F7"}}>
             {hasNavbar && <Navbar />}
             {hasWrapper ? 
                 (<Wrapper>
                     {children}
                 </Wrapper>
                 ) : 
-                {children} 
+                (children.map(children=>children)) 
             }
             {hasRaiseFunds && <RaiseFunds />}
             {hasFooter && <Footer />}
