@@ -13,7 +13,7 @@ const HomePage = () => {
         style: "currency",
         currency: "USD",
         maximumFractionDigits: 0,
-        minimumFractionDigits: 0
+        minimumFractionDigits: 0,
     });
     // Create value to hold the sum of the value of the portfolio
     const portfolioValue = 0;
@@ -188,24 +188,28 @@ const HomePage = () => {
                     {company.map((company, index) => (
                         <div key={index} className="company-card">
                             <Link href={`/company/${company._id}`}>
-                                <img
-                                    src="/assets/logo_in_card.svg"
-                                    alt="logo"
-                                />
-                                <p className="company-name">{company.name}</p>
-                                <p className="company-summary">
-                                    {company.briefDescription}
-                                </p>
-                                <p className={styles.companyTarget}>
-                                    {formatter.format(company.targetAmount)}
-                                </p>
-                                <div className={styles.targetDeadline}>
-                                    <p className={styles.endsInLabel}>
-                                        Ends in:
+                                <div>
+                                    <img
+                                        src="/assets/logo_in_card.svg"
+                                        alt="logo"
+                                    />
+                                    <p className="company-name">
+                                        {company.name}
                                     </p>
-                                    <p className={styles.timeLeft}>
-                                        21h: 30m: 09s
+                                    <p className="company-summary">
+                                        {company.briefDescription}
                                     </p>
+                                    <p className={styles.companyTarget}>
+                                        {formatter.format(company.targetAmount)}
+                                    </p>
+                                    <div className={styles.targetDeadline}>
+                                        <p className={styles.endsInLabel}>
+                                            Ends in:
+                                        </p>
+                                        <p className={styles.timeLeft}>
+                                            21h: 30m: 09s
+                                        </p>
+                                    </div>
                                 </div>
                             </Link>
                         </div>
