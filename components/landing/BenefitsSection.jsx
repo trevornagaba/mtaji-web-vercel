@@ -16,7 +16,7 @@ const Benefits = () => {
                         <img src="/assets/idea.svg" />
                         <p className={styles.title}>Diversify your portfolio</p>
                         <p className={styles.description}>
-                        Add Africa’s next business giant <br />
+                        Add Africa&quot;s next business giant <br />
                         to your portfolio
                         </p>
                     </div>
