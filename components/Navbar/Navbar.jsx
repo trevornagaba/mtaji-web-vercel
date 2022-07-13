@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import Image from "next/image";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import styles from "../../styles/navbar.module.css"
+import styles from "../../styles/navbar.module.css";
 
 import Logo from "../Logo/Logo";
 import Navlink from "./Navlink";
@@ -19,9 +19,9 @@ export default function Navbar() {
                         <div className="flex justify-between h-16">
                             <Logo />
                             <div className="hidden lg:ml-6 lg:flex lg:gap-14">
-                                <Navlink href="/">Portfolio</Navlink>
-                                <Navlink href="/">Learn</Navlink>
-                                <Navlink href="/">FAQs</Navlink>
+                                <Navlink href="/home">Portfolio</Navlink>
+                                <Navlink href="/blog">Blog</Navlink>
+                                <Navlink href="/FAQs">FAQs</Navlink>
                             </div>
 
                             <div className="flex items-center lg:hidden">
@@ -99,21 +99,6 @@ export default function Navbar() {
                                                             "block px-4 py-2 text-sm text-gray-700"
                                                         )}
                                                     >
-                                                        Settings
-                                                    </a>
-                                                )}
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(
-                                                            active
-                                                                ? "bg-gray-100"
-                                                                : "",
-                                                            "block px-4 py-2 text-sm text-gray-700"
-                                                        )}
-                                                    >
                                                         Logout
                                                     </a>
                                                 )}
@@ -126,35 +111,11 @@ export default function Navbar() {
                     </div>
                     <Disclosure.Panel className="lg:hidden bg-white">
                         <div className="pt-2 pb-3 space-y-1">
-                            <MobileNavlink href="/">Portfolio</MobileNavlink>
-                            <MobileNavlink href="/">Learn</MobileNavlink>
-                            <MobileNavlink href="/">FAQs</MobileNavlink>
-                        </div>
-                        <div className="pt-4 pb-3 border-t border-gray-200">
-                            <div className="flex items-center px-4">
-                                <div className="flex-shrink-0">
-                                    <Image
-                                        className="rounded-full"
-                                        src="/assets/account.svg"
-                                        alt=""
-                                        width={38}
-                                        height={38}
-                                    />
-                                </div>
-                                <div className="ml-3 -mt-2">
-                                    <div className="text-base font-medium text-gray-800">
-                                        John Doe
-                                    </div>
-                                    <div className="text-sm font-medium text-gray-500">
-                                        email@example.com
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mt-3 space-y-1">
-                                <MobileNavlink href="/">Profile</MobileNavlink>
-                                <MobileNavlink href="/">Settings</MobileNavlink>
-                                <MobileNavlink href="/">Logout</MobileNavlink>
-                            </div>
+                            <MobileNavlink href="/home">Portfolio</MobileNavlink>
+                            <MobileNavlink href="/blog">Blog</MobileNavlink>
+                            <MobileNavlink href="/FAQs">FAQs</MobileNavlink>
+                            <MobileNavlink href="/profile">Profile</MobileNavlink>
+                            <MobileNavlink href="/logout">Logout</MobileNavlink>
                         </div>
                     </Disclosure.Panel>
                 </>

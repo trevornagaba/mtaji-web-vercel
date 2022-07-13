@@ -10,7 +10,7 @@ const Footer = () => {
           <HomeLogo />
 
           <div className={styles.imageLinks}>
-            <img src="/assets/linked_in.svg" alt="linkedin" />
+            <Link href="https://www.linkedin.com/company/mtaji-io" ><img src="/assets/linked_in.svg" alt="linkedin" /></Link>
             <img src="/assets/facebook.svg" alt="facebook" />
             <img src="/assets/twitter.svg" alt="twitter" />
             <img src="/assets/instagram.svg" alt="instagram" />

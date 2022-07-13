@@ -17,9 +17,9 @@ const RaiseFunds = () => {
           </p>
         </div>
 
-        <Link href="/signup">
+        <a href="https://forms.gle/6B9qZWfFKASvbu289" target="_blank">
           <button>Get Started</button>
-        </Link>
+        </a>
       </div>
 
       <img className={styles.circles} src="/assets/circles.svg" alt="circles" />

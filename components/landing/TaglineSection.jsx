@@ -12,7 +12,7 @@ const TaglineSection = () => {
           next giant
         </h1>
         <p>
-          Be a part owner of a thriving business with as little as UGX 50,000
+          Be a part owner of a thriving business with as <br />little as UGX 50,000
         </p>
         <div className={styles.btn}>
           <Link href="/signup">

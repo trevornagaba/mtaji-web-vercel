@@ -22,31 +22,34 @@ function MyApp({ Component, pageProps }) {
 
             <Component {...pageProps} />
             {/* Footer */}
-            <footer className="max-w-full mx-auto px-4 py-20 bg-white lg:px-32">
+            <footer className="max-w-full mx-auto px-4 py-10 bg-white lg:px-32">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div className="flex-col space-y-4">
                         <HomeLogo />
                         <div className="flex gap-4 items-center">
-                            <img
-                                src="/assets/linked_in.svg"
-                                alt="linkedin"
-                                className="w-6 h-6"
-                            />
-                            <img
+                            <a href="https://www.linkedin.com/company/mtaji-io" target="_blank">
+                                <img
+                                    src="/assets/linked_in.svg"
+                                    alt="linkedin"
+                                />
+                            </a>
+                            <a href="https://facebook.com/mtaji_io" target="_blank"><img
                                 src="/assets/facebook.svg"
                                 alt="facebook"
                                 className="w-6 h-6"
                             />
-                            <img
+                            </a>
+                            <a href="https://twitter.com/mtaji_io" target="_blank"><img
                                 src="/assets/twitter.svg"
                                 alt="twitter"
                                 className="w-6 h-6"
-                            />
+                            /></a>
+                            <a href="https://www.instagram.com/mtaji.io/" target="_blank">
                             <img
                                 src="/assets/instagram.svg"
                                 alt="instagram"
                                 className="w-6 h-6"
-                            />
+                            /></a>
                         </div>
                     </div>
                     <div className="flex-col space-y-4">
@@ -60,7 +63,9 @@ function MyApp({ Component, pageProps }) {
                         </div>
                     </div>
                     <div className="flex-col space-y-4">
-                        <p><Link href="/about">About</Link></p>
+                        <p>
+                            <Link href="/about">About</Link>
+                        </p>
                         <p>FAQs</p>
                         <p>Blog</p>
                     </div>

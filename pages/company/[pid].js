@@ -24,7 +24,7 @@ export default function Company() {
         style: "currency",
         currency: "USD",
         maximumFractionDigits: 0,
-        minimumFractionDigits: 0
+        minimumFractionDigits: 0,
     });
     // Setup use of router to get company id from url
     const router = useRouter();
@@ -147,7 +147,11 @@ export default function Company() {
                             </div>
                         </div>
                         <div className="block lg:hidden">
-                            <Button primary className="w-[125px]">
+                            <Button
+                                primary
+                                onClick={openModal}
+                                className="w-[125px]"
+                            >
                                 Invest
                             </Button>
                         </div>

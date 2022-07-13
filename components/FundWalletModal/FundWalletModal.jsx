@@ -16,7 +16,6 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
     const config = {
         public_key: `${process.env.NEXT_PUBLIC_FLW_PUBK}`,
         tx_ref: uuidv4(),
-        amount: 100000,
         currency: "UGX",
         payment_options: "card, mobilemoneyuganda",
         meta: {
@@ -109,7 +108,11 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
     };
 
     const handleSubmit = async (e) => {
+        // include preventDefault to prevent default form submission via get/post method and use custom logic defined here
+        e.preventDefault();
         console.log(formData);
+        config.amount = formData.amountUGX;
+        console.log(config);
         handleFlutterPayment({
             callback: (response) => {
                 console.log(response);
@@ -121,6 +124,12 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
             },
             onClose: () => {},
         });
+    };
+
+    const handleCancel = async (e) => {
+        // include preventDefault to prevent default form submission via get/post method and use custom logic defined here
+        e.preventDefault();
+        closeModal();
     };
 
     return (
@@ -156,36 +165,25 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
                                     >
                                         Fund Wallet
                                     </Dialog.Title>
+                                    <form>
                                         <div className="mt-2 p-8">
                                             <TextInput
                                                 label="Enter amount ($)"
                                                 type="text"
-                                                name="amount USD"
+                                                name="amountUSD"
                                                 placeholder="20.00"
-                                                // onChange={handleChange}
-                                                // value={formData.amountUSD}
+                                                onChange={handleChange}
+                                                value={formData.amountUSD}
                                                 leading
-                                                // leadingSymbol={
-                                                //     <div className="flex items-center gap-1">
-                                                //         ${" "}
-                                                //         <ChevronDownIcon className="h-4 w-4" />
-                                                //     </div>
-                                                // }
                                             />
                                             <TextInput
                                                 label="Enter amount (UGX)"
                                                 type="text"
-                                                name="amount UGX"
+                                                name="amountUGX"
                                                 placeholder="7000.00"
-                                                // onChange={handleChange}
-                                                // value={formData.amountUGX}
+                                                onChange={handleChange}
+                                                value={formData.amountUGX}
                                                 leading
-                                                // leadingSymbol={
-                                                //     <div className="flex items-center gap-1">
-                                                //         UGX{" "}
-                                                //         <ChevronDownIcon className="h-4 w-4" />
-                                                //     </div>
-                                                // }
                                             />
                                         </div>
                                         <div className="px-8">
@@ -194,7 +192,7 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
                                         <div className="p-8 flex items-center justify-between gap-3">
                                             <Button
                                                 secondary
-                                                onClick={closeModal}
+                                                onClick={handleCancel}
                                                 className="w-full"
                                             >
                                                 Cancel
@@ -207,6 +205,7 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
                                                 Invest
                                             </Button>
                                         </div>
+                                    </form>
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>

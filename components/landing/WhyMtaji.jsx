@@ -34,13 +34,6 @@ const WhyMtaji = () => {
             </p>
           </div>
 
-          <div className={styles.point}>
-            <img src="/assets/info_vector.svg" alt="info" />
-            <p>
-            Your investment in this critical sector will significantly enhance
-              <br /> job creation and wealth development.
-            </p>
-          </div>
         </div>
       </div>
     </div>

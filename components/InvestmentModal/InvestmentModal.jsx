@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
@@ -8,7 +9,25 @@ import { TextInput, Button } from "../../components";
 
 import { InvestmentSuccessModal } from "/components";
 
-export default function InvestmentModal({ isOpen, openModal, closeModal }) {
+export default function InvestmentModal({ isOpen, openModal, closeModal, companyId }) {
+
+    // State management for fund wallet form data
+    const [formData, setFormData] = useState({
+        amountUSD: "",
+        amountUGX: "",
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setFormData((prevFormData) => {
+            return {
+                ...prevFormData,
+                [name]: value,
+            };
+        });
+    };
+
     // For succesful Investment modal
     const [isSuccessful, setIsSuccessful] = useState(false);
 
@@ -20,18 +39,31 @@ export default function InvestmentModal({ isOpen, openModal, closeModal }) {
         setIsSuccessful(true);
     };
 
+    // For error Investment modal
+    const [isFailed, setIsFailed] = useState(false);
+
+    const closeErrorModal = () => {
+        setIsFailed(false);
+    };
+
+    const openErrorModal = () => {
+        setIsFailed(true);
+    };
+
     const handleInvestment = async (e) => {
         // TO-DO: Add front end validation that compares value to cash balance
         // Add validation that confirms if logged in
+        // include preventDefault to prevent default form submission via get/post method and use custom logic defined here
+        e.preventDefault();
         console.log(formData);
         const response = axios
             .post(
                 `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
                 {
-                    amount: "", //formData.amountUSD
+                    amount: formData.amountUSD,
                     id: uuidv4(),
                     type: "company",
-                    companyId: "",
+                    companyId: companyId,
                 },
                 { withCredentials: true },
                 {
@@ -48,6 +80,12 @@ export default function InvestmentModal({ isOpen, openModal, closeModal }) {
                 console.log(error);
                 openErrorModal();
             });
+    };
+
+    const handleCancel = async (e) => {
+        // include preventDefault to prevent default form submission via get/post method and use custom logic defined here
+        e.preventDefault();
+        closeModal();
     };
 
     return (
@@ -87,15 +125,11 @@ export default function InvestmentModal({ isOpen, openModal, closeModal }) {
                                         <TextInput
                                             label="Enter amount ($)"
                                             type="text"
-                                            name="amount"
+                                            name="amountUSD"
                                             placeholder="20.00"
+                                                onChange={handleChange}
+                                                value={formData.amount}
                                             leading
-                                            // leadingSymbol={
-                                            //     <div className="flex items-center gap-1">
-                                            //         ${" "}
-                                            //         <ChevronDownIcon className="h-4 w-4" />
-                                            //     </div>
-                                            // }
                                         />
                                         <div className="flex justify-end -mt-2">
                                             <small className="text-gray-600">
@@ -105,15 +139,11 @@ export default function InvestmentModal({ isOpen, openModal, closeModal }) {
                                         <TextInput
                                             label="Enter amount (UGX)"
                                             type="text"
-                                            name="amount"
+                                            name="amountUGX"
                                             placeholder="7000.00"
+                                                onChange={handleChange}
+                                                value={formData.amountUGX}
                                             leading
-                                            // leadingSymbol={
-                                            //     <div className="flex items-center gap-1">
-                                            //         UGX{" "}
-                                            //         <ChevronDownIcon className="h-4 w-4" />
-                                            //     </div>
-                                            // }
                                         />
                                         <div className="flex justify-end -mt-2">
                                             <small className="text-gray-600">
@@ -127,7 +157,7 @@ export default function InvestmentModal({ isOpen, openModal, closeModal }) {
                                     <div className="p-8 flex items-center justify-between gap-3">
                                         <Button
                                             secondary
-                                            onClick={closeModal}
+                                            onClick={handleCancel}
                                             className="w-full"
                                         >
                                             Cancel
