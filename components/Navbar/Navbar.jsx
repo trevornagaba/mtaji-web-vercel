@@ -76,7 +76,7 @@ export default function Navbar() {
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <a
-                                                        href="#"
+                                                        href="/account"
                                                         className={classNames(
                                                             active
                                                                 ? "bg-gray-100"
@@ -114,7 +114,7 @@ export default function Navbar() {
                             <MobileNavlink href="/home">Portfolio</MobileNavlink>
                             <MobileNavlink href="/blog">Blog</MobileNavlink>
                             <MobileNavlink href="/FAQs">FAQs</MobileNavlink>
-                            <MobileNavlink href="/profile">Profile</MobileNavlink>
+                            <MobileNavlink href="/account">Profile</MobileNavlink>
                             <MobileNavlink href="/logout">Logout</MobileNavlink>
                         </div>
                     </Disclosure.Panel>
