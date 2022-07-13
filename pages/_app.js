@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }) {
                     <div className="flex-col space-y-4">
                         <div className="flex gap-2">
                             <img src="/assets/email.svg" alt="email" />
-                            <span> support@mtaji.io </span>
+                            <a href="mailto:support@mtaji.io" target="_blank"><span> support@mtaji.io </span></a>
                         </div>
                         <div className="flex gap-2">
                             <img src="/assets/phone.svg" alt="phone" />
