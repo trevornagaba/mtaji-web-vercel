@@ -6,6 +6,7 @@ export default function Button({
     children,
     className,
     onClick,
+    type,
     ...rest
 }) {
     return (
@@ -19,6 +20,7 @@ export default function Button({
                 className
             )}
             onClick={onClick}
+            type={type}
             {...rest}
         >
             {children}

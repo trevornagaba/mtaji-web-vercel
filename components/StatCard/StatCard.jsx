@@ -8,6 +8,13 @@ export default function StatCard({
     textCenter,
     textRight,
 }) {
+    // Create our number formatter.
+    var formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+        minimumFractionDigits: 0
+    });
     return (
         <div className="flex justify-center items-center mx-auto">
             <div
@@ -22,9 +29,12 @@ export default function StatCard({
                     {title}
                 </p>
                 <p className="text-[24px] font-extrabold lg:text-2xl">
-                    ${dollarValue}M
+                    {formatter.format(dollarValue)}
                 </p>
-                <p className="mt-1 text-sm text-grey">UGX{ugxValue}B</p>
+                <p className="mt-1 text-sm text-grey">
+                    {/* TO-DO: Update to read real time rates from yahoo, reuters etc  */}
+                    UGX{formatter.format(dollarValue * 0.00375)}M
+                </p>
             </div>
         </div>
     );

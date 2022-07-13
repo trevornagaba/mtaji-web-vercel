@@ -50,6 +50,7 @@ export default function Login() {
     setErrors(errorsObject);
     return isValid;
   };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -112,9 +113,10 @@ export default function Login() {
               <HomeLogo />
             </div>
           </div>
-
+          <div><br/></div>
           <p className="title">Welcome back</p>
           <p className="subtitle">Please sign in to your account</p>
+          <div><br/></div>
           {/* Fetch or Server errors */}
           {fetchError && <Alert message={fetchError} />}
           <form className="login-form" onSubmit={handleSubmit}>
@@ -144,13 +146,6 @@ export default function Login() {
               <span>or</span>
               <div></div>
             </div>
-
-            <Link href="/home">
-              <div className="google-button">
-                <img src="/assets/google_icon.svg" alt="google_icon" />
-                <span>Sign in with Google</span>
-              </div>
-            </Link>
 
             <div className="sign-up-prompt">
               <p className="question">New Here?</p>
