@@ -15,7 +15,7 @@ export default function TextInput({
 }) {
     return (
         <div className="mb-4">
-            <label htmlFor="" className="font-medium">
+            <label htmlFor={name} className="font-medium">
                 {label}
             </label>
             <div className="relative">
