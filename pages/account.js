@@ -6,7 +6,7 @@ import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/account.module.css";
 
 const tabs = ["Account", "KYC", "Security"];
-const account = () => {
+const Account = () => {
     const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
     const onClickTab = (tab) => {
@@ -20,7 +20,7 @@ const account = () => {
         hasWrapper={false}
         isGreyBackgound={true}
         >
-            <p className={styles.heading}>Settings</p>
+            <p className={styles.heading}>Profile</p>
             <div className={styles.contentBox}>
                 <div className={styles.tabNav}>
                     {tabs.map((tab) => {
@@ -49,6 +49,4 @@ const account = () => {
     );
 };
 
-export default account;
-
-
+export default Account;
