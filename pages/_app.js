@@ -27,24 +27,24 @@ function MyApp({ Component, pageProps }) {
                     <div className="flex-col space-y-4">
                         <HomeLogo />
                         <div className="flex gap-4 items-center">
-                            <a href="https://www.linkedin.com/company/mtaji-io" target="_blank">
+                            <a href="https://www.linkedin.com/company/mtaji-io"  target="_blank" rel="noreferrer">
                                 <img
                                     src="/assets/linked_in.svg"
                                     alt="linkedin"
                                 />
                             </a>
-                            <a href="https://facebook.com/mtaji_io" target="_blank"><img
+                            <a href="https://facebook.com/mtaji_io"  target="_blank" rel="noreferrer"><img
                                 src="/assets/facebook.svg"
                                 alt="facebook"
                                 className="w-6 h-6"
                             />
                             </a>
-                            <a href="https://twitter.com/mtaji_io" target="_blank"><img
+                            <a href="https://twitter.com/mtaji_io"  target="_blank" rel="noreferrer"><img
                                 src="/assets/twitter.svg"
                                 alt="twitter"
                                 className="w-6 h-6"
                             /></a>
-                            <a href="https://www.instagram.com/mtaji.io/" target="_blank">
+                            <a href="https://www.instagram.com/mtaji.io/"  target="_blank" rel="noreferrer">
                             <img
                                 src="/assets/instagram.svg"
                                 alt="instagram"
@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }) {
                     <div className="flex-col space-y-4">
                         <div className="flex gap-2">
                             <img src="/assets/email.svg" alt="email" />
-                            <a href="mailto:support@mtaji.io" target="_blank"><span> support@mtaji.io </span></a>
+                            <a href="mailto:support@mtaji.io"  target="_blank" rel="noreferrer"><span> support@mtaji.io </span></a>
                         </div>
                         <div className="flex gap-2">
                             <img src="/assets/phone.svg" alt="phone" />
