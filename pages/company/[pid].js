@@ -260,7 +260,7 @@ export default function Company() {
                 openModal={openModal}
                 closeModal={closeModal}
                 companyId={pid}
-                // userId={userId} // RO-DO: Validate if logged in
+                // userId={userId} // TO-DO: Validate if logged in
             />
 
             {/* <InvestmentErrorModal

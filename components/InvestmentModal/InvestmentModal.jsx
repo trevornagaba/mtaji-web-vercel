@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { TextInput, Button } from "../../components";
 
-import { InvestmentSuccessModal } from "/components";
+import { InvestmentSuccessModal, InvestmentErrorModal } from "/components";
 
 export default function InvestmentModal({ isOpen, openModal, closeModal, companyId }) {
 
@@ -152,7 +152,7 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
                                         </div>
                                     </div>
                                     <div className="px-8">
-                                        <small>Transition Fee: 0</small>
+                                        <small>Transaction Fee: 0</small>
                                     </div>
                                     <div className="p-8 flex items-center justify-between gap-3">
                                         <Button
@@ -181,6 +181,11 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
                 isSuccessful={isSuccessful}
                 openSuccessModal={openSuccessModal}
                 closeSuccessModal={closeSuccessModal}
+            />
+            <InvestmentErrorModal
+                isFailed={isFailed}
+                openErrorModal={openErrorModal}
+                closeErrorModal={closeErrorModal}
             />
         </div>
     );
