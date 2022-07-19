@@ -182,11 +182,11 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
                 openSuccessModal={openSuccessModal}
                 closeSuccessModal={closeSuccessModal}
             />
-            <InvestmentErrorModal
+            {/* <InvestmentErrorModal
                 isFailed={isFailed}
                 openErrorModal={openErrorModal}
                 closeErrorModal={closeErrorModal}
-            />
+            /> */}
         </div>
     );
 }
