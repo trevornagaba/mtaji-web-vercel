@@ -13,12 +13,7 @@ const Account = () => {
     const onClickTab = (tab) => {
         setSelectedTab(tab);
     };
-    const [openModal, setOpenModal] = useState(false)
-    const onClickProfileImage= ()=>{
-        return (
-            setOpenModal(!openModal)
-        )
-    }
+    
 
     return (
         <PageTemplate 
@@ -47,11 +42,11 @@ const Account = () => {
                 </div>
                 <div className={styles.tabContent}>
                     {selectedTab == 'Account' ?
-                    <AccountForm onClickProfileImage={onClickProfileImage}/> : selectedTab == 'KYC' ? <KycForm/> : <SecurityForm/> 
+                    <AccountForm /> : selectedTab == 'KYC' ? <KycForm/> : <SecurityForm/> 
                     }
                 </div>
             </div>
-            <Modal openModal={openModal}/>
+            {/* <Modal openModal={openModal}/> */}
         </PageTemplate>
     );
 };

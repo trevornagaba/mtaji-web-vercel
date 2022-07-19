@@ -1,16 +1,25 @@
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-function Modal({openModal}) {
-  let [isOpen, setIsOpen] = useState(true)
-    console.log(openModal)
+function Modal({clicked, title,children}) {
+  console.log(title)
+  const [openModal, setOpenModal] = useState(false)
+  const onClickProfileImage= ()=>{
+      return (
+          setOpenModal(!openModal)
+      )
+  }
+
+  useEffect(()=>{
+    console.log(clicked)
+    if(clicked==false){
+    return  setOpenModal(false)
+    }
+    return  setOpenModal(true)
+  },[clicked])
   return (
-    // Use the `Transition` component at the root level
-    <Transition show={isOpen || openModal} as={Fragment}>
-      <Dialog onClose={() => setIsOpen(false)}>
-        {/*
-          Use one Transition.Child to apply one transition to the backdrop...
-        */}
+      <Transition appear show={openModal} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={()=>setOpenModal(false)}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -20,25 +29,43 @@ function Modal({openModal}) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black/30" />
+          <div className="fixed inset-0 bg-black bg-opacity-25" />
         </Transition.Child>
 
-        
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0 scale-95"
-        >
-          <Dialog.Panel>
-            <Dialog.Title>Deactivate account</Dialog.Title>
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Title
+                  as="h3"
+                  className="text-lg font-medium leading-6 text-gray-900"
+                >
+                  {title}
+                </Dialog.Title>
+                <div className="mt-2">
+                  {children}
+                </div>
 
-            something fishy
-          </Dialog.Panel>
-        </Transition.Child>
+                <div className="mt-4">
+                  <div
+                    className="absolute rounded-full top-2 right-2 bg-slate-200 w-7 h-7 text-center py-1 cursor-pointer text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    onClick={()=>setOpenModal(false)}
+                  >
+                    x
+                  </div>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </div>
       </Dialog>
     </Transition>
   )

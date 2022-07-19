@@ -1,13 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextInput from "../TextInput/TextInput";
 import styles from "../../styles/Form.module.css";
 import Button from "../Button/Button";
 import ProfileImg from "../ProfileImageIcon";
 import Modal from "../ModalComponent";
+import { Fragment } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
 
-const AccountForm = ({ onClickProfileImage }) => {
+
+
+const AccountForm = () => {
+    const [openModal, setOpenModal] = useState(false)
+    const onClickProfileImage= ()=>{
+        return (
+            setOpenModal(!openModal) &&
+            console.log(openModal)
+        )
+    }
+    
+    useEffect(()=>{
+
+    },[openModal])
+
     return (
         <div>
+            <Modal clicked={openModal} title={"Upload Profile image"}>
+                <div className="flex flex-row justify-between mx-5 h-40 pt-5">
+                    <ProfileImg
+                    imageUrl="/assets/avatar2.svg"
+                    imageSize='xlg'/>
+                    <div className="flex flex-col">
+                        <Button primary className='mb-4'>Change Image</Button>
+                        <Button secondary>Change Image</Button>
+                    </div>
+                </div>
+            </Modal>
             <div className={styles.profile}>
                 <ProfileImg
                     hasEdit={true}
@@ -65,3 +92,6 @@ const AccountForm = ({ onClickProfileImage }) => {
 };
 
 export default AccountForm;
+
+
+  
