@@ -66,8 +66,8 @@ function MyApp({ Component, pageProps }) {
                         <p>
                             <Link href="/about">About</Link>
                         </p>
-                        <p>FAQs</p>
-                        <p>Blog</p>
+                        <p><Link href="/FAQs">FAQs</Link></p>
+                        <p><Link href="/blog">Blog</Link></p>
                     </div>
                     <div className="flex-col space-y-4">
                         <p>Terms of Service</p>
