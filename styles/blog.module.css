@@ -89,12 +89,25 @@
 .postComp{
     width: 100%;
     margin: 35px 0;
-    
+}
+.postCompFeatured{
+    width: 100%;
+    margin: 35px 0;
+    border-radius: 20px;
+    background-color: #ffffff;
+    padding: 20px
 }
 .postContent {
     width: 100%;
     display: grid;
     grid-template-columns: minmax(400px, 1fr) minmax(300px, 400px);
+    column-gap: 6rem;
+    margin: 10px 0;
+}
+.postFeatured {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(400px, 1fr) minmax(70px, 100px);
     column-gap: 6rem;
     margin: 10px 0;
 }
@@ -139,6 +152,9 @@
 @media screen and (max-width: 916px) {
     .postContent {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .postFeatured{
+        grid-template-columns: 1fr
     }
 }
 /* Blog post details page */

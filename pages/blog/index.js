@@ -23,6 +23,9 @@ const Blog = () => {
             return false;
         });
     };
+    const featuredPost = Posts.find((post) => post.featured == true);
+
+    console.log(featuredPost);
     const [selectedTab, setSelectedTab] = useState(TABS[0]);
     let [postToRender, setPostToRender] = useState([]);
 
@@ -38,10 +41,15 @@ const Blog = () => {
         setPostToRender(sortedAll);
         // console.log(postToRender)
     }, []);
+    function stripHtml(html) {
+        let tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || "";
+    }
 
     return (
         <PageTemplate hasNavbar={true} hasWrapper={true} isGreyBackgound={true}>
-            <div className="w-full col-span-full flex flex-row justify-between my-10 ">
+            <div className="w-full col-span-full flex flex-row justify-between mt-10 ">
                 <p>Featured</p>
                 <Link href="#subscribe">
                     <p className="text-[#01bbc8]" style={{ cursor: "pointer" }}>
@@ -51,6 +59,20 @@ const Blog = () => {
             </div>
 
             <div className={styles.container}>
+                {featuredPost && (
+                    <BlogPost
+                        authorProfileImageUrl={
+                            featuredPost.authorProfileImageUrl
+                        }
+                        id={featuredPost.id}
+                        title={featuredPost.title}
+                        body={stripHtml(featuredPost.body)}
+                        date={featuredPost.date}
+                        category={featuredPost.category}
+                        blogImage={featuredPost.imgUrl}
+                        featured
+                    />
+                )}
                 <div className={styles.categoryTab}>
                     {TABS.map((tab) => {
                         return (
@@ -76,16 +98,14 @@ const Blog = () => {
                             authorTitle={post.authorTitle}
                             id={post.id}
                             title={post.title}
-                            body={post.body}
+                            body={stripHtml (post.body)}
                             date={post.date}
                             category={post.category}
                             blogImage={post.imgUrl}
                         />
                     );
                 })}
-                <div className={styles.paginqation}>
-                    
-                </div>
+                <div className={styles.paginqation}></div>
                 <div className={styles.subscribeSec} id="subscribe">
                     <strong>
                         <p className={styles.heading}>

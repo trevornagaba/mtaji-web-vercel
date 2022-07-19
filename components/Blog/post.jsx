@@ -634,5 +634,6 @@ export const Posts = [
         authorProfileImageUrl: "/assets/avatar.png",
         date: "29 January, 2022",
         category: "computer",
+        featured:true
     },
 ];
