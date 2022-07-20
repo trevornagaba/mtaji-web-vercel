@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
@@ -75,7 +76,12 @@ export default function Navbar() {
                                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                             <Menu.Item>
                                                 {({ active }) => (
+<<<<<<< HEAD
                                                     <Navlink href="/account"
+=======
+                                                    <Link
+                                                        href="/account"
+>>>>>>> develop
                                                         className={classNames(
                                                             active
                                                                 ? "bg-gray-100"
@@ -84,7 +90,11 @@ export default function Navbar() {
                                                         )}
                                                     >
                                                         Profile
+<<<<<<< HEAD
                                                     </Navlink>
+=======
+                                                    </Link>
+>>>>>>> develop
                                                 )}
                                             </Menu.Item>
                                             <Menu.Item>

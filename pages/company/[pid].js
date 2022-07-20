@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 
 import RaiseFunds from "/components/RaiseFunds";
 
+import { InvestmentSuccessModal, InvestmentErrorModal } from "/components";
+
 import {
     Navbar,
     ExternalLink,
@@ -69,6 +71,17 @@ export default function Company() {
 
     const openModal = () => {
         setIsOpen(true);
+    };
+
+    // For error Investment modal
+    const [isFailed, setIsFailed] = useState(false);
+
+    const closeErrorModal = () => {
+        setIsFailed(false);
+    };
+
+    const openErrorModal = () => {
+        setIsFailed(true);
     };
 
     useEffect(() => {
@@ -264,9 +277,9 @@ export default function Company() {
             />
 
             {/* <InvestmentErrorModal
-                isOpen={isOpen}
-                openModal={openModal}
-                closeModal={closeModal}
+                isFailed={isFailed}
+                openErrorModal={openErrorModal}
+                closeErrorModal={closeErrorModal}
             /> */}
             <style jsx>
                 {`
