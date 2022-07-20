@@ -5,14 +5,14 @@ export default function Logo() {
     return (
         <div className="flex-shrink-0 flex items-center">
             <Link href="/">
-                <div className="flex gap-3 items-center hover:cursor-pointer">
+                <div className="flex gap-2 items-center hover:cursor-pointer">
                     <Image
                         src="/assets/logo.svg"
                         alt="logo"
-                        width={23}
-                        height={23}
+                        width={32}
+                        height={32}
                     />
-                    <span className="text-primary text-[24px] font-bold">
+                    <span className="text-primary text-[24px]">
                         mtaji
                     </span>
                 </div>
