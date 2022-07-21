@@ -13,7 +13,7 @@ export default function Home() {
             <Navbar />
             <TaglineSection />
             <BenefitsSection />
-            {/* <CompaniesSection /> */}
+            <CompaniesSection />
             <RaiseFunds />
             <Footer/>
         </>
