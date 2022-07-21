@@ -93,6 +93,7 @@ const Blog = () => {
                 {postToRender.map((post) => {
                     return (
                         <BlogPost
+                            key={post.id}
                             author={post.author}
                             authorProfileImageUrl={post.authorProfileImageUrl}
                             authorTitle={post.authorTitle}
