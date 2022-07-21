@@ -111,7 +111,7 @@ export default function Company() {
                 {
                     amount: amount,
                     type: "company",
-                    companyId: pid, //TO-DO: Collect once sorted out the navigation/router to include companyId
+                    companyId: pid, //TO-DO: Collect once sorted out the navigation/router to include pid
                 },
                 { withCredentials: true },
                 {
