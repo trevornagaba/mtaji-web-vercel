@@ -49,7 +49,7 @@ const Footer = () => {
             <p>
                 <Link href="/about">About</Link>
             </p>
-            <p><Link href="/FAQs">FAQs</Link></p>
+            <p><Link href="/faqs">FAQs</Link></p>
             <p><Link href="/blog">Blog</Link></p>
         </div>
         <div className="flex-col space-y-4">
