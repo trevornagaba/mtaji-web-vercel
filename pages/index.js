@@ -13,8 +13,10 @@ export default function Home() {
             <Navbar />
             <TaglineSection />
             <BenefitsSection />
-            <CompaniesSection />
-            <RaiseFunds />
+            <div className="w-full py-20 bg-gray-50">
+                <CompaniesSection />
+                <RaiseFunds />
+            </div>
             <Footer/>
         </>
     );

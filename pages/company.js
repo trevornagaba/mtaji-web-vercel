@@ -18,6 +18,7 @@ import {
 } from "../components";
 
 import classNames from "../utils/classnames";
+import Footer from "../components/Footer";
 
 export default function CompanyInfo() {
     // Setup state management
@@ -249,6 +250,7 @@ export default function CompanyInfo() {
                 {/* <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8"> */}
                 <RaiseFunds />
             </main>
+            <Footer/>
             {/* Modals */}
             <InvestmentModal
                 isOpen={isOpen}
