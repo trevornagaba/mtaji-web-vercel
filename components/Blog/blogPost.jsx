@@ -31,7 +31,7 @@ const BlogPost = ({
                     <p className={styles.heading}>
                         <strong>{title}</strong>
                     </p>
-                    <p className={styles.text}>{body && shortText()}</p>
+                    <div className={styles.text}>{body && shortText()}</div>
                     <Link
                         href={{
                             pathname: "/blog/[slug]",

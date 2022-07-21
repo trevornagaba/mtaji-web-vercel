@@ -25,7 +25,7 @@ const Blog = () => {
     };
     const featuredPost = Posts.find((post) => post.featured == true);
 
-    console.log(featuredPost);
+    
     const [selectedTab, setSelectedTab] = useState(TABS[0]);
     let [postToRender, setPostToRender] = useState([]);
 
@@ -41,11 +41,15 @@ const Blog = () => {
         setPostToRender(sortedAll);
         // console.log(postToRender)
     }, []);
-    function stripHtml(html) {
-        let tmp = document.createElement("DIV");
-        tmp.innerHTML = html;
-        return tmp.textContent || tmp.innerText || "";
-    }
+    // function stripHtml(html) {
+    //     if (typeof window !== "undefined") {
+    //         // your code with access to window or document object here 
+    //         let tmp = document.createElement("DIV");
+    //         tmp.innerHTML = html;
+    //         return tmp.textContent || tmp.innerText || "";
+    //         }
+        
+    // }
 
     return (
         <PageTemplate hasNavbar={true} hasWrapper={true} isGreyBackgound={true}>
@@ -66,7 +70,7 @@ const Blog = () => {
                         }
                         id={featuredPost.id}
                         title={featuredPost.title}
-                        body={stripHtml(featuredPost.body)}
+                        body={featuredPost.body.replace(/(<([^>]+)>)/ig, '')}
                         date={featuredPost.date}
                         category={featuredPost.category}
                         blogImage={featuredPost.imgUrl}
@@ -99,7 +103,7 @@ const Blog = () => {
                             authorTitle={post.authorTitle}
                             id={post.id}
                             title={post.title}
-                            body={stripHtml (post.body)}
+                            body={post.body.replace(/(<([^>]+)>)/ig, '')}
                             date={post.date}
                             category={post.category}
                             blogImage={post.imgUrl}
