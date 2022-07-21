@@ -161,7 +161,7 @@ const FAQs = () => {
                     </ul>
                     <div className="my-10">
                         <div className="flex flex-row">
-                            Didn't find what you were looking for?
+                            Didn&apos;t find what you were looking for?
                             <Link href="/contact">
                                 <p
                                     className="text-[#01bbc8]"
