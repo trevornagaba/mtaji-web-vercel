@@ -23,13 +23,23 @@ const PostDetails = ({ post }) => {
     post = Object.assign({}, ...post);
     console.log(post);
     return (
-        <PageTemplate hasNavbar={true} hasWrapper={true} isGreyBackgound={true}>
+        <PageTemplate
+            hasNavbar={true}
+            hasWrapper={true}
+            isGreyBackgound={true}
+            hasFooter={true}
+        >
             <div className={styles.container}>
                 <div className="w-full my-20">
                     <div className={styles.headingSec}>
                         <div></div>
                         <div>
-                            <p className={styles.heading} style={{fontSize:'36px'}}>{post.title}</p>
+                            <p
+                                className={styles.heading}
+                                style={{ fontSize: "36px" }}
+                            >
+                                {post.title}
+                            </p>
 
                             <div
                                 className={styles.dateCategory}
@@ -55,7 +65,6 @@ const PostDetails = ({ post }) => {
                         </div>
                     </div>
                 </div>
-                
             </div>
         </PageTemplate>
     );

@@ -48,7 +48,12 @@ const Blog = () => {
     }
 
     return (
-        <PageTemplate hasNavbar={true} hasWrapper={true} isGreyBackgound={true}>
+        <PageTemplate
+            hasNavbar={true}
+            hasWrapper={true}
+            isGreyBackgound={true}
+            hasFooter={true}
+        >
             <div className="w-full col-span-full flex flex-row justify-between mt-10 ">
                 <p>Featured</p>
                 <Link href="#subscribe">
@@ -98,7 +103,7 @@ const Blog = () => {
                             authorTitle={post.authorTitle}
                             id={post.id}
                             title={post.title}
-                            body={stripHtml (post.body)}
+                            body={stripHtml(post.body)}
                             date={post.date}
                             category={post.category}
                             blogImage={post.imgUrl}

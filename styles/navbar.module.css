@@ -1,5 +1,5 @@
 .navbar{
-    grid-column: 1/ span 14;
+    grid-column: 1/ span 15;
 }
 @media screen and (max-width:769px) {
     .navbar{

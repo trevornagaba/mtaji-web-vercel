@@ -42,6 +42,7 @@ const FAQs = () => {
             hasNavbar={true}
             hasWrapper={false}
             isGreyBackgound={true}
+            hasFooter={true}
         >
             <div className={styles.container}>
                 <div className={styles.banner}>

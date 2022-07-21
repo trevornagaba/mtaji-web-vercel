@@ -5,6 +5,7 @@ import CompaniesSection from "../components/landing/CompaniesSection";
 import RaiseFunds from "../components/RaiseFunds";
 import { Navbar } from "../components";
 import Link from "next/link";
+import Footer from "../components/Footer";
 
 export default function Home() {
     return (
@@ -12,8 +13,9 @@ export default function Home() {
             <Navbar />
             <TaglineSection />
             <BenefitsSection />
-            <CompaniesSection />
+            {/* <CompaniesSection /> */}
             <RaiseFunds />
+            <Footer/>
         </>
     );
 }

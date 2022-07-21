@@ -20,6 +20,7 @@ const Account = () => {
         hasNavbar={true} 
         hasWrapper={false}
         isGreyBackgound={true}
+        hasFooter={true}
         >
             <p className={styles.heading}>Profile</p>
             <div className={styles.contentBox}>
