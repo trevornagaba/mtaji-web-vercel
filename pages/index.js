@@ -5,6 +5,7 @@ import CompaniesSection from "../components/landing/CompaniesSection";
 import RaiseFunds from "../components/RaiseFunds";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
+import Footer from "../components/Footer";
 
 export default function Home() {
     return (
@@ -12,8 +13,11 @@ export default function Home() {
             <Navbar />
             <TaglineSection />
             <BenefitsSection />
-            <CompaniesSection />
-            <RaiseFunds />
+            <div className="w-full py-20 bg-gray-50">
+                <CompaniesSection />
+                <RaiseFunds />
+            </div>
+            <Footer/>
         </>
     );
 }

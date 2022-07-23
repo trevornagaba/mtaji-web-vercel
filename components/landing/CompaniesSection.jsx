@@ -28,21 +28,21 @@ const CompaniesSection = () => {
                 console.log(result.data);
                 // TO-DO: Update after sorting out auth
                 if (result.data == "Please login") {
-                    setCompanies("$");
+                    setCompanies(["$"]);
                 } else {
                     setCompanies(result.data);
                 }
             })
             .catch((error) => {
                 console.log(error);
-                setCompanies("$");
+                setCompanies(["$"]);
             });
     }
 
     return (
         <>
             <p className={styles.sectionHeader}>
-                Companies currently raising capital on mtaji
+                Companies currently raising <br/> capital on mtaji
             </p>
             <div className="companies-section">
                 <div className="header">
@@ -115,9 +115,10 @@ const CompaniesSection = () => {
                 }
 
                 .companies .company-card {
-                    background-color: #f7f7f7;
+                    background-color: #ffffff;
                     border-radius: 30px;
-                    min-width: 290px;
+                    min-width: 349px;
+                    height:394px;
                     max-width: 290px;
                     padding: 32px;
                     margin-right: 2vw;

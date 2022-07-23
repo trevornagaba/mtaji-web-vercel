@@ -4,50 +4,66 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
+  
     <div className={styles.footer}>
-      <div className={styles.container}>
-        <div className={styles.socialLinks}>
-          <HomeLogo />
-
-          <div className={styles.imageLinks}>
-            <Link href="https://www.linkedin.com/company/mtaji-io" ><img src="/assets/linked_in.svg" alt="linkedin" /></Link>
-            <img src="/assets/facebook.svg" alt="facebook" />
-            <img src="/assets/twitter.svg" alt="twitter" />
-            <img src="/assets/instagram.svg" alt="instagram" />
-          </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex-col space-y-4">
+            <HomeLogo />
+            <div className="flex gap-4 items-center">
+                <a href="https://www.linkedin.com/company/mtaji-io"  target="_blank" rel="noreferrer">
+                    <img
+                        src="/assets/linked_in.svg"
+                        alt="linkedin"
+                    />
+                </a>
+                <a href="https://facebook.com/mtaji_io"  target="_blank" rel="noreferrer"><img
+                    src="/assets/facebook.svg"
+                    alt="facebook"
+                    className="w-6 h-6"
+                />
+                </a>
+                <a href="https://twitter.com/mtaji_io"  target="_blank" rel="noreferrer"><img
+                    src="/assets/twitter.svg"
+                    alt="twitter"
+                    className="w-6 h-6"
+                /></a>
+                <a href="https://www.instagram.com/mtaji.io/"  target="_blank" rel="noreferrer">
+                <img
+                    src="/assets/instagram.svg"
+                    alt="instagram"
+                    className="w-6 h-6"
+                /></a>
+            </div>
         </div>
-
-        <div className={styles.contactLinks}>
-          <div className={styles.link}>
-            <img src="/assets/email.svg" alt="email" />
-            <span> support@mtaji.io </span>
-          </div>
-
-          <div className={styles.link}>
-            <img src="/assets/phone.svg" alt="phone" />
-            <span>01222845686</span>
-          </div>
+        <div className="flex-col space-y-4">
+            <div className="flex gap-2">
+                <img src="/assets/email.svg" alt="email" />
+                <a href="mailto:support@mtaji.io"  target="_blank" rel="noreferrer"><span> support@mtaji.io </span></a>
+            </div>
+            <div className="flex gap-2">
+                <img src="/assets/phone.svg" alt="phone" />
+                <span>01222845686</span>
+            </div>
         </div>
-
-        <div className={styles.otherLinks}>
-          <div>
-            <p><Link href="/about">About</Link></p>
-            <p>FAQs</p>
-            <p>Blog</p>
-          </div>
-
-          <div>
+        <div className="flex-col space-y-4">
+            <p>
+                <Link href="/about">About</Link>
+            </p>
+            <p><Link href="/faqs">FAQs</Link></p>
+            <p><Link href="/blog">Blog</Link></p>
+        </div>
+        <div className="flex-col space-y-4">
             <p>Terms of Service</p>
             <p>Privacy Policy</p>
             <p>AML Policy</p>
-          </div>
         </div>
-      </div>
-
-      <p className={styles.copyright}>
-        &copy; Mansa Finance. All Rights Reserved.
-      </p>
     </div>
+    <div className="mt-8 text-center">
+        <small className="text-xs">
+            &copy; Mansa Finance. All Rights Reserved.
+        </small>
+    </div>
+</div>
   );
 };
 

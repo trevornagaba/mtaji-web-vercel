@@ -5,7 +5,7 @@ import styles from "../styles/about.module.css";
 
 function about() {
     return (
-        <PageTemplate hasNavbar={true} hasRaiseFunds={true} hasWrapper={true}>
+        <PageTemplate hasNavbar={true} hasRaiseFunds={true} hasWrapper={true} hasFooter={true}>
             <section className={styles.aboutSection}>
                 <div className={styles.ourStory}>
                     <p className={styles.heading}>
