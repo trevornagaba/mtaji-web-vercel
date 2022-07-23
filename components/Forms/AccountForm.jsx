@@ -13,6 +13,7 @@ const AccountForm = () => {
     }
   return (
     <div>
+        {/* <div className='text-lg font-medium'>Account</div> */}
         <div className={styles.profile}>
             <ProfileImg hasEdit={true} onClick={()=>onClick()}/>
             <p>Sheldon Cooper</p>
