@@ -14,7 +14,8 @@ const KycForm = () => {
                     <div className="upload-box">
                         <p>Drag and drop file</p>
                         <p>OR</p>
-                        <p className="flex mr-2"><img src="/assets/upload.svg"/>Click to upload image</p>
+                        <p className="flex mr-2">
+                            <img src="/assets/upload.svg" className="w-5 mr-2"/>Click to upload image</p>
                         <p><small>Maximum size: 5MB</small></p>
                     </div>
                 </div>
@@ -28,7 +29,8 @@ const KycForm = () => {
                     <div className="upload-box">
                         <p>Drag and drop file</p>
                         <p>OR</p>
-                        <p className="flex mr-2"><img src="/assets/upload.svg"/>Click to upload image</p>
+                        <p className="flex mr-2">
+                            <img src="/assets/upload.svg" className="w-5 mr-2"/>Click to upload image</p>
                         <p><small>Maximum size: 5MB</small></p>
                     </div>
                 </div>
