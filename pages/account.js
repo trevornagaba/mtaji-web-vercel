@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AccountForm from "../components/Forms/AccountForm";
 import KycForm from "../components/Forms/KycForm";
 import SecurityForm from "../components/Forms/SecurityForm";
+import Modal from "../components/ModalComponent";
 import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/account.module.css";
 
@@ -10,15 +11,16 @@ const Account = () => {
     const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
     const onClickTab = (tab) => {
-        console.log(tab);
         setSelectedTab(tab);
     };
+    
 
     return (
         <PageTemplate 
         hasNavbar={true} 
         hasWrapper={false}
         isGreyBackgound={true}
+        hasFooter={true}
         >
             <p className={styles.heading}>Profile</p>
             <div className={styles.contentBox}>
@@ -41,10 +43,11 @@ const Account = () => {
                 </div>
                 <div className={styles.tabContent}>
                     {selectedTab == 'Account' ?
-                    <AccountForm/> : selectedTab == 'KYC' ? <KycForm/> : <SecurityForm/> 
+                    <AccountForm /> : selectedTab == 'KYC' ? <KycForm/> : <SecurityForm/> 
                     }
                 </div>
             </div>
+            {/* <Modal openModal={openModal}/> */}
         </PageTemplate>
     );
 };
