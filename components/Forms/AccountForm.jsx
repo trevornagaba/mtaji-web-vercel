@@ -13,8 +13,8 @@ const AccountForm = () => {
     const [openModal, setOpenModal] = useState(false)
     const onClickProfileImage= ()=>{
         return (
-            setOpenModal(!openModal) &&
-            console.log(openModal)
+            setOpenModal(!openModal)
+            
         )
     }
     
