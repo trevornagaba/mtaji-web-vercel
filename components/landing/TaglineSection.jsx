@@ -16,7 +16,7 @@ const TaglineSection = () => {
           next big company
         </h1>
         <p>
-        Be a part owner of a thriving business with as little as <br/>UGX 50,000Be a part owner of a thriving business <br/>with as little as UGX 50,000
+        Be a part owner of a thriving business with as little as <br/>UGX 50,000
         </p>
         <Stack
           spacing={3}
@@ -41,7 +41,10 @@ const TaglineSection = () => {
             <Image
               src={pointerImg}
               alt="Pointer"
-              width={100}         
+              width={100}
+              style={{
+                cursor: "none"
+              }}         
             />
           </Button>
         </Stack>

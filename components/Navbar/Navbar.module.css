@@ -1,0 +1,18 @@
+.navBar {
+    background: white;
+    box-shadow: none;
+    color: #5048E5;
+    padding:25px 10%;
+}
+
+.logo {
+
+}
+
+.appName {
+    font-size: 24px;
+    font-family:'Poppins', Courier, monospace;
+    font-weight: 500;
+    margin-left: 5px;
+
+}

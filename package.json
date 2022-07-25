@@ -1,5 +1,5 @@
 {
-  "name": "mtaji",
+  "name": "mtaji-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -34,6 +34,5 @@
     "eslint-config-next": "12.1.5",
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24"
-  },
-  "proxy": "http://localhost:3001"
+  }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Navbar/Navbar";
+import Navbar from "./Navbar";
 import styles from "../styles/pageTemplate.module.css";
 import Footer from "./Footer";
 import RaiseFunds from "./RaiseFunds";
