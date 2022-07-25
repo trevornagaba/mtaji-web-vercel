@@ -121,6 +121,10 @@
     background: white;
     border-radius: 15px;
 }
+
+.companyCard div img {
+  border-radius: 10px;
+}
   
   /* Adjust for smartphone screen sizes. */
   @media only screen and (max-width: 600px) {

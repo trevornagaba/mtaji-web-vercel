@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import LandingPage from "../components/Landing";
+import Landing from "../components/landing";
 import BenefitsSection from "../components/landing/BenefitsSection";
 import CompaniesSection from "../components/landing/CompaniesSection";
 import RaiseFunds from "../components/RaiseFunds";
@@ -10,7 +10,7 @@ export default function Home() {
     return (
         <>
             <Header />
-            <LandingPage/>
+            <Landing/>
             <Footer/>
         </>
     );

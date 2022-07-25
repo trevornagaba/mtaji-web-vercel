@@ -28,7 +28,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     },
   }));
 
-const LandingPage = () => {
+const Landing = () => {
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -182,7 +182,7 @@ const LandingPage = () => {
                             <img src="/assets/idea.svg" />
                             <p className={styles.title}>Diversify your portfolio</p>
                             <p className={styles.description}>
-                            Add Africa's next business giant <br />
+                            Add Africa&sbquo;s next business giant <br />
                             to your portfolio
                             </p>
                         </div>
@@ -247,7 +247,7 @@ const LandingPage = () => {
                     >
                     <div>
                         <Link href={`/company/${company._id}`}>
-                            <img src="/assets/tubayo_logo.png" width={80} />
+                            <img src="/assets/companyLogo.svg" width={80} />
                         </Link>
                         <Typography
                             variant="h5"
@@ -282,4 +282,4 @@ const LandingPage = () => {
     )
 }
 
-export default LandingPage;
+export default Landing;
