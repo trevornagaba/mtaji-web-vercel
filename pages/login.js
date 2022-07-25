@@ -163,12 +163,14 @@ export default function Login() {
           display: flex;
           flex-direction: row-reverse;
           height: 100vh;
+          width:100vw;
         }
 
         .background-container {
           flex-basis: 50%;
           background: url("/assets/login.svg");
           background-repeat: no-repeat;
+          background-size:cover;
         }
 
         .content {
@@ -307,10 +309,12 @@ export default function Login() {
           }
 
           .background-container {
-            height: 50vh;
-            background-position: top;
-            background-size: contain;
+            height: 40vh;
+            max-width: 100vw
+            flex-basis:none;
             background: url("/assets/login_background.svg");
+            background-position: center;
+            background-size: cover;
           }
 
           .login-form .inputs {
@@ -330,10 +334,10 @@ export default function Login() {
           }
 
           .background-container {
-            height: 50vh;
-            background-position: top;
-            background-size: contain;
+            height: 40vh;
             background: url("/assets/login_background.svg");
+            background-position: center;
+            background-size: cover;
           }
         }
       `}</style>

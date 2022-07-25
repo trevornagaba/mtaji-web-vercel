@@ -22,7 +22,7 @@ export default function Navbar() {
                             <div className="hidden lg:ml-6 lg:flex lg:gap-14">
                                 <Navlink href="/home">Portfolio</Navlink>
                                 <Navlink href="/blog">Blog</Navlink>
-                                <Navlink href="/FAQs">FAQs</Navlink>
+                                <Navlink href="/faqs">FAQs</Navlink>
                             </div>
 
                             <div className="flex items-center lg:hidden">
