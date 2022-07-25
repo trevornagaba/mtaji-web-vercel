@@ -1,0 +1,178 @@
+.container {
+    position: relative;
+    margin: 0 5vw;
+    grid-column: 1/ 16;
+    padding-bottom: 64px;
+  
+  }
+  
+  .section {
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: #1c2854;
+    display: flex;
+    background-image: url("/assets/semi_circle_background.svg");
+    background-repeat: no-repeat;
+    background-position: left top;
+  }
+  
+  .section div {
+    width: 85%;
+    margin: 16px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 32px;
+  }
+  
+  .section button {
+    align-self: center;
+    background-color: #01bbc8;
+    border-radius: 5px;
+    color: white;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .section button:hover {
+    background-color: #09062d;
+  }
+  
+  .circles {
+    position: absolute;
+    right: 32px;
+    bottom: 0;
+    width: 132px;
+    height: 132px;
+  }
+  
+  /* Adjust for smartphone screen sizes. */
+  @media only screen and (max-width: 600px) {
+    .container {
+      padding-bottom: 16px;
+    }
+  
+    .section {
+      flex-direction: column;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+  
+    .section div {
+      width: 100%;
+      margin: 8px;
+    }
+  
+    .section button {
+      margin-bottom: 15px;
+    }
+  
+    .title {
+      font-size: 1.4rem;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+  
+    .circles {
+      width: 64px;
+      height: 64px;
+    }
+  }
+  
+  @media screen and (max-width:769px) {
+    .container{
+        grid-column: 1/9;
+    }
+  }
+  
+  /* Adjust for tablet screen sizes. */
+  @media only screen and (min-width: 600px) and (max-width: 800px) {
+    .container {
+      padding-bottom: 16px;
+    }
+  
+    .section {
+      flex-direction: column;
+    }
+  
+    .section div {
+      width: 100%;
+    }
+  
+    .circles {
+      width: 32px;
+      height: 32px;
+    }
+  }
+  
+.footer {
+    padding: 24px 0;
+  }
+  
+  .footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  
+  .socialLinks {
+    flex-grow: 1;
+    padding-top: 16px;
+  }
+  
+  .socialLinks .imageLinks {
+    padding: 16px 0;
+  }
+  
+  .socialLinks .imageLinks img {
+    display: inline-block;
+    padding: 8px 16px 8px 0;
+    cursor: pointer;
+  }
+  
+  .contactLinks {
+    flex-grow: 1;
+  }
+  
+  .contactLinks .link {
+    display: flex;
+    padding-top: 16px;
+  }
+  
+  .contactLinks .link span {
+    cursor: pointer;
+    padding-left: 8px;
+  }
+  
+  .contactLinks .link span:hover {
+    color: #01bbc8;
+  }
+  
+  .otherLinks {
+    flex-grow: 1.5;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .otherLinks p {
+    padding: 0 16px;
+    cursor: pointer;
+  }
+  
+  .otherLinks p:hover {
+    color: #01bbc8;
+  }
+  
+  .copyright {
+    text-align: center;
+    color: #444444;
+    font-size: 0.7rem;
+  }
+  

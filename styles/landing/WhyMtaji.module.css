@@ -12,13 +12,11 @@
 
 .content {
   z-index: 1000;
-  width: 60%;
-  padding: 0 16px;
 }
 
 .title {
   color: #09062d;
-  font-size: 1.4rem;
+  font-size: 32px;
   font-weight: bold;
   margin-bottom: 8px;
 }
@@ -34,8 +32,14 @@
 }
 
 .point {
+  margin-top: 15px;
   display: flex;
   align-items: center;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-size: 16px;
+  line-height: 25px;
+
 }
 
 .point img {

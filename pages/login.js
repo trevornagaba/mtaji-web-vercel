@@ -162,6 +162,7 @@ export default function Login() {
         .main-container {
           display: flex;
           flex-direction: row-reverse;
+          height: 100vh;
         }
 
         .background-container {
