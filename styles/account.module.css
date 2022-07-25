@@ -33,6 +33,7 @@
     color: #666666;
     height: 50px;
     align-items: center;
+    cursor: pointer;
 }
 .selectedTab {
     color: #01bbc8 !important;

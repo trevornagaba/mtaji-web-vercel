@@ -45,13 +45,14 @@ const DragandDrop = () => {
                     <p>Drag and drop file</p>
                     <p>OR</p>
                     <p className="flex mr-2">
-                        <img src="/assets/upload.svg" className="w-5 mr-2" />
+                        <img src="/assets/upload.svg" className="w-4 mr-2" />
                         Click to upload image
                     </p>
                     <input
                         type="file"
                         value=""
                         className="upload-input"
+                        accept=".pdf,.jpg,.png,.jpeg,.doc.docx"
                         onChange={(e) => onFileDrop(e)}
                     />
                     <p>
