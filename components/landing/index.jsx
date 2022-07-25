@@ -5,12 +5,14 @@ import {
     Stack,
     Button,
     Typography,
-    styled 
+    styled,
+    Box
 } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Landing.module.css";
-import pointerImg from "../../public/assets/tagline_background.svg"
+import pointerImg from "../../public/assets/tagline_background.svg";
+import landingImg from "../../public/assets/illustration_3.svg";
 
 import WhyMtaji from "./WhyMtaji";
 
@@ -129,15 +131,23 @@ const Landing = () => {
                     md={6}
                     lg={6}
                     xl={6}
-                    className={styles.proposition}
-                />
+                >
+                    <Image
+                        src={landingImg}
+                        alt="image 1"
+                        style={{
+                            width: "100%"
+                        }}
+                    />
+                </Grid>
             </Grid>
 
             {/* Section 2 */}
             <Grid
                 container
                 style={{
-                    padding: "2vw 10%"
+                    padding: "10vh 10%",
+                    backgroundColor: "#f7f7f7"
                 }}
             >
                 <Grid
@@ -148,7 +158,7 @@ const Landing = () => {
                     lg={6}
                     xl={6}
                     style={{
-                        padding: "10vw 10%"
+                        padding: "8vh 10%"
                     }}
                     className={styles.section2Img}
                 />
@@ -160,10 +170,16 @@ const Landing = () => {
                     lg={6}
                     xl={6}
                 >
-                    <div className={styles.benefits}>
-                        <WhyMtaji />
-                    </div>
+                    <WhyMtaji />
                 </Grid>
+            </Grid>
+            <Grid
+                container
+                style={{
+                    padding: "5vh 10%",
+                    backgroundColor: "white"
+                }}
+            >
                 <Grid
                     item
                     sx={12}
@@ -222,7 +238,7 @@ const Landing = () => {
                     lg={12}
                     xl={12}
                     style={{
-                        marginBottom: "-150px",
+                        marginBottom: "-50px",
                         height: "0"
                     }}
                     align="center"
@@ -245,7 +261,9 @@ const Landing = () => {
                         className={styles.companyCard}
                         align="center"
                     >
-                    <div>
+                    <Box
+                        className={styles.companyCardBox}
+                    >
                         <Link href={`/company/${company._id}`}>
                             <img src="/assets/companyLogo.svg" width={80} />
                         </Link>
@@ -274,7 +292,7 @@ const Landing = () => {
                         </Typography>
 
                         <BorderLinearProgress variant="determinate" value={80} />
-                    </div>
+                    </Box>
                     </Grid>
                 ))}
             </Grid>

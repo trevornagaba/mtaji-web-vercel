@@ -43,7 +43,7 @@ const Header = () => {
 
     return (
         <AppBar position="fixed" className={navStyles.navBar}>
-            <Toolbar disableGutters>
+            <Toolbar disableGutters style={{ backgroundColor: "white" }}>
                 <Grid container>
                     <Grid
                         item

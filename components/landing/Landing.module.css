@@ -54,14 +54,12 @@
     background-repeat: no-repeat;
     background-position: left top;
     background-size: contain;
-    background-color: white;
 }
 
   
   .card {
     width: 22vw;
-    height: 34vh;
-    padding: 5% 0;
+    padding: 5% 2%;
     border-radius: 12px;
     background-color: #f7f7f7;
     text-align: center;
@@ -86,7 +84,7 @@
   }
 
 .card img {
-    margin-left: 44%;
+    margin-left: 40%;
 }
 
 .underline {
@@ -96,7 +94,6 @@
 }
 
 .underline2 {
-    background-color: white;
     height: 2px;
     width: 50px;
 }
