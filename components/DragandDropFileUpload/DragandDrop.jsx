@@ -11,13 +11,10 @@ const DragandDrop = () => {
     const onDrop = () => wrapperRef.current.classList.remove("dragover");
 
     const onFileDrop = (e) => {
-        let newFile = [e.target.files[0]];
-        setFile(newFile);
-    };
-    const handleDrop = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        setFile([...e.dataTransfer.files]);
+        let newFile = [e.target.files[0]];
+        setFile(newFile);
     };
     const fileRemove = () => {
         file.pop()
@@ -45,7 +42,7 @@ const DragandDrop = () => {
                     <p>Drag and drop file</p>
                     <p>OR</p>
                     <p className="flex mr-2">
-                        <img src="/assets/upload.svg" className="w-4 mr-2" />
+                        <img src="/assets/upload.svg" className="w-4 mr-2 text-slate-100" />
                         Click to upload image
                     </p>
                     <input
