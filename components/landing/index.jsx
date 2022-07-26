@@ -233,72 +233,74 @@ const Landing = () => {
             </Grid>
 
             {/* Section 3 */}
-            <Grid
-                container
-                className={styles.section3}
-            >
+            {companies.length != 0?
                 <Grid
-                    item
-                    sx={12}
-                    sm={12}
-                    md={12}
-                    lg={12}
-                    xl={12}
-                    align="center"
+                    container
+                    className={styles.section3}
                 >
-                    <p className={styles.sectionHeader}>
-                        Companies currently raising <br/>capital on mtaji
-                    </p>
-                    <div className={styles.underline2} />
-                </Grid>
-
-                {companies.map((company, index) => (
                     <Grid
-                        key={index}
                         item
                         sx={12}
                         sm={12}
-                        md={4}
-                        lg={4}
-                        xl={4}
-                        className={styles.companyCard}
+                        md={12}
+                        lg={12}
+                        xl={12}
                         align="center"
                     >
-                    <Box
-                        className={styles.companyCardBox}
-                    >
-                        <Link href={`/company/${company._id}`}>
-                            <img src="/assets/companyLogo.svg" width={80} />
-                        </Link>
-                        <Typography
-                            variant="h5"
-                            style={{
-                                margin: "10px 0",
-                                fontFamily: "Poppins",
-                                fontWeight: "500"
-                            }}
-                        >
-                            {company.name}
-                        </Typography>
-                        <Typography
-                            style={{                                
-                                textAlign: "left"
-                            }}
-                        >
-                            {Str(company.briefDescription).limit(100, '...').get()}
-                        </Typography>
-                        
-                        <Typography style={{ padding: "10px 0", lineHeight: "22px" }} align={"left"}>
-                            <small>Raising</small><br/>
-                            <strong style={{ fontSize: "22px" }}>{formatter.format(company.targetAmount)}</strong><br/>
-                            <small>Ends in: <span style={{ color: "red" }}>21h:30min:15sec</span></small>
-                        </Typography>
-
-                        <BorderLinearProgress variant="determinate" value={80} />
-                    </Box>
+                        <p className={styles.sectionHeader}>
+                            Companies currently raising <br/>capital on mtaji
+                        </p>
+                        <div className={styles.underline2} />
                     </Grid>
-                ))}
-            </Grid>
+
+                    {companies.map((company, index) => (
+                        <Grid
+                            key={index}
+                            item
+                            sx={12}
+                            sm={12}
+                            md={4}
+                            lg={4}
+                            xl={4}
+                            className={styles.companyCard}
+                            align="center"
+                        >
+                        <Box
+                            className={styles.companyCardBox}
+                        >
+                            <Link href={`/company/${company._id}`}>
+                                <img src="/assets/companyLogo.svg" width={80} />
+                            </Link>
+                            <Typography
+                                variant="h5"
+                                style={{
+                                    margin: "10px 0",
+                                    fontFamily: "Poppins",
+                                    fontWeight: "500"
+                                }}
+                            >
+                                {company.name}
+                            </Typography>
+                            <Typography
+                                style={{                                
+                                    textAlign: "left"
+                                }}
+                            >
+                                {Str(company.briefDescription).limit(100, '...').get()}
+                            </Typography>
+                            
+                            <Typography style={{ padding: "10px 0", lineHeight: "22px" }} align={"left"}>
+                                <small>Raising</small><br/>
+                                <strong style={{ fontSize: "22px" }}>{formatter.format(company.targetAmount)}</strong><br/>
+                                <small>Ends in: <span style={{ color: "red" }}>21h:30min:15sec</span></small>
+                            </Typography>
+
+                            <BorderLinearProgress variant="determinate" value={80} />
+                        </Box>
+                        </Grid>
+                    ))}
+                </Grid>
+            : ""}
         </>
     )
 }

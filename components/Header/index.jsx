@@ -61,7 +61,7 @@ const Header = () => {
                                 width={37}
                                 height={37}
                             />
-                            <span className={navStyles.appName}>mtaji</span>
+                            <span className={navStyles.appName} style={{ color: "#5048E5" }}>mtaji</span>
                         </Box>
                     </Grid>
                     <Grid
