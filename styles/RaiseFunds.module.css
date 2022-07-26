@@ -15,11 +15,12 @@
   background-image: url("/assets/semi_circle_background.svg");
   background-repeat: no-repeat;
   background-position: left top;
+  align-items: center;
 }
 
 .section div {
   width: 85%;
-  margin: 16px;
+  margin: 30px;
 }
 
 .title {
@@ -65,7 +66,7 @@
 
   .section div {
     width: 100%;
-    margin: 8px;
+    margin: 15px;
   }
 
   .section button {

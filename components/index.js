@@ -1,4 +1,4 @@
-import Navbar from "./Navbar/Navbar";
+import Navbar from "./Navbar";
 import TextInput from "./TextInput/TextInput";
 import ExternalLink from "./ExternalLink/ExternalLink";
 import Button from "./Button/Button";

@@ -186,12 +186,15 @@ export default function SignUp() {
         .main-container {
           display: flex;
           flex-direction: row-reverse;
+          height:100vh;
+          width: 100vw;
         }
 
         .background-container {
           flex-basis: 50%;
           background: url("/assets/signup.svg");
           background-repeat: no-repeat;
+          background-size:cover;
         }
 
         .content {
@@ -318,11 +321,11 @@ export default function SignUp() {
           }
 
           .background-container {
-            height: 50vh;
-            background-position: top;
-            background-size: contain;
+            height: 40vh;
             /*TO-DO: Replace this login_background with the actual signup background as was working on the intial develop/ui-prototype branch*/
             background: url("/assets/login_background.svg");
+            background-position: center;
+            background-size: cover;
           }
 
           .signup-form .inputs {
@@ -342,11 +345,11 @@ export default function SignUp() {
           }
 
           .background-container {
-            height: 50vh;
-            background-position: top;
-            background-size: contain;
+            height: 40vh;
             /*TO-DO: Replace this placeholder login_background with the actual signup background as was working on the intial develop/ui-prototype branch*/
             background: url("/assets/login_background.svg");
+            background-position: center;
+            background-size: cover;
           }
         }
       `}</style>

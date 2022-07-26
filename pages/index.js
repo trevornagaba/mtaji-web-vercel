@@ -1,19 +1,17 @@
-import LandingNavBar from "../components/landing/LandingNavBar";
-import TaglineSection from "../components/landing/TaglineSection";
+import Header from "../components/Header";
+import Landing from "../components/landing";
 import BenefitsSection from "../components/landing/BenefitsSection";
 import CompaniesSection from "../components/landing/CompaniesSection";
 import RaiseFunds from "../components/RaiseFunds";
-import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Link from "next/link";
 
 export default function Home() {
     return (
         <>
-            <Navbar />
-            <TaglineSection />
-            <BenefitsSection />
-            <CompaniesSection />
-            <RaiseFunds />
+            <Header />
+            <Landing/>
+            <Footer/>
         </>
     );
 }

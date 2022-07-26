@@ -33,6 +33,7 @@
     color: #666666;
     height: 50px;
     align-items: center;
+    cursor: pointer;
 }
 .selectedTab {
     color: #01bbc8 !important;
@@ -47,13 +48,15 @@
     font-weight: 500;
     font-size: 16px;
     height: 50px;
+    cursor: pointer;
 }
 .tabContent {
     width: 705px;
-    height: 650px;
+    min-height: 650px;
+    height: fit-content;
     background: #ffffff;
     border-radius: 15px;
-    padding: 10px 3%;
+    padding: 20px 3%;
     margin-bottom: 20px;
 }
 
@@ -61,10 +64,10 @@
     width: 60px;
     height: 60px;
     border-radius: 40px;
-    background-color: #01bbc8;
+    /* background-color: #01bbc8; */
     position: relative;
     cursor: pointer;
-    margin: 20px 0;
+    /* margin: 20px 0; */
 }
 .profileImgContainer > img:nth-child(2) {
     position: absolute;
