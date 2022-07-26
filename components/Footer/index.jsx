@@ -67,7 +67,7 @@ const Footer = () => {
             <div>
                 <p>Terms of Service</p>
                 <p>Privacy Policy</p>
-                <p>AML Policy</p>
+                <p><Link href="/amlpolicy">AML Policy</Link></p>
             </div>
             </div>
         </div>
