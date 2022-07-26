@@ -43,7 +43,7 @@ const Header = () => {
 
     return (
         <AppBar position="fixed" className={navStyles.navBar}>
-            <Toolbar disableGutters style={{ backgroundColor: "white" }}>
+            <Toolbar style={{ backgroundColor: "white" }}>
                 <Grid container>
                     <Grid
                         item
@@ -68,7 +68,7 @@ const Header = () => {
                         item
                         sx={{
                             flexGrow: 3,
-                            display: { md: "none", lg: "flex" },
+                            display: { sm: "none", md: "none", lg: "flex" },
                         }}
                     >
                         <Grid
@@ -98,7 +98,6 @@ const Header = () => {
                                             fontSize: "18px",
                                             fontWeight: "400",
                                             color: "#09062D",
-                                            // display: "inline-flex"
                                         }}
                                     >
                                         {page}
@@ -115,7 +114,7 @@ const Header = () => {
                     >
                         <Box
                             sx={{
-                                display: { lg: "flex", md: "none" },
+                                display: { md: "none", lg: "flex" },
                             }}
                             justifyContent="right"
                         >

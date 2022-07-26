@@ -18,6 +18,8 @@ import WhyMtaji from "./WhyMtaji";
 
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
+const Str = require('@supercharge/strings')
+
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 8,
     borderRadius: 5,
@@ -65,6 +67,8 @@ const Landing = () => {
                 setCompanies("$");
             });
     }
+
+    const limit = Str('Hello Marcus').limit(100, '...').get()
 
     return (
         <>
@@ -131,6 +135,9 @@ const Landing = () => {
                     md={6}
                     lg={6}
                     xl={6}
+                    style={{
+                        paddingTop: "10vh"
+                    }}
                 >
                     <Image
                         src={landingImg}
@@ -237,10 +244,6 @@ const Landing = () => {
                     md={12}
                     lg={12}
                     xl={12}
-                    style={{
-                        marginBottom: "-50px",
-                        height: "0"
-                    }}
                     align="center"
                 >
                     <p className={styles.sectionHeader}>
@@ -282,7 +285,7 @@ const Landing = () => {
                                 textAlign: "left"
                             }}
                         >
-                            {company.briefDescription}
+                            {Str(company.briefDescription).limit(100, '...').get()}
                         </Typography>
                         
                         <Typography style={{ padding: "10px 0", lineHeight: "22px" }} align={"left"}>
