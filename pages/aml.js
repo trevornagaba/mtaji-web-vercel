@@ -22,9 +22,9 @@ const AML = () => {
                     </p>
                     <p className={styles.text}>
                         Money Laundering typically involves three (3)
-                        independent stages: ❖Placement of funds; ❖ Layering of
+                        independent stages:<br/> ❖Placement of funds;<br/> ❖ Layering of
                         transactions to disguise the source, ownership, and
-                        location of the funds; and ❖ Integration of the funds
+                        location of the funds; and<br/> ❖ Integration of the funds
                         into society in the form of holdings that appear
                         legitimate.
                     </p>
@@ -55,7 +55,7 @@ const AML = () => {
                         Mansa Finance is dedicated to ensuring the monitoring
                         and implementation of its AML/CFT policies, procedures,
                         and controls and makes improvements where necessary
-                        based on changes to Mtaji's assessment of the risk of
+                        based on changes to Mtaji&apos;s assessment of the risk of
                         money laundering and terrorist financing or as advised
                         by a supervisory agency or regulators.
                     </p>
