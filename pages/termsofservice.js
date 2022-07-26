@@ -14,8 +14,8 @@ const TERMSOFSERVICE = () => {
                     <p className={styles.text}>
                         You hereby agree to these Policy in order to access
                         and/or use some parts of the Mansa Finance Limited
-                        (hereinafter referred to as “Mansa Finance” "Us" "Our"
-                        "We") website (the "Site").
+                        (hereinafter referred to as “Mansa Finance” &quot;Us&quot; &quot;Our&quot;
+                        &quot;We&quot;) website (the &quot;Site&quot;).
                     </p>
                 </section>
                 <section>
@@ -24,20 +24,20 @@ const TERMSOFSERVICE = () => {
                     </h3>
                     <p className={styles.text}>
                         The terms under which you may access Mansa Finance
-                        Limited ("Mansa Finance" "Us" “Our” "We") website
-                        (“Site”) or Mobile Application ("App") are outlined in
-                        this Policy (the “Policy"). Our mission is to connect
-                        fundraisers ("the Fundraisers") who are working on
-                        innovative new businesses or Projects ("Startups") with
+                        Limited (&quot;Mansa Finance&quot; &quot;Us&quot; “Our” &quot;We&quot;) website
+                        (“Site”) or Mobile Application (&quot;App&quot;) are outlined in
+                        this Policy (the “Policy&quot;). Our mission is to connect
+                        fundraisers (&quot;the Fundraisers&quot;) who are working on
+                        innovative new businesses or Projects (&quot;Startups&quot;) with
                         people who may be able to provide financing to those
-                        Startups (the "Investors"). The Policy also outlines the
+                        Startups (the &quot;Investors&quot;). The Policy also outlines the
                         content requirements that apply whenever you link to our
                         Site, upload content to it, communicate with other users
                         on it, or use it in any other way. The services,
                         features, content, or Applications that may be offered
                         from time to time by Mansa Finance in connection with
-                        this Site and/or Mansa Finance's business are
-                        collectively referred to as the "Services."
+                        this Site and/or Mansa Finance&apos;s business are
+                        collectively referred to as the &quot;Services.&quot;
                     </p>
                     <p className={styles.text}>
                         This Policy, which complements all of our other rules,
@@ -68,8 +68,8 @@ const TERMSOFSERVICE = () => {
                     <h3 className={styles.subHeading}>3. Registered Users</h3>
                     <p className={styles.text}>
                         In order to access or use certain Services, you must
-                        become a "Registered User" by creating an account (an
-                        "Account") and choosing a password that you will use to
+                        become a &quot;Registered User&quot; by creating an account (an
+                        &quot;Account&quot;) and choosing a password that you will use to
                         access your Account. By registering, you represent and
                         warrant to the Company that all registration and other
                         information you submit to or through the Site is
@@ -79,7 +79,7 @@ const TERMSOFSERVICE = () => {
                         accurate, current and complete. You further represent
                         and warrant that your use of the Site and the Services
                         does not violate any applicable laws, rules, or
-                        regulations. Without limiting any of Mansa Finance's
+                        regulations. Without limiting any of Mansa Finance&apos;s
                         other available legal remedies, if you provide any
                         registration or other information that is untrue,
                         inaccurate, or incomplete, or Mansa Finance has
@@ -96,7 +96,7 @@ const TERMSOFSERVICE = () => {
                         unauthorised use of your Account and password. Although
                         Mansa Finance will not be liable for any of your damages
                         caused by any unauthorised use of your Account, you may
-                        be liable for Mansa Finance's or others' losses as a
+                        be liable for Mansa Finance&apos;s or others&apos; losses as a
                         result of such unauthorised use. Please notify Mansa
                         Finance immediately at support@mtaji.io if you suspect
                         any unauthorised use of your Account or unauthorised
@@ -321,7 +321,7 @@ const TERMSOFSERVICE = () => {
                             services;
                         </li>
                         <li>
-                            Interfering with any user's right to privacy;
+                            Interfering with any user&apos;s right to privacy;
                             soliciting or collecting user names, passwords,
                             emails, personal identifying information or other
                             information from any user; engaging in conduct that
@@ -381,7 +381,7 @@ const TERMSOFSERVICE = () => {
                             of any security; and
                         </li>
                         <li>
-                            Engaging in any conduct that in Mansa Finance's sole
+                            Engaging in any conduct that in Mansa Finance&apos;s sole
                             discretion restricts or inhibits any other user from
                             enjoying the use of the Site or any of the Services.
                         </li>
@@ -471,9 +471,9 @@ const TERMSOFSERVICE = () => {
                     </h3>
                     <p className={styles.text}>
                         The Services may include third-party Mansa Finance
-                        licensors' proprietary property/content (such as logos,
-                        copyrights, trademarks, and so on) ("Third Party
-                        Proprietary Property"). Your use of Third-Party
+                        licensors&apos; proprietary property/content (such as logos,
+                        copyrights, trademarks, and so on) (&quot;Third Party
+                        Proprietary Property&quot;). Your use of Third-Party
                         Proprietary Property is strictly prohibited unless
                         expressly permitted by the Terms and Service.
                     </p>
@@ -487,7 +487,7 @@ const TERMSOFSERVICE = () => {
                         concepts or other information disclosed or offered by
                         you through the Site and the App or in response to
                         solicitations made through the Site or the Services
-                        (collectively, "Feedback") is entirely voluntary and
+                        (collectively, &quot;Feedback&quot;) is entirely voluntary and
                         shall be deemed to be non-confidential and shall forever
                         remain the sole property of Mansa Finance. You
                         understand and acknowledge that Mansa Finance has both
@@ -497,7 +497,7 @@ const TERMSOFSERVICE = () => {
                         Feedback and you agree that Mansa Finance will not incur
                         any obligation or liability to you or otherwise as a
                         result of (i) any such similarities or (ii) Mansa
-                        Finance's review of any of the Feedback. Mansa Finance
+                        Finance&apos;s review of any of the Feedback. Mansa Finance
                         shall exclusively own, throughout the universe in
                         perpetuity, and you hereby irrevocably assign, all
                         rights of every kind and nature (whether currently
@@ -520,7 +520,7 @@ const TERMSOFSERVICE = () => {
                         still obligated to pay any outstanding fees accrued
                         prior to cancellation due to your use of the Services.
                         If you break any of the terms of this Policy, Mansa
-                        Finance's authorisation to use the Services will be
+                        Finance&apos;s authorisation to use the Services will be
                         instantly revoked. Furthermore, Mansa Finance reserves
                         the right, in its sole discretion, to cancel your user
                         account for the Site or Services, as well as suspend or
@@ -551,13 +551,13 @@ const TERMSOFSERVICE = () => {
                         You agree to defend Mansa Finance, its subsidiaries,
                         affiliates, licensors and assignees and their respective
                         officers, directors, managers, stockholders, members,
-                        agents, partners and employees (the "Mansa Finance
-                        Indemnitees"), from and against any and all claims,
+                        agents, partners and employees (the &quot;Mansa Finance
+                        Indemnitees&quot;), from and against any and all claims,
                         actions, suits, demands or other proceedings brought by
                         or on behalf of any third party, and to indemnify and
                         hold the Mansa Finance Indemnitees harmless against any
                         losses, liabilities and other damages (including, but
-                        not limited to, reasonable attorneys' fees), in any case
+                        not limited to, reasonable attorneys&apos; fees), in any case
                         arising out of or related to (i) your access to and/or
                         use of the Site and the Services, including, without
                         limitation, your use of the Site and the Services in
