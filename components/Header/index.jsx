@@ -42,7 +42,7 @@ const Header = () => {
     };
 
     return (
-        <AppBar position="fixed" className={navStyles.navBar}>
+        <AppBar position="fixed" className={navStyles.navBar} style={{ background: "white" }}>
             <Toolbar style={{ backgroundColor: "white" }}>
                 <Grid container>
                     <Grid
