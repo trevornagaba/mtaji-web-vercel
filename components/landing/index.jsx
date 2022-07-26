@@ -64,7 +64,7 @@ const Landing = () => {
             })
             .catch((error) => {
                 console.log(error);
-                setCompanies("$");
+                setCompanies([]);
             });
     }
 
