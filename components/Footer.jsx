@@ -39,7 +39,7 @@ const Footer = () => {
           <div>
             <p>Terms of Service</p>
             <p>Privacy Policy</p>
-            <p><Link href="/aml">AML Polic</Link></p>
+            <p><Link href="/amlpolicy">AML Polic</Link></p>
           </div>
         </div>
       </div>

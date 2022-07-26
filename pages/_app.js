@@ -99,7 +99,7 @@ function MyApp({ Component, pageProps }) {
                         <p>Terms of Service</p>
                         <p>Privacy Policy</p>
                         <p>
-                            <Link href="/aml">AML Policy</Link>
+                            <Link href="/amlpolicy">AML Policy</Link>
                         </p>
                     </div>
                 </div>
