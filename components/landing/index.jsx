@@ -295,7 +295,8 @@ const Landing = () => {
                                 <small>Ends in: <span style={{ color: "red" }}>21h:30min:15sec</span></small>
                             </Typography>
 
-                            <BorderLinearProgress variant="determinate" value={80} />
+                            <BorderLinearProgress variant="determinate" value={(company.amountRaised/company.targetAmount)*100} label={true}/>
+                            <small style={{ color: "#01BBC8" }}>{Math.round((company.amountRaised/company.targetAmount)*100)}%</small>
                         </Box>
                         </Grid>
                     ))}
