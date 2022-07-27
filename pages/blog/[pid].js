@@ -1,6 +1,6 @@
 import React from "react";
 import parse from "html-react-parser";
-import { Posts } from "../../components/Blog/post";
+// import { Posts } from "../../components/Blog/post";
 import PageTemplate from "../../components/pageTemplate";
 import ProfileImg from "../../components/ProfileImageIcon";
 import styles from "../../styles/blog.module.css";
