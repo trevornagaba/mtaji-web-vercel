@@ -32,7 +32,7 @@ const storyStyle = {
 const FAQs = ({ stories }) => {
     const getSections = () => {
         const sections = [];
-        stories.map((story) => {
+        stories?.map((story) => {
             if (!sections.includes(story.subSection)) {
                 return sections.push(story.subSection);
             }
@@ -55,7 +55,7 @@ const FAQs = ({ stories }) => {
                     </p>
                 </div>
                 <div className={styles.faqContent}>
-                    {sections.map((section) => {
+                    {sections?.map((section) => {
                         return (
                             <>
                                 <p
@@ -68,7 +68,7 @@ const FAQs = ({ stories }) => {
                                     {section}
                                 </p>
                                 <ul className={styles.faqList}>
-                                    {stories.map((story, index) => {
+                                    {stories?.map((story, index) => {
                                         if(story.subSection == section){
                                             return (
                                                 <li

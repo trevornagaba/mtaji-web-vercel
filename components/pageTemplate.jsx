@@ -25,7 +25,7 @@ const PageTemplate = ({
                     {children}
                 </Wrapper>
                 ) : 
-                (children.map(children=>children)) 
+                (children?.map(children=>children)) 
             }
             {hasRaiseFunds && <RaiseFunds />}
             {hasFooter && <Footer />}

@@ -94,7 +94,7 @@ const Blog = ({ posts }) => {
                     />
                 )}
                 <div className={styles.categoryTab}>
-                    {TABS.map((tab) => {
+                    {TABS?.map((tab) => {
                         return (
                             <div
                                 key={tab}
@@ -110,7 +110,7 @@ const Blog = ({ posts }) => {
                         );
                     })}
                 </div>
-                {postToRender.map((post) => {
+                {postToRender?.map((post) => {
                     return (
                         <BlogPost
                             key={post._id}

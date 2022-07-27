@@ -25,7 +25,7 @@ const Account = () => {
             <p className={styles.heading}>Profile</p>
             <div className={styles.contentBox}>
                 <div className={styles.tabNav}>
-                    {tabs.map((tab) => {
+                    {tabs?.map((tab) => {
                         return (
                             <div
                                 key={tab}
