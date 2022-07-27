@@ -5,6 +5,7 @@ import PageTemplate from "../../components/pageTemplate";
 import ProfileImg from "../../components/ProfileImageIcon";
 import styles from "../../styles/blog.module.css";
 import axios from "axios";
+import md from "markdown-it"
 
 export const getServerSideProps = async (context) => {
     const id = context.query.pid;
@@ -59,11 +60,11 @@ const PostDetails = ({ post }) => {
                                 title={post.authorTitle}
                             />
                         </div>
-                        <div className="prose">
                             {/* <img src={post.imgUrl} alt="post image"/> */}
-                            {/* <div className="product-des" dangerouslySetInnerHTML={{ __html: post.body }}/> */}
                             {/* {parse(post.body)} */}
-                            {post.body}
+                        <div className={styles.body}>
+                            <div className="prose lg:prose-xl max-w-none mx-0" dangerouslySetInnerHTML={{ __html: md().render(post.body) }}/>
+                            {/* {post.body} */}
                         </div>
                     </div>
                 </div>

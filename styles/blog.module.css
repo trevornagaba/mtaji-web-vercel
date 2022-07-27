@@ -169,6 +169,7 @@
     display: grid;
     grid-template-columns: minmax(200px, .5fr) minmax(400px, 1.5fr);
     margin-top: 35px;
+    
 }
 
 .body{
