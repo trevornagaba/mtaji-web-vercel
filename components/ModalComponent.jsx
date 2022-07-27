@@ -2,7 +2,7 @@ import { useState, Fragment, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 function Modal({clicked, title,children}) {
-  console.log(title)
+  
   const [openModal, setOpenModal] = useState(false)
   const onClickProfileImage= ()=>{
       return (
@@ -11,7 +11,7 @@ function Modal({clicked, title,children}) {
   }
 
   useEffect(()=>{
-    console.log(clicked)
+    
     if(clicked==false){
     return  setOpenModal(false)
     }

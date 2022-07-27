@@ -23,7 +23,6 @@ export const getServerSideProps = async (context) => {
 const PostDetails = ({ post }) => {
     //convert post into object
     // post = Object.assign({}, ...post);
-    console.log(post);
     return (
         <PageTemplate
             hasNavbar={true}
@@ -62,9 +61,12 @@ const PostDetails = ({ post }) => {
                         </div>
                             {/* <img src={post.imgUrl} alt="post image"/> */}
                             {/* {parse(post.body)} */}
+                            {/* <div className="prose lg:prose-xl max-w-none mx-0" dangerouslySetInnerHTML={{ __html: md().render(post.body) }}/> */}
                         <div className={styles.body}>
-                            <div className="prose lg:prose-xl max-w-none mx-0" dangerouslySetInnerHTML={{ __html: md().render(post.body) }}/>
-                            {/* {post.body} */}
+                            <div className="prose lg:prose-xl max-w-none mx-0">
+                                {parse(md().render(post.body))}
+
+                            </div>
                         </div>
                     </div>
                 </div>

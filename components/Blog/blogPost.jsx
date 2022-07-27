@@ -18,7 +18,7 @@ const BlogPost = ({
     const shortText = () => {
         return body.length > 400 ? `${body.substring(0, 397)}...` : body;
     };
-    console.log(authorProfileImageUrl)
+    
     return (
         <div className={featured? styles. postCompFeatured : styles.postComp}>
             <div className={styles.dateCategory}>

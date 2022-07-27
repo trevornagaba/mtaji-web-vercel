@@ -22,7 +22,7 @@ const DragandDrop = () => {
     }
 
     useEffect(() => {
-        console.log(file);
+        
     }, [file]);
     return (
         <div
