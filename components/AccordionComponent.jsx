@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 
 const AccordionComponent = ({
-    title,
-    story,
+    question,
+    answer,
     titleStyle,
     storyStyle,
 }) => {
@@ -16,10 +16,10 @@ const AccordionComponent = ({
       <div>
       <div className={{}} onClick={onClick} style={titleStyle}>
         {opened ? <img src='assets/minus.svg' style={{marginRight: "10px"}}/>:<img src='assets/cross.svg' style={{marginRight: "10px"}}/>}
-        {title}
+        {question}
       </div>
       <div className={className} style={storyStyle}>
-        {story}
+        {answer}
       </div>
       </div>
   )
