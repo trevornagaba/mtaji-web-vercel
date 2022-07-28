@@ -48,14 +48,15 @@ const Header = () => {
             style={{
                 background: "white",
                 boxShadow: "none",
-                width: "100vw"
+                width: "100vw",
+                padding: "0 10%"
             }}
             align="center"
         >
             {/* <Toolbar style={{ backgroundColor: "white" }}> */}
             <Grid
                 item
-                justifyContent="center"
+                align="center"
             >
                 <Grid
                     container
