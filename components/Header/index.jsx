@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useRouter } from "next/router"
 import Image from "next/image";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -15,7 +16,9 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 import navStyles from "./Header.module.css";
+import styles from "../landing/Landing.module.css";
 
 import Logo from "../Logo/Logo";
 
@@ -24,6 +27,8 @@ const guest = ["Sign Up", "Sign In"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
+
+    const router = useRouter()
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -133,6 +138,9 @@ const Header = () => {
                                         >
                                             {page}
                                         </Typography>
+                                        {router.pathname===`/${page.toLowerCase()}`?
+                                            <div className={styles.underline3} />
+                                        : ""}
                                     </Grid>
                                 ))}
                             </Box>

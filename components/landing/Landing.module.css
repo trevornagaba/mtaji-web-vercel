@@ -17,6 +17,22 @@
     font-weight: 700;
 }
 
+/* Adjust for tablet screen sizes. */
+  @media only screen and (max-width: 580px) {
+    .tagline h1 {
+      line-height: 45px;
+      font-size: 2rem;
+    }
+  }
+
+/* Adjust for tablet screen sizes. */
+  @media only screen and (min-width: 580px) and (max-width: 680px) {
+    .tagline h1 {
+      line-height: 65px;
+      font-size: 3rem;
+    }
+  }
+
 .tagline p {
     color: #666666;
     font-family: 'Poppins';
@@ -107,6 +123,12 @@
   background-color: white;
     height: 2px;
     width: 50px;
+}
+
+.underline3 {
+    background-color: #01bbc8;
+    height: 4px;
+    width: 30px;
 }
 
 .section4 {

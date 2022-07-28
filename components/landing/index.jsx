@@ -147,7 +147,7 @@ const Landing = () => {
                         sx={{
                             display: { xs: "flex", sm: "flex", md: "flex", lg: "flex" },
                         }}
-                        justifyContent="left"
+                        justifyContent="right"
                     >
                         <Image
                             src={landingImg}
