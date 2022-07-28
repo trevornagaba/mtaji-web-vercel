@@ -1,11 +1,11 @@
 import React from "react";
-import parse from "html-react-parser";
+// import parse from "html-react-parser";
 // import { Posts } from "../../components/Blog/post";
 import PageTemplate from "../../components/pageTemplate";
 import ProfileImg from "../../components/ProfileImageIcon";
 import styles from "../../styles/blog.module.css";
-import axios from "axios";
-import md from "markdown-it"
+// import axios from "axios";
+// import md from "markdown-it"
 
 export const getServerSideProps = async (context) => {
     const id = context.query.pid;
@@ -63,7 +63,7 @@ const PostDetails = ({ post }) => {
                             {/* <div className="prose lg:prose-xl max-w-none mx-0" dangerouslySetInnerHTML={{ __html: md().render(post.body) }}/> */}
                         <div className={styles.body}>
                             <div className="prose lg:prose-xl max-w-none mx-0">
-                                {parse(md().render(post.body))}
+                                {/* {parse(md().render(post.body))} */}
 
                             </div>
                         </div>
