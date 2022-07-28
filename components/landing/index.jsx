@@ -13,8 +13,11 @@ import Image from "next/image";
 import styles from "./Landing.module.css";
 import pointerImg from "../../public/assets/tagline_background.svg";
 import landingImg from "../../public/assets/illustration_3.svg";
+import whyMtajiImg from "../../public/assets/illustration_7.png";
 
+import PageTemplate from "../pageTemplate";
 import WhyMtaji from "./WhyMtaji";
+import Section3 from "./Section3";
 
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
@@ -71,12 +74,13 @@ const Landing = () => {
     const limit = Str('Hello Marcus').limit(100, '...').get()
 
     return (
-        <>
+        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
             <Grid
                 container
                 style={{
-                    padding: "10vw 10%",
-                    height: "100vh"
+                    padding: "15vh 10%",
+                    mimHeight: "100vh",
+                    alignItems: "center"
                 }}
             >
 
@@ -98,46 +102,48 @@ const Landing = () => {
                     Be a part owner of a thriving business with as little as <br/>UGX 50,000
                     </p>
                     <Stack
-                    spacing={3}
-                    direction="row"
-                    style={{ paddingTop: "30px" }}
+                        spacing={2}
+                        direction="row"
+                        style={{ paddingTop: "30px" }}
                     >
                     <Button
                         component="a"
                         href="/signup"
                         variant="contained"
-                        style={{ backgroundColor: "#2518B8", color: "white", textTransform: "none", fontSize: "16px", height: "40px" }}
+                        style={{ backgroundColor: "#2518B8", color: "white", textTransform: "none", height: "40px" }}
                     >Get started</Button>
                     <Button
                         component="a"
                         href="/invest"
                         variant="outlined"
-                        style={{ border: "1px #01BBC8 solid", color: "#09062D", textTransform: 'none', fontSize: "16px", height: "40px" }}
+                        style={{ border: "1px #01BBC8 solid", color: "#01BBC8", textTransform: 'none', height: "40px" }}
                     >Raise funds</Button>
-                    <Button
-                        style={{ pointer: "none", height: "40px" }}
+                    {/* <Button                        
+                        style={{ width: '50px', textTransform: 'none', height: "40px" }}
                     >
                         <Image
-                        src={pointerImg}
-                        alt="Pointer"
-                        width={100}
-                        style={{
-                            cursor: "none"
-                        }}         
+                            src={pointerImg}
+                            alt="Pointer"
+                            width={150}
+                            style={{
+                                cursor: "none"
+                            }}         
                         />
-                    </Button>
+                    </Button> */}
                     </Stack>
                 </Grid>
                 <Grid
                     item
-                    sx={12}
+                    xs={12}
                     sm={12}
                     md={6}
                     lg={6}
                     xl={6}
                     style={{
-                        paddingTop: "10vh"
+                        width: "100%",
+                        padding: "5vh 0"
                     }}
+                    align="right"
                 >
                     <Image
                         src={landingImg}
@@ -153,90 +159,50 @@ const Landing = () => {
             <Grid
                 container
                 style={{
-                    padding: "10vh 10%",
+                    padding: "15vh 10%",
                     backgroundColor: "#f7f7f7"
                 }}
             >
                 <Grid
                     item
-                    sx={12}
+                    xs={12}
                     sm={12}
                     md={6}
                     lg={6}
                     xl={6}
                     style={{
-                        padding: "8vh 10%"
+                        width: "100%",
                     }}
-                    className={styles.section2Img}
-                />
+                >
+                        <Image
+                            src={whyMtajiImg}
+                            alt="image 1"
+                            style={{
+                                width: "100%"
+                            }}
+                        />
+                </Grid>
                 <Grid
                     item
-                    sx={12}
+                    xs={12}
                     sm={12}
                     md={6}
                     lg={6}
                     xl={6}
+                    style={{
+                        margin: "0",
+                    }}
                 >
                     <WhyMtaji />
                 </Grid>
             </Grid>
-            <Grid
-                container
-                style={{
-                    padding: "5vh 10%",
-                    backgroundColor: "white"
-                }}
-            >
-                <Grid
-                    item
-                    sx={12}
-                    sm={12}
-                    md={12}
-                    lg={12}
-                    xl={12}
-                    align="center"
-                >
-                    <p className={styles.sectionHeader}>
-                        Mtaji is a marketplace for investors and <br/> founders in Africa
-                    </p>
-                    <div className={styles.underline} />
-                    <div className={styles.section}>
-                        <div className={styles.card}>
-                            <img src="/assets/idea.svg" />
-                            <p className={styles.title}>Diversify your portfolio</p>
-                            <p className={styles.description}>
-                            Add Africa&sbquo;s next business giant <br />
-                            to your portfolio
-                            </p>
-                        </div>
-                        <div className={styles.card}>
-                            <img src="/assets/idea.svg" />
-                            <p className={styles.title}>Be an early investor</p>
-                            <p className={styles.description}>
-                            While investment in early stage<br />
-                            businesses presents higher uncertainty, <br />
-                            it also provides an opportunity for <br />
-                            a higher return.
-                            </p>
-                        </div>
-                        <div className={styles.card}>
-                            <img src="/assets/idea.svg" />
-                            <p className={styles.title}>Grab a front row seat <br /> on a startup journey</p>
-                            <p className={styles.description}>
-                            Ride the highs and wither <br /> the lows with a founding team<br />
-                            of your choice
-
-                            </p>
-                        </div>
-                    </div>
-                </Grid>
-            </Grid>
+            <Section3/>
 
             {/* Section 3 */}
             {companies.length != 0?
                 <Grid
                     container
-                    className={styles.section3}
+                    className={styles.section4}
                 >
                     <Grid
                         item
@@ -246,13 +212,15 @@ const Landing = () => {
                         lg={12}
                         xl={12}
                         align="center"
+                        style={{
+                            padding: "0"
+                        }}
                     >
                         <p className={styles.sectionHeader}>
                             Companies currently raising <br/>capital on mtaji
                         </p>
                         <div className={styles.underline2} />
                     </Grid>
-
                     {companies.map((company, index) => (
                         <Grid
                             key={index}
@@ -302,7 +270,7 @@ const Landing = () => {
                     ))}
                 </Grid>
             : ""}
-        </>
+        </PageTemplate>
     )
 }
 

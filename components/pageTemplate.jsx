@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Header from "./Header";
 import styles from "../styles/pageTemplate.module.css";
 import Footer from "./Footer";
 import RaiseFunds from "./RaiseFunds";
@@ -18,16 +18,14 @@ const PageTemplate = ({
     isGreyBackgound
 }) => {
     return (
-        <div className={styles.containerWrapper} style={isGreyBackgound && {backgroundColor:"#F7F7F7"}}>
-            {hasNavbar && <Navbar />}
-            {hasWrapper ? 
-                (<Wrapper>
+        <div style={isGreyBackgound && {backgroundColor:"#F7F7F7"}}>
+            {hasNavbar && <Header />}
+            {hasWrapper ?
+                <Wrapper>
                     {children}
                 </Wrapper>
-                ) : 
-                (children?.map(children=>children)) 
+            : children
             }
-            {hasRaiseFunds && <RaiseFunds />}
             {hasFooter && <Footer />}
         </div>
     );
