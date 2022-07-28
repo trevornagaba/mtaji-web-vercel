@@ -54,7 +54,7 @@ const PostDetails = ({ post }) => {
                         <div>
                             <ProfileImg
                                 name={post.author}
-                                imageUrl={post.authorProfileImageUrl}
+                                imageUrl={post.authorThumbFile}
                                 title={post.authorTitle}
                             />
                         </div>
