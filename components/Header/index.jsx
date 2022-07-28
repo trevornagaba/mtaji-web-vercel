@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from '@mui/icons-material/Close';
 import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
@@ -22,9 +23,18 @@ import styles from "../landing/Landing.module.css";
 
 import Logo from "../Logo/Logo";
 
-const pages = [ "About", "Blog", "FAQs"];
-const guest = ["Sign Up", "Sign In"];
+const pages = ["About", "Blog", "FAQs"];
+const guest = ["Sign Up", "Sign In", "About", "Blog", "FAQs"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
+const menuPopupStyles = (theme) => ({
+    popoverPaper: {
+      width: '100%',
+      height: '100%',
+      maxHeight: 'unset',
+      maxWidth: 'unset',
+    },
+  });
 
 const Header = () => {
 
@@ -207,9 +217,10 @@ const Header = () => {
                                         padding: "0",
                                     }}
                                 >
-                                    <MenuIcon style={{ fontSize: "30px" }}/>
+                                    {anchorElNav?<CloseIcon style={{ fontSize: "30px" }}/>:<MenuIcon style={{ fontSize: "30px" }}/>}
                                 </IconButton>
                                 <Menu
+                                    // PopoverClasses={{paper: props.classes.popoverPaper}}
                                     id="menu-appbar"
                                     anchorEl={anchorElNav}
                                     anchorOrigin={{
@@ -226,8 +237,11 @@ const Header = () => {
                                     sx={{
                                         display: { md: "block", lg: "none" },
                                     }}
+                                    style={{
+                                        width: "90vh"
+                                    }}
                                 >
-                                    {pages.map((page) => (
+                                    {guest.map((page) => (
                                         <MenuItem
                                             key={page}
                                             onClick={handleCloseNavMenu}

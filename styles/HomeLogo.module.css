@@ -4,6 +4,10 @@
   cursor: pointer;
 }
 
+.logo img {
+  width: 30px
+}
+
 .logo span {
   color: #2518b8;
   font-weight: bold;

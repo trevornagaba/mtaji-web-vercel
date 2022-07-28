@@ -141,22 +141,17 @@ const Landing = () => {
                     xl={6}
                     style={{
                         width: "100%",
+                        padding: "5vh 0"
                     }}
+                    align="right"
                 >
-                    <Box
-                        sx={{
-                            display: { xs: "flex", sm: "flex", md: "flex", lg: "flex" },
+                    <Image
+                        src={landingImg}
+                        alt="image 1"
+                        style={{
+                            width: "100%"
                         }}
-                        justifyContent="right"
-                    >
-                        <Image
-                            src={landingImg}
-                            alt="image 1"
-                            style={{
-                                width: "100%"
-                            }}
-                        />
-                    </Box>
+                    />
                 </Grid>
             </Grid>
 
@@ -218,7 +213,7 @@ const Landing = () => {
                         xl={12}
                         align="center"
                         style={{
-                            paddingBottom: "5vh"
+                            padding: "0"
                         }}
                     >
                         <p className={styles.sectionHeader}>
