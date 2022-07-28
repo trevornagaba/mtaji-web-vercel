@@ -1,5 +1,6 @@
 import * as React from "react";
-import { useRouter } from "next/router"
+import { useRouter } from "next/router";
+import { withStyles } from '@material-ui/core/styles';
 import Image from "next/image";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -18,25 +19,65 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
+import SignUpIcon from '@mui/icons-material/Add';
+import SignInIcon from '@mui/icons-material/ExitToApp';
+import AboutIcon from '@mui/icons-material/InfoOutlined';
+import BlogIcon from '@mui/icons-material/ChatOutlined';
+import FaqsIcon from '@mui/icons-material/HelpCenterOutlined';
+
+
 import navStyles from "./Header.module.css";
 import styles from "../landing/Landing.module.css";
 
 import Logo from "../Logo/Logo";
 
 const pages = ["About", "Blog", "FAQs"];
-const guest = ["Sign Up", "Sign In", "About", "Blog", "FAQs"];
+const guest = [
+    {
+        pageIcon: <SignUpIcon/>,
+        pageName: "Sign Up",
+        pageLink: "/signup"
+    },
+    {
+        pageIcon: <SignInIcon/>,
+        pageName: "Sign In",
+        pageLink: "/signin"
+    },
+    {
+        pageIcon: <AboutIcon/>,
+        pageName: "About",
+        pageLink: "/about"
+    },
+    {
+        pageIcon: <BlogIcon/>,
+        pageName: "Blog",
+        pageLink: "/blog"
+    },
+    {
+        pageIcon: <FaqsIcon/>,
+        pageName: "FAQs",
+        pageLink: "/faqs"
+    }
+];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const menuPopupStyles = (theme) => ({
     popoverPaper: {
-      width: '100%',
-      height: '100%',
-      maxHeight: 'unset',
-      maxWidth: 'unset',
+        width: '80vw',
+        height: '35vh',
+        maxHeight: 'unset',
+        top: '7.2% !important',
+        left: '5% !important',
+        boxShadow: '0px 1px 5px #01bbc8',
+        fontFamily: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: '500',
+        fontSize: '14px',
+        lineHeight: '21px'
     },
   });
 
-const Header = () => {
+const Header = (props) => {
 
     const router = useRouter()
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -220,7 +261,7 @@ const Header = () => {
                                     {anchorElNav?<CloseIcon style={{ fontSize: "30px" }}/>:<MenuIcon style={{ fontSize: "30px" }}/>}
                                 </IconButton>
                                 <Menu
-                                    // PopoverClasses={{paper: props.classes.popoverPaper}}
+                                    PopoverClasses={{paper: props.classes.popoverPaper}}
                                     id="menu-appbar"
                                     anchorEl={anchorElNav}
                                     anchorOrigin={{
@@ -243,10 +284,12 @@ const Header = () => {
                                 >
                                     {guest.map((page) => (
                                         <MenuItem
-                                            key={page}
+                                            key={page.pageName}
                                             onClick={handleCloseNavMenu}
                                         >
                                             <Typography
+                                                component="a"
+                                                href={page.pageLink}
                                                 textAlign="center"
                                                 style={{
                                                     color: "#888",
@@ -254,7 +297,7 @@ const Header = () => {
                                                         "'Quicksand', sans-serif",
                                                 }}
                                             >
-                                                {page}
+                                                <span style={{ marginRight: "5px", color: "#01bbc8" }}>{page.pageIcon}</span>{page.pageName}
                                             </Typography>
                                         </MenuItem>
                                     ))}
@@ -269,4 +312,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default withStyles(menuPopupStyles)(Header);
