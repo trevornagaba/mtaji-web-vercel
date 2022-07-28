@@ -533,6 +533,12 @@
     "lodash.castarray" "^4.4.0"
     "lodash.isplainobject" "^4.0.6"
     "lodash.merge" "^4.6.2"
+"@supercharge/strings@^1.28.0":
+  version "1.28.0"
+  resolved "https://registry.yarnpkg.com/@supercharge/strings/-/strings-1.28.0.tgz#8f828c4c7181c7660859e4eedd9f0b03c12eeb17"
+  integrity sha512-bSixcASKbDaq4KLtfZTcu16Y9NQqIXfHUw/VtQ9bTCVLHH1Dqcff6INNaNmSHxNDIkmC049h087wnBkuH4hs7w==
+  dependencies:
+    uuid "~8.3.2"
 
 "@types/json5@^0.0.29":
   "integrity" "sha1-7ihweulOEdK4J7y+UnC86n8+ce4="

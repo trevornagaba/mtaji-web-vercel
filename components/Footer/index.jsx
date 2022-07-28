@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <Grid
         style={{
-            padding: "8vh 5vw"
+            padding: "8vh 7%"
         }}
 
     >
