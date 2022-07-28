@@ -23,7 +23,7 @@ const Section3 = () => {
         <Grid
             container
             style={{
-                padding: "0 10%",
+                padding: "5vh 10%",
                 backgroundColor: "white",
             }}
         >
@@ -40,7 +40,7 @@ const Section3 = () => {
                     lg={12}
                     xl={12}
                     style={{
-                        padding: "10vh 0"
+                        padding: "5vh 0"
                     }}
                 >
                     <p className={styles.sectionHeader}>
@@ -52,7 +52,7 @@ const Section3 = () => {
                     item
                     sx={12}
                     sm={12}
-                    md={4}
+                    md={12}
                     lg={4}
                     xl={4}
                     style={{
@@ -76,7 +76,7 @@ const Section3 = () => {
                     item
                     sx={12}
                     sm={12}
-                    md={4}
+                    md={12}
                     lg={4}
                     xl={4}
                     style={{
@@ -102,7 +102,7 @@ const Section3 = () => {
                     item
                     sx={12}
                     sm={12}
-                    md={4}
+                    md={12}
                     lg={4}
                     xl={4}
                     style={{

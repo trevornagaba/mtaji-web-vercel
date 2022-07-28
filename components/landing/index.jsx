@@ -78,7 +78,7 @@ const Landing = () => {
             <Grid
                 container
                 style={{
-                    padding: "20vh 10%",
+                    padding: "15vh 10%",
                     mimHeight: "100vh",
                     alignItems: "center"
                 }}
@@ -94,20 +94,6 @@ const Landing = () => {
                     xl={6}
                     className={styles.tagline}
                 >
-                    <Box
-                        sx={{
-                            display: { xs: "flex", sm: "flex", md: "none", lg: "none" },
-                        }}
-                        justifyContent="left"
-                    >
-                        <Image
-                            src={landingImg}
-                            alt="image 1"
-                            style={{
-                                width: "100%"
-                            }}
-                        />
-                    </Box>
                     <h1>
                     Invest in Africa&apos;s <br />
                     next big company
@@ -159,7 +145,7 @@ const Landing = () => {
                 >
                     <Box
                         sx={{
-                            display: { xs: "none", sm: "none", md: "flex", lg: "flex" },
+                            display: { xs: "flex", sm: "flex", md: "flex", lg: "flex" },
                         }}
                         justifyContent="left"
                     >
@@ -231,6 +217,9 @@ const Landing = () => {
                         lg={12}
                         xl={12}
                         align="center"
+                        style={{
+                            paddingBottom: "5vh"
+                        }}
                     >
                         <p className={styles.sectionHeader}>
                             Companies currently raising <br/>capital on mtaji
