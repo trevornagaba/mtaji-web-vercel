@@ -5,16 +5,20 @@ import {
     Stack,
     Button,
     Typography,
-    styled 
+    styled,
+    Box
 } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Landing.module.css";
-import pointerImg from "../../public/assets/tagline_background.svg"
+import pointerImg from "../../public/assets/tagline_background.svg";
+import landingImg from "../../public/assets/illustration_3.svg";
 
 import WhyMtaji from "./WhyMtaji";
 
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+
+const Str = require('@supercharge/strings')
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 8,
@@ -60,9 +64,11 @@ const Landing = () => {
             })
             .catch((error) => {
                 console.log(error);
-                setCompanies("$");
+                setCompanies([]);
             });
     }
+
+    const limit = Str('Hello Marcus').limit(100, '...').get()
 
     return (
         <>
@@ -129,15 +135,26 @@ const Landing = () => {
                     md={6}
                     lg={6}
                     xl={6}
-                    className={styles.proposition}
-                />
+                    style={{
+                        paddingTop: "10vh"
+                    }}
+                >
+                    <Image
+                        src={landingImg}
+                        alt="image 1"
+                        style={{
+                            width: "100%"
+                        }}
+                    />
+                </Grid>
             </Grid>
 
             {/* Section 2 */}
             <Grid
                 container
                 style={{
-                    padding: "2vw 10%"
+                    padding: "10vh 10%",
+                    backgroundColor: "#f7f7f7"
                 }}
             >
                 <Grid
@@ -148,7 +165,7 @@ const Landing = () => {
                     lg={6}
                     xl={6}
                     style={{
-                        padding: "10vw 10%"
+                        padding: "8vh 10%"
                     }}
                     className={styles.section2Img}
                 />
@@ -160,10 +177,16 @@ const Landing = () => {
                     lg={6}
                     xl={6}
                 >
-                    <div className={styles.benefits}>
-                        <WhyMtaji />
-                    </div>
+                    <WhyMtaji />
                 </Grid>
+            </Grid>
+            <Grid
+                container
+                style={{
+                    padding: "5vh 10%",
+                    backgroundColor: "white"
+                }}
+            >
                 <Grid
                     item
                     sx={12}
@@ -210,74 +233,75 @@ const Landing = () => {
             </Grid>
 
             {/* Section 3 */}
-            <Grid
-                container
-                className={styles.section3}
-            >
+            {companies.length != 0?
                 <Grid
-                    item
-                    sx={12}
-                    sm={12}
-                    md={12}
-                    lg={12}
-                    xl={12}
-                    style={{
-                        marginBottom: "-150px",
-                        height: "0"
-                    }}
-                    align="center"
+                    container
+                    className={styles.section3}
                 >
-                    <p className={styles.sectionHeader}>
-                        Companies currently raising <br/>capital on mtaji
-                    </p>
-                    <div className={styles.underline2} />
-                </Grid>
-
-                {companies.map((company, index) => (
                     <Grid
-                        key={index}
                         item
                         sx={12}
                         sm={12}
-                        md={4}
-                        lg={4}
-                        xl={4}
-                        className={styles.companyCard}
+                        md={12}
+                        lg={12}
+                        xl={12}
                         align="center"
                     >
-                    <div>
-                        <Link href={`/company/${company._id}`}>
-                            <img src="/assets/companyLogo.svg" width={80} />
-                        </Link>
-                        <Typography
-                            variant="h5"
-                            style={{
-                                margin: "10px 0",
-                                fontFamily: "Poppins",
-                                fontWeight: "500"
-                            }}
-                        >
-                            {company.name}
-                        </Typography>
-                        <Typography
-                            style={{                                
-                                textAlign: "left"
-                            }}
-                        >
-                            {company.briefDescription}
-                        </Typography>
-                        
-                        <Typography style={{ padding: "10px 0", lineHeight: "22px" }} align={"left"}>
-                            <small>Raising</small><br/>
-                            <strong style={{ fontSize: "22px" }}>{formatter.format(company.targetAmount)}</strong><br/>
-                            <small>Ends in: <span style={{ color: "red" }}>21h:30min:15sec</span></small>
-                        </Typography>
-
-                        <BorderLinearProgress variant="determinate" value={80} />
-                    </div>
+                        <p className={styles.sectionHeader}>
+                            Companies currently raising <br/>capital on mtaji
+                        </p>
+                        <div className={styles.underline2} />
                     </Grid>
-                ))}
-            </Grid>
+
+                    {companies.map((company, index) => (
+                        <Grid
+                            key={index}
+                            item
+                            sx={12}
+                            sm={12}
+                            md={4}
+                            lg={4}
+                            xl={4}
+                            className={styles.companyCard}
+                            align="center"
+                        >
+                        <Box
+                            className={styles.companyCardBox}
+                        >
+                            <Link href={`/company/${company._id}`}>
+                                <img src="/assets/companyLogo.svg" width={80} />
+                            </Link>
+                            <Typography
+                                variant="h5"
+                                style={{
+                                    margin: "10px 0",
+                                    fontFamily: "Poppins",
+                                    fontWeight: "500"
+                                }}
+                            >
+                                {company.name}
+                            </Typography>
+                            <Typography
+                                style={{                                
+                                    textAlign: "left"
+                                }}
+                            >
+                                {Str(company.briefDescription).limit(100, '...').get()}
+                            </Typography>
+                            
+                            <Typography style={{ padding: "10px 0", lineHeight: "22px" }} align={"left"}>
+                                <small>Raising</small><br/>
+                                <strong style={{ fontSize: "22px" }}>{formatter.format(company.targetAmount)}</strong><br/>
+                                <small>Ends in: <span style={{ color: "red" }}>21h:30min:15sec</span></small>
+                            </Typography>
+
+                            <BorderLinearProgress variant="determinate" value={(company.amountRaised/company.targetAmount)*100} label={true}/>
+                            <small style={{ color: "#01BBC8" }}>{Math.round((company.amountRaised/company.targetAmount)*100)}%</small>
+                        </Box>
+                        </Grid>
+                    ))}
+                </Grid>
+            : ""}
         </>
     )
 }

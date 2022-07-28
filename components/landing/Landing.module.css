@@ -20,9 +20,6 @@
 
 .proposition {
     margin-top: 10vh;
-    background-image: url("/assets/illustration_3.svg");
-    background-position: top right;
-    background-repeat: no-repeat;
     z-index: 1000;
 }
 
@@ -54,14 +51,12 @@
     background-repeat: no-repeat;
     background-position: left top;
     background-size: contain;
-    background-color: white;
 }
 
   
   .card {
     width: 22vw;
-    height: 34vh;
-    padding: 5% 0;
+    padding: 5% 2%;
     border-radius: 12px;
     background-color: #f7f7f7;
     text-align: center;
@@ -86,7 +81,7 @@
   }
 
 .card img {
-    margin-left: 44%;
+    margin-left: 40%;
 }
 
 .underline {
@@ -96,9 +91,10 @@
 }
 
 .underline2 {
-    background-color: white;
+  background-color: white;
     height: 2px;
     width: 50px;
+    margin-bottom: -50px;
 }
 
 .section3 {
@@ -115,7 +111,7 @@
     padding: 2%;
 }
 
-.companyCard div {
+.companyCardBox {
     padding: 10%;
     background: white;
     border-radius: 15px;
