@@ -119,7 +119,7 @@ const Blog = ({ posts }) => {
                             authorTitle={post.authorTitle}
                             id={post._id}
                             title={post.title}
-                            body={post.body.replace(/(<([^>]+)>)/gi, "")}
+                            body={post.highlight}
                             date={post.date}
                             category={post.category}
                             blogImage={post.imgUrl}

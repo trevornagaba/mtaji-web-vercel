@@ -35,12 +35,11 @@ const PostDetails = ({ post }) => {
                     <div className={styles.headingSec}>
                         <div></div>
                         <div>
-                            <p
-                                className={styles.heading}
-                                style={{ fontSize: "36px" }}
+                            <h1
+                                className={styles.headingBlog}
                             >
                                 {post.title}
-                            </p>
+                            </h1>
 
                             <div
                                 className={styles.dateCategory}
