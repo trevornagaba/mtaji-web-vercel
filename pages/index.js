@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Landing from "../components/landing";
+import PageTemplate from "../components/pageTemplate";
 import BenefitsSection from "../components/landing/BenefitsSection";
 import CompaniesSection from "../components/landing/CompaniesSection";
 import RaiseFunds from "../components/RaiseFunds";
@@ -8,10 +9,6 @@ import Link from "next/link";
 
 export default function Home() {
     return (
-        <>
-            <Header />
-            <Landing/>
-            <Footer/>
-        </>
+        <Landing/>
     );
 }

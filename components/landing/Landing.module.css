@@ -1,7 +1,13 @@
-
+.tagline {
+  width: 100%;
+  background-image: url("/assets/tagline_background.svg");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: contain;
+  background-size: 20%;
+}
 
 .tagline h1 {
-    margin-top: 10vh;
     color: #09062d;
     font-family: 'Poppins';
     font-style: normal;
@@ -46,17 +52,23 @@
   }
 
 .section2Img {
-    height: 55vh;
+    width: 100%;
     background-image: url("/assets/illustration_7.png");
     background-repeat: no-repeat;
     background-position: left top;
     background-size: contain;
 }
 
+.section3 {
+  background-color: white;
+
+}
+
   
   .card {
-    width: 22vw;
-    padding: 5% 2%;
+    width: 90%;
+    min-height: 340px;
+    padding: 15% 2%;
     border-radius: 12px;
     background-color: #f7f7f7;
     text-align: center;
@@ -80,9 +92,9 @@
     color: #666666;
   }
 
-.card img {
+/* .card img {
     margin-left: 40%;
-}
+} */
 
 .underline {
     background-color: #01bbc8;
@@ -97,7 +109,7 @@
     margin-bottom: -50px;
 }
 
-.section3 {
+.section4 {
     background-color: #f7f7f7;
     padding: 5vh 10%;
     height: 100vh;
@@ -122,7 +134,7 @@
 }
   
   /* Adjust for smartphone screen sizes. */
-  @media only screen and (max-width: 600px) {
+  /* @media only screen and (max-width: 600px) {
     .benefits {
       padding: 0;
     }
@@ -131,10 +143,10 @@
       padding: 0;
       justify-content: space-evenly;
     }
-  }
+  } */
   
   /* Adjust for tablet screen sizes. */
-  @media only screen and (min-width: 600px) and (max-width: 800px) {
+  /* @media only screen and (min-width: 600px) and (max-width: 800px) {
     .benefits {
       padding: 0;
     }
@@ -143,5 +155,5 @@
       padding: 0;
       justify-content: space-evenly;
     }
-  }
+  } */
   

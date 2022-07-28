@@ -19,7 +19,8 @@ import navStyles from "./Header.module.css";
 
 import Logo from "../Logo/Logo";
 
-const pages = ["Explore", "Learn", "FAQs"];
+const pages = [ "About", "Blog", "FAQs"];
+const guest = ["Sign Up", "Sign In"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
@@ -42,16 +43,35 @@ const Header = () => {
     };
 
     return (
-        <AppBar position="fixed" className={navStyles.navBar} style={{ background: "white" }}>
-            <Toolbar style={{ backgroundColor: "white" }}>
-                <Grid container>
+        <AppBar
+            position="fixed"
+            style={{
+                background: "white",
+                boxShadow: "none",
+                width: "100vw"
+            }}
+            align="center"
+        >
+            {/* <Toolbar style={{ backgroundColor: "white" }}> */}
+            <Grid
+                item
+                justifyContent="center"
+            >
+                <Grid
+                    container
+                    className={navStyles.navBar}
+                    align="left"
+                >
                     <Grid
                         item
                         sx={{
                             flexGrow: 1,
                         }}
+                        justifyContent="left"
                     >
                         <Box
+                            component="a"
+                            href="/"
                             display="inline-flex"
                             alignItems="center"
                         >
@@ -68,53 +88,65 @@ const Header = () => {
                         item
                         sx={{
                             flexGrow: 3,
-                            display: { sm: "none", md: "none", lg: "flex" },
                         }}
                     >
-                        <Grid
-                            container
+                        {/* <Grid
+                            item
+                            xs={{
+                                display: { sm: "none", md: "none", lg: "flex" },
+                            }}
                             style={{
                                 padding: "0px 10%",
                             }}
-                        >
-                            {pages.map((page) => (
-                                <Grid
-                                    key={page}
-                                    item
-                                    xs={6}
-                                    sm={6}
-                                    md={4}
-                                    lg={4}
-                                    xl={4}
-                                    alignItems="center"
-                                    justifyContent="center"
-                                >
-                                    <Typography
-                                        noWrap
-                                        component="a"
-                                        href="/"
-                                        style={{
-                                            fontFamily: "'Poppins', sans-serif",
-                                            fontSize: "18px",
-                                            fontWeight: "400",
-                                            color: "#09062D",
-                                        }}
+                        > */}
+                            <Box
+                                sx={{
+                                    display: { xs: "none", sm: "none", md: "none", lg: "flex" },
+                                }}
+                                style={{
+                                    paddingTop: "10px",
+                                }}
+                            >
+                                {pages.map((page) => (
+                                    <Grid
+                                        key={page}
+                                        item
+                                        xs={6}
+                                        sm={6}
+                                        md={4}
+                                        lg={4}
+                                        xl={4}
+                                        align="center"
+                                        
                                     >
-                                        {page}
-                                    </Typography>
-                                </Grid>
-                            ))}
-                        </Grid>
+                                        <Typography
+                                            noWrap
+                                            component="a"
+                                            href={page.toLowerCase()}
+                                            style={{
+                                                fontFamily: "'Poppins', sans-serif",
+                                                fontSize: "16px",
+                                                fontWeight: "400",
+                                                color: "#09062D",
+                                            }}
+                                        >
+                                            {page}
+                                        </Typography>
+                                    </Grid>
+                                ))}
+                            </Box>
+                        {/* </Grid> */}
                     </Grid>
                     <Grid
                         item
                         sx={{
                             flexGrow: 1,
                         }}
+                        align="right"
                     >
                         <Box
                             sx={{
-                                display: { md: "none", lg: "flex" },
+                                display: { xs: "none", sm: "none", lg: "flex" },
                             }}
                             justifyContent="right"
                         >
@@ -148,59 +180,68 @@ const Header = () => {
                         </Box>
                         <Box
                             sx={{
-                                display: { md: "flex", lg: "none" },
+                                display: { xs: "flex", sm: "flex", md: "flex", lg: "none" },
                             }}
                             justifyContent="right"
+                            style={{
+                                paddingTop: "5px"
+                            }}
                         >
-                            <IconButton
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleOpenNavMenu}
-                                color="inherit"
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorElNav}
-                                anchorOrigin={{
-                                    vertical: "bottom",
-                                    horizontal: "left",
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: "top",
-                                    horizontal: "left",
-                                }}
-                                open={Boolean(anchorElNav)}
-                                onClose={handleCloseNavMenu}
-                                sx={{
-                                    display: { xs: "block", md: "none" },
-                                }}
-                            >
-                                {pages.map((page) => (
-                                    <MenuItem
-                                        key={page}
-                                        onClick={handleCloseNavMenu}
-                                    >
-                                        <Typography
-                                            textAlign="center"
-                                            style={{
-                                                color: "#888",
-                                                fontFamily:
-                                                    "'Quicksand', sans-serif",
-                                            }}
+                            <Stack spacing={2} direction="row">
+                                <IconButton
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={handleOpenNavMenu}
+                                    color="inherit"
+                                    style={{
+                                        padding: "0",
+                                    }}
+                                >
+                                    <MenuIcon style={{ fontSize: "30px" }}/>
+                                </IconButton>
+                                <Menu
+                                    id="menu-appbar"
+                                    anchorEl={anchorElNav}
+                                    anchorOrigin={{
+                                        vertical: "bottom",
+                                        horizontal: "left",
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: "top",
+                                        horizontal: "left",
+                                    }}
+                                    open={Boolean(anchorElNav)}
+                                    onClose={handleCloseNavMenu}
+                                    sx={{
+                                        display: { md: "block", lg: "none" },
+                                    }}
+                                >
+                                    {pages.map((page) => (
+                                        <MenuItem
+                                            key={page}
+                                            onClick={handleCloseNavMenu}
                                         >
-                                            {page}
-                                        </Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
+                                            <Typography
+                                                textAlign="center"
+                                                style={{
+                                                    color: "#888",
+                                                    fontFamily:
+                                                        "'Quicksand', sans-serif",
+                                                }}
+                                            >
+                                                {page}
+                                            </Typography>
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
+                            </Stack>
                         </Box>
                     </Grid>
                 </Grid>
-            </Toolbar>
+            </Grid>
+            {/* </Toolbar> */}
         </AppBar>
     );
 };

@@ -6,9 +6,12 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <Grid
+        item
         style={{
-            padding: "8vh 7%"
+            padding: "8vh 5%",
+            width: "100vw"
         }}
+        align="center"
 
     >
         <div className={styles.container}>
