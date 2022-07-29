@@ -28,7 +28,7 @@ const ProfileImg = ({ hasEdit, onClick, imageUrl, imageSize, name, title }) => {
                     className="w-10 h-10 relative pointer rounded-full"
                     onClick={onClick}
                 >
-                    <img src={imageUrl} alt="profileimage" />
+                    <img src={imageUrl} alt="profileimage" className="rounded-full"/>
                     {!!hasEdit && (
                         <img
                             src="/assets/editicon.svg"
