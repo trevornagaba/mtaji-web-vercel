@@ -89,16 +89,16 @@ const Landing = () => {
                     item
                     sx={12}
                     sm={12}
-                    md={6}
-                    lg={6}
-                    xl={6}
+                    md={7}
+                    lg={8}
+                    xl={9}
                     className={styles.tagline}
                 >
                     <h1>
                     Invest in Africa&apos;s <br />
                     next big company
                     </h1>
-                    <p>
+                    <p style={{ padding: '15px 0' }}>
                     Be a part owner of a thriving business with as little as <br/>UGX 50,000
                     </p>
                     <Stack
@@ -136,9 +136,9 @@ const Landing = () => {
                     item
                     xs={12}
                     sm={12}
-                    md={6}
-                    lg={6}
-                    xl={6}
+                    md={5}
+                    lg={4}
+                    xl={3}
                     style={{
                         width: "100%",
                         padding: "5vh 0"
