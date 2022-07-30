@@ -63,17 +63,17 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const menuPopupStyles = (theme) => ({
     popoverPaper: {
-        width: '80vw',
-        height: '35vh',
+        width: '100vw',
+        height: '100vh',
         maxHeight: 'unset',
-        top: '7.2% !important',
-        left: '5% !important',
-        boxShadow: '0px 1px 5px #01bbc8',
+        top: '8% !important',
+        left: '0% !important',
         fontFamily: 'Poppins',
         fontStyle: 'normal',
         fontWeight: '500',
         fontSize: '14px',
-        lineHeight: '21px'
+        lineHeight: '21px',
+        boxShadow: 'none'
     },
   });
 
@@ -292,12 +292,13 @@ const Header = (props) => {
                                                 href={page.pageLink}
                                                 textAlign="center"
                                                 style={{
-                                                    color: "#888",
+                                                    color: "#000000",
                                                     fontFamily:
                                                         "'Quicksand', sans-serif",
                                                 }}
                                             >
-                                                <span style={{ marginRight: "5px", color: "#01bbc8" }}>{page.pageIcon}</span>{page.pageName}
+                                                <span style={{ marginRight: "5px", color: "#01bbc8" }}>{page.pageIcon}</span>
+                                                <span style={{ color: router.pathname===`/${page.pageLink}`?'#01bbc8':'#000000' }}>{page.pageName}</span>
                                             </Typography>
                                         </MenuItem>
                                     ))}
