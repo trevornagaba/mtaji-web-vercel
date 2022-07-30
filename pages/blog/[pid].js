@@ -1,27 +1,28 @@
 import React from "react";
 import parse from "html-react-parser";
-import { Posts } from "../../components/Blog/post";
+// import { Posts } from "../../components/Blog/post";
 import PageTemplate from "../../components/pageTemplate";
 import ProfileImg from "../../components/ProfileImageIcon";
 import styles from "../../styles/blog.module.css";
+import axios from "axios";
+import md from "markdown-it"
 
 export const getServerSideProps = async (context) => {
     const id = context.query.pid;
-    const post = Posts.filter((post) => {
-        if (post.id.toString() == id.toString()) {
-            return true;
-        }
-        return false;
-    });
-
+    // const post = Posts.filter((post) => {
+    //     if (post.id.toString() == id.toString()) {
+    //         return true;
+    //     }
+    //     return false;
+    // });
+    const post = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/blogs/${id}`)
     return {
-        props: { post },
+        props: { post:post.data },
     };
 };
 const PostDetails = ({ post }) => {
     //convert post into object
-    post = Object.assign({}, ...post);
-    console.log(post);
+    // post = Object.assign({}, ...post);
     return (
         <PageTemplate
             hasNavbar={true}
@@ -34,12 +35,11 @@ const PostDetails = ({ post }) => {
                     <div className={styles.headingSec}>
                         <div></div>
                         <div>
-                            <p
-                                className={styles.heading}
-                                style={{ fontSize: "36px" }}
+                            <h1
+                                className={styles.headingBlog}
                             >
                                 {post.title}
-                            </p>
+                            </h1>
 
                             <div
                                 className={styles.dateCategory}
@@ -54,14 +54,18 @@ const PostDetails = ({ post }) => {
                         <div>
                             <ProfileImg
                                 name={post.author}
-                                imageUrl={post.authorProfileImageUrl}
+                                imageUrl={post.authorThumbFile}
                                 title={post.authorTitle}
                             />
                         </div>
-                        <div className={styles.body}>
                             {/* <img src={post.imgUrl} alt="post image"/> */}
-                            {/* <div className="product-des" dangerouslySetInnerHTML={{ __html: post.body }}/> */}
-                            {parse(post.body)}
+                            {/* {parse(post.body)} */}
+                            {/* <div className="prose lg:prose-xl max-w-none mx-0" dangerouslySetInnerHTML={{ __html: md().render(post.body) }}/> */}
+                        <div className={styles.body}>
+                            <div className="prose lg:prose-xl max-w-none mx-0">
+                                {parse(md().render(post.body))}
+
+                            </div>
                         </div>
                     </div>
                 </div>

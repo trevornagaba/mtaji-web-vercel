@@ -18,7 +18,7 @@ const PageTemplate = ({
     isGreyBackgound
 }) => {
     return (
-        <>
+        <div style={isGreyBackgound && {backgroundColor:"#F7F7F7"}}>
             {hasNavbar && <Header />}
             {hasWrapper ?
                 <Wrapper>
@@ -27,7 +27,7 @@ const PageTemplate = ({
             : children
             }
             {hasFooter && <Footer />}
-        </>
+        </div>
     );
 };
 
