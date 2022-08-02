@@ -25,10 +25,10 @@ function about() {
                 </div>
                 <div className={styles.aboutImg}>
                     <div>
-                        <img src="/assets/about1.svg" alt=""></img>
+                        <img src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393229/mtaji/T94A6393_zrnbc0.jpg" alt="" style={{height:"400px"}}/>
                     </div>
                     <div>
-                        <img src="/assets/about2.svg" alt=""></img>
+                        <img src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393234/mtaji/T94A6376_slede6.jpg" alt="" style={{height:"400px", objectPosition: "center -35px"}}/>
                     </div>
                 </div>
             </section>
@@ -92,7 +92,7 @@ function about() {
                     </p>
                 </div>
                 <div className={styles.storyImg}>
-                    <img src="/assets/ourStory.svg" alt=""></img>
+                    <img src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393232/mtaji/T94A6428_pj0nkt.jpg" alt=""/>
                 </div>
             </section>
             <section className={styles.ourExperts}>
@@ -110,7 +110,7 @@ function about() {
                 </div>
                 <div className={styles.experts}>
                     <ExpertProfileCard
-                        imageLink={"/assets/expert1.svg"}
+                        imageLink={"https://res.cloudinary.com/daat2pgem/image/upload/v1659393232/mtaji/T94A5661_wuz7qm.jpg"}
                         name={"Trevor Nagaba"}
                         position={"CEO & Team lead"}
                     />
