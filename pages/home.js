@@ -3,8 +3,12 @@ import withAuth from "../components/HOC/withAuth";
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import {
+    Grid,
+} from "@mui/material";
 import { Navbar } from "../components";
 import styles from "/styles/landing/CompaniesSection.module.css";
+import PageTemplate from "../components/pageTemplate";
 import FundWalletModal from "/components/FundWalletModal/FundWalletModal";
 
 const HomePage = () => {
@@ -99,9 +103,16 @@ const HomePage = () => {
     }
 
     return (
-        <div className="home-page">
-            <Navbar className="navbar" />
-            {/* TO-DO: Add parent component to handle background */}
+        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
+            <Grid
+                item
+                style={{
+                    padding: "15vh 10%",
+                    mimHeight: "100vh",
+                    width: '100%'
+                }}
+                align={"center"}
+            >
             <div className="portfolio-section">
                 {/* Removed the header portfolio, it was redundant */}
                 <div>
@@ -449,7 +460,8 @@ const HomePage = () => {
                     }
                 }
             `}</style>
-        </div>
+        </Grid>
+    </PageTemplate>
     );
 };
 
