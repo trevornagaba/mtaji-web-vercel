@@ -8,8 +8,8 @@ import Button from "../../components/Button/Button";
 import Link from "next/link";
 import axios from "axios";
 
-const TABS = ["All", "Broadcast", "Data structure", "Algorithm", "Enginering"];
-export const getStaticProps = async () => {
+
+export const getServerSideProps = async () => {
     //fetch post from B.E
     const fetchPosts = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/blogs`
@@ -19,6 +19,18 @@ export const getStaticProps = async () => {
     }
 };
 const Blog = ({ posts }) => {
+    const [tabs, setTabs] = useState([])
+    const getTabs = () => {
+        const categories=["All"]
+        posts?.map((post) => {
+            if (!categories.includes(post.section)) {
+                return setTabs(categories.push(post.section));
+            }
+            return null;
+        });
+        return setTabs(categories);
+    };
+    
 
     //Sort Post based on date: most recently to previous post
     const sortedAll = posts.sort((a, b) => {
@@ -29,7 +41,7 @@ const Blog = ({ posts }) => {
     //filter post based on categories
     const filterByCategory = (category) => {
         return posts.filter((post) => {
-            if (post.category.toLowerCase() == category.toLowerCase()) {
+            if (post.section.toLowerCase() == category.toLowerCase()) {
                 return true;
             }
             return false;
@@ -39,21 +51,23 @@ const Blog = ({ posts }) => {
     const featuredPost = posts.find((post) => post.featured == true);
 
     //selected tab state helps to know and the currently selected tab
-    const [selectedTab, setSelectedTab] = useState(TABS[0]);
+    const [selectedTab, setSelectedTab] = useState('All');
 
     //post to render is used to store posts  that relate to a category when a tab is clicked
     let [postToRender, setPostToRender] = useState([]);
 
     const onClickTab = (tab) => {
         setSelectedTab(tab);
-        return tab == TABS[0]
+        return tab == tabs[0]
             ? setPostToRender(sortedAll)
             : setPostToRender(filterByCategory(tab));
     };
 
     useEffect(() => {
+        getTabs()
         setPostToRender(sortedAll);
     }, [posts]);
+    
     // function stripHtml(html) {
     //     if (typeof window !== "undefined") {
     //         // your code with access to window or document object here
@@ -86,15 +100,15 @@ const Blog = ({ posts }) => {
                         authorProfileImageUrl={featuredPost.authorThumbFile}
                         id={featuredPost._id}
                         title={featuredPost.title}
-                        body={featuredPost.body.replace(/(<([^>]+)>)/gi, "")}
+                        body={featuredPost.highlight}
                         date={featuredPost.date}
-                        category={featuredPost.category}
+                        category={featuredPost.section}
                         blogImage={featuredPost.imgUrl}
                         featured
                     />
                 )}
                 <div className={styles.categoryTab}>
-                    {TABS?.map((tab) => {
+                    {tabs.map((tab) => {
                         return (
                             <div
                                 key={tab}
@@ -105,7 +119,7 @@ const Blog = ({ posts }) => {
                                         : styles.tab
                                 }
                             >
-                                <p>{tab}</p>
+                                {tab}
                             </div>
                         );
                     })}
@@ -121,12 +135,12 @@ const Blog = ({ posts }) => {
                             title={post.title}
                             body={post.highlight}
                             date={post.date}
-                            category={post.category}
-                            blogImage={post.imgUrl}
+                            category={post.section}
+                            blogImage={post.imageUrl}
                         />
                     );
                 })}
-                <div className={styles.paginqation}></div>
+                {/* <div className={styles.paginqation}></div> */}
                 <div className={styles.subscribeSec} id="subscribe">
                     <strong>
                         <p className={styles.heading}>

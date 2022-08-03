@@ -22,7 +22,8 @@
 }
 .aboutImg > div > Img {
     height: 100%;
-    object-fit: cover;
+    width: 100%;
+    object-fit:cover;
     border-radius: 15px;
 }
 .ourStorySection {
@@ -39,6 +40,11 @@
 .storyImg {
     display: flex;
     justify-content: flex-end;
+}
+.storyImg >img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
 }
 .heading {
     font-family: Poppins;
@@ -83,7 +89,8 @@
     }
     .storyImg>img,
     .aboutImg > div> img {
-        width: 100%;
+        /* width: 100%; */
+        /* height: 100%; */
         border-radius: 15px;
     }
     .aboutImg {
