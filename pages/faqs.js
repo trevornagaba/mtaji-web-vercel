@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import React from "react";
 import AccordionComponent from "../components/AccordionComponent";
@@ -5,14 +6,30 @@ import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/faq.module.css";
 import axios from "axios";
 
-export const getStaticProps = async () => {
-    const stories = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/faqs`
-    );
-    return {
-        props: { stories: stories.data },
-    };
-};
+// export const getStaticProps = async () => {
+
+//     const [stories, setStories] = useState([]);
+
+//     useEffect(() => {
+//         getStories();
+//     }, []);
+
+//     const getStories = async () => {
+//         const response = await axios
+//         .get(
+//             `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/faqs`
+//         )
+//         .then((result) => {
+//             return result
+//         })
+//         .catch((error) => {
+//             return []
+//         })
+//     }
+//     return {
+//         props: { stories: stories.data },
+//     };
+// };
 
 const titleStyle = {
     fontSize: "20px",
@@ -29,7 +46,27 @@ const storyStyle = {
     color: "#09062D80",
 };
 
-const FAQs = ({ stories }) => {
+const FAQs = () => {
+
+    const [stories, setStories] = useState([]);
+
+    useEffect(() => {
+        getStories();
+    }, []);
+
+    const getStories = async () => {
+        const response = await axios
+        .get(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/faqs`
+        )
+        .then((result) => {
+            setStories(result.data)
+        })
+        .catch((error) => {
+            setStories([])
+        })
+    }
+
     const getSections = () => {
         const sections = [];
         stories?.map((story) => {
