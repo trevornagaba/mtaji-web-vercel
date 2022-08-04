@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { withStyles } from '@material-ui/core/styles';
 import Image from "next/image";
@@ -18,6 +18,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
+import { AppContext } from "../AppContext"
 
 import SignUpIcon from '@mui/icons-material/Add';
 import SignInIcon from '@mui/icons-material/ExitToApp';
@@ -79,6 +81,8 @@ const menuPopupStyles = (theme) => ({
 
 const Header = (props) => {
 
+    const { isLoaded, isAuth } = useContext(AppContext);
+    
     const router = useRouter()
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -210,33 +214,62 @@ const Header = (props) => {
                             }}
                             justifyContent="right"
                         >
-                            <Stack spacing={2} direction="row">
+                            {isLoaded?
+                                <Stack spacing={2} direction="row">
+                                    {isAuth?                                        
+                                        <Button
+                                            component="a"
+                                            href="/home"
+                                            variant="contained"
+                                            style={{
+                                                color: "#09062D",
+                                                textTransform: "none",
+                                                fontSize: "16px",
+                                            }}
+                                        >
+                                            Account
+                                        </Button>
+                                    :
+                                        <>
+                                            <Button
+                                                component="a"
+                                                href="/login"
+                                                variant="text"
+                                                style={{
+                                                    color: "#09062D",
+                                                    textTransform: "none",
+                                                    fontSize: "16px",
+                                                }}
+                                            >
+                                                Sign in
+                                            </Button>
+                                            <Button
+                                                component="a"
+                                                href="/signup"
+                                                variant="contained"
+                                                style={{
+                                                    backgroundColor: "#2518B8",
+                                                    color: "white",
+                                                    textTransform: "none",
+                                                    fontSize: "16px",
+                                                }}
+                                            >
+                                                Sign up
+                                            </Button>
+                                        </>
+                                    }
+                                </Stack>
+                            :
                                 <Button
-                                    component="a"
-                                    href="/login"
-                                    variant="text"
+                                    disabled
+                                    variant="contained"
                                     style={{
                                         color: "#09062D",
                                         textTransform: "none",
                                         fontSize: "16px",
                                     }}
-                                >
-                                    Sign in
-                                </Button>
-                                <Button
-                                    component="a"
-                                    href="/signup"
-                                    variant="contained"
-                                    style={{
-                                        backgroundColor: "#2518B8",
-                                        color: "white",
-                                        textTransform: "none",
-                                        fontSize: "16px",
-                                    }}
-                                >
-                                    Sign up
-                                </Button>
-                            </Stack>
+                                >Loading...</Button>
+                            }
                         </Box>
                         <Box
                             sx={{

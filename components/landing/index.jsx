@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import {
     Grid,
@@ -14,6 +14,8 @@ import styles from "./Landing.module.css";
 import pointerImg from "../../public/assets/tagline_background.svg";
 import landingImg from "../../public/assets/illustration_3.svg";
 import whyMtajiImg from "../../public/assets/illustration_7.png";
+
+import { AppContext } from "../AppContext"
 
 import PageTemplate from "../pageTemplate";
 import WhyMtaji from "./WhyMtaji";
@@ -36,6 +38,9 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   }));
 
 const Landing = () => {
+
+    const { isLoaded, isAuth } = useContext(AppContext);
+
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -48,6 +53,7 @@ const Landing = () => {
     const [companies, setCompanies] = useState([]);
     useEffect(() => {
         getCompanies();
+        localStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2RpZmllZEJ5IjoiIiwiX2lkIjoiNjI5Nzk4YmMyMjgwMGM1OWRiMjhkZGRlIiwicGVybWlzc2lvbkxldmVsIjoyLCJmaXJzdE5hbWUiOiJ0cmV2b3IiLCJsYXN0TmFtZSI6Im5hZ2FiYSIsImVtYWlsIjoidHJldm9yQG10YWppLmNvbSIsInVzZXJuYW1lIjoidHJldm9yIiwicGFzc3dvcmQiOiJkdGhjQ1VmbTRQNG8wK1JhMkozVVh3PT0kSkk3TlJrNHV6bUE4Y3U2dlZNVWIwdDBaNTFlVE9hTHhVNkVZK21FR2tqUU84ZGQ0b1JLQkRHZzZ3clJ1WERkbVBGd1RHODlMQ3cxQzFXM3owMmRaV3c9PSIsImNhc2hCYWxhbmNlIjoyMTAsInBvcnRmb2xpbyI6W3siY29tcGFueUlkIjoiNjI5Yzc4NDZkMjQyMWZiNDY5YTRiYTE0IiwiY29tcGFueU5hbWUiOiJVZ2FSb2xsIiwiaW5kdXN0cnkiOiJGb29kIiwiYW1vdW50IjoxMDB9LHsiY29tcGFueUlkIjoiNjI5YmViODhiYjFiZTMyNGE2NDQyZjE3IiwiY29tcGFueU5hbWUiOiJUdWJheW8iLCJpbmR1c3RyeSI6IlRvdXJpc20iLCJhbW91bnQiOiI1MCJ9XSwicGF5bWVudENoYW5uZWwiOiJ0cmV2b3IiLCJwaG90b1VybCI6InRyZXZvciIsInJlZmVyYWxDb2RlIjoiIiwic2lnblVwUmVmZXJhbENvZGUiOiIiLCJjcmVhdGlvbkRhdGUiOiIiLCJtb2RpZmljYXRpb25EYXRlIjoiIiwiaXNBY3RpdmUiOiIiLCJreWNVcmwiOiIiLCJfX3YiOjAsImlhdCI6MTY1OTYxMjY4MSwiZXhwIjoxNjU5NjE0NjgxfQ.TSYSLmXSd0UsO_rkQsrnErz9BZQrvn66J3MsP30_FMs");
     }, []);
 
     async function getCompanies() {
@@ -95,12 +101,14 @@ const Landing = () => {
                     className={styles.tagline}
                 >
                     <h1>
+                        Loaded = {isLoaded?"TRUE!":"FALSE!"} <br/>
                     Invest in Africa&apos;s <br />
                     next big company
                     </h1>
                     <p style={{ padding: '15px 0' }}>
                     Be a part owner of a thriving business with as little as <br/>UGX 50,000
                     </p>
+                    <p>Authentication: {isAuth}</p>
                     <Stack
                         spacing={2}
                         direction="row"

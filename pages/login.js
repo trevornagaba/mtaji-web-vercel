@@ -1,15 +1,20 @@
-import { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
 
 import cookieCutter from "cookie-cutter";
 
+import { AppContext } from "../components/AppContext"
+
 import HomeLogo from "../components/HomeLogo";
 import TextInput from "../components/TextInput/TextInput";
 import Alert from "../components/Alert/Alert";
 
 export default function Login() {
+
+  const { isLoaded, isAuth, handleLogin } = useContext(AppContext);
+  
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -67,31 +72,32 @@ export default function Login() {
   const handleSignin = async (e) => {
     setFetchError("");
     setLoading(true);
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`,
-        {
-          username: formData.username,
-          password: formData.password,
-        },
-        { withCredentials: true }
-      );
-      console.log(response);
-      if (response.data === "Incorrect password") {
-        setFetchError(response.data);
-        setLoading(false);
-      } else if (response.data === "No user found") {
-        setFetchError(response.data);
-        setLoading(false);
-      } else {
-        cookieCutter.set("myCookieName", "some-value"); // dummy cookie for testing
-        router.push("/home");
-        setLoading(false);
-      }
-    } catch (error) {
-      setFetchError("Oops! Something went wrong. Please try again.");
-      setLoading(false);
-    }
+    handleLogin(formData)
+    // try {
+    //   const response = await axios.post(
+    //     `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`,
+    //     {
+    //       username: formData.username,
+    //       password: formData.password,
+    //     },
+    //     { withCredentials: true }
+    //   );
+    //   console.log(response);
+    //   if (response.data === "Incorrect password") {
+    //     setFetchError(response.data);
+    //     setLoading(false);
+    //   } else if (response.data === "No user found") {
+    //     setFetchError(response.data);
+    //     setLoading(false);
+    //   } else {
+    //     cookieCutter.set("myCookieName", "some-value"); // dummy cookie for testing
+    //     router.push("/home");
+    //     setLoading(false);
+    //   }
+    // } catch (error) {
+    //   setFetchError("Oops! Something went wrong. Please try again.");
+    //   setLoading(false);
+    // }
   };
 
   const handleSubmit = async (e) => {

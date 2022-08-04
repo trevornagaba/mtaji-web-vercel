@@ -6,31 +6,6 @@ import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/faq.module.css";
 import axios from "axios";
 
-// export const getStaticProps = async () => {
-
-//     const [stories, setStories] = useState([]);
-
-//     useEffect(() => {
-//         getStories();
-//     }, []);
-
-//     const getStories = async () => {
-//         const response = await axios
-//         .get(
-//             `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/faqs`
-//         )
-//         .then((result) => {
-//             return result
-//         })
-//         .catch((error) => {
-//             return []
-//         })
-//     }
-//     return {
-//         props: { stories: stories.data },
-//     };
-// };
-
 const titleStyle = {
     fontSize: "20px",
     fontWeight: "400",
