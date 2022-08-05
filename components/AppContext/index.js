@@ -10,16 +10,16 @@ const AppContextProvider = (props) => {
     const router = useRouter();
 
     const [isLoaded, setIsLoaded] = useState(false);
-    const [errors, setErrors] = useState(false);
     const [isAuth, setIsAuth] = useState(false);
+    const [errors, setErrors] = useState(false);
     const [portfolio, setPortfolio] = useState([]);
     const [companies, setCompanies] = useState([]);
     const [faqs, setFaqs] = useState([]);
     const [transRecords, setTransRecords] = useState([]);
 
-    setInterval(() => {
-        setIsLoaded(true);
-    }, 5000);
+    useEffect(() => {
+        getCompanies();
+    }, []);
 
     const checkAuth = () => {
         let token = localStorage.getItem("token");
@@ -54,18 +54,22 @@ const AppContextProvider = (props) => {
         })
     };
 
+    const getCompany = async (companyId) => {
+        return (companies.find(company => company.id===companyId))
+    }
 
-
-    const getCompany = async () => {
+    const getCompanies = async () => {
         const response = await axios.get(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/626fde9f814d1b197742cab2` //TO-DO: route from explore page should pass a company id
-            )
-            .then((result) => {
-                setCompany(result.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies`
+        )
+        .then((result) => {
+            setCompanies(result.data);
+            setIsLoaded(true);
+        })
+        .catch((error) => {
+            setErrors(error);
+            setIsLoaded(true);
+        });
     }
 
     return (
@@ -73,7 +77,13 @@ const AppContextProvider = (props) => {
             value={{
                 isLoaded,
                 isAuth,
-                handleLogin
+                errors,
+                portfolio,
+                companies,
+                faqs,
+                transRecords,
+                handleLogin,
+                getCompany
             }}
         >
             {props.children}

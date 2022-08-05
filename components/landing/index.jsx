@@ -39,7 +39,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 const Landing = () => {
 
-    const { isLoaded, isAuth } = useContext(AppContext);
+    const { isLoaded, isAuth, companies } = useContext(AppContext);
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -48,36 +48,6 @@ const Landing = () => {
         maximumFractionDigits: 0,
         minimumFractionDigits: 0,
     });
-
-    // Setup state management
-    const [companies, setCompanies] = useState([]);
-    useEffect(() => {
-        getCompanies();
-        localStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2RpZmllZEJ5IjoiIiwiX2lkIjoiNjI5Nzk4YmMyMjgwMGM1OWRiMjhkZGRlIiwicGVybWlzc2lvbkxldmVsIjoyLCJmaXJzdE5hbWUiOiJ0cmV2b3IiLCJsYXN0TmFtZSI6Im5hZ2FiYSIsImVtYWlsIjoidHJldm9yQG10YWppLmNvbSIsInVzZXJuYW1lIjoidHJldm9yIiwicGFzc3dvcmQiOiJkdGhjQ1VmbTRQNG8wK1JhMkozVVh3PT0kSkk3TlJrNHV6bUE4Y3U2dlZNVWIwdDBaNTFlVE9hTHhVNkVZK21FR2tqUU84ZGQ0b1JLQkRHZzZ3clJ1WERkbVBGd1RHODlMQ3cxQzFXM3owMmRaV3c9PSIsImNhc2hCYWxhbmNlIjoyMTAsInBvcnRmb2xpbyI6W3siY29tcGFueUlkIjoiNjI5Yzc4NDZkMjQyMWZiNDY5YTRiYTE0IiwiY29tcGFueU5hbWUiOiJVZ2FSb2xsIiwiaW5kdXN0cnkiOiJGb29kIiwiYW1vdW50IjoxMDB9LHsiY29tcGFueUlkIjoiNjI5YmViODhiYjFiZTMyNGE2NDQyZjE3IiwiY29tcGFueU5hbWUiOiJUdWJheW8iLCJpbmR1c3RyeSI6IlRvdXJpc20iLCJhbW91bnQiOiI1MCJ9XSwicGF5bWVudENoYW5uZWwiOiJ0cmV2b3IiLCJwaG90b1VybCI6InRyZXZvciIsInJlZmVyYWxDb2RlIjoiIiwic2lnblVwUmVmZXJhbENvZGUiOiIiLCJjcmVhdGlvbkRhdGUiOiIiLCJtb2RpZmljYXRpb25EYXRlIjoiIiwiaXNBY3RpdmUiOiIiLCJreWNVcmwiOiIiLCJfX3YiOjAsImlhdCI6MTY1OTYxMjY4MSwiZXhwIjoxNjU5NjE0NjgxfQ.TSYSLmXSd0UsO_rkQsrnErz9BZQrvn66J3MsP30_FMs");
-    }, []);
-
-    async function getCompanies() {
-        const response = await axios
-            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies`, {
-                withCredentials: true,
-            })
-            .then((result) => {
-                console.log(typeof result);
-                console.log(result.data);
-                // TO-DO: Update after sorting out auth
-                if (result.data == "Please login") {
-                    setCompanies("$");
-                } else {
-                    setCompanies(result.data);
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                setCompanies([]);
-            });
-    }
-
-    const limit = Str('Hello Marcus').limit(100, '...').get()
 
     return (
         <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
@@ -101,14 +71,12 @@ const Landing = () => {
                     className={styles.tagline}
                 >
                     <h1>
-                        Loaded = {isLoaded?"TRUE!":"FALSE!"} <br/>
                     Invest in Africa&apos;s <br />
                     next big company
                     </h1>
                     <p style={{ padding: '15px 0' }}>
                     Be a part owner of a thriving business with as little as <br/>UGX 50,000
                     </p>
-                    <p>Authentication: {isAuth}</p>
                     <Stack
                         spacing={2}
                         direction="row"
@@ -217,7 +185,7 @@ const Landing = () => {
                         </p>
                         <div className={styles.underline2} />
                     </Grid>
-                    {companies.map((company, index) => (
+                    {companies?.map((company, index) => (
                         <Grid
                             key={index}
                             item
