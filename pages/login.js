@@ -16,7 +16,7 @@ export default function Login() {
   const { isLoaded, isAuth, handleLogin } = useContext(AppContext);
   
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
@@ -30,17 +30,17 @@ export default function Login() {
     let touchedObject = {};
     let isValid = true;
 
-    // validate username
-    if (!formData.username) {
-      errorsObject.username = "Username is required.";
-      touchedObject.username = false;
+    // validate email
+    if (!formData.email) {
+      errorsObject.email = "Email is required.";
+      touchedObject.email = false;
       isValid = false;
     }
 
     // validate not admin
-    if (formData.username == "admin") {
-      errorsObject.username = "Username is not permitted.";
-      touchedObject.username = false;
+    if (formData.email == "admin") {
+      errorsObject.email = "Email is not permitted.";
+      touchedObject.email = false;
       isValid = false;
     }
 
@@ -73,31 +73,6 @@ export default function Login() {
     setFetchError("");
     setLoading(true);
     handleLogin(formData)
-    // try {
-    //   const response = await axios.post(
-    //     `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`,
-    //     {
-    //       username: formData.username,
-    //       password: formData.password,
-    //     },
-    //     { withCredentials: true }
-    //   );
-    //   console.log(response);
-    //   if (response.data === "Incorrect password") {
-    //     setFetchError(response.data);
-    //     setLoading(false);
-    //   } else if (response.data === "No user found") {
-    //     setFetchError(response.data);
-    //     setLoading(false);
-    //   } else {
-    //     cookieCutter.set("myCookieName", "some-value"); // dummy cookie for testing
-    //     router.push("/home");
-    //     setLoading(false);
-    //   }
-    // } catch (error) {
-    //   setFetchError("Oops! Something went wrong. Please try again.");
-    //   setLoading(false);
-    // }
   };
 
   const handleSubmit = async (e) => {
@@ -129,11 +104,11 @@ export default function Login() {
             <div className="inputs">
               <TextInput
                 type="text"
-                name="username"
-                placeholder="Username"
+                name="email"
+                placeholder="Email"
                 onChange={handleChange}
-                value={formData.username}
-                error={errors.username}
+                value={formData.email}
+                error={errors.email}
               />
               <TextInput
                 type="password"

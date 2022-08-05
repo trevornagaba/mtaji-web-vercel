@@ -126,18 +126,6 @@ const Landing = () => {
                         variant="outlined"
                         style={{ border: "1px #01BBC8 solid", color: "#01BBC8", textTransform: 'none', height: "40px" }}
                     >Raise funds</Button>
-                    {/* <Button                        
-                        style={{ width: '50px', textTransform: 'none', height: "40px" }}
-                    >
-                        <Image
-                            src={pointerImg}
-                            alt="Pointer"
-                            width={150}
-                            style={{
-                                cursor: "none"
-                            }}         
-                        />
-                    </Button> */}
                     </Stack>
                 </Grid>
                 <Grid

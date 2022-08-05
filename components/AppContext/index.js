@@ -29,18 +29,22 @@ const AppContextProvider = (props) => {
 
     const handleLogin = async (userData) => {
         setIsLoaded(false)
+        let headers = {
+
+        }
         // try {
         const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`,
-            {
-                username: userData.username,
-                password: userData.password,
-            },
-            { withCredentials: true }
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'Application/json',
+                },
+                userData
+            }
+            
         )
         .then((result) => {
             console.log(result.data)
-            console.log('TOKEN:=====>', response.data.token)
             setIsAuth(true)
             setIsLoaded(true);
             router.push("/");
@@ -48,24 +52,21 @@ const AppContextProvider = (props) => {
         .catch((error) => {
             setErrors(error)
         })
-        //     if (response.data === "Incorrect password") {
-        //         setErrors(response.data);
-        //         setIsLoaded(true);
-        //     } else if (response.data === "No user found") {
-        //         setErrors(response.data);
-        //         setIsLoaded(true);
-        //     } else {
-        //         // localStorage.setItem("token", response.data.token)
-        //         console.log('TOKEN:=====>', response.data.token)
-        //         setIsAuth(true)
-        //         setIsLoaded(true);
-        //         router.push("/");
-        //     }
-        // } catch (error) {
-        //     setErrors("Oops! Something went wrong. Please try again.");
-        //     setIsLoaded(true);
-        // }
     };
+
+
+
+    const getCompany = async () => {
+        const response = await axios.get(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/626fde9f814d1b197742cab2` //TO-DO: route from explore page should pass a company id
+            )
+            .then((result) => {
+                setCompany(result.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
     return (
         <AppContext.Provider
