@@ -2,6 +2,7 @@ import React from "react";
 import ExpertProfileCard from "../components/expertProfileCard/expertProfileCard";
 import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/about.module.css";
+import Image from 'next/image'
 
 function about() {
     return (
@@ -25,10 +26,10 @@ function about() {
                 </div>
                 <div className={styles.aboutImg}>
                     <div>
-                        <img src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393229/mtaji/T94A6393_zrnbc0.jpg" alt="" style={{height:"400px"}}/>
+                        <Image src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393229/mtaji/T94A6393_zrnbc0.jpg" alt="" layout="fill" objectFit="cover" priority={true}/>
                     </div>
                     <div>
-                        <img src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393234/mtaji/T94A6376_slede6.jpg" alt="" style={{height:"400px", objectPosition: "center -35px"}}/>
+                        <Image src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393234/mtaji/T94A6376_slede6.jpg" alt="" layout="fill" objectFit="cover" objectPosition="center -35px" priority={true} />
                     </div>
                 </div>
             </section>
@@ -92,7 +93,7 @@ function about() {
                     </p>
                 </div>
                 <div className={styles.storyImg}>
-                    <img src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393232/mtaji/T94A6428_pj0nkt.jpg" alt=""/>
+                    <Image src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393232/mtaji/T94A6428_pj0nkt.jpg" alt="" layout="fill" objectFit="cover" priority={true}/>
                 </div>
             </section>
             <section className={styles.ourExperts}>
@@ -125,12 +126,12 @@ function about() {
                         position={"Founder & Head of Investments"}
                     />
                     <ExpertProfileCard
-                        imageLink={"/assets/expert4.svg"}
+                        imageLink={"https://res.cloudinary.com/daat2pgem/image/upload/v1659907972/mtaji/T94A6376_2_hdvjqr.jpg"}
                         name={"Conifa Ndawula"}
                         position={"Head of Product"}
                     />
                     <ExpertProfileCard
-                        imageLink={"/assets/expert5.svg"}
+                        imageLink={"https://res.cloudinary.com/daat2pgem/image/upload/v1659393236/mtaji/T94A6387_lbisla.jpg"}
                         name={"Sydney Rugambwa"}
                         position={"Head of Growth"}
                     />
