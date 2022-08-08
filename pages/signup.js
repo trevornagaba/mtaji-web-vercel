@@ -129,7 +129,7 @@ export default function SignUp() {
             </div>
           </div>
           <div><br/></div>
-          <p className="title">Welcome! Let's get you started</p>
+          <p className="title">Welcome! Let&apos;s get you started</p>
           <p className="subtitle">Fill in your details to get started</p>
           {/* Fetch or Server errors */}
           {fetchError && <Alert message={fetchError} />}
