@@ -187,7 +187,7 @@ export default function SignUp() {
             </div>
           </form>
         </div>
-        <img src="assets/signin2.svg" className="absolute bottom-2 w-20" style={{left:"0px"}}/>
+        <img src="assets/signin2.svg" className="svg absolute bottom-2 w-20" style={{left:"0px"}}/>
       </div>
 
       <style jsx>{`
@@ -333,6 +333,9 @@ export default function SignUp() {
         @media only screen and (max-width: 600px) {
           .main-container {
             display: block;
+          }
+          .svg{
+            display: none;
           }
 
           .background-container {
