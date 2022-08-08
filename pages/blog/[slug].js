@@ -8,7 +8,7 @@ import axios from "axios";
 import md from "markdown-it"
 
 export const getServerSideProps = async (context) => {
-    const id = context.query.pid;
+    const id = context.query.jdq_sf;
     // const post = Posts.filter((post) => {
     //     if (post.id.toString() == id.toString()) {
     //         return true;
