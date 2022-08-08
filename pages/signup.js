@@ -118,7 +118,9 @@ export default function SignUp() {
   return (
     <>
       <div className="main-container">
-        <div className="background-container" />
+        <div className="background-container">
+        <img src="assets/signin.svg" className="svg absolute bottom-20 w-20" style={{left:"-40px"}}/>
+        </div>
 
         <div className="content">
           <div className="top-container">
@@ -127,7 +129,8 @@ export default function SignUp() {
             </div>
           </div>
           <div><br/></div>
-          <p className="title">Sign Up</p>
+          <p className="title">Welcome! Let's get you started</p>
+          <p className="subtitle">Fill in your details to get started</p>
           {/* Fetch or Server errors */}
           {fetchError && <Alert message={fetchError} />}
           <form className="signup-form" onSubmit={handleSubmit}>
@@ -135,6 +138,7 @@ export default function SignUp() {
               <TextInput
                 type="text"
                 name="username"
+                label="Username"
                 placeholder="Username"
                 onChange={handleChange}
                 value={formData.username}
@@ -144,6 +148,7 @@ export default function SignUp() {
               <TextInput
                 type="text"
                 name="email"
+                label="Email"
                 placeholder="Email"
                 onChange={handleChange}
                 value={formData.email}
@@ -153,6 +158,7 @@ export default function SignUp() {
               <TextInput
                 type="password"
                 name="password"
+                label="Password"
                 placeholder="Password"
                 onChange={handleChange}
                 value={formData.password}
@@ -162,6 +168,7 @@ export default function SignUp() {
               <TextInput
                 type="password"
                 name="passwordConfirmation"
+                label="Confirm password"
                 placeholder="Confirm Password"
                 onChange={handleChange}
                 value={formData.passwordConfirmation}
@@ -180,6 +187,7 @@ export default function SignUp() {
             </div>
           </form>
         </div>
+        <img src="assets/signin2.svg" className="absolute bottom-2 w-20" style={{left:"0px"}}/>
       </div>
 
       <style jsx>{`
@@ -195,6 +203,7 @@ export default function SignUp() {
           background: url("/assets/signup.svg");
           background-repeat: no-repeat;
           background-size:cover;
+          position: relative;
         }
 
         .content {
@@ -204,11 +213,12 @@ export default function SignUp() {
 
         .top-container {
           display: flex;
+          margin-bottom: 40px;
         }
 
         .logo-container {
           display: inline-block;
-          margin: 0 auto;
+          margin: 0 50px;
         }
 
         .title {
@@ -217,6 +227,11 @@ export default function SignUp() {
           color: #09062d;
           font-size: 32px;
           font-weight: bold;
+        }
+        
+        .subtitle {
+          text-align: center;
+          color: #8c8c8c;
         }
 
         .signup-form {

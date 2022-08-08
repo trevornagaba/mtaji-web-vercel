@@ -105,8 +105,9 @@ export default function Login() {
   return (
     <>
       <div className="main-container">
-        <div className="background-container" />
-
+        <div className="background-container">
+          <img src="assets/signin.svg" className="svg absolute bottom-20 w-20" style={{left:"-40px"}}/>
+        </div>
         <div className="content">
           <div className="top-container">
             <div className="logo-container">
@@ -114,8 +115,8 @@ export default function Login() {
             </div>
           </div>
           <div><br/></div>
-          <p className="title">Welcome back</p>
-          <p className="subtitle">Please sign in to your account</p>
+            <p className="title">Hey There! Welcome back</p>
+            <p className="subtitle">We missed you quite a bit...</p>
           <div><br/></div>
           {/* Fetch or Server errors */}
           {fetchError && <Alert message={fetchError} />}
@@ -124,6 +125,7 @@ export default function Login() {
               <TextInput
                 type="text"
                 name="username"
+                label="Username"
                 placeholder="Username"
                 onChange={handleChange}
                 value={formData.username}
@@ -132,6 +134,7 @@ export default function Login() {
               <TextInput
                 type="password"
                 name="password"
+                label="Password"
                 placeholder="Password"
                 onChange={handleChange}
                 value={formData.password}
@@ -156,6 +159,7 @@ export default function Login() {
             </div>
           </form>
         </div>
+        <img src="assets/signin2.svg" className="absolute bottom-2 w-20" style={{left:"0px"}}/>
       </div>
 
       <style jsx>{`
@@ -171,6 +175,7 @@ export default function Login() {
           background: url("/assets/login.svg");
           background-repeat: no-repeat;
           background-size:cover;
+          position: relative
         }
 
         .content {
@@ -180,11 +185,12 @@ export default function Login() {
 
         .top-container {
           display: flex;
+          margin-bottom: 60px;
         }
 
         .logo-container {
           display: inline-block;
-          margin: 0 auto;
+          margin: 0 50px;
         }
 
         .title {
