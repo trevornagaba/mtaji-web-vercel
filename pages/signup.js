@@ -9,7 +9,7 @@ import Alert from "../components/Alert/Alert";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
-    username: "",
+    // username: "",
     email: "",
     password: "",
     passwordConfirmation: "",
@@ -26,11 +26,11 @@ export default function SignUp() {
     let isValid = true;
 
     // validate username
-    if (!formData.username) {
-      errorsObject.username = "Username is required.";
-      touchedObject.username = false;
-      isValid = false;
-    }
+    // if (!formData.username) {
+    //   errorsObject.username = "Username is required.";
+    //   touchedObject.username = false;
+    //   isValid = false;
+    // }
 
     // validate email
     const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
@@ -89,7 +89,7 @@ export default function SignUp() {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`,
         {
-          username: formData.username,
+          // username: formData.username,
           email: formData.email,
           password: formData.password,
         }
@@ -136,7 +136,7 @@ export default function SignUp() {
             {fetchError && <Alert message={fetchError} />}
             <form className="signup-form" onSubmit={handleSubmit}>
               <div className="inputs">
-                <TextInput
+                {/* <TextInput
                   type="text"
                   name="username"
                   label="Username"
@@ -145,7 +145,7 @@ export default function SignUp() {
                   value={formData.username}
                   touched={touched.username}
                   error={errors.username}
-                />
+                /> */}
                 <TextInput
                   type="text"
                   name="email"
