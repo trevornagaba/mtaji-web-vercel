@@ -9,7 +9,7 @@ import Alert from "../components/Alert/Alert";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
-    username: "",
+    // username: "",
     email: "",
     password: "",
     passwordConfirmation: "",
@@ -26,11 +26,11 @@ export default function SignUp() {
     let isValid = true;
 
     // validate username
-    if (!formData.username) {
-      errorsObject.username = "Username is required.";
-      touchedObject.username = false;
-      isValid = false;
-    }
+    // if (!formData.username) {
+    //   errorsObject.username = "Username is required.";
+    //   touchedObject.username = false;
+    //   isValid = false;
+    // }
 
     // validate email
     const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
@@ -89,7 +89,7 @@ export default function SignUp() {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`,
         {
-          username: formData.username,
+          // username: formData.username,
           email: formData.email,
           password: formData.password,
         }
@@ -129,63 +129,66 @@ export default function SignUp() {
             </div>
           </div>
           <div><br/></div>
-          <p className="title">Welcome! Let&apos;s get you started</p>
-          <p className="subtitle">Fill in your details to get started</p>
-          {/* Fetch or Server errors */}
-          {fetchError && <Alert message={fetchError} />}
-          <form className="signup-form" onSubmit={handleSubmit}>
-            <div className="inputs">
-              <TextInput
-                type="text"
-                name="username"
-                label="Username"
-                placeholder="Username"
-                onChange={handleChange}
-                value={formData.username}
-                touched={touched.username}
-                error={errors.username}
-              />
-              <TextInput
-                type="text"
-                name="email"
-                label="Email"
-                placeholder="Email"
-                onChange={handleChange}
-                value={formData.email}
-                touched={touched.email}
-                error={errors.email}
-              />
-              <TextInput
-                type="password"
-                name="password"
-                label="Password"
-                placeholder="Password"
-                onChange={handleChange}
-                value={formData.password}
-                touched={touched.password}
-                error={errors.password}
-              />
-              <TextInput
-                type="password"
-                name="passwordConfirmation"
-                label="Confirm password"
-                placeholder="Confirm Password"
-                onChange={handleChange}
-                value={formData.passwordConfirmation}
-                touched={touched.passwordConfirmation}
-                error={errors.passwordConfirmation}
-              />
-              <button>{loading ? "Loading..." : "Sign Up"}</button>
-              <div><br/></div>
-              <div className="sign-in-prompt">
-                <p className="question">Already have an account?</p>
+          <div style={{width:'100%', height:'80vh', display:'flex', flexDirection:'column', alignItems:'center', padding: '0 5vw', boxSizing:'border-box', overflow: 'auto'}}>
+            <p className="title">Welcome! Let&apos;s get you started</p>
+            <p className="subtitle">Fill in your details to get started</p>
+            {/* Fetch or Server errors */}
+            {fetchError && <Alert message={fetchError} />}
+            <form className="signup-form" onSubmit={handleSubmit}>
+              <div className="inputs">
+                {/* <TextInput
+                  type="text"
+                  name="username"
+                  label="Username"
+                  placeholder="Username"
+                  onChange={handleChange}
+                  value={formData.username}
+                  touched={touched.username}
+                  error={errors.username}
+                /> */}
+                <TextInput
+                  type="text"
+                  name="email"
+                  label="Email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  value={formData.email}
+                  touched={touched.email}
+                  error={errors.email}
+                />
+                <TextInput
+                  type="password"
+                  name="password"
+                  label="Password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  value={formData.password}
+                  touched={touched.password}
+                  error={errors.password}
+                />
+                <TextInput
+                  type="password"
+                  name="passwordConfirmation"
+                  label="Confirm password"
+                  placeholder="Confirm Password"
+                  onChange={handleChange}
+                  value={formData.passwordConfirmation}
+                  touched={touched.passwordConfirmation}
+                  error={errors.passwordConfirmation}
+                />
+                <button>{loading ? "Loading..." : "Sign Up"}</button>
+                <div><br/></div>
+                <div className="sign-in-prompt">
+                  <p className="question">Already have an account?</p>
 
-                <Link href="/login">
-                  <p className="link">Login</p>
-                </Link>
+                  <Link href="/login">
+                    <p className="link">Login</p>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+
+          </div>
         </div>
         <img src="assets/signin2.svg" className="svg absolute bottom-2 w-20" style={{left:"0px"}}/>
       </div>
@@ -213,7 +216,7 @@ export default function SignUp() {
 
         .top-container {
           display: flex;
-          margin-bottom: 40px;
+          height: 10vh
         }
 
         .logo-container {
@@ -236,10 +239,11 @@ export default function SignUp() {
 
         .signup-form {
           padding: 16px;
+          width:100%
         }
 
         .signup-form .inputs {
-          width: 80%;
+          width: 100%;
           margin: 0 auto;
         }
 
@@ -339,11 +343,7 @@ export default function SignUp() {
           }
 
           .background-container {
-            height: 40vh;
-            /*TO-DO: Replace this login_background with the actual signup background as was working on the intial develop/ui-prototype branch*/
-            background: url("/assets/login_background.svg");
-            background-position: center;
-            background-size: cover;
+            height: 0
           }
 
           .signup-form .inputs {
@@ -354,20 +354,22 @@ export default function SignUp() {
           .signup-form button {
             width: 100%;
           }
+          .logo-container{
+            margin: 0 auto
+          }
         }
 
         /* Adjust for tablet screen sizes. */
-        @media only screen and (min-width: 600px) and (max-width: 800px) {
+        @media only screen and (min-width: 600px) and (max-width: 1000px) {
           .main-container {
             display: block;
           }
 
           .background-container {
-            height: 40vh;
-            /*TO-DO: Replace this placeholder login_background with the actual signup background as was working on the intial develop/ui-prototype branch*/
-            background: url("/assets/login_background.svg");
-            background-position: center;
-            background-size: cover;
+            height: 0
+          }
+          .logo-container{
+            margin: 0 auto
           }
         }
       `}</style>

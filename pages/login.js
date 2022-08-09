@@ -11,7 +11,7 @@ import Alert from "../components/Alert/Alert";
 
 export default function Login() {
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
@@ -26,18 +26,18 @@ export default function Login() {
     let isValid = true;
 
     // validate username
-    if (!formData.username) {
-      errorsObject.username = "Username is required.";
-      touchedObject.username = false;
+    if (!formData.email) {
+      errorsObject.email = "Email is required";
+      touchedObject.email = false;
       isValid = false;
     }
 
     // validate not admin
-    if (formData.username == "admin") {
-      errorsObject.username = "Username is not permitted.";
-      touchedObject.username = false;
-      isValid = false;
-    }
+    // if (formData.username == "admin") {
+    //   errorsObject.username = "Username is not permitted.";
+    //   touchedObject.username = false;
+    //   isValid = false;
+    // }
 
     // validate password
     if (!formData.password) {
@@ -71,7 +71,7 @@ export default function Login() {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`,
         {
-          username: formData.username,
+          username: formData.email,
           password: formData.password,
         },
         { withCredentials: true }
@@ -115,6 +115,7 @@ export default function Login() {
             </div>
           </div>
           <div><br/></div>
+          <div style={{width:'100%', height:'80vh', display:'flex', flexDirection:'column', alignItems:'center', padding: '0 5vw', boxSizing:'border-box', overflow: 'auto'}}>
             <p className="title">Hey There! Welcome back</p>
             <p className="subtitle">We missed you quite a bit...</p>
           <div><br/></div>
@@ -124,12 +125,12 @@ export default function Login() {
             <div className="inputs">
               <TextInput
                 type="text"
-                name="username"
-                label="Username"
-                placeholder="Username"
+                name="email"
+                label="Email"
+                placeholder="Email"
                 onChange={handleChange}
-                value={formData.username}
-                error={errors.username}
+                value={formData.email}
+                error={errors.email}
               />
               <TextInput
                 type="password"
@@ -141,14 +142,14 @@ export default function Login() {
                 error={errors.password}
               />
               <p className="password-reset">Forgot password?</p>
-            </div>
             <button>{loading ? "Loading..." : "Sign In"}</button>
+            </div>
 
-            <div className="or-option">
+            {/* <div className="or-option">
               <div></div>
               <span>or</span>
               <div></div>
-            </div>
+            </div> */}
 
             <div className="sign-up-prompt">
               <p className="question">New Here?</p>
@@ -158,6 +159,8 @@ export default function Login() {
               </Link>
             </div>
           </form>
+
+          </div>
         </div>
         <img src="assets/signin2.svg" className="svg absolute bottom-2 w-20" style={{left:"0px"}}/>
       </div>
@@ -208,10 +211,11 @@ export default function Login() {
 
         .login-form {
           padding: 16px;
+          width: 100%
         }
 
         .login-form .inputs {
-          width: 80%;
+          width: 100%;
           margin: 0 auto;
         }
 
@@ -241,7 +245,7 @@ export default function Login() {
           color: white;
           cursor: pointer;
           font-size: 1.2rem;
-          width: 40%;
+          width: 100%;
           margin: 24px auto;
           padding: 8px;
           background: #2518b8;
@@ -318,12 +322,7 @@ export default function Login() {
             display: none;
           }
           .background-container {
-            height: 40vh;
-            max-width: 100vw
-            flex-basis:none;
-            background: url("/assets/login_background.svg");
-            background-position: center;
-            background-size: cover;
+            height: 0;
           }
 
           .login-form .inputs {
@@ -334,19 +333,22 @@ export default function Login() {
           .login-form button {
             width: 100%;
           }
+          .logo-container{
+            margin: 0 auto
+          }
         }
 
         /* Adjust for tablet screen sizes. */
-        @media only screen and (min-width: 600px) and (max-width: 800px) {
+        @media only screen and (min-width: 600px) and (max-width: 1000px) {
           .main-container {
             display: block;
           }
 
           .background-container {
-            height: 40vh;
-            background: url("/assets/login_background.svg");
-            background-position: center;
-            background-size: cover;
+            height: 0
+          }
+          .logo-container{
+            margin: 0 auto
           }
         }
       `}</style>

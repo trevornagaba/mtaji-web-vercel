@@ -5,11 +5,12 @@
 }
 
 .logo img {
-  width: 30px
+  width: 37px
 }
 
 .logo span {
   color: #2518b8;
-  font-weight: bold;
+  font-weight: 500;
   padding-left: 4px;
+  font-size: 24px;
 }
