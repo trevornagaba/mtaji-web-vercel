@@ -2,6 +2,7 @@ import React from "react";
 import ProfileImg from "../ProfileImageIcon";
 import styles from "../../styles/blog.module.css";
 import Link from "next/link";
+import Image from "next/image"
 
 const BlogPost = ({
     id,
@@ -36,7 +37,7 @@ const BlogPost = ({
                     <Link
                         href={{
                             pathname: "/blog/[slug]",
-                            query: { slug: id },
+                            query: { slug: title.replace(/[^A-Z0-9]+/ig, "-"), jdq_sf:id },
                         }}
                     >
                         <p
@@ -55,7 +56,7 @@ const BlogPost = ({
                     />
                     {!featured && (
                         <div className={styles.blogImg}>
-                            <img src={blogImage} alt="" />
+                            <Image src={blogImage} alt="" layout="fill" objectFit="cover"/>
                         </div>
                     )}
                 </div>

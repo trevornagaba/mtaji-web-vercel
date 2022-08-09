@@ -85,7 +85,7 @@ const Blog = ({ posts }) => {
             isGreyBackgound={true}
             hasFooter={true}
         >
-            <div className="w-full col-span-full flex flex-row justify-between mt-10 ">
+            <div className="w-full flex flex-row justify-between mt-10 " style={{gridColumn: "1/ span 14"}}>
                 <p>Featured</p>
                 <Link href="#subscribe">
                     <p className="text-[#01bbc8]" style={{ cursor: "pointer" }}>

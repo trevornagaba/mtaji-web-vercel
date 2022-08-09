@@ -5,14 +5,11 @@
 .img{
     width: 100%;
     height: 352px; 
-}
-.img>img{
-    width: 100%;
-    height: 100%;
+    position: relative;
     border-radius: 15px;
-    object-fit: cover;
-    /* max-width: 399px; */
+    overflow: hidden;
 }
+
 .details{
     width: 100%;
     display: flex;
