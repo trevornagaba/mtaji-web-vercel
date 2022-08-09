@@ -11,7 +11,7 @@ import Alert from "../components/Alert/Alert";
 
 export default function Login() {
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
@@ -33,11 +33,11 @@ export default function Login() {
     }
 
     // validate not admin
-    if (formData.username == "admin") {
-      errorsObject.username = "Username is not permitted.";
-      touchedObject.username = false;
-      isValid = false;
-    }
+    // if (formData.username == "admin") {
+    //   errorsObject.username = "Username is not permitted.";
+    //   touchedObject.username = false;
+    //   isValid = false;
+    // }
 
     // validate password
     if (!formData.password) {
@@ -71,7 +71,7 @@ export default function Login() {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`,
         {
-          username: formData.username,
+          username: formData.email,
           password: formData.password,
         },
         { withCredentials: true }
