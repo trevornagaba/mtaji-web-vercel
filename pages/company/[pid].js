@@ -125,6 +125,12 @@ export default function Company() {
                 console.log(error);
             });
     }
+    const onClickShare = ()=>{
+        navigator.clipboard.writeText("Hello World");
+        <Alert message="url copied"/>
+        // alert("url copied")
+        
+    }
 
     return (
         <div className="company-page">
@@ -169,7 +175,7 @@ export default function Company() {
                             </Button>
                         </div>
                         <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
-                            <ShareButton />
+                            <ShareButton onClick={()=>onClickShare()}/>
                             <Button
                                 primary
                                 onClick={openModal}
@@ -231,7 +237,7 @@ export default function Company() {
                                 </Tab.List>
                                 <div className="hidden lg:block">
                                     <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
-                                        <ShareButton />
+                                        <ShareButton onClick={()=>onClickShare()}/>
                                         <Button
                                             primary
                                             onClick={openModal}
@@ -252,7 +258,7 @@ export default function Company() {
                         </Tab.Group>
                         <div className="block mt-10 lg:hidden">
                             <div className="flex items-center gap-2">
-                                <ShareButton />
+                                <ShareButton onClick={()=>onClickShare()}/>
                                 <Button
                                     primary
                                     onClick={openModal}
