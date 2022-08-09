@@ -343,11 +343,7 @@ export default function SignUp() {
           }
 
           .background-container {
-            height: 40vh;
-            /*TO-DO: Replace this login_background with the actual signup background as was working on the intial develop/ui-prototype branch*/
-            background: url("/assets/signup.svg");
-            background-position: center;
-            background-size: cover;
+            height: 0
           }
 
           .signup-form .inputs {
@@ -364,17 +360,13 @@ export default function SignUp() {
         }
 
         /* Adjust for tablet screen sizes. */
-        @media only screen and (min-width: 600px) and (max-width: 800px) {
+        @media only screen and (min-width: 600px) and (max-width: 1000px) {
           .main-container {
             display: block;
           }
 
           .background-container {
-            height: 40vh;
-            /*TO-DO: Replace this placeholder login_background with the actual signup background as was working on the intial develop/ui-prototype branch*/
-            background: url("/assets/signup.svg");
-            background-position: center;
-            background-size: cover;
+            height: 0
           }
           .logo-container{
             margin: 0 auto

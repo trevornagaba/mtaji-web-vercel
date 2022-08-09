@@ -115,6 +115,7 @@ export default function Login() {
             </div>
           </div>
           <div><br/></div>
+          <div style={{width:'100%', height:'80vh', display:'flex', flexDirection:'column', alignItems:'center', padding: '0 5vw', boxSizing:'border-box', overflow: 'auto'}}>
             <p className="title">Hey There! Welcome back</p>
             <p className="subtitle">We missed you quite a bit...</p>
           <div><br/></div>
@@ -158,6 +159,8 @@ export default function Login() {
               </Link>
             </div>
           </form>
+
+          </div>
         </div>
         <img src="assets/signin2.svg" className="svg absolute bottom-2 w-20" style={{left:"0px"}}/>
       </div>
@@ -208,10 +211,11 @@ export default function Login() {
 
         .login-form {
           padding: 16px;
+          width: 100%
         }
 
         .login-form .inputs {
-          width: 80%;
+          width: 100%;
           margin: 0 auto;
         }
 
@@ -318,12 +322,7 @@ export default function Login() {
             display: none;
           }
           .background-container {
-            height: 40vh;
-            max-width: 100vw
-            flex-basis:none;
-            background: url("/assets/login.svg");
-            background-position: center;
-            background-size: cover;
+            height: 0;
           }
 
           .login-form .inputs {
@@ -340,16 +339,13 @@ export default function Login() {
         }
 
         /* Adjust for tablet screen sizes. */
-        @media only screen and (min-width: 600px) and (max-width: 800px) {
+        @media only screen and (min-width: 600px) and (max-width: 1000px) {
           .main-container {
             display: block;
           }
 
           .background-container {
-            height: 40vh;
-            background: url("/assets/login.svg");
-            background-position: center;
-            background-size: cover;
+            height: 0
           }
           .logo-container{
             margin: 0 auto
