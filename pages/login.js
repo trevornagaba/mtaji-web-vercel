@@ -26,9 +26,9 @@ export default function Login() {
     let isValid = true;
 
     // validate username
-    if (!formData.username) {
-      errorsObject.username = "Username is required.";
-      touchedObject.username = false;
+    if (!formData.email) {
+      errorsObject.email = "Email is required";
+      touchedObject.email = false;
       isValid = false;
     }
 
@@ -124,12 +124,12 @@ export default function Login() {
             <div className="inputs">
               <TextInput
                 type="text"
-                name="username"
-                label="Username"
-                placeholder="Username"
+                name="email"
+                label="Email"
+                placeholder="Email"
                 onChange={handleChange}
-                value={formData.username}
-                error={errors.username}
+                value={formData.email}
+                error={errors.email}
               />
               <TextInput
                 type="password"
@@ -141,14 +141,14 @@ export default function Login() {
                 error={errors.password}
               />
               <p className="password-reset">Forgot password?</p>
-            </div>
             <button>{loading ? "Loading..." : "Sign In"}</button>
+            </div>
 
-            <div className="or-option">
+            {/* <div className="or-option">
               <div></div>
               <span>or</span>
               <div></div>
-            </div>
+            </div> */}
 
             <div className="sign-up-prompt">
               <p className="question">New Here?</p>
@@ -241,7 +241,7 @@ export default function Login() {
           color: white;
           cursor: pointer;
           font-size: 1.2rem;
-          width: 40%;
+          width: 100%;
           margin: 24px auto;
           padding: 8px;
           background: #2518b8;
@@ -321,7 +321,7 @@ export default function Login() {
             height: 40vh;
             max-width: 100vw
             flex-basis:none;
-            background: url("/assets/login_background.svg");
+            background: url("/assets/login.svg");
             background-position: center;
             background-size: cover;
           }
@@ -334,6 +334,9 @@ export default function Login() {
           .login-form button {
             width: 100%;
           }
+          .logo-container{
+            margin: 0 auto
+          }
         }
 
         /* Adjust for tablet screen sizes. */
@@ -344,9 +347,12 @@ export default function Login() {
 
           .background-container {
             height: 40vh;
-            background: url("/assets/login_background.svg");
+            background: url("/assets/login.svg");
             background-position: center;
             background-size: cover;
+          }
+          .logo-container{
+            margin: 0 auto
           }
         }
       `}</style>
