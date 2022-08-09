@@ -19,6 +19,7 @@ import {
 } from "/components";
 
 import classNames from "/utils/classnames";
+import { Alert } from "@mui/material";
 
 export default function Company() {
     // Create our number formatter.
@@ -126,11 +127,10 @@ export default function Company() {
             });
     }
     const onClickShare = ()=>{
-        navigator.clipboard.writeText("Hello World");
-        <Alert message="url copied"/>
-        // alert("url copied")
-        
+        navigator.clipboard.writeText(window.location.href);
+        return <Alert severity="info">This is an info alert — check it out!</Alert>
     }
+    
 
     return (
         <div className="company-page">
