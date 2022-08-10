@@ -39,7 +39,11 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 const Landing = () => {
 
-    const { isLoaded, isAuth, companies } = useContext(AppContext);
+    const { isLoaded, isAuth, userDetails, checkAuth, companies } = useContext(AppContext);
+
+    useEffect(() => {
+        checkAuth()
+    }, []);
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {

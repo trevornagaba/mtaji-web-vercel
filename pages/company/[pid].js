@@ -26,7 +26,6 @@ export default function Company() {
     // Setup use of router to get company id from url
     const router = useRouter();
     const { pid } = router.query;
-    console.log(pid)
 
     const { isLoaded, isAuth, getCompany } = useContext(AppContext);
     
@@ -67,6 +66,10 @@ export default function Company() {
         },
     ]);
 
+    useEffect(() => {
+        setCompany(getCompany(pid));
+    }, []);
+
     // Setup state management for Investment modal
     const [isOpen, setIsOpen] = useState(false);
 
@@ -88,26 +91,6 @@ export default function Company() {
     const openErrorModal = () => {
         setIsFailed(true);
     };
-
-    useEffect(() => {
-        setCompany(getCompany(pid));
-    }, []);
-
-    // async function getCompany() {
-    //     const response = await axios
-    //         .get(
-    //             `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/` + pid //TO-DO: route from explore page should pass a company id
-    //         )
-    //         .then((result) => {
-    //             console.log(result.data);
-    //             setCompany(result.data);
-    //             console.log(pid);
-    //         })
-    //         .catch((error) => {
-    //             console.log(pid);
-    //             console.log(error);
-    //         });
-    // }
 
     async function makeInvestment() {
         const response = await axios

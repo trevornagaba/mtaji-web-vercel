@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import jwt_decode from 'jwt-decode';
 
 
 export const AppContext = createContext();
@@ -10,28 +11,36 @@ const AppContextProvider = (props) => {
     const router = useRouter();
 
     const [isLoaded, setIsLoaded] = useState(false);
+    const [token, setToken] = useState(false);
     const [isAuth, setIsAuth] = useState(false);
     const [errors, setErrors] = useState(false);
-    const [portfolio, setPortfolio] = useState([]);
+    const [userDetails, setUserDetails] = useState([]);
     const [companies, setCompanies] = useState([]);
     const [faqs, setFaqs] = useState([]);
     const [transRecords, setTransRecords] = useState([]);
 
     useEffect(() => {
+        checkAuth();
         getCompanies();
     }, []);
 
-    const checkAuth = () => {
-        let token = localStorage.getItem("token");
-        // const response =
-        setIsAuth(token);
+    const checkAuth = async () => {
+        setIsLoaded(false)
+        try {
+            if(jwt_decode(localStorage.getItem("token"))){
+                setUserDetails(jwt_decode(localStorage.getItem("token")))
+                setIsAuth(true)
+                setIsLoaded(true)
+            }
+        }
+        catch(err){
+            setIsAuth(false)
+        }
     };
 
     const handleLogin = async (userData) => {
         setIsLoaded(false)
-        let headers = {
 
-        }
         // try {
         const response = await axios.post(
             `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`, {
@@ -39,20 +48,43 @@ const AppContextProvider = (props) => {
                 headers: {
                 'Content-Type': 'Application/json',
                 },
-                userData
-            }
-            
+                email: userData.email, password: userData.password
+            }            
         )
-        .then((result) => {
-            console.log(result.data)
+        .then((result) => {         
+            localStorage.setItem("token", result.data.token)
             setIsAuth(true)
             setIsLoaded(true);
-            router.push("/");
+            router.push("/home");
         })
         .catch((error) => {
             setErrors(error)
         })
     };
+
+    const getuserDetails = async () => {
+        const response = await axios.get(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'Application/json',
+                'Authorization': `Bearer `
+                }
+            }
+        )
+        .then((result) => {
+            // TO-DO: Update after sorting out auth
+            if (result.data == "Please login") {
+                setuserDetails("$");
+            } else {
+                setuserDetails(result.data.userDetails);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+            setuserDetails("$");
+        });
+    }
 
     const getCompany = async (companyId) => {
         return (companies.find(company => company.id===companyId))
@@ -77,8 +109,9 @@ const AppContextProvider = (props) => {
             value={{
                 isLoaded,
                 isAuth,
+                checkAuth,
                 errors,
-                portfolio,
+                userDetails,
                 companies,
                 faqs,
                 transRecords,
