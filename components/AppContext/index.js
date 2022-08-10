@@ -21,7 +21,6 @@ const AppContextProvider = (props) => {
     const [transRecords, setTransRecords] = useState([]);
 
     useEffect(() => {
-        checkAuth();
         getCompanies();
     }, []);
 
@@ -37,6 +36,7 @@ const AppContextProvider = (props) => {
         catch(err){
             setIsLoaded(true)
             setIsAuth(false)
+            router.push("/login");
         }
     };
 
@@ -54,8 +54,8 @@ const AppContextProvider = (props) => {
             }            
         )
         .then((result) => {         
-            localStorage.setItem("token", result.data.token)
-            setIsAuth(true)
+            localStorage.setItem("token", result.data.token);
+            setIsAuth(true);
             setIsLoaded(true);
             router.push("/home");
         })
@@ -63,6 +63,14 @@ const AppContextProvider = (props) => {
             setErrors(error)
         })
     };
+
+    const handleLogout = () => {
+      localStorage.removeItem("token");
+      setIsAuth(true);
+      setIsLoaded(true);
+      router.push("/login");
+      
+    }
 
     const getuserDetails = async () => {
         const response = await axios.get(
@@ -149,6 +157,7 @@ const AppContextProvider = (props) => {
                 faqs,
                 transRecords,
                 handleLogin,
+                handleLogout,
                 getCompany
             }}
         >

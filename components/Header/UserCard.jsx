@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState, useContext } from "react";
 import {
     Stack,
     IconButton,
@@ -10,7 +10,11 @@ import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 
+import { AppContext } from "../AppContext"
+
 const UserCard = () => {
+
+  const { handleLogout } = useContext(AppContext);
 
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -65,7 +69,7 @@ const UserCard = () => {
                     href="/home"
                 >Portifolio</MenuItem>
                 <MenuItem onClick={handleClose}>Settings</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
 
         </Badge>
