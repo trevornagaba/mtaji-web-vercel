@@ -43,10 +43,15 @@ const InvestmentsCard = (props) => {
 
     const invstTotal = () => {
         let total = 0
-        portfolio.forEach(item => {
-            total+=item.amount
-        })
-        return formatter.format(total)
+        try {
+            portfolio.forEach(item => {
+                total+=item.amount
+            })
+            return formatter.format(total)
+
+        } catch (err) {
+
+        }
     }
 
     return (

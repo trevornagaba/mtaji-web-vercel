@@ -89,10 +89,6 @@ const Header = (props) => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-    useEffect(() => {
-        checkAuth()
-    }, [isLoaded]);
-
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);

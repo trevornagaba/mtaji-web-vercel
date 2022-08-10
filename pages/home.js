@@ -35,78 +35,33 @@ const HomePage = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
+        checkAuth()
         setUsers(userDetails)
         setPortfolio(userDetails.portfolio);
         setComps(companies);
     }, [isLoaded]);
 
-    // Define the close modal arrow method
-    const closeModal = () => {
-        setIsOpen(false);
-    };
-
-    // Define the open modal arrow method
-    const openModal = () => {
-        setIsOpen(true);
-    };
-
-    async function getUser() {
-        const response = await axios
-            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`, {
-                withCredentials: true,
-            })
-            .then((result) => {
-                // TO-DO: Update after sorting out auth
-                if (result.data == "Please login") {
-                    setUsers("$");
-                } else {
-                    setUsers(result.data);
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                setUsers("$");
-            });
-    }
-
-    async function getPortfolio() {
-        const response = await axios
-            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`, {
-                withCredentials: true,
-            })
-            .then((result) => {
-                // TO-DO: Update after sorting out auth
-                if (result.data == "Please login") {
-                    setPortfolio("$");
-                } else {
-                    setPortfolio(result.data.portfolio);
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                setPortfolio("$");
-            });
-    }
-
     return (
         <PageTemplate hasNavbar={true} hasWrapper={true} isGreyBackgound={true} hasFooter={true}>
-            <Grid
-                item
-                sx={{
-                    width: "100%"
-                }}
-            >
-                {/* Portfolio Card */}
-                <Portfolio
-                    isLoaded={isLoaded}
-                    userDetails={userDetails}
-                />
-                <Companies
-                    isLoaded={isLoaded}
-                    companies={comps}
-                    size={"sm"}
-                />                
-            </Grid>
+            {isLoaded?            
+                <Grid
+                    item
+                    sx={{
+                        width: "100%"
+                    }}
+                >
+                    {/* Portfolio Card */}
+                    <Portfolio
+                        isLoaded={isLoaded}
+                        userDetails={userDetails}
+                    />
+                    <Companies
+                        isLoaded={isLoaded}
+                        companies={comps}
+                        size={"sm"}
+                    />                
+                </Grid>
+            : "" }
     </PageTemplate>
     );
 };
