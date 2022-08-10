@@ -25,10 +25,10 @@ const ProfileImg = ({ hasEdit, onClick, imageUrl, imageSize, name, title }) => {
                 </div>
             ) : (
                 <div
-                    className="w-10 h-10 relative pointer rounded-full"
+                    className="w-10 h-10 relative pointer rounded-full overflow-idden"
                     onClick={onClick}
                 >
-                    <img src={imageUrl} alt="profileimage" className="rounded-full"/>
+                    <img src={imageUrl} alt="profileimage" className="rounded-full object-cover w-10"/>
                     {!!hasEdit && (
                         <img
                             src="/assets/editicon.svg"

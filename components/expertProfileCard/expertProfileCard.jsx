@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from "../../styles/expertProfileCard.module.css"
+import Image from 'next/image'
 
 const ExpertProfileCard = ({ 
   imageLink,
@@ -11,7 +12,7 @@ const ExpertProfileCard = ({
     <>
         <div className={styles.container}>
           <div className={styles.img}>
-            <img src={imageLink} alt="profile image" />
+            <Image src={imageLink} alt="profile image" layout='fill' objectFit="cover" priority={true}/>
           </div>
           <div className={styles.details}>
             <strong>{name}</strong>

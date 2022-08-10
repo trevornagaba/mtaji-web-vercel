@@ -1,6 +1,4 @@
-This is the front end repository for mtaji web application
-
-## Getting Started
+## This is the front end repository for mtaji web application
 
 First, run the development server:
 

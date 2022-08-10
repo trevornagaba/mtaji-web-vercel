@@ -67,6 +67,7 @@
     /* background-color: #01bbc8; */
     position: relative;
     cursor: pointer;
+    overflow: hidden;
     /* margin: 20px 0; */
 }
 .profileImgContainer > img:nth-child(2) {
