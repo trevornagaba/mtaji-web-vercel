@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import ApartmentIcon from '@mui/icons-material/Apartment';
 
+import CompanyChip from "./CompanyChip";
+
 import defaultLogo from "../../public/assets/defaultLogo.svg"
 
 const InvestmentsCard = (props) => {
@@ -99,43 +101,28 @@ const InvestmentsCard = (props) => {
 
                         }}
                         secondaryAction={
-                            <Typography edge="end">{formatter.format(company.amount)}</Typography>
+                            <Typography edge="end" align="right">
+                                {formatter.format(company.amount)}<br/>
+                                <small>debt</small>
+                            </Typography>
                         }
                     >                          
                         <Typography
                             component="a"
                             href={`/company/${company.companyId}`}
                             sx={{
-                                color: "#2518b8",
-                                fontSize: "18px",
-                                fontWeight: "400",
+                                color: "#666666",
                                 flex: 4,
                             }}
                         >
-                            <p
-                             sx={{
-                                display: "inline"
-                             }}
-                            >
-                                <img
-                                    src="/assets/defaultLogo.svg"
-                                    sx={{
-                                        flex: 1,
-                                        marginTop: "-5px",
-                                        marginRight: "5px",
-                                    }}
-                                    alt={`Company Logo n°${company.companyName + 1}`}
-                                />
-                                <span
-                                    sx={{
-                                        flex: 1,
-                                    }}
-                                >{company.companyName}</span>
-                            </p>
+                            <CompanyChip
+                                defaultLogo="/assets/defaultLogo.svg"
+                                companyName={company.companyName}
+                            />
                         </Typography>
                         <Typography
                             sx={{
-                                color: "#2518b8",
+                                color: "#666666",
                                 fontSize: "18px",
                                 fontWeight: "400",
                                 flex: 6

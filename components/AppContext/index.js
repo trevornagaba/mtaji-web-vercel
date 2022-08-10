@@ -16,6 +16,7 @@ const AppContextProvider = (props) => {
     const [errors, setErrors] = useState(false);
     const [userDetails, setUserDetails] = useState([]);
     const [companies, setCompanies] = useState([]);
+    const [blogs, setBlogs] = useState([]);
     const [faqs, setFaqs] = useState([]);
     const [transRecords, setTransRecords] = useState([]);
 
@@ -105,6 +106,36 @@ const AppContextProvider = (props) => {
         });
     }
 
+    const getBlogs = async () => {
+        setIsLoaded(false);
+        const response = await axios.get(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/blogs`
+        )
+        .then((result) => {
+            setBlogs(result.data);
+            setIsLoaded(true);
+        })
+        .catch((error) => {
+            setErrors(error);
+            setIsLoaded(true);
+        });
+    }
+
+    const getFAQs = async () => {
+        setIsLoaded(false);
+        const response = await axios.get(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/faqs`
+        )
+        .then((result) => {
+            setFaqs(result.data);
+            setIsLoaded(true);
+        })
+        .catch((error) => {
+            setErrors(error);
+            setIsLoaded(true);
+        });
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -114,6 +145,7 @@ const AppContextProvider = (props) => {
                 errors,
                 userDetails,
                 companies,
+                blogs,
                 faqs,
                 transRecords,
                 handleLogin,
