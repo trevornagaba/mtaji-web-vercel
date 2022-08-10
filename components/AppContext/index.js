@@ -34,6 +34,7 @@ const AppContextProvider = (props) => {
             }
         }
         catch(err){
+            setIsLoaded(true)
             setIsAuth(false)
         }
     };

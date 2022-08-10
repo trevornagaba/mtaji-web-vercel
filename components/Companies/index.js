@@ -32,7 +32,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 const Companies = (props) => {
 
-    const { isLoaded, companies, size } = props;
+    const { isLoaded, companies } = useContext(AppContext);
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -62,7 +62,7 @@ return (
                     paddingTop: "20px"
                 }}
             >
-                {size==="sm"?
+                {props.size==="sm"?
                     <>
                         <p className={styles.sectionHeader} sx={{ contentAlign: "left" }}>
                             Companies currently raising capital on mtaji
