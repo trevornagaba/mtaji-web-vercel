@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import HomeLogo from "../components/HomeLogo";
 
+import AppContextProvider from "../components/AppContext"
+
 function MyApp({ Component, pageProps }) {
     return (
         <>
@@ -18,8 +20,9 @@ function MyApp({ Component, pageProps }) {
                 />
                 <title>Mtaji</title>
             </Head>
-
-            <Component {...pageProps} />
+            <AppContextProvider>
+                <Component {...pageProps} />
+            </AppContextProvider>
         </>
     );
 }

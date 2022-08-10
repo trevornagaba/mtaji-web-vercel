@@ -4,9 +4,13 @@ import styles from "../styles/pageTemplate.module.css";
 import Footer from "./Footer";
 import RaiseFunds from "./RaiseFunds";
 
+import AppContextProvider from "../components/AppContext"
+
 const Wrapper = ({ children }) => {
     return(
-    <div className={styles.Wrapper}>{children}</div>
+        <div className={styles.Wrapper}>
+            {children}
+        </div>
     )
 };
 const PageTemplate = ({
@@ -19,7 +23,7 @@ const PageTemplate = ({
 }) => {
     return (
         <div style={isGreyBackgound && {backgroundColor:"#F7F7F7"}}>
-            {hasNavbar && <Header />}
+            {hasNavbar && <Header isGreyBackgound={isGreyBackgound} />}
             {hasWrapper ?
                 <Wrapper>
                     {children}
@@ -28,6 +32,7 @@ const PageTemplate = ({
             }
             {hasFooter && <Footer />}
         </div>
+        
     );
 };
 

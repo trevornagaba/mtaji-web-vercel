@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { withStyles } from '@material-ui/core/styles';
 import Image from "next/image";
@@ -19,6 +19,8 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
+import { AppContext } from "../AppContext"
+
 import SignUpIcon from '@mui/icons-material/Add';
 import SignInIcon from '@mui/icons-material/ExitToApp';
 import AboutIcon from '@mui/icons-material/InfoOutlined';
@@ -30,6 +32,7 @@ import navStyles from "./Header.module.css";
 import styles from "../landing/Landing.module.css";
 
 import Logo from "../Logo/Logo";
+import UserCard from "./UserCard";
 
 const pages = ["About", "Blog", "FAQs"];
 const guest = [
@@ -41,7 +44,7 @@ const guest = [
     {
         pageIcon: <SignInIcon/>,
         pageName: "Sign In",
-        pageLink: "/signin"
+        pageLink: "/login"
     },
     {
         pageIcon: <AboutIcon/>,
@@ -79,9 +82,17 @@ const menuPopupStyles = (theme) => ({
 
 const Header = (props) => {
 
+    const { isLoaded, isAuth, checkAuth } = useContext(AppContext);
+    const { isGreyBackgound } = props;
+    
     const router = useRouter()
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+    useEffect(() => {
+        checkAuth()
+    }, [isLoaded]);
+
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -102,7 +113,7 @@ const Header = (props) => {
         <AppBar
             position="fixed"
             style={{
-                background: "white",
+                background: isGreyBackgound?"#F7F7F7":"white",
                 boxShadow: "none",
                 width: "100vw",
                 padding: "0 10%"
@@ -117,6 +128,7 @@ const Header = (props) => {
                 <Grid
                     container
                     className={navStyles.navBar}
+                    style={{ background: isGreyBackgound?"#F7F7F7":"white" }}
                     align="left"
                 >
                     <Grid
@@ -210,33 +222,51 @@ const Header = (props) => {
                             }}
                             justifyContent="right"
                         >
-                            <Stack spacing={2} direction="row">
+                            {isLoaded?
+                                <Stack spacing={2} direction="row">
+                                    {isAuth?
+                                        <UserCard/>
+                                    :
+                                        <>
+                                            <Button
+                                                component="a"
+                                                href="/login"
+                                                variant="text"
+                                                style={{
+                                                    color: "#09062D",
+                                                    textTransform: "none",
+                                                    fontSize: "16px",
+                                                }}
+                                            >
+                                                Sign in
+                                            </Button>
+                                            <Button
+                                                component="a"
+                                                href="/signup"
+                                                variant="contained"
+                                                style={{
+                                                    backgroundColor: "#2518B8",
+                                                    color: "white",
+                                                    textTransform: "none",
+                                                    fontSize: "16px",
+                                                }}
+                                            >
+                                                Sign up
+                                            </Button>
+                                        </>
+                                    }
+                                </Stack>
+                            :
                                 <Button
-                                    component="a"
-                                    href="/login"
-                                    variant="text"
+                                    disabled
+                                    variant="contained"
                                     style={{
                                         color: "#09062D",
                                         textTransform: "none",
                                         fontSize: "16px",
                                     }}
-                                >
-                                    Sign in
-                                </Button>
-                                <Button
-                                    component="a"
-                                    href="/signup"
-                                    variant="contained"
-                                    style={{
-                                        backgroundColor: "#2518B8",
-                                        color: "white",
-                                        textTransform: "none",
-                                        fontSize: "16px",
-                                    }}
-                                >
-                                    Sign up
-                                </Button>
-                            </Stack>
+                                >Loading...</Button>
+                            }
                         </Box>
                         <Box
                             sx={{
