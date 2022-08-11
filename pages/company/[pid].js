@@ -19,7 +19,7 @@ import {
 } from "/components";
 
 import classNames from "/utils/classnames";
-import FlashMessage from "../../components/Alert/Flashmessage";
+import FlashMessage from "../../components/Alert/FlashMessage";
 // import { Alert } from "@mui/material";
 
 
@@ -335,7 +335,7 @@ export default function Company() {
                 companyId={pid}
                 // userId={userId} // TO-DO: Validate if logged in
             />
-            {showAlert && <FlashMessage message={'url copied'} type={'success'}/>}
+            {showAlert && <FlashMessage message={'Url copied'} type={'success'}/>}
 
             {/* <InvestmentErrorModal
                 isFailed={isFailed}
