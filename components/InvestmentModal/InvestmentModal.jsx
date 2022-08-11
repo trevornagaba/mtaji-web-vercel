@@ -21,10 +21,14 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
         const { name, value } = e.target;
 
         setFormData((prevFormData) => {
-            return {
-                ...prevFormData,
-                [name]: value,
-            };
+        return e.target.name == 'amountUSD' ?
+            {
+                amountUSD: value,
+                amountUGX: value * 3500,
+            }:{
+                amountUSD: value / 3500,
+                amountUGX: value ,
+            }
         });
     };
 
@@ -55,7 +59,7 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
         // Add validation that confirms if logged in
         // include preventDefault to prevent default form submission via get/post method and use custom logic defined here
         e.preventDefault();
-        console.log(formData);
+        
         const response = axios
             .post(
                 `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
@@ -124,11 +128,11 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
                                     <div className="mt-2 p-8">
                                         <TextInput
                                             label="Enter amount ($)"
-                                            type="text"
+                                            type="number"
                                             name="amountUSD"
                                             placeholder="20.00"
                                                 onChange={handleChange}
-                                                value={formData.amount}
+                                                value={formData.amountUSD}
                                             leading
                                         />
                                         <div className="flex justify-end -mt-2">
@@ -138,7 +142,7 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
                                         </div>
                                         <TextInput
                                             label="Enter amount (UGX)"
-                                            type="text"
+                                            type="number"
                                             name="amountUGX"
                                             placeholder="7000.00"
                                                 onChange={handleChange}

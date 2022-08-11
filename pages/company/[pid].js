@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { Tab } from "@headlessui/react";
@@ -19,7 +19,10 @@ import {
 } from "/components";
 
 import classNames from "/utils/classnames";
-import { Alert } from "@mui/material";
+import FlashMessage from "../../components/Alert/Flashmessage";
+// import { Alert } from "@mui/material";
+
+
 
 export default function Company() {
     // Create our number formatter.
@@ -65,6 +68,7 @@ export default function Company() {
 
     // Setup state management for Investment modal
     const [isOpen, setIsOpen] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
 
     const closeModal = () => {
         setIsOpen(false);
@@ -126,11 +130,11 @@ export default function Company() {
                 console.log(error);
             });
     }
-    const onClickShare = ()=>{
-        navigator.clipboard.writeText(window.location.href);
-        return <Alert severity="info">This is an info alert — check it out!</Alert>
-    }
-    
+    const onClickShare = async () => {
+        if(showAlert) {setShowAlert(false)}
+        await navigator.clipboard.writeText(window.location.href);
+        setShowAlert(true)
+    };
 
     return (
         <div className="company-page">
@@ -175,7 +179,7 @@ export default function Company() {
                             </Button>
                         </div>
                         <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
-                            <ShareButton onClick={()=>onClickShare()}/>
+                            <ShareButton onClick={() => onClickShare()} />
                             <Button
                                 primary
                                 onClick={openModal}
@@ -237,7 +241,9 @@ export default function Company() {
                                 </Tab.List>
                                 <div className="hidden lg:block">
                                     <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
-                                        <ShareButton onClick={()=>onClickShare()}/>
+                                        <ShareButton
+                                            onClick={() => onClickShare()}
+                                        />
                                         <Button
                                             primary
                                             onClick={openModal}
@@ -251,14 +257,62 @@ export default function Company() {
                             <Tab.Panels className="mt-10">
                                 {companyInfo.map((item) => (
                                     <Tab.Panel key={item.id}>
-                                        {item.desc}
+                                        {item.title == "Team" ? (
+                                                <div className="flex flex-row w-full justify-between text-center bg-slate-50 rounded-lg p-2 px-6">
+                                                    <div className="flex flex-row items-center">
+                                                        <Image
+                                                            src="/assets/file.svg"
+                                                            alt="file"
+                                                            height={20}
+                                                            width={20}
+                                                        />
+                                                        <p className="ml-3">{item.desc}</p>
+                                                    </div>
+                                                    <div className="cursor-pointer flex w-10 h-10 justify-center rounded-full hover:bg-slate-100">
+                                                        <Image
+                                                            src="/assets/download.svg"
+                                                            alt="file"
+                                                            height={20}
+                                                            width={20}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            ) : item.title == "Documents"?(
+                                                <>
+                                                    <div className="flex flex-row w-full justify-between text-center bg-slate-50 rounded-lg p-2 px-6">
+                                                    <div className="flex flex-row items-center">
+                                                        <Image
+                                                            src="/assets/file.svg"
+                                                            alt="file"
+                                                            height={20}
+                                                            width={20}
+                                                        />
+                                                        <p className="ml-3">{item.desc}</p>
+                                                    </div>
+                                                    <div className="cursor-pointer flex w-10 h-10 justify-center rounded-full hover:bg-slate-100">
+                                                        <Image
+                                                            src="/assets/download.svg"
+                                                            alt="file"
+                                                            height={20}
+                                                            width={20}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                </>
+                                            ):(
+                                                <>
+                                                    {item.desc}
+                                                </>
+                                            )
+                                        }
+                                        
                                     </Tab.Panel>
                                 ))}
                             </Tab.Panels>
                         </Tab.Group>
                         <div className="block mt-10 lg:hidden">
                             <div className="flex items-center gap-2">
-                                <ShareButton onClick={()=>onClickShare()}/>
+                                <ShareButton onClick={() => onClickShare()} />
                                 <Button
                                     primary
                                     onClick={openModal}
@@ -281,6 +335,7 @@ export default function Company() {
                 companyId={pid}
                 // userId={userId} // TO-DO: Validate if logged in
             />
+            {showAlert && <FlashMessage message={'url copied'} type={'success'}/>}
 
             {/* <InvestmentErrorModal
                 isFailed={isFailed}
