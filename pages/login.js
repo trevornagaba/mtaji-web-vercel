@@ -19,6 +19,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [fetchError, setFetchError] = useState("");
@@ -79,8 +80,13 @@ export default function Login() {
     e.preventDefault();
     let validData = verifyUserSigninData();
     if (validData) {
-      handleSignin();
+      let loginResult = handleSignin()
+      if(loginResult===false){
+        setErrors(true);
+        fetchError("Incorrect credentials")
+      }
     }
+    setLoading(true);
   };
 
   return (
