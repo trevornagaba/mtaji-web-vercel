@@ -1,10 +1,11 @@
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { Tab } from "@headlessui/react";
 import { useRouter } from "next/router";
 
-import RaiseFunds from "/components/RaiseFunds";
+import { AppContext } from "/components/AppContext"
+import PageTemplate from "/components/pageTemplate";
 
 import { InvestmentSuccessModal, InvestmentErrorModal } from "/components";
 
@@ -25,6 +26,13 @@ import FlashMessage from "../../components/Alert/FlashMessage";
 
 
 export default function Company() {
+
+    // Setup use of router to get company id from url
+    const router = useRouter();
+    const { pid } = router.query;
+
+    const { isLoaded, isAuth, getCompany } = useContext(AppContext);
+    
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -32,10 +40,6 @@ export default function Company() {
         maximumFractionDigits: 0,
         minimumFractionDigits: 0,
     });
-    // Setup use of router to get company id from url
-    const router = useRouter();
-    const { pid } = router.query;
-    console.log(pid);
     // Setup state management
     const [company, setCompany] = useState([]);
     const [companyInfo, setCompanyInfo] = useState([
@@ -66,6 +70,10 @@ export default function Company() {
         },
     ]);
 
+    useEffect(() => {
+        setCompany(getCompany(pid));
+    }, []);
+
     // Setup state management for Investment modal
     const [isOpen, setIsOpen] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
@@ -88,26 +96,6 @@ export default function Company() {
     const openErrorModal = () => {
         setIsFailed(true);
     };
-
-    useEffect(() => {
-        getCompany();
-    }, []);
-
-    async function getCompany() {
-        const response = await axios
-            .get(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/` + pid //TO-DO: route from explore page should pass a company id
-            )
-            .then((result) => {
-                console.log(result.data);
-                setCompany(result.data);
-                console.log(pid);
-            })
-            .catch((error) => {
-                console.log(pid);
-                console.log(error);
-            });
-    }
 
     async function makeInvestment() {
         const response = await axios
@@ -137,8 +125,8 @@ export default function Company() {
     };
 
     return (
-        <div className="company-page">
-            <Navbar />
+        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
+            <div className="company-page">
             <main>
                 <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8">
                     <div className="flex items-center justify-between">
@@ -325,7 +313,6 @@ export default function Company() {
                     </div>
                 </div>
                 {/* <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8"> */}
-                <RaiseFunds />
             </main>
             {/* Modals */}
             <InvestmentModal
@@ -349,6 +336,7 @@ export default function Company() {
                     }
                 `}
             </style>
-        </div>
+            </div>
+        </PageTemplate>
     );
 }

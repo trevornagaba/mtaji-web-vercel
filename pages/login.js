@@ -1,15 +1,20 @@
-import { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
 
 import cookieCutter from "cookie-cutter";
 
+import { AppContext } from "../components/AppContext"
+
 import HomeLogo from "../components/HomeLogo";
 import TextInput from "../components/TextInput/TextInput";
 import Alert from "../components/Alert/Alert";
 
 export default function Login() {
+
+  const { isLoaded, isAuth, handleLogin } = useContext(AppContext);
+  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,19 +30,19 @@ export default function Login() {
     let touchedObject = {};
     let isValid = true;
 
-    // validate username
+    // validate email
     if (!formData.email) {
-      errorsObject.email = "Email is required";
+      errorsObject.email = "Email is required.";
       touchedObject.email = false;
       isValid = false;
     }
 
     // validate not admin
-    // if (formData.username == "admin") {
-    //   errorsObject.username = "Username is not permitted.";
-    //   touchedObject.username = false;
-    //   isValid = false;
-    // }
+    if (formData.email == "admin") {
+      errorsObject.email = "Email is not permitted.";
+      touchedObject.email = false;
+      isValid = false;
+    }
 
     // validate password
     if (!formData.password) {
@@ -67,31 +72,7 @@ export default function Login() {
   const handleSignin = async (e) => {
     setFetchError("");
     setLoading(true);
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`,
-        {
-          username: formData.email,
-          password: formData.password,
-        },
-        { withCredentials: true }
-      );
-      console.log(response);
-      if (response.data === "Incorrect password") {
-        setFetchError(response.data);
-        setLoading(false);
-      } else if (response.data === "No user found") {
-        setFetchError(response.data);
-        setLoading(false);
-      } else {
-        cookieCutter.set("myCookieName", "some-value"); // dummy cookie for testing
-        router.push("/home");
-        setLoading(false);
-      }
-    } catch (error) {
-      setFetchError("Oops! Something went wrong. Please try again.");
-      setLoading(false);
-    }
+    handleLogin(formData)
   };
 
   const handleSubmit = async (e) => {

@@ -9,7 +9,7 @@ import Alert from "../components/Alert/Alert";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
-    username: "",
+    // username: "",
     email: "",
     password: "",
     passwordConfirmation: "",
@@ -26,11 +26,11 @@ export default function SignUp() {
     let isValid = true;
 
     // validate username
-    if (!formData.username) {
-      errorsObject.username = "Username is required.";
-      touchedObject.username = false;
-      isValid = false;
-    }
+    // if (!formData.username) {
+    //   errorsObject.username = "Username is required.";
+    //   touchedObject.username = false;
+    //   isValid = false;
+    // }
 
     // validate email
     const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
@@ -89,7 +89,7 @@ export default function SignUp() {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`,
         {
-          username: formData.username,
+          // username: formData.username,
           email: formData.email,
           password: formData.password,
         }
@@ -129,14 +129,14 @@ export default function SignUp() {
             </div>
           </div>
           <div><br/></div>
-          <div style={{width:'100%', height:'80vh', display:'flex', flexDirection:'column', alignItems:'center', padding: '0 5vw', boxSizing:'border-box', overflow: 'auto'}}>
+          <div className="formContent">
             <p className="title">Welcome! Let&apos;s get you started</p>
             <p className="subtitle">Fill in your details to get started</p>
             {/* Fetch or Server errors */}
             {fetchError && <Alert message={fetchError} />}
             <form className="signup-form" onSubmit={handleSubmit}>
               <div className="inputs">
-                <TextInput
+                {/* <TextInput
                   type="text"
                   name="username"
                   label="Username"
@@ -145,7 +145,7 @@ export default function SignUp() {
                   value={formData.username}
                   touched={touched.username}
                   error={errors.username}
-                />
+                /> */}
                 <TextInput
                   type="text"
                   name="email"
@@ -214,6 +214,29 @@ export default function SignUp() {
           padding: 2vw;
         }
 
+        .formContent{
+          width:100%;
+          height:80vh;
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+          padding: 0 5vw;
+          box-sizing: border-box;
+          overflow: auto
+        }
+        .formContent::-webkit-scrollbar {
+          width: 4px;
+      }
+       
+      .formContent::-webkit-scrollbar-track {
+          background-color: #e4e4e4;
+          border-radius: 100px;
+      }
+       
+      .formContent::-webkit-scrollbar-thumb {
+          background-color: #1c2854;
+          border-radius: 100px;
+      }
         .top-container {
           display: flex;
           height: 10vh

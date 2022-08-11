@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import {
     Grid,
@@ -14,6 +14,8 @@ import styles from "./Landing.module.css";
 import pointerImg from "../../public/assets/tagline_background.svg";
 import landingImg from "../../public/assets/illustration_3.svg";
 import whyMtajiImg from "../../public/assets/illustration_7.png";
+
+import { AppContext } from "../AppContext"
 
 import PageTemplate from "../pageTemplate";
 import WhyMtaji from "./WhyMtaji";
@@ -36,6 +38,9 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   }));
 
 const Landing = () => {
+
+    const { isLoaded, companies } = useContext(AppContext);
+    
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -43,35 +48,6 @@ const Landing = () => {
         maximumFractionDigits: 0,
         minimumFractionDigits: 0,
     });
-
-    // Setup state management
-    const [companies, setCompanies] = useState([]);
-    useEffect(() => {
-        getCompanies();
-    }, []);
-
-    async function getCompanies() {
-        const response = await axios
-            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies`, {
-                withCredentials: true,
-            })
-            .then((result) => {
-                console.log(typeof result);
-                console.log(result.data);
-                // TO-DO: Update after sorting out auth
-                if (result.data == "Please login") {
-                    setCompanies("$");
-                } else {
-                    setCompanies(result.data);
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                setCompanies([]);
-            });
-    }
-
-    const limit = Str('Hello Marcus').limit(100, '...').get()
 
     return (
         <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
@@ -118,18 +94,6 @@ const Landing = () => {
                         variant="outlined"
                         style={{ border: "1px #01BBC8 solid", color: "#01BBC8", textTransform: 'none', height: "40px" }}
                     >Raise funds</Button>
-                    {/* <Button                        
-                        style={{ width: '50px', textTransform: 'none', height: "40px" }}
-                    >
-                        <Image
-                            src={pointerImg}
-                            alt="Pointer"
-                            width={150}
-                            style={{
-                                cursor: "none"
-                            }}         
-                        />
-                    </Button> */}
                     </Stack>
                 </Grid>
                 <Grid
@@ -221,7 +185,7 @@ const Landing = () => {
                         </p>
                         <div className={styles.underline2} />
                     </Grid>
-                    {companies.map((company, index) => (
+                    {companies?.map((company, index) => (
                         <Grid
                             key={index}
                             item

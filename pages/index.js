@@ -1,3 +1,6 @@
+
+import AppContextProvider from "../components/AppContext"
+
 import Header from "../components/Header";
 import Landing from "../components/landing";
 import PageTemplate from "../components/pageTemplate";
@@ -9,6 +12,10 @@ import Link from "next/link";
 
 export default function Home() {
     return (
-        <Landing/>
+        // <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
+        <AppContextProvider>
+            <Landing/>
+        </AppContextProvider>
+        // </PageTemplate>
     );
 }

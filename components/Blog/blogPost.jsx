@@ -37,7 +37,7 @@ const BlogPost = ({
                     <Link
                         href={{
                             pathname: "/blog/[slug]",
-                            query: { slug: title, jdq_sf:id },
+                            query: { slug: title.replace(/[^A-Z0-9]+/ig, "-"), jdq_sf:id },
                         }}
                     >
                         <p
