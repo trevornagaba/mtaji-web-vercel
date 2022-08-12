@@ -38,7 +38,7 @@ const AppContextProvider = (props) => {
             }
         }
         catch(err){
-            if(router.pathname!=="/"){
+            if(router.pathname!=="/" && router.pathname!=="/about" && router.pathname!=="/blogs" && router.pathname!=="/faqs"){
                 setIsLoaded(true)
                 setIsAuth(false)
                 router.push("/login");    
@@ -73,6 +73,10 @@ const AppContextProvider = (props) => {
             setErrors(error)
         })
     };
+
+    const VerifyEmail = () => {
+        
+    }
 
     const handleLogout = () => {
       localStorage.removeItem("token");
