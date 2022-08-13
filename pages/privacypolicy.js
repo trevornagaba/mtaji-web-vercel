@@ -9,15 +9,16 @@ const PRIVACY = () => {
                 <section>
                     <h1 className={styles.heading}>Privacy Policy</h1>
                     <p className={styles.text}>
-                        This website privacy policy (&quotPrivacy Policy&quot)
+                        This website privacy policy (&quot;Privacy Policy&quot;)
                         describes how Mansa Finance Limited (hereinafter
-                        referred to as “Mansa Finance Limited” &quotwe,&quot
-                        &quotus,&quot or &quotour&quot) collect, use, and share
-                        information about users of our websites, and associated
-                        services (collectively, our &quotWebsite&quot\). By
-                        using our Website, you acknowledge and consent to our
-                        practices described below. Your use of our Website is
-                        also subject to our Terms of Use.
+                        referred to as “Mansa Finance Limited” &quot;we,&quot;
+                        &quot;us,&quot; or &quot;our&quot;) collect, use, and
+                        share information about users of our websites, and
+                        associated services (collectively, our
+                        &quot;Website&quot;\). By using our Website, you
+                        acknowledge and consent to our practices described
+                        below. Your use of our Website is also subject to our
+                        Terms of Use.
                     </p>
                 </section>
                 <section>
@@ -90,8 +91,9 @@ const PRIVACY = () => {
                     <p className={styles.text}>
                         If you decide to register through or otherwise grant
                         access to a third party social networking or
-                        authentication service that we may make available (&quot
-                        <u>Integrated Service</u>&quot), such as Facebook,
+                        authentication service that we may make available
+                        (&quot;
+                        <u>Integrated Service</u>&quot;), such as Facebook,
                         LinkedIn, or Twitter, we will collect certain personal
                         information that you have provided to the Integrated
                         Service (such as your name, email address, photo, and
@@ -116,7 +118,7 @@ const PRIVACY = () => {
                     <p className={styles.text}>
                         When you visit our Website, we and our service providers
                         collect certain information through the use of
-                        &quotcookies&quot and other technologies to better
+                        &quot;cookies&quot; and other technologies to better
                         understand how our users navigate through our Website,
                         learn what content is being viewed, and administer and
                         improve our Website. Cookies are small text files that
@@ -190,8 +192,8 @@ const PRIVACY = () => {
                     <p className={styles.text}>
                         Please note that your profile page is viewable by other
                         users and the public. For information on privacy
-                        settings available to you, please see the &quotChoices
-                        You Have With Your Information&quot section below. Any
+                        settings available to you, please see the &quot;Choices
+                        You Have With Your Information&quot; section below. Any
                         comments or information you submit or share on public
                         areas of the Website, such as questions for founders,
                         your bio, or a description of your business, can be
@@ -210,8 +212,8 @@ const PRIVACY = () => {
                     <p className={styles.text}>
                         Please note that your profile page is viewable by other
                         users and the public. For information on privacy
-                        settings available to you, please see the &quotChoices
-                        You Have With Your Information&quot section below. Any
+                        settings available to you, please see the &quot;Choices
+                        You Have With Your Information&quot; section below. Any
                         comments or information you submit or share on public
                         areas of the Website, such as questions for founders,
                         your bio, or a description of your business, can be
