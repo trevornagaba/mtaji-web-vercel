@@ -1,11 +1,13 @@
 import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/aml.module.css";
+import SubscribeCard from "../components/subscribeToMailList";
 
 const AML = () => {
     return (
         <PageTemplate
             hasNavbar={true}
-            hasRaiseFunds={true}
+            hasRaiseFunds={false}
+            hasSubscribetoBlog={true}
             hasWrapper={true}
             hasFooter={true}
         >
@@ -169,6 +171,9 @@ const AML = () => {
                         prevents any form of money laundering in its company.
                     </p>
                 </section>
+                <div style={{ marginTop: "5vh " }}>
+                    <SubscribeCard />
+                </div>
             </div>
         </PageTemplate>
     );

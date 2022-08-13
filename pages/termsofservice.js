@@ -1,14 +1,10 @@
 import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/termsofservice.module.css";
+import SubscribeCard from "../components/subscribeToMailList";
 
 const TERMSOFSERVICE = () => {
     return (
-        <PageTemplate
-            hasNavbar={true}
-            hasRaiseFunds={true}
-            hasWrapper={true}
-            hasFooter={true}
-        >
+        <PageTemplate hasNavbar={true} hasWrapper={true} hasFooter={true}>
             <div className={styles.tosDiv}>
                 <section>
                     <h1 className={styles.heading}>Terms of Service</h1>
@@ -636,6 +632,9 @@ const TERMSOFSERVICE = () => {
                         Finance at support@mtaji.io.
                     </p>
                 </section>
+                <div style={{ marginTop: "5vh " }}>
+                    <SubscribeCard />
+                </div>
             </div>
         </PageTemplate>
     );

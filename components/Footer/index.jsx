@@ -65,7 +65,7 @@ const Footer = () => {
 
                     <div className={styles.link}>
                         <img src="/assets/phone.svg" alt="phone" />
-                        <span>01222845686</span>
+                        <span>+256 759367905</span>
                     </div>
                 </div>
             </Grid>
@@ -84,7 +84,7 @@ const Footer = () => {
                     <div>
                         <p><Link href="/about">About</Link></p>
                         <p><Link href="/faqs">FAQs</Link></p>
-                        <p><Link href="blogs">Blog</Link></p>
+                        <p><Link href="blog">Blog</Link></p>
                     </div>
                 </div>
             </Grid>

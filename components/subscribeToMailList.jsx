@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-
-
-import styles from "../../styles/blog.module.css";
+import styles from "../styles/blog.module.css";
 // import { Posts } from "../../components/Blog/post";
-import TextInput from "../TextInput/TextInput";
-import Button from "../Button/Button";
+import TextInput from "../components/TextInput/TextInput";
+import Button from "../components/Button/Button";
 
 const SubscribeCard =()=>{
-    return 
-<div className={styles.subscribeSec} id="subscribe">
+    return <div className={styles.subscribeSec} id="subscribe">
                     <strong>
                         <p className={styles.heading}>
-                            Subscribe to the mtaji mailing lists
+                            Subscribe to our mailing lists
                         </p>
                     </strong>
                     <div>
@@ -45,8 +42,7 @@ const SubscribeCard =()=>{
                         alt="circles"
                     />
                 </div>
-  
-    
+   
 };
 export default SubscribeCard;
 
