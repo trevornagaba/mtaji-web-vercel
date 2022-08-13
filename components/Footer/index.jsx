@@ -103,8 +103,8 @@ const Footer = () => {
                 <div className={styles.otherLinks}>
                     <div>
                         <p><Link href="/about">About</Link></p>
-                        <p>FAQs</p>
-                        <p>Blog</p>
+                        <p><Link href="/faqs">FAQs</Link></p>
+                        <p><Link href="blogs">Blog</Link></p>
                     </div>
                 </div>
             </Grid>
@@ -121,8 +121,8 @@ const Footer = () => {
             >
                 <div className={styles.otherLinks}>
                     <div>
-                        <p>Terms of Service</p>
-                        <p>Privacy Policy</p>
+                        <p><Link href="/termsofservice">Terms of Service</Link></p>
+                        <p><Link href="/privacypolicy">Privacy Policy</Link></p>
                         <p><Link href="/amlpolicy">AML Policy</Link></p>
                     </div>
                 </div>
