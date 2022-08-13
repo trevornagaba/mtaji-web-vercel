@@ -3,7 +3,12 @@ import styles from "../styles/aml.module.css";
 
 const AML = () => {
     return (
-        <PageTemplate hasNavbar={true} hasRaiseFunds={true} hasWrapper={true}>
+        <PageTemplate
+            hasNavbar={true}
+            hasRaiseFunds={true}
+            hasWrapper={true}
+            hasFooter={true}
+        >
             <div className={styles.amlDiv}>
                 <h1 className={styles.heading}>AML/CFT Policy</h1>
                 <section>
@@ -22,11 +27,12 @@ const AML = () => {
                     </p>
                     <p className={styles.text}>
                         Money Laundering typically involves three (3)
-                        independent stages:<br/> ❖Placement of funds;<br/> ❖ Layering of
-                        transactions to disguise the source, ownership, and
-                        location of the funds; and<br/> ❖ Integration of the funds
-                        into society in the form of holdings that appear
-                        legitimate.
+                        independent stages:
+                        <br /> ❖Placement of funds;
+                        <br /> ❖ Layering of transactions to disguise the
+                        source, ownership, and location of the funds; and
+                        <br /> ❖ Integration of the funds into society in the
+                        form of holdings that appear legitimate.
                     </p>
                     <p className={styles.text}>
                         Anti-Money Laundering Laws (AML) is a collection of
@@ -55,9 +61,9 @@ const AML = () => {
                         Mansa Finance is dedicated to ensuring the monitoring
                         and implementation of its AML/CFT policies, procedures,
                         and controls and makes improvements where necessary
-                        based on changes to Mtaji&apos;s assessment of the risk of
-                        money laundering and terrorist financing or as advised
-                        by a supervisory agency or regulators.
+                        based on changes to Mtaji&apos;s assessment of the risk
+                        of money laundering and terrorist financing or as
+                        advised by a supervisory agency or regulators.
                     </p>
                     <p className={styles.text}>
                         The following AML/CFT compliance program has been
