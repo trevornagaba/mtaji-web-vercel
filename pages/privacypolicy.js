@@ -15,7 +15,7 @@ const PRIVACY = () => {
                         &quot;us,&quot; or &quot;our&quot;) collect, use, and
                         share information about users of our websites, and
                         associated services (collectively, our
-                        &quot;Website&quot;\). By using our Website, you
+                        &quot;Website&quot;). By using our Website, you
                         acknowledge and consent to our practices described
                         below. Your use of our Website is also subject to our
                         Terms of Use.
