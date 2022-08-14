@@ -8,9 +8,15 @@ import { v4 as uuidv4 } from "uuid";
 import { TextInput, Button } from "../../components";
 
 import { InvestmentSuccessModal, InvestmentErrorModal } from "/components";
+import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
+import FlwHook from "../../hooks/PaymentHook";
 
-export default function InvestmentModal({ isOpen, openModal, closeModal, companyId }) {
-
+export default function InvestmentModal({
+    isOpen,
+    openModal,
+    closeModal,
+    companyId,
+}) {
     // State management for fund wallet form data
     const [formData, setFormData] = useState({
         amountUSD: "",
@@ -21,14 +27,15 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
         const { name, value } = e.target;
 
         setFormData((prevFormData) => {
-        return e.target.name == 'amountUSD' ?
-            {
-                amountUSD: value,
-                amountUGX: value * 3500,
-            }:{
-                amountUSD: value / 3500,
-                amountUGX: value ,
-            }
+            return e.target.name == "amountUSD"
+                ? {
+                      amountUSD: value,
+                      amountUGX: value * 3500,
+                  }
+                : {
+                      amountUSD: value / 3500,
+                      amountUGX: value,
+                  };
         });
     };
 
@@ -54,36 +61,38 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
         setIsFailed(true);
     };
 
-    const handleInvestment = async (e) => {
-        // TO-DO: Add front end validation that compares value to cash balance
-        // Add validation that confirms if logged in
-        // include preventDefault to prevent default form submission via get/post method and use custom logic defined here
-        e.preventDefault();
-        
-        const response = axios
-            .post(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
-                {
-                    amount: formData.amountUSD,
-                    id: uuidv4(),
-                    type: "company",
-                    companyId: companyId,
-                },
-                { withCredentials: true },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            )
-            .then(function (response) {
+    const handleInvestmentCallback = async (response) => {
                 console.log(response);
-                openSuccessModal();
-            })
-            .catch(function (error) {
-                console.log(error);
-                openErrorModal();
-            });
+                // closePaymentModal(); // this will close the modal programmatically
+                if(response?.status == "successful"){
+                    axios
+                        .post(
+                            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
+                            {
+                                amount: formData.amountUSD,
+                                id: uuidv4(),
+                                type: "company",
+                                companyId: companyId,
+                            },
+                            { withCredentials: true },
+                            {
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                            }
+                        )
+                        .then(function (response) {
+                            console.log(response);
+                            openSuccessModal();
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                            openErrorModal();
+                        });
+                }
+                else{
+                    openErrorModal()
+                }
     };
 
     const handleCancel = async (e) => {
@@ -131,8 +140,8 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
                                             type="number"
                                             name="amountUSD"
                                             placeholder="20.00"
-                                                onChange={handleChange}
-                                                value={formData.amountUSD}
+                                            onChange={handleChange}
+                                            value={formData.amountUSD}
                                             leading
                                         />
                                         <div className="flex justify-end -mt-2">
@@ -145,8 +154,8 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
                                             type="number"
                                             name="amountUGX"
                                             placeholder="7000.00"
-                                                onChange={handleChange}
-                                                value={formData.amountUGX}
+                                            onChange={handleChange}
+                                            value={formData.amountUGX}
                                             leading
                                         />
                                         <div className="flex justify-end -mt-2">
@@ -166,13 +175,14 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
                                         >
                                             Cancel
                                         </Button>
-                                        <Button
+                                        {/* <Button
                                             primary
                                             onClick={handleInvestment}
                                             className="w-full"
                                         >
                                             Invest
-                                        </Button>
+                                        </Button> */}
+                                        <FlwHook callback={handleInvestmentCallback} buttonText= "Invest" customerDetails={""}/>
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>

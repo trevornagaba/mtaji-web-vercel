@@ -3,12 +3,9 @@ import Image from "next/image";
 import axios from "axios";
 import { Tab } from "@headlessui/react";
 import { useRouter } from "next/router";
-
 import { AppContext } from "/components/AppContext"
 import PageTemplate from "/components/pageTemplate";
-
 import { InvestmentSuccessModal, InvestmentErrorModal } from "/components";
-
 import {
     Navbar,
     ExternalLink,
@@ -18,10 +15,8 @@ import {
     Dot,
     InvestmentModal,
 } from "/components";
-
 import classNames from "/utils/classnames";
 import FlashMessage from "../../components/Alert/FlashMessage";
-// import { Alert } from "@mui/material";
 
 
 
@@ -33,13 +28,6 @@ export default function Company() {
 
     const { isLoaded, isAuth, getCompany } = useContext(AppContext);
     
-    // Create our number formatter.
-    var formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-        minimumFractionDigits: 0,
-    });
     // Setup state management
     const [company, setCompany] = useState([]);
     const [companyInfo, setCompanyInfo] = useState([
