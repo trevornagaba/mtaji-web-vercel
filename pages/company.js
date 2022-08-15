@@ -3,12 +3,11 @@ import Image from "next/image";
 import axios from "axios";
 import { Tab } from "@headlessui/react";
 
-import {
-    Grid,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 
 import PageTemplate from "../components/pageTemplate";
 import RaiseFunds from "../components/RaiseFunds";
+import SubscribeCard from "../components/subscribeToMailList";
 
 import {
     Navbar,
@@ -118,18 +117,25 @@ export default function CompanyInfo() {
     }
 
     return (
-
-        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
+        <PageTemplate
+            hasNavbar={true}
+            hasWrapper={false}
+            hasFooter={true}
+            hasRaiseFunds={true}
+        >
             <Grid
                 item
                 style={{
                     padding: "15vh 10%",
                     mimHeight: "100vh",
-                    width: '100%'
+                    width: "100%",
                 }}
                 align={"center"}
             >
-                <div className="flex items-center justify-between" style={{ width: '100%' }}>
+                <div
+                    className="flex items-center justify-between"
+                    style={{ width: "100%" }}
+                >
                     <div className="flex items-center gap-2">
                         <div className="hidden lg:block">
                             <Image
@@ -164,11 +170,7 @@ export default function CompanyInfo() {
                     </div>
                     <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
                         <ShareButton />
-                        <Button
-                            primary
-                            onClick={openModal}
-                            className="px-14"
-                        >
+                        <Button primary onClick={openModal} className="px-14">
                             Invest
                         </Button>
                     </div>
@@ -239,9 +241,7 @@ export default function CompanyInfo() {
                         </div>
                         <Tab.Panels className="mt-10">
                             {companyInfo.map((item) => (
-                                <Tab.Panel key={item.id}>
-                                    {item.desc}
-                                </Tab.Panel>
+                                <Tab.Panel key={item.id}>{item.desc}</Tab.Panel>
                             ))}
                         </Tab.Panels>
                     </Tab.Group>
@@ -258,7 +258,11 @@ export default function CompanyInfo() {
                         </div>
                     </div>
                 </div>
+                <SubscribeCard />
             </Grid>
+            {/* <div style={{ marginTop: "5vh " }}>
+                <SubscribeCard />
+            </div> */}
         </PageTemplate>
     );
 }

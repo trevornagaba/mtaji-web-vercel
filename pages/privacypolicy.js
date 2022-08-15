@@ -1,6 +1,6 @@
-import SubscribeCard from "../components/Blog/subscribeCard";
 import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/privacy.module.css";
+import SubscribeCard from "../components/subscribeToMailList";
 
 const PRIVACY = () => {
     return (
@@ -388,7 +388,9 @@ const PRIVACY = () => {
                         our Privacy Policy, please email us at support@mtaji.io
                     </p>
                 </section>
-                <SubscribeCard />
+                <div style={{ marginTop: "5vh " }}>
+                    <SubscribeCard />
+                </div>
             </div>
         </PageTemplate>
     );

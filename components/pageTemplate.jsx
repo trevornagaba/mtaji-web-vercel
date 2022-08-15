@@ -3,6 +3,7 @@ import Header from "./Header";
 import styles from "../styles/pageTemplate.module.css";
 import Footer from "./Footer";
 import RaiseFunds from "./RaiseFunds";
+import SubscribeCard from "./subscribeToMailList";
 
 import AppContextProvider from "../components/AppContext"
 
@@ -17,7 +18,7 @@ const PageTemplate = ({
     hasNavbar,
     hasFooter,
     hasRaiseFunds,
-    hasWrapper,
+        hasWrapper,
     children,
     isGreyBackgound
 }) => {
@@ -30,7 +31,10 @@ const PageTemplate = ({
                 </Wrapper>
             : children
             }
+            {hasRaiseFunds&&<RaiseFunds/>}
+            
             {hasFooter && <Footer />}
+            
         </div>
         
     );
