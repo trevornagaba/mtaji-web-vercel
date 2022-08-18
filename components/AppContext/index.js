@@ -22,7 +22,9 @@ const AppContextProvider = (props) => {
 
     useEffect(() => {
         checkAuth()
-        getCompanies();
+        getCompanies()
+        getBlogs()
+        getFAQs()
     }, []);
 
     const checkAuth = async () => {
@@ -33,7 +35,7 @@ const AppContextProvider = (props) => {
                 setIsAuth(true)
                 setIsLoaded(true)
                 if(router.pathname==="/login"){
-                    router.push("/home");    
+                    router.push("/home");
                 }
             }
         }
@@ -64,6 +66,7 @@ const AppContextProvider = (props) => {
                 localStorage.setItem("token", result.data.token);
                 setIsAuth(true);
                 setIsLoaded(true);
+
                 router.push("/home");
             } else {
                 return result;

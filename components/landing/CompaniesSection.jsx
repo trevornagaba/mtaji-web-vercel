@@ -1,203 +1,126 @@
-import styles from "../../styles/landing/CompaniesSection.module.css";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
+import {
+    Grid,
+    Stack,
+    Button,
+    Typography,
+    styled,
+    Box
+} from "@mui/material";
 import Link from "next/link";
+import Image from "next/image";
+import styles from "./Landing.module.css";
+import pointerImg from "../../public/assets/tagline_background.svg";
+import landingImg from "../../public/assets/illustration_3.svg";
+import whyMtajiImg from "../../public/assets/illustration_7.png";
 
-const CompaniesSection = () => {
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+
+const Str = require('@supercharge/strings')
+
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+    height: 8,
+    borderRadius: 5,
+    [`&.${linearProgressClasses.colorPrimary}`]: {
+        backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+    },
+    [`& .${linearProgressClasses.bar}`]: {
+        borderRadius: 5,
+        backgroundColor: theme.palette.mode === 'light' ? '#01BBC8' : '#01BBC8',
+    },
+}));
+
+
+const CompanyCard = ({company, index}) => {
+    
     // Create our number formatter.
-    var formatter = new Intl.NumberFormat("en-US", {
+    let formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
         maximumFractionDigits: 0,
         minimumFractionDigits: 0,
     });
 
-    // Setup state management
-    const [company, setCompanies] = useState([]);
-    useEffect(() => {
-        getCompanies();
-    }, []);
-
-    async function getCompanies() {
-        const response = await axios
-            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies`, {
-                withCredentials: true,
-            })
-            .then((result) => {
-                console.log(typeof result);
-                console.log(result.data);
-                // TO-DO: Update after sorting out auth
-                if (result.data == "Please login") {
-                    setCompanies(["$"]);
-                } else {
-                    setCompanies(result.data);
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                setCompanies(["$"]);
-            });
-    }
-
     return (
-        <>
-            <p className={styles.sectionHeader}>
-                Companies currently raising <br/> capital on mtaji
-            </p>
-            <div className="companies-section">
-                <div className="header">
-                    <p className="title"></p>
-                </div>
-                <div className="companies">
-                    {company.map((company, index) => (
-                        <div key={index} className="company-card">
-                            <Link href={`/company/${company._id}`}>
-                                <div>
-                                    <img
-                                        src="/assets/logo_in_card.svg"
-                                        alt="logo"
-                                    />
-                                    <p className="company-name">
-                                        {company.name}
-                                    </p>
-                                    <p className="company-summary">
-                                        {company.briefDescription}
-                                    </p>
-                                    <p className={styles.companyTarget}>
-                                        {formatter.format(company.targetAmount)}
-                                    </p>
-                                    <div className={styles.targetDeadline}>
-                                        <p className={styles.endsInLabel}>
-                                            Ends in:
-                                        </p>
-                                        <p className={styles.timeLeft}>
-                                            21h: 30m: 09s
-                                        </p>
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <style jsx>{`
-                .companies-section {
-                    margin: 0 5vw;
-                    padding-bottom: 32px;
-                }
-
-                .companies-section .header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: baseline;
-                    flex-wrap: wrap;
-                }
-
-                .companies-section .header .title {
-                    padding: 16px;
-                    font-size: 16px;
-                    font-weight: 600;
-                }
-
-                .companies-section .header .link {
-                    cursor: pointer;
-                    color: #2518b8;
-                }
-
-                .companies-section .header .link:hover {
-                    color: #01bbc8;
-                }
-
-                .companies {
-                    display: flex;
-                    justify-content: left;
-                    overflow: auto;
-                }
-
-                .companies .company-card {
-                    background-color: #ffffff;
-                    border-radius: 30px;
-                    min-width: 349px;
-                    height:394px;
-                    max-width: 290px;
-                    padding: 32px;
-                    margin-right: 2vw;
-                    margin-bottom: 2vw;
-                }
-
-                .company-card img {
-                    display: block;
-                    width: 30%;
-                    margin: auto;
-                }
-
-                .company-card .company-name {
-                    font-weight: bold;
-                    text-align: center;
-                }
-
-                /* Adjust for smartphone screen sizes. */
-                @media only screen and (max-width: 600px) {
-                    .companies {
-                        justify-content: left;
-                    }
-
-                    .company-card img {
-                        width: 70%;
-                    }
-                }
-
-                /* Adjust for tablet screen sizes. */
-                @media only screen and (min-width: 600px) and (max-width: 800px) {
-                    .companies {
-                        justify-content: left;
-                    }
-                }
-            `}</style>
-        </>
-    );
-};
-
-const CompanyCard = ({ isFourthCard = false }) => {
-    return (
-        <div
-            className={
-                isFourthCard
-                    ? `${styles.company} ${styles.fourthCard}`
-                    : styles.company
-            }
+        <Grid
+            key={index}
+            item
+            sx={12}
+            sm={12}
+            md={4}
+            lg={4}
+            xl={4}
+            className={styles.companyCard}
+            align="center"
         >
-            <img
-                className={styles.companyLogo}
-                src="/assets/logo_in_card.svg"
-                alt="logo_in_card"
-            />
+            <Box
+                className={styles.companyCardBox}
+            >
+                <Link href={`/company/${company._id}`}>
+                    <img src="/assets/companyLogo.svg" width={80} />
+                </Link>
+                <Typography
+                    variant="h5"
+                    style={{
+                        margin: "10px 0",
+                        fontFamily: "Poppins",
+                        fontWeight: "500"
+                    }}
+                >
+                    {company.name}
+                </Typography>
+                <Typography
+                    style={{                                
+                        textAlign: "left"
+                    }}
+                >
+                    {Str(company.briefDescription).limit(100, '...').get()}
+                </Typography>
+                
+                <Typography style={{ padding: "10px 0", lineHeight: "22px" }} align={"left"}>
+                    <small>Raising</small><br/>
+                    <strong style={{ fontSize: "22px" }}>{formatter.format(company.targetAmount)}</strong><br/>
+                    <small>Ends in: <span style={{ color: "red" }}>21h:30min:15sec</span></small>
+                </Typography>
 
-            <p className={styles.companyName}>Safe Boda</p>
-
-            <p className={styles.companyDescription}>
-                Nulla quis lorem ut libero male suada feu giat. Nulla quis lorem
-                ut libero male suada feugiat. Lorem ipsum dolor sit amet, con se
-                ct etur adipis cing elit. nfleare
-            </p>
-
-            <p className={styles.raisingLabel}>Raising</p>
-            <p className={styles.companyTarget}>UGX 50M</p>
-            <div className={styles.targetDeadline}>
-                <p className={styles.endsInLabel}>Ends in:</p>
-                <p className={styles.timeLeft}>21h: 30m: 09s</p>
-            </div>
-        </div>
+                <BorderLinearProgress variant="determinate" value={(company.amountRaised/company.targetAmount)*100} label={true}/>
+                <small style={{ color: "#01BBC8" }}>{Math.round((company.amountRaised/company.targetAmount)*100)}%</small>
+            </Box>
+        </Grid>
     );
 };
 
-const onScroll = (direction) => {
-    const companiesContainer = document.getElementById("companies");
-    if (direction == "left") {
-        companiesContainer.scrollLeft -= 50;
-    } else {
-        companiesContainer.scrollLeft += 50;
-    }
+const CompaniesSection = ({companies}) => {
+    
+    return (
+        companies.length != 0?
+            <Grid
+                container
+                className={styles.section4}
+            >
+                <Grid
+                    item
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    xl={12}
+                    align="center"
+                    style={{
+                        padding: "0"
+                    }}
+                >
+                    <p className={styles.sectionHeader}>
+                        Companies currently raising <br/>capital on mtaji
+                    </p>
+                    <div className={styles.underline2} />
+                </Grid>
+                {companies?.map((company, index) => (
+                    <CompanyCard key={index} company={company} />
+                ))}
+            </Grid>
+        : ""
+    )
 };
 
 export default CompaniesSection;

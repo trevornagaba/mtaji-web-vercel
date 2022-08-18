@@ -18,7 +18,7 @@ const Footer = () => {
         align="left"
 
     >
-        {router.pathname!=="/blog"?
+        {router.pathname!=="/blog" || router.pathname!=="/blog"?
             <div className={styles.container}>
                 <div className={styles.section}>
                     <div>
