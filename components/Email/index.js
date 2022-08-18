@@ -73,7 +73,7 @@ const Email = async (props) => {
     
     const { receiver, emailType, token } = props
 
-    // emailTypes = ['newAccount', 'passwordReset', 'newInvestment', 'investmentRecords', '']
+    // emailTypes = ['newAccount', 'passwordReset', 'newInvestment', 'investmentRecords']
 
     const EmailTemplate = <Template receiver={receiver} emailType={emailType} token={token}/>
 
@@ -82,17 +82,21 @@ const Email = async (props) => {
         { EmailTemplate, PasswordEmail, ReminderEmail }
     )
 
-    await mailer.send(ReminderEmail, {
-        firstName: 'Mtaji',
-        brand: 'Mtaji Inc',
-    },
-    {
-        to: receiver.email
-    })
-
-    return (
-
-    );
+    await mailer.send(ReminderEmail,
+        {
+            firstName: 'Mtaji',
+            brand: 'Mtaji Inc',
+        },
+        {
+            to: receiver.email
+        }
+    ).then((result) => {
+        console.log("Email Sent!")
+        return true;
+    }).catch((error) => {
+        console.log("Email Sent!")
+        return false;
+    });
 };
 
 export default Email;
