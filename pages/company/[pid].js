@@ -3,12 +3,9 @@ import Image from "next/image";
 import axios from "axios";
 import { Tab } from "@headlessui/react";
 import { useRouter } from "next/router";
-
 import { AppContext } from "/components/AppContext"
 import PageTemplate from "/components/pageTemplate";
-
 import { InvestmentSuccessModal, InvestmentErrorModal } from "/components";
-
 import {
     Navbar,
     ExternalLink,
@@ -18,26 +15,27 @@ import {
     Dot,
     InvestmentModal,
 } from "/components";
-
 import classNames from "/utils/classnames";
+import FlashMessage from "../../components/Alert/FlashMessage";
 
-export default function Company() {
 
+export const getServerSideProps =async(context)=>{
+    const companyId = context.query.pid
+    // console.log(context)
+    const company = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/${companyId}`)
+    return{
+        props: {company: company.data}
+    }
+}
+export default function Company({company}) {
     // Setup use of router to get company id from url
     const router = useRouter();
     const { pid } = router.query;
 
     const { isLoaded, isAuth, getCompany } = useContext(AppContext);
     
-    // Create our number formatter.
-    var formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-        minimumFractionDigits: 0,
-    });
     // Setup state management
-    const [company, setCompany] = useState([]);
+    // const [company, setCompany] = useState([]);
     const [companyInfo, setCompanyInfo] = useState([
         {
             id: 1,
@@ -66,15 +64,18 @@ export default function Company() {
         },
     ]);
 
-    useEffect(() => {
-        setCompany(getCompany(pid));
-    }, []);
+    // useEffect(() => {
+    //     setCompany(getCompany(pid));
+    // }, []);
 
     // Setup state management for Investment modal
     const [isOpen, setIsOpen] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [loading, setLoading] = useState(true)
 
     const closeModal = () => {
         setIsOpen(false);
+        console.log('open set to false')
     };
 
     const openModal = () => {
@@ -113,12 +114,17 @@ export default function Company() {
                 console.log(error);
             });
     }
+    const onClickShare = async () => {
+        if(showAlert) {setShowAlert(false)}
+        await navigator.clipboard.writeText(window.location.href);
+        setShowAlert(true)
+    };
 
     return (
         <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
             <div className="company-page">
             <main>
-                <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8">
+                <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8 pt-36">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <div className="hidden lg:block">
@@ -157,7 +163,7 @@ export default function Company() {
                             </Button>
                         </div>
                         <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
-                            <ShareButton />
+                            <ShareButton onClick={() => onClickShare()} />
                             <Button
                                 primary
                                 onClick={openModal}
@@ -167,12 +173,14 @@ export default function Company() {
                             </Button>
                         </div>
                     </div>
-                    <div className="max-w-full w-full h-[240px] lg:h-[500px]">
+                    <div className="max-w-full w-full h-[240px] lg:h-[500px] flex flex-col justify-center relative ">
+                        {loading ? <div className="absolute self-center text-base">Loading...</div>: null}
                         <iframe
                             src={company.videoUrl}
                             frameBorder="0"
                             allowFullScreen
                             className="w-full h-full mt-4 rounded-xl lg:mt-8"
+                            onLoad={()=>setLoading(false)}
                         ></iframe>
                     </div>
                     {/* Stats */}
@@ -219,7 +227,9 @@ export default function Company() {
                                 </Tab.List>
                                 <div className="hidden lg:block">
                                     <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
-                                        <ShareButton />
+                                        <ShareButton
+                                            onClick={() => onClickShare()}
+                                        />
                                         <Button
                                             primary
                                             onClick={openModal}
@@ -233,14 +243,62 @@ export default function Company() {
                             <Tab.Panels className="mt-10">
                                 {companyInfo.map((item) => (
                                     <Tab.Panel key={item.id}>
-                                        {item.desc}
+                                        {item.title == "Team" ? (
+                                                <div className="flex flex-row w-full justify-between text-center bg-slate-50 rounded-lg p-2 px-6">
+                                                    <div className="flex flex-row items-center">
+                                                        <Image
+                                                            src="/assets/file.svg"
+                                                            alt="file"
+                                                            height={20}
+                                                            width={20}
+                                                        />
+                                                        <p className="ml-3">{item.desc}</p>
+                                                    </div>
+                                                    <div className="cursor-pointer flex w-10 h-10 justify-center rounded-full hover:bg-slate-100">
+                                                        <Image
+                                                            src="/assets/download.svg"
+                                                            alt="file"
+                                                            height={20}
+                                                            width={20}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            ) : item.title == "Documents"?(
+                                                <>
+                                                    <div className="flex flex-row w-full justify-between text-center bg-slate-50 rounded-lg p-2 px-6">
+                                                    <div className="flex flex-row items-center">
+                                                        <Image
+                                                            src="/assets/file.svg"
+                                                            alt="file"
+                                                            height={20}
+                                                            width={20}
+                                                        />
+                                                        <p className="ml-3">{item.desc}</p>
+                                                    </div>
+                                                    <div className="cursor-pointer flex w-10 h-10 justify-center rounded-full hover:bg-slate-100">
+                                                        <Image
+                                                            src="/assets/download.svg"
+                                                            alt="file"
+                                                            height={20}
+                                                            width={20}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                </>
+                                            ):(
+                                                <>
+                                                    {item.desc}
+                                                </>
+                                            )
+                                        }
+                                        
                                     </Tab.Panel>
                                 ))}
                             </Tab.Panels>
                         </Tab.Group>
                         <div className="block mt-10 lg:hidden">
                             <div className="flex items-center gap-2">
-                                <ShareButton />
+                                <ShareButton onClick={() => onClickShare()} />
                                 <Button
                                     primary
                                     onClick={openModal}
@@ -262,6 +320,7 @@ export default function Company() {
                 companyId={pid}
                 // userId={userId} // TO-DO: Validate if logged in
             />
+            {showAlert && <FlashMessage message={'Url copied'} type={'success'}/>}
 
             {/* <InvestmentErrorModal
                 isFailed={isFailed}

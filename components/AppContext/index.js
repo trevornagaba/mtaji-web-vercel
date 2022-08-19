@@ -14,7 +14,7 @@ const AppContextProvider = (props) => {
     const [token, setToken] = useState(false);
     const [isAuth, setIsAuth] = useState(false);
     const [errors, setErrors] = useState(false);
-    const [userDetails, setUserDetails] = useState([]);
+    const [userDetails, setUserDetails] = useState({});
     const [companies, setCompanies] = useState([]);
     const [blogs, setBlogs] = useState([]);
     const [faqs, setFaqs] = useState([]);
@@ -28,7 +28,7 @@ const AppContextProvider = (props) => {
         setIsLoaded(false)
         try {
             if(jwt_decode(localStorage.getItem("token"))){
-                setUserDetails(jwt_decode(localStorage.getItem("token")))
+                setUserDetails(await jwt_decode(localStorage.getItem("token")))
                 setIsAuth(true)
                 setIsLoaded(true)
             }

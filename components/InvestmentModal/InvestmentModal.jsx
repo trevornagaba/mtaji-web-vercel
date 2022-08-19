@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
@@ -8,26 +8,39 @@ import { v4 as uuidv4 } from "uuid";
 import { TextInput, Button } from "../../components";
 
 import { InvestmentSuccessModal, InvestmentErrorModal } from "/components";
+import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
+import FlwHook from "../../hooks/PaymentHook";
+import { AppContext } from "../AppContext";
 
-export default function InvestmentModal({ isOpen, openModal, closeModal, companyId }) {
-
+export default function InvestmentModal({
+    isOpen,
+    openModal,
+    closeModal,
+    companyId,
+}) {
+    
     // State management for fund wallet form data
     const [formData, setFormData] = useState({
         amountUSD: "",
         amountUGX: "",
     });
-
     const handleChange = (e) => {
         const { name, value } = e.target;
 
         setFormData((prevFormData) => {
-            return {
-                ...prevFormData,
-                [name]: value,
-            };
+            return e.target.name == "amountUSD"
+                ? {
+                      amountUSD: value,
+                      amountUGX: value * 3500,
+                  }
+                : {
+                      amountUSD: value / 3500,
+                      amountUGX: value,
+                  };
         });
     };
-
+    const { checkAuth, userDetails, isLoaded } = useContext(AppContext);
+    const [user, setUser] = useState({});
     // For succesful Investment modal
     const [isSuccessful, setIsSuccessful] = useState(false);
 
@@ -50,36 +63,46 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
         setIsFailed(true);
     };
 
-    const handleInvestment = async (e) => {
-        // TO-DO: Add front end validation that compares value to cash balance
-        // Add validation that confirms if logged in
-        // include preventDefault to prevent default form submission via get/post method and use custom logic defined here
-        e.preventDefault();
-        console.log(formData);
-        const response = axios
-            .post(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
-                {
-                    amount: formData.amountUSD,
-                    id: uuidv4(),
-                    type: "company",
-                    companyId: companyId,
-                },
-                { withCredentials: true },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+    const handleInvestmentCallback = async (response) => {
+        
+        const token = localStorage.getItem("token")
+        
+        if (response?.status == "successful") {
+            let config = {
+                headers: {
+                  'Authorization': `Bearer ${token}`,
+                  'Content-Type': 'Application/json',
                 }
-            )
-            .then(function (response) {
-                console.log(response);
-                openSuccessModal();
-            })
-            .catch(function (error) {
-                console.log(error);
-                openErrorModal();
-            });
+              }
+              let body = {
+                flw_txn_id: response.transaction_id,
+                userId: user.userId,
+                companyId: companyId,
+                type: "company",
+                creationDate: "",
+                amount: response.amount,
+                transactionChannel: "flw",
+                currency: 'UGX'
+            }
+            
+            axios
+                .post(
+                    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
+                    body,
+                    config
+                )
+                .then(function (response) {
+                    closePaymentModal(); // this will close the flutterwave modal
+                    closeModal();
+                    openSuccessModal();
+                })
+                .catch(function (error) {
+                    console.log(error)
+                    openErrorModal();
+                });
+        } else {
+            openErrorModal();
+        }
     };
 
     const handleCancel = async (e) => {
@@ -87,6 +110,11 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
         e.preventDefault();
         closeModal();
     };
+
+    useEffect(() => {
+        checkAuth();
+        setUser(userDetails);
+    }, [isLoaded]);
 
     return (
         <div>
@@ -124,35 +152,35 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
                                     <div className="mt-2 p-8">
                                         <TextInput
                                             label="Enter amount ($)"
-                                            type="text"
+                                            type="number"
                                             name="amountUSD"
                                             placeholder="20.00"
-                                                onChange={handleChange}
-                                                value={formData.amount}
+                                            onChange={handleChange}
+                                            value={formData.amountUSD}
                                             leading
                                         />
-                                        <div className="flex justify-end -mt-2">
+                                        {/* <div className="flex justify-end -mt-2">
                                             <small className="text-gray-600">
                                                 Avail Bal: $ 0.50
                                             </small>
-                                        </div>
+                                        </div> */}
                                         <TextInput
                                             label="Enter amount (UGX)"
-                                            type="text"
+                                            type="number"
                                             name="amountUGX"
                                             placeholder="7000.00"
-                                                onChange={handleChange}
-                                                value={formData.amountUGX}
+                                            onChange={handleChange}
+                                            value={formData.amountUGX}
                                             leading
                                         />
-                                        <div className="flex justify-end -mt-2">
+                                        {/* <div className="flex justify-end -mt-2">
                                             <small className="text-gray-600">
                                                 Avail Bal: UGX 2,500
                                             </small>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="px-8">
-                                        <small>Transaction Fee: 0</small>
+                                        <small>Transaction Fee: UGX 0</small>
                                     </div>
                                     <div className="p-8 flex items-center justify-between gap-3">
                                         <Button
@@ -162,13 +190,20 @@ export default function InvestmentModal({ isOpen, openModal, closeModal, company
                                         >
                                             Cancel
                                         </Button>
-                                        <Button
+                                        {/* <Button
                                             primary
                                             onClick={handleInvestment}
                                             className="w-full"
                                         >
                                             Invest
-                                        </Button>
+                                        </Button> */}
+                                        <FlwHook
+                                            callback={handleInvestmentCallback}
+                                            buttonText="Invest"
+                                            customer={user}
+                                            amount={formData.amountUGX}
+                                            company={companyId}
+                                        />
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
