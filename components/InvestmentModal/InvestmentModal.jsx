@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
@@ -10,6 +10,7 @@ import { TextInput, Button } from "../../components";
 import { InvestmentSuccessModal, InvestmentErrorModal } from "/components";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import FlwHook from "../../hooks/PaymentHook";
+import { AppContext } from "../AppContext";
 
 export default function InvestmentModal({
     isOpen,
@@ -17,12 +18,12 @@ export default function InvestmentModal({
     closeModal,
     companyId,
 }) {
+    
     // State management for fund wallet form data
     const [formData, setFormData] = useState({
         amountUSD: "",
         amountUGX: "",
     });
-
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -38,7 +39,8 @@ export default function InvestmentModal({
                   };
         });
     };
-
+    const { checkAuth, userDetails, isLoaded } = useContext(AppContext);
+    const [user, setUser] = useState({});
     // For succesful Investment modal
     const [isSuccessful, setIsSuccessful] = useState(false);
 
@@ -62,37 +64,45 @@ export default function InvestmentModal({
     };
 
     const handleInvestmentCallback = async (response) => {
-                console.log(response);
-                // closePaymentModal(); // this will close the modal programmatically
-                if(response?.status == "successful"){
-                    axios
-                        .post(
-                            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
-                            {
-                                amount: formData.amountUSD,
-                                id: uuidv4(),
-                                type: "company",
-                                companyId: companyId,
-                            },
-                            { withCredentials: true },
-                            {
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
-                            }
-                        )
-                        .then(function (response) {
-                            console.log(response);
-                            openSuccessModal();
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                            openErrorModal();
-                        });
+        
+        const token = localStorage.getItem("token")
+        
+        if (response?.status == "successful") {
+            let config = {
+                headers: {
+                  'Authorization': `Bearer ${token}`,
+                  'Content-Type': 'Application/json',
                 }
-                else{
-                    openErrorModal()
-                }
+              }
+              let body = {
+                flw_txn_id: response.transaction_id,
+                userId: user.userId,
+                companyId: companyId,
+                type: "company",
+                creationDate: "",
+                amount: response.amount,
+                transactionChannel: "flw",
+                currency: 'UGX'
+            }
+            
+            axios
+                .post(
+                    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
+                    body,
+                    config
+                )
+                .then(function (response) {
+                    closePaymentModal(); // this will close the flutterwave modal
+                    closeModal();
+                    openSuccessModal();
+                })
+                .catch(function (error) {
+                    console.log(error)
+                    openErrorModal();
+                });
+        } else {
+            openErrorModal();
+        }
     };
 
     const handleCancel = async (e) => {
@@ -100,6 +110,11 @@ export default function InvestmentModal({
         e.preventDefault();
         closeModal();
     };
+
+    useEffect(() => {
+        checkAuth();
+        setUser(userDetails);
+    }, [isLoaded]);
 
     return (
         <div>
@@ -144,11 +159,11 @@ export default function InvestmentModal({
                                             value={formData.amountUSD}
                                             leading
                                         />
-                                        <div className="flex justify-end -mt-2">
+                                        {/* <div className="flex justify-end -mt-2">
                                             <small className="text-gray-600">
                                                 Avail Bal: $ 0.50
                                             </small>
-                                        </div>
+                                        </div> */}
                                         <TextInput
                                             label="Enter amount (UGX)"
                                             type="number"
@@ -158,14 +173,14 @@ export default function InvestmentModal({
                                             value={formData.amountUGX}
                                             leading
                                         />
-                                        <div className="flex justify-end -mt-2">
+                                        {/* <div className="flex justify-end -mt-2">
                                             <small className="text-gray-600">
                                                 Avail Bal: UGX 2,500
                                             </small>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="px-8">
-                                        <small>Transaction Fee: 0</small>
+                                        <small>Transaction Fee: UGX 0</small>
                                     </div>
                                     <div className="p-8 flex items-center justify-between gap-3">
                                         <Button
@@ -182,7 +197,13 @@ export default function InvestmentModal({
                                         >
                                             Invest
                                         </Button> */}
-                                        <FlwHook callback={handleInvestmentCallback} buttonText= "Invest" customerDetails={""}/>
+                                        <FlwHook
+                                            callback={handleInvestmentCallback}
+                                            buttonText="Invest"
+                                            customer={user}
+                                            amount={formData.amountUGX}
+                                            company={companyId}
+                                        />
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>

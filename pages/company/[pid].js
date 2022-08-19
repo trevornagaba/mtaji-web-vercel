@@ -19,9 +19,15 @@ import classNames from "/utils/classnames";
 import FlashMessage from "../../components/Alert/FlashMessage";
 
 
-
-export default function Company() {
-
+export const getServerSideProps =async(context)=>{
+    const companyId = context.query.pid
+    // console.log(context)
+    const company = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/${companyId}`)
+    return{
+        props: {company: company.data}
+    }
+}
+export default function Company({company}) {
     // Setup use of router to get company id from url
     const router = useRouter();
     const { pid } = router.query;
@@ -29,7 +35,7 @@ export default function Company() {
     const { isLoaded, isAuth, getCompany } = useContext(AppContext);
     
     // Setup state management
-    const [company, setCompany] = useState([]);
+    // const [company, setCompany] = useState([]);
     const [companyInfo, setCompanyInfo] = useState([
         {
             id: 1,
@@ -58,16 +64,18 @@ export default function Company() {
         },
     ]);
 
-    useEffect(() => {
-        setCompany(getCompany(pid));
-    }, []);
+    // useEffect(() => {
+    //     setCompany(getCompany(pid));
+    // }, []);
 
     // Setup state management for Investment modal
     const [isOpen, setIsOpen] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
+    const [loading, setLoading] = useState(true)
 
     const closeModal = () => {
         setIsOpen(false);
+        console.log('open set to false')
     };
 
     const openModal = () => {
@@ -116,7 +124,7 @@ export default function Company() {
         <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
             <div className="company-page">
             <main>
-                <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8">
+                <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8 pt-36">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <div className="hidden lg:block">
@@ -165,12 +173,14 @@ export default function Company() {
                             </Button>
                         </div>
                     </div>
-                    <div className="max-w-full w-full h-[240px] lg:h-[500px]">
+                    <div className="max-w-full w-full h-[240px] lg:h-[500px] flex flex-col justify-center relative ">
+                        {loading ? <div className="absolute self-center text-base">Loading...</div>: null}
                         <iframe
                             src={company.videoUrl}
                             frameBorder="0"
                             allowFullScreen
                             className="w-full h-full mt-4 rounded-xl lg:mt-8"
+                            onLoad={()=>setLoading(false)}
                         ></iframe>
                     </div>
                     {/* Stats */}
