@@ -84,7 +84,7 @@ const Footer = () => {
                     <div>
                         <p><Link href="/about">About</Link></p>
                         <p><Link href="/faqs">FAQs</Link></p>
-                        <p><Link href="blog">Blog</Link></p>
+                        <p><Link href="/blog">Blog</Link></p>
                     </div>
                 </div>
             </Grid>
