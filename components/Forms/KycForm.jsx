@@ -1,8 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import DragandDrop from "../DragandDropFileUpload/DragandDrop";
 
 const KycForm = () => {
+    const [file, setFile] = useState({
+        front:'',
+        back:''
+    });
+    const onFileDrop = async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const newFile = e.target.files[0];
+        const name = e.target.name
+        setFile((files) => {
+            return { 
+                ...files, 
+                [name]: newFile 
+            };
+        });
+        // setFile(newFile)
+        console.log(file)
+        // console.log(typeof file)
+    };
+    const uploadImg = async () => {
+        let formData = new FormData();
+        formData.append("file", file[0]);
+        formData.append("upload_preset", "uhvy5vvk");
+
+        await axios
+            .post(
+                "https://api.cloudinary.com/v1_1/daat2pgem/image/upload",
+                formData
+            )
+            .then((res) => {
+                console.log(res);
+            });
+    };
+
+    const fileRemove = (name) => {
+        // setFile((files) => {
+        //     return { ...files, [name]: '' };
+        // });
+        setFile('')
+    };
+    // useEffect(()=>{},[file])
     return (
         <div className="ml-5">
             <p className="text-lg font-medium">Identity Verification</p>
@@ -14,7 +55,12 @@ const KycForm = () => {
                     </p>
                 </div>
                 <div className="upload-row">
-                    <DragandDrop/>
+                    <DragandDrop
+                        onFileDrop={onFileDrop}
+                        onFileRemove={fileRemove}
+                        file={file.front}
+                        name="front"
+                    />
                 </div>
             </div>
             <div className="w-full">
@@ -25,11 +71,18 @@ const KycForm = () => {
                     </p>
                 </div>
                 <div className="upload-row">
-                    <DragandDrop/>
+                    <DragandDrop
+                        onFileDrop={onFileDrop}
+                        onFileRemove={fileRemove}
+                        file={file.back}
+                        name="back"
+                    />
                 </div>
             </div>
             <div className="mt-10 flex w-full justify-center">
-                <Button primary>Submit</Button>
+                <Button primary onClick={() => setShouldUpload(true)}>
+                    Submit
+                </Button>
             </div>
             <style jsx>{`
                 .upload-row {
@@ -39,7 +92,6 @@ const KycForm = () => {
                     display: flex;
                     justify-content: center;
                 }
-                
             `}</style>
         </div>
     );

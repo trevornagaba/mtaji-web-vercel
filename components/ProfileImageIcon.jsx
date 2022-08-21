@@ -6,7 +6,7 @@ const ProfileImg = ({ hasEdit, onClick, imageUrl, imageSize, name, title }) => {
         <div className="flex flex-row items-center">
             {imageSize == "lg" ? (
                 <div className={styles.profileImgContainer} onClick={onClick}>
-                    <img src={imageUrl} alt="profileimage" />
+                    <img src={imageUrl} alt="profileimage" className="rounded-full h-[60px] w-full object-cover"/>
                     {!!hasEdit && <img src="/assets/editicon.svg" alt="edit" />}
                 </div>
             ) : imageSize == "xlg" ? (

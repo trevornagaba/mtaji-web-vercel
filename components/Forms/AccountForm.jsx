@@ -6,22 +6,67 @@ import ProfileImg from "../ProfileImageIcon";
 import Modal from "../ModalComponent";
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import { getToken } from "../../utils/getToken";
+import axios from "axios";
 
 
 
-const AccountForm = () => {
+const AccountForm = ({userDetails}) => {
+    useEffect(()=>{
+        // console.log(userDetails)
+        setData(userDetails)
+    },[userDetails])
     const [openModal, setOpenModal] = useState(false)
+    const [data, setData]= useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        address: '',
+    })
+    const [sending, setSending] = useState(false)
+    
     const onClickProfileImage= ()=>{
         return (
             setOpenModal(!openModal)
             
         )
     }
+    const handleChange = (e)=>{
+        e.preventDefault()
+        const {name, value} = e.target
+        // console.log(e.target.value)
+        setData((data)=>{
+            return {
+                ...data, 
+                [name]: value
+            }
+        }
+        )
+    }
     
-    useEffect(()=>{
+    const handleSubmit =()=>{
+        setSending(true)
+        const token = getToken()
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'Application/json',
+            }
+        }
+        axios.patch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userDetails.userId}`,
+        data,
+        config).then((res)=>{
+            console.log(res)
+            setSending(false)
+        }
+        ).catch(e=>{
+            console.log(e)
+            setSending(false)
+        })
+    }
 
-    },[openModal])
-
+    
     return (
         <div>
             <Modal clicked={openModal} title={"Upload Profile image"}>
@@ -39,8 +84,8 @@ const AccountForm = () => {
                 <ProfileImg
                     hasEdit={true}
                     onClick={onClickProfileImage}
-                    imageUrl="/assets/avatar.png"
-                    name="Sheldon Cooper"
+                    imageUrl={userDetails?.photoUrl}
+                    name={userDetails?.firstName + ' '+ userDetails?.lastName}
                     imageSize='lg'
                 />
             </div>
@@ -48,17 +93,22 @@ const AccountForm = () => {
                 <div className={styles.rowContent}>
                     <TextInput
                         label="First name"
-                        name="FirstName"
+                        name="firstName"
                         type="text"
                         placeholder="sheldon"
+                        value = {data?.firstName}
+                        onChange={handleChange}
                     />
                 </div>
                 <div className={styles.rowContent}>
                     <TextInput
+                        id="lastName"
                         label="Last name"
-                        name="LastName"
+                        name="lastName"
                         type="text"
                         placeholder="cooper"
+                        value = {data?.lastName}
+                        onChange={handleChange}
                     />
                 </div>
             </div>
@@ -67,26 +117,41 @@ const AccountForm = () => {
                 name="Username"
                 type="text"
                 placeholder="Ecooper"
+                value = {data?.firstName+data?.lastName}
+                disabled={true}
             />
             <TextInput
+                id="email"
                 label="Email"
                 name="email"
                 type="text"
                 placeholder="E-Mail"
+                value = {data?.email}
+                onChange={handleChange}
             />
             <TextInput
+                id="phoneNumber"
                 label="Phone Number"
                 name="phoneNumber"
                 type="number"
                 placeholder="phone number"
+                value = {data?.phoneNumber}
+                onChange={handleChange}
             />
             <TextInput
                 label="Home address"
-                name="firstName"
+                name="address"
                 type="text"
                 placeholder="Home address"
+                value = {data?.address}
+                onChange={handleChange}
             />
-            <Button primary={true}>save changes</Button>
+            <Button primary={true} onClick={handleSubmit}>
+                {
+                    sending ? 'Updating': 'save changes'
+
+                }
+            </Button>
         </div>
     );
 };
