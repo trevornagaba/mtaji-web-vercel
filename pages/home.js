@@ -49,7 +49,7 @@ const HomePage = () => {
             {isLoaded ? (
                 <Grid
                     item
-                    sx={{
+                    xs={{
                         width: "100%",
                     }}
                 >
