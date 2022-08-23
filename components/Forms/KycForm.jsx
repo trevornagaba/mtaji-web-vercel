@@ -3,25 +3,19 @@ import Button from "../Button/Button";
 import DragandDrop from "../DragandDropFileUpload/DragandDrop";
 
 const KycForm = () => {
-    const [file, setFile] = useState({
-        front:'',
-        back:''
-    });
-    const onFileDrop = async (e) => {
+    const [file, setFile] = useState('');
+    const onFileDrop = (e) => {
         e.preventDefault();
         e.stopPropagation();
         const newFile = e.target.files[0];
-        const name = e.target.name
-        setFile((files) => {
-            return { 
-                ...files, 
-                [name]: newFile 
-            };
-        });
-        // setFile(newFile)
-        console.log(file)
-        // console.log(typeof file)
+        console.log(newFile);
+        // setFile(newFile);
+        setTimeout(() => setFile(newFile), 0);
     };
+    // useEffect(()=>{
+    //     console.log(file);
+    // })
+    console.log('render')
     const uploadImg = async () => {
         let formData = new FormData();
         formData.append("file", file[0]);
@@ -58,7 +52,7 @@ const KycForm = () => {
                     <DragandDrop
                         onFileDrop={onFileDrop}
                         onFileRemove={fileRemove}
-                        file={file.front}
+                        file={file}
                         name="front"
                     />
                 </div>
@@ -71,12 +65,12 @@ const KycForm = () => {
                     </p>
                 </div>
                 <div className="upload-row">
-                    <DragandDrop
+                    {/* <DragandDrop
                         onFileDrop={onFileDrop}
                         onFileRemove={fileRemove}
-                        file={file.back}
+                        file={file}
                         name="back"
-                    />
+                    /> */}
                 </div>
             </div>
             <div className="mt-10 flex w-full justify-center">

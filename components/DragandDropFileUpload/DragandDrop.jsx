@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef} from "react";
 
 const DragandDrop = ({onFileDrop, onFileRemove, file, name }) => {
     const wrapperRef = useRef(null);
@@ -9,10 +9,10 @@ const DragandDrop = ({onFileDrop, onFileRemove, file, name }) => {
     const onDragLeave = () => wrapperRef.current.classList.remove("dragover");
     
     const onDrop = () => wrapperRef.current.classList.remove("dragover");
-    
     useEffect(()=>{
         console.log(file)
-    },[file])
+    },[])
+    console.log(file)
     return (
         <div
             className="upload-box"
@@ -45,7 +45,7 @@ const DragandDrop = ({onFileDrop, onFileRemove, file, name }) => {
                         value=""
                         className="upload-input"
                         accept=".pdf,.jpg,.png,.jpeg,.doc.docx"
-                        onChange={async(e) => onFileDrop(e)}
+                        onChange={(e) => onFileDrop(e)}
                     />
                     <p>
                         <small>Maximum size: 5MB</small>
@@ -107,4 +107,4 @@ const DragandDrop = ({onFileDrop, onFileRemove, file, name }) => {
     );
 };
 
-export default DragandDrop;
+export default memo(DragandDrop);

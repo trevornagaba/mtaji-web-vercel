@@ -50,7 +50,7 @@ const Account = () => {
                 </div>
                 <div className={styles.tabContent}>
                     {selectedTab == 'Account' ?
-                    <AccountForm userDetails={user}/> : selectedTab == 'KYC' ? <KycForm/> : <SecurityForm/> 
+                    <AccountForm userDetails={user}/> : selectedTab == 'KYC' ? <KycForm/> : <SecurityForm userId={user.userId}/> 
                     }
                 </div>
             </div>
