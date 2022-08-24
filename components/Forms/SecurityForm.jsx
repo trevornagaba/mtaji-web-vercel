@@ -3,6 +3,7 @@ import Button from "../Button/Button";
 import TextInput from "../TextInput/TextInput";
 import { getToken } from "../../utils/getToken";
 import axios from "axios";
+import FlashMessage from "../Alert/FlashMessage";
 
 const SecurityForm = ({userId}) => {
     const [data, setData]= useState({
