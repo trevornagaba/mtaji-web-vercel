@@ -50,7 +50,7 @@ const Landing = () => {
     });
 
     return (
-        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
+        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true} hasRaiseFunds={true}>
             <Grid
                 container
                 style={{
@@ -234,6 +234,7 @@ const Landing = () => {
                     ))}
                 </Grid>
             : ""}
+            
         </PageTemplate>
     )
 }

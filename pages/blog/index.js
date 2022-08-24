@@ -8,20 +8,19 @@ import Button from "../../components/Button/Button";
 import Link from "next/link";
 import axios from "axios";
 
-
 export const getServerSideProps = async () => {
     //fetch post from B.E
     const fetchPosts = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/blogs`
     );
     return {
-        props:{posts: fetchPosts.data}
-    }
+        props: { posts: fetchPosts.data },
+    };
 };
 const Blog = ({ posts }) => {
-    const [tabs, setTabs] = useState([])
+    const [tabs, setTabs] = useState([]);
     const getTabs = () => {
-        const categories=["All"]
+        const categories = ["All"];
         posts?.map((post) => {
             if (!categories.includes(post.section)) {
                 return setTabs(categories.push(post.section));
@@ -30,7 +29,6 @@ const Blog = ({ posts }) => {
         });
         return setTabs(categories);
     };
-    
 
     //Sort Post based on date: most recently to previous post
     const sortedAll = posts.sort((a, b) => {
@@ -51,7 +49,7 @@ const Blog = ({ posts }) => {
     const featuredPost = posts.find((post) => post.featured == true);
 
     //selected tab state helps to know and the currently selected tab
-    const [selectedTab, setSelectedTab] = useState('All');
+    const [selectedTab, setSelectedTab] = useState("All");
 
     //post to render is used to store posts  that relate to a category when a tab is clicked
     let [postToRender, setPostToRender] = useState([]);
@@ -64,10 +62,10 @@ const Blog = ({ posts }) => {
     };
 
     useEffect(() => {
-        getTabs()
+        getTabs();
         setPostToRender(sortedAll);
     }, [posts]);
-    
+
     // function stripHtml(html) {
     //     if (typeof window !== "undefined") {
     //         // your code with access to window or document object here
@@ -85,7 +83,10 @@ const Blog = ({ posts }) => {
             isGreyBackgound={true}
             hasFooter={true}
         >
-            <div className="w-full flex flex-row justify-between mt-10 " style={{gridColumn: "1/ span 14"}}>
+            <div
+                className="w-full flex flex-row justify-between mt-10 "
+                style={{ gridColumn: "1/ span 14" }}
+            >
                 <p>Featured</p>
                 <Link href="#subscribe">
                     <p className="text-[#01bbc8]" style={{ cursor: "pointer" }}>
