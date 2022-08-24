@@ -5,12 +5,13 @@ import Image from 'next/image'
 const ExpertProfileCard = ({ 
   imageLink,
   name,
-  position
+  position,
+  linkedinUrl
   }
 ) => {
   return (
     <>
-        <div className={styles.container}>
+    <a href={linkedinUrl}> <div className={styles.container}>
           <div className={styles.img}>
             <Image src={imageLink} alt="profile image" layout='fill' objectFit="cover" priority={true}/>
           </div>
@@ -19,7 +20,8 @@ const ExpertProfileCard = ({
             <small>{position}</small>
           </div>
             
-        </div>
+        </div> </a>
+        
     </>
   )
 }

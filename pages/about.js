@@ -142,16 +142,25 @@ function about() {
                         }
                         name={"Trevor Nagaba"}
                         position={"CEO & Team lead"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/trevor-nagaba/"
+                        }
                     />
                     <ExpertProfileCard
                         imageLink={"/assets/expert2.svg"}
                         name={"Emmanuel Agidi"}
                         position={"Founder & Head of Operations"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/emmanuel-agidi/"
+                        }
                     />
                     <ExpertProfileCard
                         imageLink={"/assets/expert3.svg"}
                         name={"Arnold Luima"}
                         position={"Founder & Head of Investments"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/arnold-luima-acca-a0747452/"
+                        }
                     />
                     <ExpertProfileCard
                         imageLink={
@@ -159,6 +168,9 @@ function about() {
                         }
                         name={"Conifa Ndawula"}
                         position={"Head of Product"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/conifa-ndawula-b58682147/"
+                        }
                     />
                     <ExpertProfileCard
                         imageLink={
@@ -166,11 +178,17 @@ function about() {
                         }
                         name={"Sydney Rugambwa"}
                         position={"Head of Growth"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/sydney-rugambwa-25a61410a/"
+                        }
                     />
                     <ExpertProfileCard
                         imageLink={"/assets/expert6.svg"}
                         name={"Emmanuel Nabusiu"}
                         position={"Finance Manager"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/emmanuel-nabusiu-wamibu-464b73103/"
+                        }
                     />
                 </div>
             </section>

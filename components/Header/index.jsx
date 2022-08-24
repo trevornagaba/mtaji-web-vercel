@@ -187,7 +187,8 @@ const Header = (props) => {
                                         <Typography
                                             noWrap
                                             component="a"
-                                            href={page.toLowerCase()}
+                                           
+                                            href={`/${page.toLowerCase()}`}
                                             style={{
                                                 fontFamily: "'Poppins', sans-serif",
                                                 fontSize: "16px",
@@ -196,7 +197,9 @@ const Header = (props) => {
                                             }}
                                         >
                                             {page}
+                                            
                                         </Typography>
+                                        {console.log(`check${page.toLowerCase()}`)}
                                         {router.pathname===`/${page.toLowerCase()}`?
                                             <div className={styles.underline3} />
                                         : ""}
