@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { memo, useEffect, useRef} from "react";
+import React, { memo, useCallback, useContext, useEffect, useRef, useState} from "react";
+import { AppContext } from "../AppContext";
 
-const DragandDrop = ({onFileDrop, onFileRemove, file, name }) => {
+const DragandDrop = ({ name }) => {
     const wrapperRef = useRef(null);
     
     const onDragEnter = () => wrapperRef.current.classList.add("dragover");
@@ -9,10 +10,23 @@ const DragandDrop = ({onFileDrop, onFileRemove, file, name }) => {
     const onDragLeave = () => wrapperRef.current.classList.remove("dragover");
     
     const onDrop = () => wrapperRef.current.classList.remove("dragover");
+    const [file, setFile] = useState('') 
+    const {kycForm, setKycForm} = useContext(AppContext)
+    const onFileDrop = useCallback((e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const newFile = e.target.files[0];
+        const name = e.target.name
+        setKycForm({...kycForm, [name]: newFile})
+        
+    });
+
+    const onFileRemove = (name) => {
+        setKycForm({...kycForm,[name]:''})
+    };
     useEffect(()=>{
-        console.log(file)
-    },[])
-    console.log(file)
+        
+    },[file])
     return (
         <div
             className="upload-box"
@@ -21,12 +35,12 @@ const DragandDrop = ({onFileDrop, onFileRemove, file, name }) => {
             onDragLeave={onDragLeave}
             onDrop={onDrop}
         >
-            {file && file?.name ? (
+            {kycForm[name]?.name ? (
                 <>
-                    <span className="remove-button" onClick={onFileRemove(name)}>
+                    <span className="remove-button" onClick={()=>onFileRemove(name)}>
                         x
                     </span>
-                    {file.name}
+                    {kycForm[name].name}
                 </>
             ) : (
                 <>
@@ -45,7 +59,7 @@ const DragandDrop = ({onFileDrop, onFileRemove, file, name }) => {
                         value=""
                         className="upload-input"
                         accept=".pdf,.jpg,.png,.jpeg,.doc.docx"
-                        onChange={(e) => onFileDrop(e)}
+                        onChange={onFileDrop}
                     />
                     <p>
                         <small>Maximum size: 5MB</small>
@@ -107,4 +121,4 @@ const DragandDrop = ({onFileDrop, onFileRemove, file, name }) => {
     );
 };
 
-export default memo(DragandDrop);
+export default DragandDrop;

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/account.module.css";
 
-const ProfileImg = ({ hasEdit, onClick, imageUrl, imageSize, name, title }) => {
+const ProfileImg = ({ hasEdit, onClick, imageUrl, imageSize, name, title, onChange}) => {
     return (
         <div className="flex flex-row items-center">
             {imageSize == "lg" ? (
@@ -14,12 +14,19 @@ const ProfileImg = ({ hasEdit, onClick, imageUrl, imageSize, name, title }) => {
                     className="w-32 h-32 relative pointer rounded-full"
                     onClick={onClick}
                 >
-                    <img src={imageUrl} alt="profileimage" />
+                    <input
+                        type="file"
+                        name={name}
+                        className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                        accept=".jpg,.png,.jpeg"
+                        onChange={onChange}
+                    />
+                    <img src={imageUrl} alt="profileimage" className="rounded-full w-full h-32 object-cover"/>
                     {!!hasEdit && (
                         <img
                             src="/assets/editicon.svg"
                             alt="edit"
-                            className="absolute top-5 left-5 w-4"
+                            className="absolute top-[95px] left-[95px] w-7"
                         />
                     )}
                 </div>
