@@ -25,30 +25,32 @@ export default function InvestmentModal({
         amountUGX: "",
     });
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { value } = e.target;
 
-        var invalidChars = [
-            "-",
-            "+",
-            "e",
-        ];
-        if (invalidChars.includes(value)) {
-            e.preventDefault();
-        }
-
-        value = value.replace(/[e\+\-]/gi, "");
-        setFormData((prevFormData) => {
-            return e.target.name == "amountUSD"
-                ? {
-                      amountUSD: value,
-                      amountUGX: value * 3500,
-                  }
-                : {
-                      amountUSD: value / 3500,
-                      amountUGX: value,
-                  };
+        const validated = value.match(/^(\d*\.{0,1}\d{0,2}$)/)
+    if (validated) {
+       const newvalue = value.replace(/[e\+\-]/gi, "");
+       const approx = (num)=>{
+        return Math.round(num *100)/100
+       }
+       setFormData((prevFormData) => {
+           return e.target.name == "amountUSD"
+           ? {
+               amountUSD: approx(newvalue),
+               amountUGX: approx(newvalue * 3500),
+            }
+            : {
+                amountUSD: approx(newvalue / 3500),
+                amountUGX: approx(newvalue),
+            };
         });
+    }
     };
+    const preventSpeChar = (e) => {
+        if (e.key === "e" || e.key === "-" || e.key === "+") {
+          e.preventDefault();
+        }
+      }
     const { checkAuth, userDetails, isLoaded } = useContext(AppContext);
     const [user, setUser] = useState({});
     // For succesful Investment modal
@@ -168,6 +170,7 @@ export default function InvestmentModal({
                                             onChange={handleChange}
                                             value={formData.amountUSD}
                                             leading
+                                            onKeyDown={preventSpeChar}
                                         />
                                         {/* <div className="flex justify-end -mt-2">
                                             <small className="text-gray-600">
@@ -182,6 +185,7 @@ export default function InvestmentModal({
                                             onChange={handleChange}
                                             value={formData.amountUGX}
                                             leading
+                                            onKeyDown={preventSpeChar}
                                         />
                                         {/* <div className="flex justify-end -mt-2">
                                             <small className="text-gray-600">

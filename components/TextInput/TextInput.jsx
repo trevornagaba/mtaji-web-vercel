@@ -7,6 +7,7 @@ export default function TextInput({
     placeholder,
     onChange,
     onFocus,
+    onKeyDown,
     value,
     error,
     touched,
@@ -41,6 +42,7 @@ export default function TextInput({
                         "text-left"
                     )}
                     disabled={disabled}
+                    onKeyDown ={onKeyDown}
                 />
                 {!touched && error && (
                     <small className="text-red-500 mt-2">{error}</small>

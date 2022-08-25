@@ -122,7 +122,7 @@ export default function Company({company}) {
     };
 
     return (
-        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
+        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true} isGreyBackgound={true}>
             <div className="company-page">
             <main>
                 <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8 pt-36">

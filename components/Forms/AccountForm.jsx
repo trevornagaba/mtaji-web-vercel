@@ -79,7 +79,7 @@ const AccountForm = ({ userDetails }) => {
                     await axios
                         .patch(
                             `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userDetails.userId}`,
-                            { photoUrl: res.url },
+                            { photoUrl: res.data.url },
                             config
                         )
                         .then((res) => {
