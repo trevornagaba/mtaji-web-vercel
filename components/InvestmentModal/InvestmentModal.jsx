@@ -27,6 +27,16 @@ export default function InvestmentModal({
     const handleChange = (e) => {
         const { name, value } = e.target;
 
+        var invalidChars = [
+            "-",
+            "+",
+            "e",
+        ];
+        if (invalidChars.includes(value)) {
+            e.preventDefault();
+        }
+
+        value = value.replace(/[e\+\-]/gi, "");
         setFormData((prevFormData) => {
             return e.target.name == "amountUSD"
                 ? {

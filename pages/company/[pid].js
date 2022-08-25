@@ -28,6 +28,7 @@ export const getServerSideProps =async(context)=>{
     }
 }
 export default function Company({company}) {
+    console.log(company)
     // Setup use of router to get company id from url
     const router = useRouter();
     const { pid } = router.query;
