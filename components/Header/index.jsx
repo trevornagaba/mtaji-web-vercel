@@ -200,9 +200,12 @@ const Header = (props) => {
                                             
                                         </Typography>
                                         
-                                        {router.pathname===`/${page.toLowerCase()}`?
+                                        
+                                        {/* extract the router pathname using split to accomodate underline for blog/slug */}
+                                        {router.pathname.split("/",2)[1]===`${page.toLowerCase()}`?
                                             <div className={styles.underline3} />
                                         : ""}
+                                        
                                     </Grid>
                                 ))}
                             </Box>
