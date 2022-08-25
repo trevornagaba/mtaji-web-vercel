@@ -199,7 +199,7 @@ const Header = (props) => {
                                             {page}
                                             
                                         </Typography>
-                                        {console.log(`check${page.toLowerCase()}`)}
+                                        
                                         {router.pathname===`/${page.toLowerCase()}`?
                                             <div className={styles.underline3} />
                                         : ""}
