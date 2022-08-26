@@ -75,8 +75,7 @@ export default function Company({company}) {
     const [loading, setLoading] = useState(true)
 
     const closeModal = () => {
-        setIsOpen(false);
-        console.log('open set to false')
+        setIsOpen(false)
     };
 
     const openModal = () => {
@@ -94,27 +93,6 @@ export default function Company({company}) {
         setIsFailed(true);
     };
 
-    async function makeInvestment() {
-        const response = await axios
-            .post(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
-                {
-                    amount: amount,
-                    type: "company",
-                    companyId: pid, //TO-DO: Collect once sorted out the navigation/router to include pid
-                },
-                { withCredentials: true },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            )
-            .then((result) => {})
-            .catch((error) => {
-                console.log(error);
-            });
-    }
     const onClickShare = async () => {
         if(showAlert) {setShowAlert(false)}
         await navigator.clipboard.writeText(window.location.href);
@@ -149,7 +127,7 @@ export default function Company({company}) {
                                 <Dot />
                             </div>
                             <div className="hidden lg:block">
-                                <ExternalLink href="https://tubayo.com/">
+                                <ExternalLink href={company?.websiteUrl ?? '#'}>
                                     View website
                                 </ExternalLink>
                             </div>
@@ -189,7 +167,7 @@ export default function Company({company}) {
                         <StatCard
                             title="Current Valuation"
                             // TO-DO: Update to read real time rates from yahoo, reuters etc
-                            dollarValue={15000000}
+                            dollarValue={company.companyValuation}
                             textLeft
                         />
                         <StatCard
@@ -286,9 +264,17 @@ export default function Company({company}) {
                                                     </div>
                                                 </div>
                                                 </>
-                                            ):(
+                                            ):item.title == "Overview"? (
                                                 <>
-                                                    {item.desc}
+                                                    {company?.briefDescription}
+                                                </>
+                                            ): item.title ==="Problem" ?(
+                                                <>
+                                                    {company?.problemStatement}
+                                                </>
+                                            ): (
+                                                <>
+                                                {company?.detailedDescription}
                                                 </>
                                             )
                                         }
