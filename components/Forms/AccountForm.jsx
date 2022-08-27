@@ -70,7 +70,8 @@ const AccountForm = ({ userDetails }) => {
                 formData
             )
             .then(async (res) => {
-                console.log(res);
+                // console.log(typeof res.data.url);
+                
                 if (res.status == 200) {
                     console.log("upload success");
                     setUploading(false)
@@ -86,6 +87,7 @@ const AccountForm = ({ userDetails }) => {
                             console.log(res);
                             console.log("updated user doc");
                             setSending(false);
+                            setOpenModal(false)
                         })
                         .catch((e) => {
                             console.log(e);
