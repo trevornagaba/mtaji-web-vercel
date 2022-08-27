@@ -7,11 +7,13 @@ export default function TextInput({
     placeholder,
     onChange,
     onFocus,
+    onKeyDown,
     value,
     error,
     touched,
     leading,
     leadingSymbol,
+    disabled
 }) {
     return (
         <div className="mb-4">
@@ -39,6 +41,8 @@ export default function TextInput({
                         "focus:outline-none focus:border-gray-500 focus:shadow-outline-primary focus:border-primary",
                         "text-left"
                     )}
+                    disabled={disabled}
+                    onKeyDown ={onKeyDown}
                 />
                 {!touched && error && (
                     <small className="text-red-500 mt-2">{error}</small>

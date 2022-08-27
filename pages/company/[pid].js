@@ -28,6 +28,7 @@ export const getServerSideProps =async(context)=>{
     }
 }
 export default function Company({company}) {
+    console.log(company)
     // Setup use of router to get company id from url
     const router = useRouter();
     const { pid } = router.query;
@@ -121,7 +122,7 @@ export default function Company({company}) {
     };
 
     return (
-        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
+        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true} isGreyBackgound={true}>
             <div className="company-page">
             <main>
                 <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8 pt-36">
