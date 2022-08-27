@@ -89,14 +89,14 @@ const AppContextProvider = (props) => {
         .then((result) => {
             // TO-DO: Update after sorting out auth
             if (result.data == "Please login") {
-                setuserDetails("$");
+                setUserDetails("$");
             } else {
-                setuserDetails(result.data.userDetails);
+                setUserDetails(result.data.userDetails);
             }
         })
         .catch((error) => {
-            console.log(error);
-            setuserDetails("$");
+            // console.log(error);
+            setUserDetails("$");
         });
     }
 

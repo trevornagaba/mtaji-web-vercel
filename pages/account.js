@@ -20,7 +20,6 @@ const Account = () => {
     useEffect(()=>{
         checkAuth()
         setUser(userDetails)
-        console.log('alert')
     },[isLoaded])
     return (
         <PageTemplate 

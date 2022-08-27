@@ -8,7 +8,7 @@ const InvestCard = (props) => {
           Target
         </p>
         <div>
-        {console.log(props.company.targetAmount)}
+        {/* {console.log(props.company.targetAmount)} */}
           <p className={styles.valuationDollars}>${parseInt((props.company.targetAmount)/3500)}</p>
           <p className={styles.valuationUgx}>UGX {props.company.targetAmount}</p>
         </div>
