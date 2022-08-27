@@ -11,14 +11,14 @@ const WhyMtaji = () => {
           <div className={styles.point}>
             <img src="/assets/info_vector.svg" alt="info" />
             <p>
-            90% of revenue generating businesses in Africa <br/>need additional capital to move from good to great
+            80% of revenue generating businesses in Africa need additional capital to move from good to great
             </p>
           </div>
 
           <div className={styles.point}>
             <img src="/assets/info_vector.svg" alt="info" />
             <p>
-              Millenials and professionals in diaspora are <br/>looking for a source of passive income. 
+              Millenials and professionals in diaspora are looking for a source of passive income. 
             </p>
           </div>
 
@@ -26,7 +26,7 @@ const WhyMtaji = () => {
             <img src="/assets/info_vector.svg" alt="info" />
             <p>
               Micro, small and medium enterprises form the backbone of most
-              <br />African economies, leading employment in Sub-Saharan Africa.
+              African economies, leading employment in Sub-Saharan Africa.
             </p>
           </div>
 
