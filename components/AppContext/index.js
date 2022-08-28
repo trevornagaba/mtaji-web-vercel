@@ -18,6 +18,10 @@ const AppContextProvider = (props) => {
     const [blogs, setBlogs] = useState([]);
     const [faqs, setFaqs] = useState([]);
     const [transRecords, setTransRecords] = useState([]);
+    const [kycForm, setKycForm] = useState({
+        front: "",
+        back: "",
+    });
 
     useEffect(() => {
         getCompanies();
@@ -185,6 +189,8 @@ const AppContextProvider = (props) => {
                 handleLogout,
                 getCompany,
                 getUserPortfolioDetails,
+                kycForm,
+                setKycForm,
             }}
         >
             {props.children}
