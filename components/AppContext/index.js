@@ -1,13 +1,11 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import jwt_decode from 'jwt-decode';
-
+import jwt_decode from "jwt-decode";
 
 export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
-
     const router = useRouter();
 
     const [isLoaded, setIsLoaded] = useState(false);
@@ -15,6 +13,7 @@ const AppContextProvider = (props) => {
     const [isAuth, setIsAuth] = useState(false);
     const [errors, setErrors] = useState(false);
     const [userDetails, setUserDetails] = useState({});
+    const [userPortfolioDetails, setUserPortfolioDetails] = useState({});
     const [companies, setCompanies] = useState([]);
     const [blogs, setBlogs] = useState([]);
     const [faqs, setFaqs] = useState([]);
@@ -22,127 +21,152 @@ const AppContextProvider = (props) => {
 
     useEffect(() => {
         getCompanies();
+        //    getUserPortfolioDetails();
     }, []);
 
     const checkAuth = async () => {
-        setIsLoaded(false)
+        setIsLoaded(false);
         try {
-            if(jwt_decode(localStorage.getItem("token"))){
-                setUserDetails(await jwt_decode(localStorage.getItem("token")))
-                setIsAuth(true)
-                setIsLoaded(true)
+            if (jwt_decode(localStorage.getItem("token"))) {
+                setUserDetails(await jwt_decode(localStorage.getItem("token")));
+                //  console.log(userDetails.userId);
+                setIsAuth(true);
+                setIsLoaded(true);
             }
-        }
-        catch(err){
-            setIsLoaded(true)
-            setIsAuth(false)
+        } catch (err) {
+            setIsLoaded(true);
+            setIsAuth(false);
             router.push("/login");
         }
     };
 
     const handleLogin = async (userData) => {
-        setIsLoaded(false)
+        setIsLoaded(false);
 
         // try {
-        const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`, {
-                method: 'POST',
+        const response = await axios
+            .post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`, {
+                method: "POST",
                 headers: {
-                'Content-Type': 'Application/json',
+                    "Content-Type": "Application/json",
                 },
-                email: userData.email, password: userData.password
-            }            
-        )
-        .then((result) => {         
-            localStorage.setItem("token", result.data.token);
-            setIsAuth(true);
-            setIsLoaded(true);
-            router.push("/home");
-        })
-        .catch((error) => {
-            setErrors(error)
-        })
+                email: userData.email,
+                password: userData.password,
+            })
+            .then((result) => {
+                localStorage.setItem("token", result.data.token);
+                setIsAuth(true);
+                setIsLoaded(true);
+                router.push("/home");
+            })
+            .catch((error) => {
+                setErrors(error);
+            });
     };
 
     const handleLogout = () => {
-      localStorage.removeItem("token");
-      setIsAuth(true);
-      setIsLoaded(true);
-      router.push("/login");
-      
-    }
+        localStorage.removeItem("token");
+        setIsAuth(true);
+        setIsLoaded(true);
+        router.push("/login");
+    };
 
     const getuserDetails = async () => {
-        const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`, {
-                method: 'POST',
+        const response = await axios
+            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`, {
+                method: "POST",
                 headers: {
-                'Content-Type': 'Application/json',
-                'Authorization': `Bearer `
+                    "Content-Type": "Application/json",
+                    Authorization: `Bearer `,
+                },
+            })
+            .then((result) => {
+                // TO-DO: Update after sorting out auth
+                // console.log("context:result" + result.data.userDetails);
+                if (result.data == "Please login") {
+                    setuserDetails("$");
+                } else {
+                    setuserDetails(result.data.userDetails);
                 }
-            }
-        )
-        .then((result) => {
-            // TO-DO: Update after sorting out auth
-            if (result.data == "Please login") {
+            })
+            .catch((error) => {
+                console.log(error);
                 setuserDetails("$");
-            } else {
-                setuserDetails(result.data.userDetails);
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-            setuserDetails("$");
-        });
-    }
+            });
+    };
+
+    const getUserPortfolioDetails = async () => {
+        console.log(userDetails["userId"]);
+        console.log(localStorage.getItem("token"));
+        const response = await axios
+            .get(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/portfolio/user/${userDetails["userId"]}`,
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                        "Content-Type": "Application/json",
+                    },
+                }
+            )
+            .then((result) => {
+                //console.log(result.data);
+                // TO-DO: Update after sorting out auth
+                setUserPortfolioDetails(result.data);
+                // console.log(userPortfolioDetails);
+            })
+            .catch((error) => {
+                console.log(`error: ${error}`);
+                // setUserPortfolioDetails("$");
+            });
+    };
 
     const getCompany = async (companyId) => {
-        return (companies.find(company => company.id===companyId))
-    }
+        return companies.find((company) => company.id === companyId);
+    };
 
     const getCompanies = async () => {
-        const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies`
-        )
-        .then((result) => {
-            setCompanies(result.data);
-            setIsLoaded(true);
-        })
-        .catch((error) => {
-            setErrors(error);
-            setIsLoaded(true);
-        });
-    }
+        const response = await axios
+            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies`)
+            .then((result) => {
+                setCompanies(result.data);
+                setIsLoaded(true);
+            })
+            .catch((error) => {
+                setErrors(error);
+                setIsLoaded(true);
+            });
+    };
 
     const getBlogs = async () => {
         setIsLoaded(false);
-        const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/blogs`
-        )
-        .then((result) => {
-            setBlogs(result.data);
-            setIsLoaded(true);
-        })
-        .catch((error) => {
-            setErrors(error);
-            setIsLoaded(true);
-        });
-    }
+        const response = await axios
+            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/blogs`)
+            .then((result) => {
+                setBlogs(result.data);
+                setIsLoaded(true);
+            })
+            .catch((error) => {
+                setErrors(error);
+                setIsLoaded(true);
+            });
+    };
 
     const getFAQs = async () => {
         setIsLoaded(false);
-        const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/faqs`
-        )
-        .then((result) => {
-            setFaqs(result.data);
-            setIsLoaded(true);
-        })
-        .catch((error) => {
-            setErrors(error);
-            setIsLoaded(true);
-        });
-    }
+        const response = await axios
+            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/faqs`)
+            .then((result) => {
+                setFaqs(result.data);
+                setIsLoaded(true);
+            })
+            .catch((error) => {
+                setErrors(error);
+                setIsLoaded(true);
+            });
+    };
 
     return (
         <AppContext.Provider
@@ -152,13 +176,15 @@ const AppContextProvider = (props) => {
                 checkAuth,
                 errors,
                 userDetails,
+                userPortfolioDetails,
                 companies,
                 blogs,
                 faqs,
                 transRecords,
                 handleLogin,
                 handleLogout,
-                getCompany
+                getCompany,
+                getUserPortfolioDetails,
             }}
         >
             {props.children}

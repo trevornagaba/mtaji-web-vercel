@@ -25,7 +25,7 @@ const WalletCard = (props) => {
             return formatter.format(total);
         } catch (err) {}
     };
-    console.log("check" & invstTotal);
+    // console.log("check" & invstTotal);
 
     return (
         <Grid
@@ -64,7 +64,11 @@ const WalletCard = (props) => {
                     }}
                     align="center"
                 >
-                    {isLoaded ? invstTotal() : ""}
+                    {portfolio.length > 0
+                        ? isLoaded
+                            ? invstTotal()
+                            : ""
+                        : "$0"}
                 </Typography>
             </Grid>
             <Grid item>

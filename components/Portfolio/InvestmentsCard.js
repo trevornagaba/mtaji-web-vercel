@@ -19,7 +19,10 @@ import CompanyChip from "./CompanyChip";
 import defaultLogo from "../../public/assets/defaultLogo.svg";
 
 const InvestmentsCard = (props) => {
-    const { isLoaded, portfolio } = props;
+    const { isLoaded, userPortfolioDetails } = props;
+    // console.log(userPortfolioDetails.length);
+   
+    
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -59,6 +62,7 @@ const InvestmentsCard = (props) => {
                 bgcolor: "background.paper",
                 borderRadius: "20px",
                 padding: "15px",
+                minHeight: "30vh",
             }}
         >
             <Typography
@@ -73,68 +77,30 @@ const InvestmentsCard = (props) => {
             >
                 All Investments
             </Typography>
-            {portfolio?.map((company) => {
-                return (
-                    // <ListItem
-                    //     key={company.companyId}
-                    //     sx={{
-                    //         display: "flex",
-                    //         padding: "20px",
-                    //         borderBottom: "1px solid #E6E6E6",
-                    //     }}
-                    //     secondaryAction={
-                    //         <Typography edge="end" align="right">
-                    //             {formatter.format(company.amount)}
-                    //             <br />
-                    //             {company.instrument}
-                    //         </Typography>
-                    //     }
-                    // >
-                    //     <Typography
-                    //         component="a"
-                    //         href={`/company/${company.companyId}`}
-                    //         sx={{
-                    //             color: "#666666",
-                    //             flex: 4,
-                    //         }}
-                    //     >
-                    //         <CompanyChip
-                    //             defaultLogo="/assets/defaultLogo.svg"
-                    //             companyName={company.companyName}
-                    //         />
-                    //     </Typography>
-                    //     <Typography
-                    //         sx={{
-                    //             color: "#666666",
-                    //             fontSize: "18px",
-                    //             fontWeight: "400",
-                    //             flex: 6,
-                    //         }}
-                    //     >
-                    //         {company.industry}
-                    //     </Typography>
-                    // </ListItem>
 
-                    <ListItem key={company.companyId}>
-                        <Typography
-                            component="a"
-                            href={`/company/${company.companyId}`}
-                            sx={{
-                                flex: 1,
-                            }}
-                        >
-                            <Grid
-                                container
-                                direction="row"
-                                alignItems="center"
-                                justifyItems="center"
-                                xs={12}
+            {userPortfolioDetails.length > 0 ? (
+                Array.from(userPortfolioDetails)?.map((company) => {
+                    return (
+                        <ListItem key={company.companyId}>
+                            <Typography
+                                component="a"
+                                href={`/company/${company.companyId}`}
                                 sx={{
-                                    padding: "20px",
-                                    borderBottom: "1px solid #E6E6E6",
+                                    flex: 1,
                                 }}
                             >
-                                {/* <Grid item sm={4} xs={4} >
+                                <Grid
+                                    container
+                                    direction="row"
+                                    alignItems="center"
+                                    justifyItems="center"
+                                    xs={12}
+                                    sx={{
+                                        padding: "20px",
+                                        borderBottom: "1px solid #E6E6E6",
+                                    }}
+                                >
+                                    {/* <Grid item sm={4} xs={4} >
                                     <CompanyChip
                                         defaultLogo="/assets/defaultLogo.svg"
                                         companyName={company.companyName}
@@ -155,7 +121,7 @@ const InvestmentsCard = (props) => {
                                     </Typography>
                                 </Grid> */}
 
-                                {/* <Grid item xs={8} alignContent="right">
+                                    {/* <Grid item xs={8} alignContent="right">
                                     <Grid container spacing={0}>
                                         <Grid item sm={6} xs={12}>
                                             <CompanyChip
@@ -182,52 +148,67 @@ const InvestmentsCard = (props) => {
                                         </Grid>
                                     </Grid>
                                 </Grid> */}
-                                <Grid item xs={8}>
-                                    <CompanyChip
-                                        defaultLogo="/assets/defaultLogo.svg"
-                                        companyName={company.companyName}
-                                        companyIndustry={company.industry}
-                                    />
-                                </Grid>
-                                <Grid item xs={4} alignContent="right">
-                                    <Grid
-                                        container
-                                        direction="column"
-                                        spacing={0}
-                                    >
-                                        <Grid item>
-                                            <Typography
-                                                align="right"
-                                                sx={{
-                                                    fontSize: "1rem",
-                                                    fontWeight: "500",
-                                                    color: "#666666",
-                                                }}
-                                            >
-                                                {formatter.format(
-                                                    company.amount
-                                                )}
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item>
-                                            <Typography
-                                                align="right"
-                                                sx={{
-                                                    fontSize: "0.8rem",
-                                                    fontWeight: "500",
-                                                    color: "#8c8c8c",
-                                                }}
-                                            >
-                                                {company.instrument}
-                                            </Typography>
+                                    <Grid item xs={8}>
+                                        <CompanyChip
+                                            defaultLogo="/assets/defaultLogo.svg"
+                                            companyName={company.companyName}
+                                            companyIndustry={company.industry}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={4} alignContent="right">
+                                        <Grid
+                                            container
+                                            direction="column"
+                                            spacing={0}
+                                        >
+                                            <Grid item>
+                                                <Typography
+                                                    align="right"
+                                                    sx={{
+                                                        fontSize: "1rem",
+                                                        fontWeight: "500",
+                                                        color: "#666666",
+                                                    }}
+                                                >
+                                                    {formatter.format(
+                                                        company.amount
+                                                    )}
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item>
+                                                <Typography
+                                                    align="right"
+                                                    sx={{
+                                                        fontSize: "0.8rem",
+                                                        fontWeight: "500",
+                                                        color: "#8c8c8c",
+                                                    }}
+                                                >
+                                                    {company.instrument}
+                                                </Typography>
+                                            </Grid>
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                            </Grid>
-                        </Typography>
-                    </ListItem>
-                );
-            })}
+                            </Typography>
+                        </ListItem>
+                    );
+                })
+            ) : (
+                <Typography
+                    align="center"
+                    sx={{
+                        fontSize: "1.2rem",
+                        fontWeight: "500",
+                        color: "#666666",
+                        paddingTop:"50%"
+                        
+                    }}
+                >
+                    You have not made any investment<br/>
+                    Start today !
+                </Typography>
+            )}
         </List>
     );
 };

@@ -11,8 +11,15 @@ import SubscribeCard from "../components/subscribeToMailList";
 import FundWalletModal from "/components/FundWalletModal/FundWalletModal";
 
 const HomePage = () => {
-    const { isLoaded, isAuth, userDetails, companies, checkAuth } =
-        useContext(AppContext);
+    const {
+        isLoaded,
+        isAuth,
+        userDetails,
+        companies,
+        checkAuth,
+        userPortfolioDetails,
+        getUserPortfolioDetails,
+    } = useContext(AppContext);
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -34,10 +41,12 @@ const HomePage = () => {
     useEffect(() => {
         checkAuth();
         setUsers(userDetails);
-        setPortfolio(userDetails.portfolio);
-        setComps(companies);
+        getUserPortfolioDetails();
+                setComps(companies);
     }, [isLoaded]);
 
+    // console.log(userPortfolioDetails);
+    
     return (
         <PageTemplate
             hasNavbar={true}
@@ -54,7 +63,11 @@ const HomePage = () => {
                     }}
                 >
                     {/* Portfolio Card */}
-                    <Portfolio isLoaded={isLoaded} userDetails={userDetails} />
+                    <Portfolio
+                        isLoaded={isLoaded}
+                        userDetails={userDetails}
+                        userPortfolioDetails={userPortfolioDetails}
+                    />
                     <Companies
                         isLoaded={isLoaded}
                         companies={comps}
