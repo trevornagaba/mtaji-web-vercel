@@ -60,7 +60,7 @@ const Companies = (props) => {
     };
 
     return (
-        <Grid container className={styles.section4}>
+        <Grid container >
             <Grid
                 item
                 sx={12}

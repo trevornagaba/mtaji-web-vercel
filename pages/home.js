@@ -69,10 +69,7 @@ const HomePage = () => {
                         userPortfolioDetails={userPortfolioDetails}
                     />
                     <Companies
-                        isLoaded={isLoaded}
-                        companies={comps}
-                        size={"sm"}
-                    />
+              />
                 </Grid>
             ) : (
                 ""
