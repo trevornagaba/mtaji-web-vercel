@@ -188,7 +188,7 @@ const AppContextProvider = (props) => {
                 handleLogin,
                 handleLogout,
                 getCompany,
-                getUserPortfolioDetails,
+
                 kycForm,
                 setKycForm,
             }}
