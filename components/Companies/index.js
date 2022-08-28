@@ -37,13 +37,30 @@ const Companies = (props) => {
         minimumFractionDigits: 0,
     });
 
-    return isLoaded ? (
-        <Grid
-            container
-            sx={{
-                width: "80vw",
-            }}
-        >
+    var calc_days_left = (end_date) => {
+        var end_date_strToDate = new Date(end_date);
+        var time_left = end_date_strToDate.getTime() - new Date().getTime();
+        var days_left = time_left / (1000 * 3600 * 24);
+        var hours_left = (days_left % 1) * 24;
+        var mins_left = (hours_left % 1) * 60;
+        var sec_left = (mins_left % 1) * 60;
+
+        //var duration_left= days_left >= 1 ? ""+days_left.toFixed(0) + " days" : ""+ hours_left.toFixed(0)+"h:"+mins_left.toFixed(0)+"min:"+sec_left.toFixed(0)+"sec";
+
+        var duration_left =
+            days_left >= 1
+                ? "" + days_left.toFixed(0) + " days"
+                : "" +
+                  hours_left.toFixed(0) +
+                  "h:" +
+                  mins_left.toFixed(0) +
+                  "min";
+
+        return duration_left;
+    };
+
+    return (
+        <Grid container className={styles.section4}>
             <Grid
                 item
                 sx={12}
@@ -53,33 +70,19 @@ const Companies = (props) => {
                 xl={12}
                 align="center"
                 style={{
-                    paddingTop: "20px",
+                    padding: "0",
                 }}
             >
-                {props.size === "sm" ? (
-                    <>
-                        <p
-                            className={styles.sectionHeader}
-                            sx={{ contentAlign: "left" }}
-                        >
-                            Companies currently raising capital on mtaji
-                        </p>
-                        <div className={styles.underline} />
-                    </>
-                ) : (
-                    // <>
-                    //     <p className={styles.sectionHeader}>
-                    //         Companies currently raising <br/>capital on mtaji
-                    //     </p>
-                    // </>
-                    ""
-                )}
+                <p className={styles.sectionHeader}>
+                    Companies currently raising capital on mtaji
+                </p>
+                <div className={styles.underline2} />
             </Grid>
-            {companies.map((company, index) => (
+            {companies?.map((company, index) => (
                 <Grid
                     key={index}
                     item
-                    xs={12}
+                    sx={12}
                     sm={12}
                     md={4}
                     lg={4}
@@ -87,70 +90,95 @@ const Companies = (props) => {
                     className={styles.companyCard}
                     align="center"
                 >
-                    <Box className={styles.companyCardBox}>
-                        <Link href={`/company/${company._id}`}>
+                    <a href={`/company/${company._id}`}>
+                        <Box className={styles.companyCardBox}>
                             <img src="/assets/companyLogo.svg" width={80} />
-                        </Link>
-                        <Typography
-                            variant="h5"
-                            style={{
-                                margin: "10px 0",
-                                fontFamily: "Poppins",
-                                fontWeight: "500",
-                            }}
-                        >
-                            {company.name}
-                        </Typography>
-                        <Typography
-                            style={{
-                                textAlign: "left",
-                            }}
-                        >
-                            {Str(company.briefDescription)
-                                .limit(100, "...")
-                                .get()}
-                        </Typography>
+                            {/* <img src={company.logo} width={80} /> */}
 
-                        <Typography
-                            style={{ padding: "10px 0", lineHeight: "22px" }}
-                            align={"left"}
-                        >
-                            <small>Raising</small>
-                            <br />
-                            <strong style={{ fontSize: "22px" }}>
-                                {formatter.format(company.targetAmount)}
-                            </strong>
-                            <br />
-                            <small>
-                                Ends in:{" "}
-                                <span style={{ color: "red" }}>
-                                    21h:30min:15sec
-                                </span>
-                            </small>
-                        </Typography>
+                            <Typography
+                                variant="h5"
+                                style={{
+                                    margin: "15px 0px",
+                                    fontFamily: "Poppins",
+                                    fontWeight: "500",
+                                }}
+                            >
+                                {company.name}
+                            </Typography>
 
-                        <BorderLinearProgress
-                            variant="determinate"
-                            value={
-                                (company.amountRaised / company.targetAmount) *
-                                100
-                            }
-                            label={true}
-                        />
-                        <small style={{ color: "#01BBC8" }}>
-                            {Math.round(
-                                (company.amountRaised / company.targetAmount) *
+                            <Typography
+                                style={{
+                                    textAlign: "left",
+                                    fontFamily: "Poppins",
+                                    color: "#666666",
+                                    margin: "10px 0px",
+                                    fontSize: "0.9rem",
+                                }}
+                            >
+                                {Str(company.briefDescription)
+                                    .limit(100, "...")
+                                    .get()}
+                            </Typography>
+
+                            <Typography
+                                style={{
+                                    padding: "10px 0",
+                                    lineHeight: "22px",
+                                    color: "#666666",
+                                    fontFamily: "Poppins",
+                                }}
+                                align={"left"}
+                            >
+                                <small>Raising</small>
+                                <br />
+                                <strong
+                                    style={{
+                                        fontSize: "1.25rem",
+                                        color: "#09062D",
+                                    }}
+                                >
+                                    {formatter.format(company.targetAmount)}
+                                </strong>
+                                <br />
+                                <small>
+                                    Ends in:{" "}
+                                    <span style={{ color: "#FE8686" }}>
+                                        {calc_days_left(
+                                            company.raiseTargetDate
+                                        )}
+                                    </span>
+                                </small>
+                                {console.log(
+                                    `check: ${calc_days_left(
+                                        company.raiseTargetDate
+                                    )}`
+                                )}
+                            </Typography>
+
+                            <BorderLinearProgress
+                                variant="determinate"
+                                value={
+                                    (company.amountRaised /
+                                        company.targetAmount) *
                                     100
-                            )}
-                            %
-                        </small>
-                    </Box>
+                                }
+                                label={true}
+                            />
+                            <small style={{ color: "#01BBC8" }}>
+                                {Math.round(
+                                    (company.amountRaised /
+                                        company.targetAmount) *
+                                        100
+                                )}
+                                %
+                            </small>
+                        </Box>
+                    </a>
                 </Grid>
             ))}
         </Grid>
-    ) : (
-        ""
-    );
+    ); 
+   
 };
 
 export default Companies;

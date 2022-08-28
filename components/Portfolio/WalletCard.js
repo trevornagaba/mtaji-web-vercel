@@ -39,7 +39,7 @@ const WalletCard = (props) => {
                 borderRadius: "20px",
                 padding: "15px",
                 height: "100%",
-                minHeight: "30vh",
+                minHeight: "34vh",
             }}
         >
             <Grid item>

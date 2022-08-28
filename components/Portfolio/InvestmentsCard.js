@@ -62,11 +62,11 @@ const InvestmentsCard = (props) => {
                 bgcolor: "background.paper",
                 borderRadius: "20px",
                 padding: "15px",
-                minHeight: "30vh",
+                minHeight: "34vh",
             }}
         >
             <Typography
-                align="left"
+                align="center"
                 sx={{
                     fontSize: "1rem",
                     fontWeight: "600",
@@ -201,8 +201,7 @@ const InvestmentsCard = (props) => {
                         fontSize: "1.2rem",
                         fontWeight: "500",
                         color: "#666666",
-                        paddingTop:"50%"
-                        
+                        paddingTop:"6vh",                                          
                     }}
                 >
                     You have not made any investment<br/>

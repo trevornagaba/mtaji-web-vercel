@@ -21,7 +21,7 @@ const AppContextProvider = (props) => {
 
     useEffect(() => {
         getCompanies();
-        //    getUserPortfolioDetails();
+        getUserPortfolioDetails();
     }, []);
 
     const checkAuth = async () => {

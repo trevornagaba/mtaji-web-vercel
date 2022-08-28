@@ -32,7 +32,17 @@ const Portfolio = (props) => {
     }, [isLoaded]);
 
     return (
-        <Grid container spacing={3} xs={12} direction="row">
+        <Grid
+            container
+            spacing={3}
+            xs={12}
+            direction="row"
+            sx={{
+              
+                padding: "15px",
+                
+                            }}
+        >
             {/* Networth */}
             <Grid item xs={12} sm={12} md={4}>
                 <WalletCard
