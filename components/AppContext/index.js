@@ -25,6 +25,7 @@ const AppContextProvider = (props) => {
     })
 
     useEffect(() => {
+        checkAuth()
         getCompanies();
     }, []);
 
@@ -35,12 +36,17 @@ const AppContextProvider = (props) => {
                 setUserDetails(await jwt_decode(localStorage.getItem("token")))
                 setIsAuth(true)
                 setIsLoaded(true)
+                if(router.pathname==="/login"){
+                    router.push("/home");    
+                }
             }
         }
         catch(err){
-            setIsLoaded(true)
-            setIsAuth(false)
-            router.push("/login");
+            if(router.pathname!=="/"){
+                setIsLoaded(true)
+                setIsAuth(false)
+                router.push("/login");    
+            }
         }
     };
 
@@ -57,11 +63,15 @@ const AppContextProvider = (props) => {
                 email: userData.email, password: userData.password
             }            
         )
-        .then((result) => {         
-            localStorage.setItem("token", result.data.token);
-            setIsAuth(true);
-            setIsLoaded(true);
-            router.push("/home");
+        .then((result) => {  
+            if(result.data) {
+                localStorage.setItem("token", result.data.token);
+                setIsAuth(true);
+                setIsLoaded(true);
+                router.push("/home");
+            } else {
+                return result;
+            }
         })
         .catch((error) => {
             setErrors(error)
