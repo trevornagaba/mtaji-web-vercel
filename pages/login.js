@@ -5,14 +5,13 @@ import axios from "axios";
 
 import cookieCutter from "cookie-cutter";
 
-import { AppContext } from "../components/AppContext"
+import { AppContext } from "../components/AppContext";
 
 import HomeLogo from "../components/HomeLogo";
 import TextInput from "../components/TextInput/TextInput";
 import Alert from "../components/Alert/Alert";
 
 export default function Login() {
-
   const { isLoaded, isAuth, handleLogin } = useContext(AppContext);
   
   const [formData, setFormData] = useState({
@@ -214,131 +213,131 @@ export default function Login() {
           text-decoration: underline;
         }
 
-        .login-form .inputs p:hover {
-          color: #01bbc8;
-        }
+                .login-form .inputs p:hover {
+                    color: #01bbc8;
+                }
 
-        .login-form input[type="text"] {
-          display: block;
-          border: 1px solid #b0b0b0;
-          border-radius: 10px;
-          width: 100%;
-          padding: 16px;
-          margin-bottom: 16px;
-        }
+                .login-form input[type="text"] {
+                    display: block;
+                    border: 1px solid #b0b0b0;
+                    border-radius: 10px;
+                    width: 100%;
+                    padding: 16px;
+                    margin-bottom: 16px;
+                }
 
-        .login-form button {
-          display: block;
-          color: white;
-          cursor: pointer;
-          font-size: 1.2rem;
-          width: 100%;
-          margin: 24px auto;
-          padding: 8px;
-          background: #2518b8;
-          border: none;
-          border-radius: 5px;
-        }
+                .login-form button {
+                    display: block;
+                    color: white;
+                    cursor: pointer;
+                    font-size: 1.2rem;
+                    width: 100%;
+                    margin: 24px auto;
+                    padding: 8px;
+                    background: #2518b8;
+                    border: none;
+                    border-radius: 5px;
+                }
 
-        .login-form button:hover {
-          background: #01bbc8;
-        }
+                .login-form button:hover {
+                    background: #01bbc8;
+                }
 
-        .or-option {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 24px;
-        }
+                .or-option {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 24px;
+                }
 
-        .or-option div {
-          width: 20%;
-          height: 1px;
-          background-color: #c4c4c4;
-        }
+                .or-option div {
+                    width: 20%;
+                    height: 1px;
+                    background-color: #c4c4c4;
+                }
 
-        .or-option span {
-          display: inline-block;
-          padding: 0 16px;
-        }
+                .or-option span {
+                    display: inline-block;
+                    padding: 0 16px;
+                }
 
-        .google-button {
-          width: 40%;
-          cursor: pointer;
-          margin: 0 auto;
-          border: 1px solid #c4c4c4;
-          border-radius: 5px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 8px;
-        }
+                .google-button {
+                    width: 40%;
+                    cursor: pointer;
+                    margin: 0 auto;
+                    border: 1px solid #c4c4c4;
+                    border-radius: 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 8px;
+                }
 
-        .google-button:hover {
-          border: 1px solid #01bbc8;
-          color: #01bbc8;
-        }
+                .google-button:hover {
+                    border: 1px solid #01bbc8;
+                    color: #01bbc8;
+                }
 
-        .google-button span {
-          padding-left: 16px;
-        }
+                .google-button span {
+                    padding-left: 16px;
+                }
 
-        .sign-up-prompt {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+                .sign-up-prompt {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
 
-        .sign-up-prompt .link {
-          padding-left: 8px;
-          cursor: pointer;
-          color: #2518b8;
-        }
+                .sign-up-prompt .link {
+                    padding-left: 8px;
+                    cursor: pointer;
+                    color: #2518b8;
+                }
 
-        .sign-up-prompt .link:hover {
-          color: #01bbc8;
-        }
+                .sign-up-prompt .link:hover {
+                    color: #01bbc8;
+                }
 
-        /* Adjust for smartphone screen sizes. */
-        @media only screen and (max-width: 600px) {
-          .main-container {
-            display: block;
-          }
+                /* Adjust for smartphone screen sizes. */
+                @media only screen and (max-width: 600px) {
+                    .main-container {
+                        display: block;
+                    }
 
-          .svg{
-            display: none;
-          }
-          .background-container {
-            height: 0;
-          }
+                    .svg {
+                        display: none;
+                    }
+                    .background-container {
+                        height: 0;
+                    }
 
-          .login-form .inputs {
-            width: 100%;
-          }
+                    .login-form .inputs {
+                        width: 100%;
+                    }
 
-          .google-button,
-          .login-form button {
-            width: 100%;
-          }
-          .logo-container{
-            margin: 0 auto
-          }
-        }
+                    .google-button,
+                    .login-form button {
+                        width: 100%;
+                    }
+                    .logo-container {
+                        margin: 0 auto;
+                    }
+                }
 
-        /* Adjust for tablet screen sizes. */
-        @media only screen and (min-width: 600px) and (max-width: 1000px) {
-          .main-container {
-            display: block;
-          }
+                /* Adjust for tablet screen sizes. */
+                @media only screen and (min-width: 600px) and (max-width: 1000px) {
+                    .main-container {
+                        display: block;
+                    }
 
-          .background-container {
-            height: 0
-          }
-          .logo-container{
-            margin: 0 auto
-          }
-        }
-      `}</style>
-    </>
-  );
+                    .background-container {
+                        height: 0;
+                    }
+                    .logo-container {
+                        margin: 0 auto;
+                    }
+                }
+            `}</style>
+        </>
+    );
 }
