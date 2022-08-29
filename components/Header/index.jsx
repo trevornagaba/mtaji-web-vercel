@@ -23,9 +23,11 @@ import { AppContext } from "../AppContext"
 
 import SignUpIcon from '@mui/icons-material/Add';
 import SignInIcon from '@mui/icons-material/ExitToApp';
+import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 import AboutIcon from '@mui/icons-material/InfoOutlined';
 import BlogIcon from '@mui/icons-material/ChatOutlined';
 import FaqsIcon from '@mui/icons-material/HelpCenterOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 import navStyles from "./Header.module.css";
@@ -60,6 +62,38 @@ const guest = [
         pageIcon: <FaqsIcon/>,
         pageName: "FAQs",
         pageLink: "/faqs"
+    }
+];
+const loggedIn = [
+    {
+        pageIcon: <AccountCircleIcon/>,
+        pageName: "Account",
+        pageLink: "/account"
+    },
+    {
+        pageIcon: <AutoAwesomeMosaicIcon/>,
+        pageName: "Portfolio",
+        pageLink: "/home"
+    },
+    {
+        pageIcon: <AboutIcon/>,
+        pageName: "About",
+        pageLink: "/about"
+    },
+    {
+        pageIcon: <BlogIcon/>,
+        pageName: "Blog",
+        pageLink: "/blog"
+    },
+    {
+        pageIcon: <FaqsIcon/>,
+        pageName: "FAQs",
+        pageLink: "/faqs"
+    },
+    {
+        pageIcon: <LogoutIcon/>,
+        pageName: "Logout",
+        pageLink: "/logout"
     }
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -155,35 +189,46 @@ const Header = (props) => {
                             flexGrow: 3,
                         }}
                     >
-                        {/* <Grid
-                            item
-                            xs={{
-                                display: { sm: "none", md: "none", lg: "flex" },
+                        <Box
+                            sx={{
+                                display: { xs: "none", sm: "none", md: "none", lg: "flex" },
                             }}
                             style={{
-                                padding: "0px 10%",
+                                paddingTop: "10px",
                             }}
-                        > */}
-                            <Box
-                                sx={{
-                                    display: { xs: "none", sm: "none", md: "none", lg: "flex" },
-                                }}
-                                style={{
-                                    paddingTop: "10px",
-                                }}
-                            >
-                                {pages.map((page) => (
-                                    <Grid
-                                        key={page}
-                                        item
-                                        xs={6}
-                                        sm={6}
-                                        md={4}
-                                        lg={4}
-                                        xl={4}
-                                        align="center"
-                                        
-                                    >
+                        >
+                            {pages.map((page) => (
+                                <Grid
+                                    key={page}
+                                    item
+                                    xs={6}
+                                    sm={6}
+                                    md={4}
+                                    lg={4}
+                                    xl={4}
+                                    align="center"
+                                    
+                                >
+                                    {/* <Typography
+                                        noWrap
+                                        component="a"
+                                        href={page.toLowerCase()}
+                                        style={{
+                                            fontFamily: "'Poppins', sans-serif",
+                                            fontSize: "16px",
+                                            fontWeight: "400",
+                                            color: "#09062D",
+                                        }}
+                                    > */}
+                                        {/* {page}
+                                    </Typography>
+                                    {router.pathname===`/${page.toLowerCase()}`?
+                                        <div className={styles.underline3} />
+                                    : ""}
+                                </Grid>
+                            ))}
+                        </Box> */}
+
                                         <Typography
                                             noWrap
                                             component="a"
@@ -314,26 +359,49 @@ const Header = (props) => {
                                         width: "90vh"
                                     }}
                                 >
-                                    {guest.map((page) => (
-                                        <MenuItem
-                                            key={page.pageName}
-                                            onClick={handleCloseNavMenu}
-                                        >
-                                            <Typography
-                                                component="a"
-                                                href={page.pageLink}
-                                                textAlign="center"
-                                                style={{
-                                                    color: "#000000",
-                                                    fontFamily:
-                                                        "'Quicksand', sans-serif",
-                                                }}
+                                    {isAuth?
+                                        loggedIn.map((page) => (
+                                            <MenuItem
+                                                key={page.pageName}
+                                                onClick={handleCloseNavMenu}
                                             >
-                                                <span style={{ marginRight: "5px", color: "#01bbc8" }}>{page.pageIcon}</span>
-                                                <span style={{ color: router.pathname===`/${page.pageLink}`?'#01bbc8':'#000000' }}>{page.pageName}</span>
-                                            </Typography>
-                                        </MenuItem>
-                                    ))}
+                                                <Typography
+                                                    component="a"
+                                                    href={page.pageLink}
+                                                    textAlign="center"
+                                                    style={{
+                                                        color: "#000000",
+                                                        fontFamily:
+                                                            "'Quicksand', sans-serif",
+                                                    }}
+                                                >
+                                                    <span style={{ marginRight: "5px", color: "#01bbc8" }}>{page.pageIcon}</span>
+                                                    <span style={{ color: router.pathname===`/${page.pageLink}`?'#01bbc8':'#000000' }}>{page.pageName}</span>
+                                                </Typography>
+                                            </MenuItem>
+                                        ))
+                                    :
+                                        guest.map((page) => (
+                                            <MenuItem
+                                                key={page.pageName}
+                                                onClick={handleCloseNavMenu}
+                                            >
+                                                <Typography
+                                                    component="a"
+                                                    href={page.pageLink}
+                                                    textAlign="center"
+                                                    style={{
+                                                        color: "#000000",
+                                                        fontFamily:
+                                                            "'Quicksand', sans-serif",
+                                                    }}
+                                                >
+                                                    <span style={{ marginRight: "5px", color: "#01bbc8" }}>{page.pageIcon}</span>
+                                                    <span style={{ color: router.pathname===`/${page.pageLink}`?'#01bbc8':'#000000' }}>{page.pageName}</span>
+                                                </Typography>
+                                            </MenuItem>
+                                        ))
+                                    }
                                 </Menu>
                             </Stack>
                         </Box>

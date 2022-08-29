@@ -12,226 +12,206 @@ import TextInput from "../components/TextInput/TextInput";
 import Alert from "../components/Alert/Alert";
 
 export default function Login() {
-    const { isLoaded, isAuth, handleLogin, userPortfolioDetails } =
-        useContext(AppContext);
+  const { isLoaded, isAuth, handleLogin } = useContext(AppContext);
+  
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-    const [formData, setFormData] = useState({
-        email: "",
-        password: "",
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [fetchError, setFetchError] = useState("");
+  const [touched, setTouched] = useState("");
+  const router = useRouter();
+
+  const verifyUserSigninData = () => {
+    let errorsObject = {};
+    let touchedObject = {};
+    let isValid = true;
+
+    // validate email
+    if (!formData.email) {
+      errorsObject.email = "Email is required.";
+      touchedObject.email = false;
+      isValid = false;
+    }
+
+    // validate not admin
+    if (formData.email == "admin") {
+      errorsObject.email = "Email is not permitted.";
+      touchedObject.email = false;
+      isValid = false;
+    }
+
+    // validate password
+    if (!formData.password) {
+      errorsObject.password = "Password is required.";
+      touchedObject.password = false;
+      isValid = false;
+    }
+
+    setTouched(touchedObject);
+    setErrors(errorsObject);
+    return isValid;
+  };
+  
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: value,
+      };
     });
-    const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState({});
-    const [fetchError, setFetchError] = useState("");
-    const [touched, setTouched] = useState("");
-    const router = useRouter();
+    setTouched({ ...touched, [name]: true });
+  };
 
-    const verifyUserSigninData = () => {
-        let errorsObject = {};
-        let touchedObject = {};
-        let isValid = true;
+  const handleSignin = async (e) => {
+    setFetchError("");
+    setLoading(true);
+    handleLogin(formData)
+  };
 
-        // validate email
-        if (!formData.email) {
-            errorsObject.email = "Email is required.";
-            touchedObject.email = false;
-            isValid = false;
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let validData = verifyUserSigninData();
+    if (validData) {
+      let loginResult = handleSignin()
+      if(loginResult===false){
+        setErrors(true);
+        fetchError("Incorrect credentials")
+      }
+    }
+    setLoading(true);
+  };
 
-        // validate not admin
-        if (formData.email == "admin") {
-            errorsObject.email = "Email is not permitted.";
-            touchedObject.email = false;
-            isValid = false;
-        }
+  return (
+    <>
+      <div className="main-container">
+        <div className="background-container">
+          <img src="assets/signin.svg" className="svg absolute bottom-20 w-20" style={{left:"-40px"}}/>
+        </div>
+        <div className="content">
+          <div className="top-container">
+            <div className="logo-container">
+              <HomeLogo />
+            </div>
+          </div>
+          <div><br/></div>
+          <div style={{width:'100%', height:'80vh', display:'flex', flexDirection:'column', alignItems:'center', padding: '0 5vw', boxSizing:'border-box', overflow: 'auto'}}>
+            <p className="title">Hey There! Welcome back</p>
+            <p className="subtitle">We missed you quite a bit...</p>
+          <div><br/></div>
+          {/* Fetch or Server errors */}
+          {fetchError && <Alert message={fetchError} />}
+          <form className="login-form" onSubmit={handleSubmit}>
+            <div className="inputs">
+              <TextInput
+                type="text"
+                name="email"
+                label="Email"
+                placeholder="Email"
+                onChange={handleChange}
+                value={formData.email}
+                error={errors.email}
+              />
+              <TextInput
+                type="password"
+                name="password"
+                label="Password"
+                placeholder="Password"
+                onChange={handleChange}
+                value={formData.password}
+                error={errors.password}
+              />
+              <p className="password-reset">Forgot password?</p>
+            <button>{loading ? "Loading..." : "Sign In"}</button>
+            </div>
 
-        // validate password
-        if (!formData.password) {
-            errorsObject.password = "Password is required.";
-            touchedObject.password = false;
-            isValid = false;
-        }
-
-        setTouched(touchedObject);
-        setErrors(errorsObject);
-        return isValid;
-    };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        setFormData((prevFormData) => {
-            return {
-                ...prevFormData,
-                [name]: value,
-            };
-        });
-        setTouched({ ...touched, [name]: true });
-    };
-
-    const handleSignin = async (e) => {
-        setFetchError("");
-        setLoading(true);
-        handleLogin(formData);
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        let validData = verifyUserSigninData();
-        if (validData) {
-            handleSignin();
-        }
-    };
-
-    return (
-        <>
-            <div className="main-container">
-                <div className="background-container">
-                    <img
-                        src="assets/signin.svg"
-                        className="svg absolute bottom-20 w-20"
-                        style={{ left: "-40px" }}
-                    />
-                </div>
-                <div className="content">
-                    <div className="top-container">
-                        <div className="logo-container">
-                            <HomeLogo />
-                        </div>
-                    </div>
-                    <div>
-                        <br />
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            height: "80vh",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            padding: "0 5vw",
-                            boxSizing: "border-box",
-                            overflow: "auto",
-                        }}
-                    >
-                        <p className="title">Hey There! Welcome back</p>
-                        <p className="subtitle">We missed you quite a bit...</p>
-                        <div>
-                            <br />
-                        </div>
-                        {/* Fetch or Server errors */}
-                        {fetchError && <Alert message={fetchError} />}
-                        <form className="login-form" onSubmit={handleSubmit}>
-                            <div className="inputs">
-                                <TextInput
-                                    type="text"
-                                    name="email"
-                                    label="Email"
-                                    placeholder="Email"
-                                    onChange={handleChange}
-                                    value={formData.email}
-                                    error={errors.email}
-                                />
-                                <TextInput
-                                    type="password"
-                                    name="password"
-                                    label="Password"
-                                    placeholder="Password"
-                                    onChange={handleChange}
-                                    value={formData.password}
-                                    error={errors.password}
-                                />
-                                <p className="password-reset">
-                                    Forgot password?
-                                </p>
-                                <button>
-                                    {loading ? "Loading..." : "Sign In"}
-                                </button>
-                            </div>
-
-                            {/* <div className="or-option">
+            {/* <div className="or-option">
               <div></div>
               <span>or</span>
               <div></div>
             </div> */}
 
-                            <div className="sign-up-prompt">
-                                <p className="question">New Here?</p>
+            <div className="sign-up-prompt">
+              <p className="question">New Here?</p>
 
-                                <Link href="signup">
-                                    <p className="link">Create an account</p>
-                                </Link>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <img
-                    src="assets/signin2.svg"
-                    className="svg absolute bottom-2 w-20"
-                    style={{ left: "0px" }}
-                />
+              <Link href="signup">
+                <p className="link">Create an account</p>
+              </Link>
             </div>
+          </form>
 
-            <style jsx>{`
-                .main-container {
-                    display: flex;
-                    flex-direction: row-reverse;
-                    height: 100vh;
-                    width: 100vw;
-                }
+          </div>
+        </div>
+        <img src="assets/signin2.svg" className="svg absolute bottom-2 w-20" style={{left:"0px"}}/>
+      </div>
 
-                .background-container {
-                    flex-basis: 50%;
-                    background: url("/assets/login.svg");
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    position: relative;
-                }
+      <style jsx>{`
+        .main-container {
+          display: flex;
+          flex-direction: row-reverse;
+          height: 100vh;
+          width:100vw;
+        }
 
-                .content {
-                    flex-basis: 50%;
-                    padding: 2vw;
-                }
+        .background-container {
+          flex-basis: 50%;
+          background: url("/assets/login.svg");
+          background-repeat: no-repeat;
+          background-size:cover;
+          position: relative
+        }
 
-                .top-container {
-                    display: flex;
-                    margin-bottom: 60px;
-                }
+        .content {
+          flex-basis: 50%;
+          padding: 2vw;
+        }
 
-                .logo-container {
-                    display: inline-block;
-                    margin: 0 50px;
-                }
+        .top-container {
+          display: flex;
+          margin-bottom: 60px;
+        }
 
-                .title {
-                    text-align: center;
-                    margin-bottom: 0;
-                    color: #09062d;
-                    font-size: 32px;
-                    font-weight: bold;
-                }
+        .logo-container {
+          display: inline-block;
+          margin: 0 50px;
+        }
 
-                .subtitle {
-                    text-align: center;
-                    color: #8c8c8c;
-                }
+        .title {
+          text-align: center;
+          margin-bottom: 0;
+          color: #09062d;
+          font-size: 32px;
+          font-weight: bold;
+        }
 
-                .login-form {
-                    padding: 16px;
-                    width: 100%;
-                }
+        .subtitle {
+          text-align: center;
+          color: #8c8c8c;
+        }
 
-                .login-form .inputs {
-                    width: 100%;
-                    margin: 0 auto;
-                }
+        .login-form {
+          padding: 16px;
+          width: 100%
+        }
 
-                .login-form .inputs .password-reset {
-                    text-align: right;
-                    margin-top: 0;
-                    color: #2518b8;
-                    cursor: pointer;
-                    text-decoration: underline;
-                }
+        .login-form .inputs {
+          width: 100%;
+          margin: 0 auto;
+        }
+
+        .login-form .inputs .password-reset {
+          text-align: right;
+          margin-top: 0;
+          color: #2518b8;
+          cursor: pointer;
+          text-decoration: underline;
+        }
 
                 .login-form .inputs p:hover {
                     color: #01bbc8;

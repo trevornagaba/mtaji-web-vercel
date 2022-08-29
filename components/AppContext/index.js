@@ -23,6 +23,7 @@ const AppContextProvider = (props) => {
     });
 
     useEffect(() => {
+        checkAuth()
         getCompanies();
         //getUserPortfolioDetails();
     }, []);
@@ -32,15 +33,21 @@ const AppContextProvider = (props) => {
     const checkAuth = async () => {
        setIsLoaded(false);
         try {
-            if (jwt_decode(localStorage.getItem("token"))) {
-                setUserDetails(await jwt_decode(localStorage.getItem("token"))) 
-                setIsAuth(true);
-                setIsLoaded(true);
+            if(jwt_decode(localStorage.getItem("token"))){
+                setUserDetails(await jwt_decode(localStorage.getItem("token")))
+                setIsAuth(true)
+                setIsLoaded(true)
+                if(router.pathname==="/login"){
+                    router.push("/home");    
+                }
             }
-        } catch (err) {
-            setIsLoaded(false);
-            setIsAuth(false);
-            router.push("/login");
+        }
+        catch(err){
+            if(router.pathname!=="/"){
+                setIsLoaded(true)
+                setIsAuth(false)
+                router.push("/login");    
+            }
         }
     };
 
@@ -53,18 +60,23 @@ const AppContextProvider = (props) => {
                 headers: {
                     "Content-Type": "Application/json",
                 },
-                email: userData.email,
-                password: userData.password,
-            })
-            .then((result) => {
+                email: userData.email, 
+                password: userData.password
+            }            
+        )
+        .then((result) => {  
+            if(result.data) {
                 localStorage.setItem("token", result.data.token);
-                             
+                setIsAuth(true);
+                setIsLoaded(true);
                 router.push("/home");
-                
-            })
-            .catch((error) => {
-                setErrors(error);
-            });
+            } else {
+                return result;
+            }
+        })
+        .catch((error) => {
+            setErrors(error)
+        })
     };
 
     
