@@ -23,16 +23,14 @@ const Account = () => {
     const [isVerified, setIsVerified] = useState(false)
     const [veriToken, setVeriToken] = useState(false)
     const [userData, setUserData] = useState({})
-    const [verificationMsg, setVerificationMsg] = useState("")
-    const [noteMsg, setNoteMsg] = useState("")
+    const [verificationMsg, setVerificationMsg] = useState("Verifying Account...")
+    const [noteMsg, setNoteMsg] = useState("Please wait as your account is being verified.")
 
     useEffect(() => {
         getTokenData()
     })
 
     const getTokenData = async () => {
-        setVerificationMsg("Verifying Account...")
-        setNoteMsg("Please wait as your account is being verified.")
         setVeriToken(verificationToken)
 
         // setUserData(jwt_decode(verificationToken))
@@ -131,8 +129,8 @@ const Account = () => {
                         {isVerifying?
                             <><CircularProgress color="inherit" /><br/></>
                         :
-                            isVerified?<><TaskAltIcon style={{ color: "#01bbc8", fontSize: "80px"}}/><br/></>
-                            : <><BlockIcon style={{ color: "red", fontSize: "80px"}}/><br/></>
+                            isVerified?<><TaskAltIcon style={{ color: "#01bbc8", fontSize: "60px"}}/><br/></>
+                            : <><BlockIcon style={{ color: "grey", fontSize: "60px"}}/><br/></>
                         }                      
                         <strong>{verificationMsg}</strong><br/>
                         <small>{noteMsg}</small><br/><br/>
