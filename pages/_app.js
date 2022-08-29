@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import HomeLogo from "../components/HomeLogo";
 
-import AppContextProvider from "../components/AppContext"
+import AppContextProvider from "../components/AppContext";
 
 function MyApp({ Component, pageProps }) {
     return (

@@ -14,6 +14,8 @@ import styles from "./Landing.module.css";
 import pointerImg from "../../public/assets/tagline_background.svg";
 import landingImg from "../../public/assets/illustration_3.svg";
 import whyMtajiImg from "../../public/assets/illustration_7.png";
+import lady_with_laptop from "../../public/assets/lady_with_laptop.svg"
+import arrow from "../../public/assets/arrow.svg"
 
 import { AppContext } from "../AppContext"
 
@@ -54,25 +56,45 @@ const Landing = () => {
         minimumFractionDigits: 0,
     });
 
+    var calc_days_left = (end_date)=>{
+        var end_date_strToDate = new Date(end_date);
+        var time_left= end_date_strToDate.getTime()- new Date().getTime();
+        var days_left = (time_left/(1000*3600*24));
+        var hours_left = (days_left%1)*24;
+        var mins_left = (hours_left%1)*60;
+        var sec_left = (mins_left%1)*60;
+        
+        //var duration_left= days_left >= 1 ? ""+days_left.toFixed(0) + " days" : ""+ hours_left.toFixed(0)+"h:"+mins_left.toFixed(0)+"min:"+sec_left.toFixed(0)+"sec";
+              
+         var duration_left= days_left >= 1 ? ""+days_left.toFixed(0) + " days" : ""+ hours_left.toFixed(0)+"h:"+mins_left.toFixed(0)+"min";
+           
+        return duration_left
+
+    }
+
+    
+
+    
+
     return (
-        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true}>
+        <PageTemplate hasNavbar={true} hasWrapper={false} hasFooter={true} hasRaiseFunds={true}>
             <Grid
                 container
                 style={{
                     padding: "15vh 10%",
-                    mimHeight: "100vh",
+                    minHeight: "100vh",
                     alignItems: "center"
                 }}
             >
 
-                {/* Section 1 */}
+                {/* Section 1 - Invest in Africas next big company */}
                 <Grid
                     item
                     sx={12}
                     sm={12}
                     md={7}
-                    lg={8}
-                    xl={9}
+                    lg={7}
+                    xl={7}
                     className={styles.tagline}
                 >
                     <h1>
@@ -82,6 +104,12 @@ const Landing = () => {
                     <p style={{ padding: '15px 0' }}>
                     Be a part owner of a thriving business with as little as <br/>UGX 50,000
                     </p>
+
+                    <Stack
+                        spacing={10}
+                        direction="row"
+                        style={{ paddingTop: "10px" }}
+                    >
                     <Stack
                         spacing={2}
                         direction="row"
@@ -100,14 +128,34 @@ const Landing = () => {
                         style={{ border: "1px #01BBC8 solid", color: "#01BBC8", textTransform: 'none', height: "40px" }}
                     >Raise funds</Button>
                     </Stack>
+
+                    <Stack>
+                        <Image
+                        src={arrow}
+                        alt="arrow"
+                        style={{
+                            width: "100%", marginLeft:"10px"
+                        }}
+                    />
+                    </Stack>
+
+                        
+
+
+
+                    </Stack>
+
+
+                    
+                     
                 </Grid>
                 <Grid
                     item
                     xs={12}
                     sm={12}
                     md={5}
-                    lg={4}
-                    xl={3}
+                    lg={5}
+                    xl={4}
                     style={{
                         width: "100%",
                         padding: "5vh 0"
@@ -116,7 +164,7 @@ const Landing = () => {
                 >
                     <Image
                         src={landingImg}
-                        alt="image 1"
+                        alt="happy investor"
                         style={{
                             width: "100%"
                         }}
@@ -127,8 +175,9 @@ const Landing = () => {
             {/* Section 2 */}
             <Grid
                 container
+                spacing={4}
                 style={{
-                    padding: "15vh 10%",
+                    padding: "10vh 10%",
                     backgroundColor: "#f7f7f7"
                 }}
             >
@@ -137,15 +186,15 @@ const Landing = () => {
                     xs={12}
                     sm={12}
                     md={6}
-                    lg={6}
-                    xl={6}
+                    lg={4}
+                    xl={4}
                     style={{
                         width: "100%",
                     }}
                 >
                         <Image
-                            src={whyMtajiImg}
-                            alt="image 1"
+                            src={lady_with_laptop}
+                            alt="entreprenuer steering at a laptop screen"
                             style={{
                                 width: "100%"
                             }}
@@ -156,8 +205,8 @@ const Landing = () => {
                     xs={12}
                     sm={12}
                     md={6}
-                    lg={6}
-                    xl={6}
+                    lg={8}
+                    xl={5}
                     style={{
                         margin: "0",
                     }}
@@ -186,7 +235,7 @@ const Landing = () => {
                         }}
                     >
                         <p className={styles.sectionHeader}>
-                            Companies currently raising <br/>capital on mtaji
+                            Companies currently raising capital on mtaji
                         </p>
                         <div className={styles.underline2} />
                     </Grid>
@@ -202,43 +251,55 @@ const Landing = () => {
                             className={styles.companyCard}
                             align="center"
                         >
-                        <Box
+                            <a href={`/company/${company._id}`}>
+<Box
                             className={styles.companyCardBox}
                         >
-                            <Link href={`/company/${company._id}`}>
+                            
+                                
                                 <img src="/assets/companyLogo.svg" width={80} />
-                            </Link>
+                                {/* <img src={company.logo} width={80} /> */}
+                            
                             <Typography
                                 variant="h5"
                                 style={{
-                                    margin: "10px 0",
+                                    margin: "15px 0px",
                                     fontFamily: "Poppins",
                                     fontWeight: "500"
                                 }}
                             >
                                 {company.name}
                             </Typography>
+
                             <Typography
                                 style={{                                
-                                    textAlign: "left"
+                                    textAlign: "left",
+                                    fontFamily: "Poppins",
+                                    color: "#666666",
+                                    margin: "10px 0px",
+                                    fontSize:"0.9rem"
                                 }}
                             >
                                 {Str(company.briefDescription).limit(100, '...').get()}
                             </Typography>
-                            
-                            <Typography style={{ padding: "10px 0", lineHeight: "22px" }} align={"left"}>
+                           
+                            <Typography style={{ padding: "10px 0", lineHeight: "22px", color: "#666666", fontFamily: "Poppins" }} align={"left"}>
                                 <small>Raising</small><br/>
-                                <strong style={{ fontSize: "22px" }}>{formatter.format(company.targetAmount)}</strong><br/>
-                                <small>Ends in: <span style={{ color: "red" }}>21h:30min:15sec</span></small>
+                                <strong style={{ fontSize: "1.25rem", color: "#09062D"  }}>{formatter.format(company.targetAmount)}</strong><br/>
+                                <small>Ends in: <span style={{ color: "#FE8686" }}>{calc_days_left(company.raiseTargetDate)}</span></small>
+                                {console.log(`check: ${calc_days_left(company.raiseTargetDate)}`)}
                             </Typography>
 
                             <BorderLinearProgress variant="determinate" value={(company.amountRaised/company.targetAmount)*100} label={true}/>
                             <small style={{ color: "#01BBC8" }}>{Math.round((company.amountRaised/company.targetAmount)*100)}%</small>
                         </Box>
+                            </a>
+                        
                         </Grid>
                     ))}
                 </Grid>
             : ""}
+            
         </PageTemplate>
     )
 }

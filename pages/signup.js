@@ -129,7 +129,7 @@ export default function SignUp() {
             </div>
           </div>
           <div><br/></div>
-          <div style={{width:'100%', height:'80vh', display:'flex', flexDirection:'column', alignItems:'center', padding: '0 5vw', boxSizing:'border-box', overflow: 'auto'}}>
+          <div className="formContent">
             <p className="title">Welcome! Let&apos;s get you started</p>
             <p className="subtitle">Fill in your details to get started</p>
             {/* Fetch or Server errors */}
@@ -214,6 +214,29 @@ export default function SignUp() {
           padding: 2vw;
         }
 
+        .formContent{
+          width:100%;
+          height:80vh;
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+          padding: 0 5vw;
+          box-sizing: border-box;
+          overflow: auto
+        }
+        .formContent::-webkit-scrollbar {
+          width: 4px;
+      }
+       
+      .formContent::-webkit-scrollbar-track {
+          background-color: #e4e4e4;
+          border-radius: 100px;
+      }
+       
+      .formContent::-webkit-scrollbar-thumb {
+          background-color: #1c2854;
+          border-radius: 100px;
+      }
         .top-container {
           display: flex;
           height: 10vh

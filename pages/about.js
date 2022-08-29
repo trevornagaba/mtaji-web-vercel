@@ -2,11 +2,17 @@ import React from "react";
 import ExpertProfileCard from "../components/expertProfileCard/expertProfileCard";
 import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/about.module.css";
-import Image from 'next/image'
+import Image from "next/image";
+import RaiseFunds from "../components/RaiseFunds";
 
 function about() {
     return (
-        <PageTemplate hasNavbar={true} hasWrapper={true} hasFooter={true}>
+        <PageTemplate
+            hasNavbar={true}
+            hasWrapper={true}
+            hasRaiseFunds={true}
+            hasFooter={true}
+        >
             <section className={styles.aboutSection}>
                 <div className={styles.ourStory}>
                     <p className={styles.heading}>
@@ -26,10 +32,23 @@ function about() {
                 </div>
                 <div className={styles.aboutImg}>
                     <div>
-                        <Image src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393229/mtaji/T94A6393_zrnbc0.jpg" alt="" layout="fill" objectFit="cover" priority={true}/>
+                        <Image
+                            src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393229/mtaji/T94A6393_zrnbc0.jpg"
+                            alt=""
+                            layout="fill"
+                            objectFit="cover"
+                            priority={true}
+                        />
                     </div>
                     <div>
-                        <Image src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393234/mtaji/T94A6376_slede6.jpg" alt="" layout="fill" objectFit="cover" objectPosition="center -35px" priority={true} />
+                        <Image
+                            src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393234/mtaji/T94A6376_slede6.jpg"
+                            alt=""
+                            layout="fill"
+                            objectFit="cover"
+                            objectPosition="center -35px"
+                            priority={true}
+                        />
                     </div>
                 </div>
             </section>
@@ -39,31 +58,32 @@ function about() {
                         <strong>Our Story</strong>
                     </p>
                     <p className={styles.text}>
-                        Mtaji is the Swahili word for &quot;capital&quot; and mtaji.io is
-                        a marketplace that brings together value investors
-                        (individual and institutional) and ambitious founders to
-                        create a critical neo finance channel, providing patient
-                        capital for founders and potential returns for
-                        investors.
+                        Mtaji is the Swahili word for &quot;capital&quot; and
+                        mtaji.io is a marketplace that brings together value
+                        investors (individual and institutional) and ambitious
+                        founders to create a critical neo finance channel,
+                        providing patient capital for founders and potential
+                        returns for investors.
                         <br />
                         <br />
                         When we took a step back, we noticed a perplexing trend.
                         Walk up to an African founder trying to scale up their
-                        business and the biggest challenge they&apos;ll share with
-                        you is access to capital. Conversely, listings on
-                        Africa&apos;s equity capital markets (the source of this much
-                        needed capital) have been in decline in the last 10
-                        years. At the time of writing, East Africa&apos;s largest
-                        stock exchange, the NSE has not had a listing for the
-                        last five years. The Uganda Securities Exchange has seen
-                        two in the last five years. Africa&apos;s largest stock
-                        exchange, the JSE in South Africa recorded 24 delistings
-                        in the 2021 alone. Additionally, this is in complete
-                        contrast to global trends. As noted in PwC&apos;s Global IPO
-                        Watch 2021, Global IPO proceeds in 2021 were the largest
-                        ever recorded globally. What does this mean? The African
-                        capital markets, in their current state, are inherently
-                        not fit for purpose. We are fixing this
+                        business and the biggest challenge they&apos;ll share
+                        with you is access to capital. Conversely, listings on
+                        Africa&apos;s equity capital markets (the source of this
+                        much needed capital) have been in decline in the last 10
+                        years. At the time of writing, East Africa&apos;s
+                        largest stock exchange, the NSE has not had a listing
+                        for the last five years. The Uganda Securities Exchange
+                        has seen two in the last five years. Africa&apos;s
+                        largest stock exchange, the JSE in South Africa recorded
+                        24 delistings in the 2021 alone. Additionally, this is
+                        in complete contrast to global trends. As noted in
+                        PwC&apos;s Global IPO Watch 2021, Global IPO proceeds in
+                        2021 were the largest ever recorded globally. What does
+                        this mean? The African capital markets, in their current
+                        state, are inherently not fit for purpose. We are fixing
+                        this
                         {/* <br />
                         <br /> Our conclusion; the African capital markets in
                         their current state are not fit for purpose. The cost of
@@ -93,7 +113,13 @@ function about() {
                     </p>
                 </div>
                 <div className={styles.storyImg}>
-                    <Image src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393232/mtaji/T94A6428_pj0nkt.jpg" alt="" layout="fill" objectFit="cover" priority={true}/>
+                    <Image
+                        src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393232/mtaji/T94A6428_pj0nkt.jpg"
+                        alt=""
+                        layout="fill"
+                        objectFit="cover"
+                        priority={true}
+                    />
                 </div>
             </section>
             <section className={styles.ourExperts}>
@@ -111,34 +137,58 @@ function about() {
                 </div>
                 <div className={styles.experts}>
                     <ExpertProfileCard
-                        imageLink={"https://res.cloudinary.com/daat2pgem/image/upload/v1659393232/mtaji/T94A5661_wuz7qm.jpg"}
+                        imageLink={
+                            "https://res.cloudinary.com/daat2pgem/image/upload/v1659393232/mtaji/T94A5661_wuz7qm.jpg"
+                        }
                         name={"Trevor Nagaba"}
                         position={"CEO & Team lead"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/trevor-nagaba/"
+                        }
                     />
                     <ExpertProfileCard
                         imageLink={"/assets/expert2.svg"}
                         name={"Emmanuel Agidi"}
                         position={"Founder & Head of Operations"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/emmanuel-agidi/"
+                        }
                     />
                     <ExpertProfileCard
                         imageLink={"/assets/expert3.svg"}
                         name={"Arnold Luima"}
                         position={"Founder & Head of Investments"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/arnold-luima-acca-a0747452/"
+                        }
                     />
                     <ExpertProfileCard
-                        imageLink={"https://res.cloudinary.com/daat2pgem/image/upload/v1659907972/mtaji/T94A6376_2_hdvjqr.jpg"}
+                        imageLink={
+                            "https://res.cloudinary.com/daat2pgem/image/upload/v1659907972/mtaji/T94A6376_2_hdvjqr.jpg"
+                        }
                         name={"Conifa Ndawula"}
                         position={"Head of Product"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/conifa-ndawula-b58682147/"
+                        }
                     />
                     <ExpertProfileCard
-                        imageLink={"https://res.cloudinary.com/daat2pgem/image/upload/v1659393236/mtaji/T94A6387_lbisla.jpg"}
+                        imageLink={
+                            "https://res.cloudinary.com/daat2pgem/image/upload/v1659393236/mtaji/T94A6387_lbisla.jpg"
+                        }
                         name={"Sydney Rugambwa"}
                         position={"Head of Growth"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/sydney-rugambwa-25a61410a/"
+                        }
                     />
                     <ExpertProfileCard
                         imageLink={"/assets/expert6.svg"}
                         name={"Emmanuel Nabusiu"}
                         position={"Finance Manager"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/emmanuel-nabusiu-wamibu-464b73103/"
+                        }
                     />
                 </div>
             </section>

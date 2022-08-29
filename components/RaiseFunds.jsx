@@ -1,9 +1,21 @@
 import Link from "next/link";
 import styles from "../styles/RaiseFunds.module.css";
+import Grid from "@mui/material/Grid";
 
 const RaiseFunds = () => {
   return (
-    <div className={styles.container}>
+    <Grid
+        item
+        style={{
+            margin:"8vh 5% 0vh 5%",
+            width: "90vw",
+           
+            
+        }}
+        align="left"
+
+    >
+<div className={styles.container}>
       <div className={styles.section}>
         <div>
           <p className={styles.title}>
@@ -11,9 +23,7 @@ const RaiseFunds = () => {
             raise funds?
           </p>
           <p className={styles.description}>
-            Get connected with mission driven investors and your community
-            <br />
-            of users, customers and friends.
+            Get connected with mission driven investors and your community of users, customers and friends.
           </p>
         </div>
 
@@ -24,6 +34,8 @@ const RaiseFunds = () => {
 
       <img className={styles.circles} src="/assets/circles.svg" alt="circles" />
     </div>
+    </Grid>
+    
   );
 };
 

@@ -28,17 +28,18 @@
 }
 
 .pointsList {
-  padding-top: 24px;
+  padding-top:16px;
 }
 
 .point {
-  margin-top: 15px;
+  
+  margin: 20px 0px;
   display: flex;
   align-items: center;
   font-family: 'Poppins';
   font-style: normal;
   font-size: 16px;
-  line-height: 25px;
+  line-height: 30px;
 
 }
 
