@@ -7,7 +7,6 @@ export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
     const router = useRouter();
-
     const [isLoaded, setIsLoaded] = useState(false);
     const [token, setToken] = useState(false);
     const [isAuth, setIsAuth] = useState(false);
@@ -25,28 +24,28 @@ const AppContextProvider = (props) => {
 
     useEffect(() => {
         getCompanies();
-        getUserPortfolioDetails();
+        //getUserPortfolioDetails();
     }, []);
+    
+    
 
     const checkAuth = async () => {
-        setIsLoaded(false);
+       setIsLoaded(false);
         try {
             if (jwt_decode(localStorage.getItem("token"))) {
-                setUserDetails(await jwt_decode(localStorage.getItem("token")));
-                //  console.log(userDetails.userId);
+                setUserDetails(await jwt_decode(localStorage.getItem("token"))) 
                 setIsAuth(true);
                 setIsLoaded(true);
             }
         } catch (err) {
-            setIsLoaded(true);
+            setIsLoaded(false);
             setIsAuth(false);
             router.push("/login");
         }
     };
 
     const handleLogin = async (userData) => {
-        setIsLoaded(false);
-
+        //setIsLoaded(false);
         // try {
         const response = await axios
             .post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`, {
@@ -59,49 +58,69 @@ const AppContextProvider = (props) => {
             })
             .then((result) => {
                 localStorage.setItem("token", result.data.token);
-                setIsAuth(true);
-                setIsLoaded(true);
+                             
                 router.push("/home");
+                
             })
             .catch((error) => {
                 setErrors(error);
             });
     };
 
+    
+
     const handleLogout = () => {
         localStorage.removeItem("token");
-        setIsAuth(true);
-        setIsLoaded(true);
+        setIsAuth(false);
+        // setIsLoaded(false);
         router.push("/login");
+        
+    };
+ 
+
+    // const getuserDetails = async () => {
+    //     const response = await axios
+    //         .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`, {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "Application/json",
+    //                 Authorization: `Bearer `,
+    //             },
+    //         })
+    //         .then((result) => {
+    //             // TO-DO: Update after sorting out auth
+    //             // console.log("context:result" + result.data.userDetails);
+    //             if (result.data == "Please login") {
+    //                 setuserDetails("$");
+    //             } else {
+    //                 setuserDetails(result.data.userDetails);
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //             setuserDetails("$");
+    //         });
+    // };
+
+    const getCompany = async (companyId) => {
+        return companies.find((company) => company.id === companyId);
     };
 
-    const getuserDetails = async () => {
+    const getCompanies = async () => {
         const response = await axios
-            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "Application/json",
-                    Authorization: `Bearer `,
-                },
-            })
+            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies`)
             .then((result) => {
-                // TO-DO: Update after sorting out auth
-                // console.log("context:result" + result.data.userDetails);
-                if (result.data == "Please login") {
-                    setuserDetails("$");
-                } else {
-                    setuserDetails(result.data.userDetails);
-                }
+                setCompanies(result.data);
+                // setIsLoaded(false);
             })
             .catch((error) => {
-                console.log(error);
-                setuserDetails("$");
+                setErrors(error);
+                // setIsLoaded(false);
             });
     };
 
     const getUserPortfolioDetails = async () => {
-        console.log(userDetails["userId"]);
-        console.log(localStorage.getItem("token"));
+        //setIsLoaded(false);
         const response = await axios
             .get(
                 `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/portfolio/user/${userDetails["userId"]}`,
@@ -119,30 +138,18 @@ const AppContextProvider = (props) => {
                 //console.log(result.data);
                 // TO-DO: Update after sorting out auth
                 setUserPortfolioDetails(result.data);
-                // console.log(userPortfolioDetails);
+                setIsLoaded(true);
             })
             .catch((error) => {
                 console.log(`error: ${error}`);
+                setErrors(error);
+                setIsLoaded(false);
                 // setUserPortfolioDetails("$");
             });
     };
 
-    const getCompany = async (companyId) => {
-        return companies.find((company) => company.id === companyId);
-    };
-
-    const getCompanies = async () => {
-        const response = await axios
-            .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies`)
-            .then((result) => {
-                setCompanies(result.data);
-                setIsLoaded(true);
-            })
-            .catch((error) => {
-                setErrors(error);
-                setIsLoaded(true);
-            });
-    };
+    console.log(userDetails["email"]);
+    console.log(userPortfolioDetails);
 
     const getBlogs = async () => {
         setIsLoaded(false);
@@ -171,6 +178,7 @@ const AppContextProvider = (props) => {
                 setIsLoaded(true);
             });
     };
+   
 
     return (
         <AppContext.Provider

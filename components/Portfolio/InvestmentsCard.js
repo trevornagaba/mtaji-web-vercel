@@ -100,54 +100,7 @@ const InvestmentsCard = (props) => {
                                         borderBottom: "1px solid #E6E6E6",
                                     }}
                                 >
-                                    {/* <Grid item sm={4} xs={4} >
-                                    <CompanyChip
-                                        defaultLogo="/assets/defaultLogo.svg"
-                                        companyName={company.companyName}
-                                    />
-                                </Grid>
-
-                                <Grid item sm={4} xs={4}>
-                                    <Typography
-                                        align="center"
-                                        sx={{
-                                            fontSize: "1rem",
-                                            fontWeight: "500",
-                                            color: "#666666",
-                                        }}
-                                        
-                                    >
-                                        {company.industry}
-                                    </Typography>
-                                </Grid> */}
-
-                                    {/* <Grid item xs={8} alignContent="right">
-                                    <Grid container spacing={0}>
-                                        <Grid item sm={6} xs={12}>
-                                            <CompanyChip
-                                                defaultLogo="/assets/defaultLogo.svg"
-                                                companyName={
-                                                    company.companyName
-                                                }
-                                                companyIndustry={
-                                                    company.industry
-                                                }
-                                            />
-                                        </Grid>
-                                        <Grid item sm={6} xs={12}>
-                                            <Typography
-                                                align="center"
-                                                sx={{
-                                                    fontSize: "1rem",
-                                                    fontWeight: "500",
-                                                    color: "#666666",
-                                                }}
-                                            >
-                                                {company.industry}
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
-                                </Grid> */}
+                                   
                                     <Grid item xs={8}>
                                         <CompanyChip
                                             defaultLogo="/assets/defaultLogo.svg"

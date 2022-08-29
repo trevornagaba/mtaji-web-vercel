@@ -12,14 +12,17 @@ import FundWalletModal from "/components/FundWalletModal/FundWalletModal";
 
 const HomePage = () => {
     const {
+        userPortfolioDetails,
+        checkAuth,
         isLoaded,
         isAuth,
         userDetails,
         companies,
-        checkAuth,
-        userPortfolioDetails,
         getUserPortfolioDetails,
     } = useContext(AppContext);
+    
+    //Get the latest userportfolio details
+    //  const isLoaded = true;
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -33,19 +36,22 @@ const HomePage = () => {
 
     // Setup state management
     const [user, setUsers] = useState([]);
-    const [portfolio, setPortfolio] = useState([]);
-    const [comps, setComps] = useState([]);
+        const [comps, setComps] = useState([]);
     // Setup to handle modal state
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        checkAuth();
-        setUsers(userDetails);
-        getUserPortfolioDetails();
+        
+        checkAuth().then((result)=>{
+            getUserPortfolioDetails();
+        });
+        //getUserPortfolioDetails();
+        
+        // setUsers(userDetails);
+        
                 setComps(companies);
     }, [isLoaded]);
-
-    // console.log(userPortfolioDetails);
+    
     
     return (
         <PageTemplate
@@ -63,13 +69,13 @@ const HomePage = () => {
                     }}
                 >
                     {/* Portfolio Card */}
+
                     <Portfolio
                         isLoaded={isLoaded}
                         userDetails={userDetails}
                         userPortfolioDetails={userPortfolioDetails}
                     />
-                    <Companies
-              />
+                    <Companies />
                 </Grid>
             ) : (
                 ""

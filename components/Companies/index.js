@@ -60,7 +60,7 @@ const Companies = (props) => {
     };
 
     return (
-        <Grid container >
+        <Grid container>
             <Grid
                 item
                 sx={12}
@@ -89,6 +89,7 @@ const Companies = (props) => {
                     xl={4}
                     className={styles.companyCard}
                     align="center"
+                    
                 >
                     <a href={`/company/${company._id}`}>
                         <Box className={styles.companyCardBox}>
@@ -148,11 +149,11 @@ const Companies = (props) => {
                                         )}
                                     </span>
                                 </small>
-                                {console.log(
+                                {/* {console.log(
                                     `check: ${calc_days_left(
                                         company.raiseTargetDate
                                     )}`
-                                )}
+                                )} */}
                             </Typography>
 
                             <BorderLinearProgress

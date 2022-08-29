@@ -282,7 +282,7 @@ const Landing = () => {
                                 <small>Raising</small><br/>
                                 <strong style={{ fontSize: "1.25rem", color: "#09062D"  }}>{formatter.format(company.targetAmount)}</strong><br/>
                                 <small>Ends in: <span style={{ color: "#FE8686" }}>{calc_days_left(company.raiseTargetDate)}</span></small>
-                                {console.log(`check: ${calc_days_left(company.raiseTargetDate)}`)}
+                                {/* {console.log(`check: ${calc_days_left(company.raiseTargetDate)}`)} */}
                             </Typography>
 
                             <BorderLinearProgress variant="determinate" value={(company.amountRaised/company.targetAmount)*100} label={true}/>

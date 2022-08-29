@@ -34,14 +34,13 @@ const Portfolio = (props) => {
     return (
         <Grid
             container
-            spacing={3}
+            rowSpacing={{ xs: 3, sm: 0 }}
+            columnSpacing={{ xs: 0, sm: 3 }}
             xs={12}
             direction="row"
             sx={{
-              
-                padding: "15px",
-                
-                            }}
+                paddingTop: "15px",
+            }}
         >
             {/* Networth */}
             <Grid item xs={12} sm={12} md={4}>
