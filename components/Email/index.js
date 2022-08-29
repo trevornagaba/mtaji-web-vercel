@@ -94,7 +94,7 @@ const Email = async (props) => {
         console.log("Email Sent!")
         return true;
     }).catch((error) => {
-        console.log("Email Sent!")
+        console.log("Email Not Sent!")
         return false;
     });
 };
