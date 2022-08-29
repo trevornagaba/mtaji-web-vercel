@@ -19,44 +19,43 @@ const Account = () => {
 
     const { verificationToken } = router.query;
 
-    const [isVerifying, setIsVerifying] = useState(false)
+    const [isVerifying, setIsVerifying] = useState(true)
     const [isVerified, setIsVerified] = useState(false)
+    const [veriToken, setVeriToken] = useState(false)
     const [userData, setUserData] = useState({})
     const [verificationMsg, setVerificationMsg] = useState("")
     const [noteMsg, setNoteMsg] = useState("")
 
     useEffect(() => {
         getTokenData()
-    }, [isVerifying])
+    })
 
     const getTokenData = async () => {
         setVerificationMsg("Verifying Account...")
         setNoteMsg("Please wait as your account is being verified.")
-        try {
-            setUserData(jwt_decode(verificationToken))
-            const response = await axios.patch(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/activate-account/${verificationToken}`, {
-                    headers: {
-                    'Content-Type': 'Application/json',
-                    }
-                }            
-            )
-            .then((result) => {
-                setVerificationMsg(result.data.message)
-                setNoteMsg("Your account has been activated, you can now login to your account.")
-                setIsVerifying(true)
-                setIsVerified(true)
-            })
-            .catch(error => {
-                setVerificationMsg("Verification Unsuccessful!")
-                setNoteMsg("Your verification token has expired.")
-                setIsVerifying(true) 
-            })
-        } catch(err) {
+        setVeriToken(verificationToken)
+
+        // setUserData(jwt_decode(verificationToken))
+
+        const response = await axios.patch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/activate-account/${veriToken}`, {
+                headers: {
+                'Content-Type': 'Application/json'
+                },
+                isActive: true
+            }
+        )
+        .then((result) => {
+            setIsVerified(true)
+            setIsVerifying(false)
+            setVerificationMsg(result.data.message)
+            setNoteMsg("Your account has been activated, you can now login to your account.")
+        })
+        .catch(error => {
+            setIsVerifying(false)
             setVerificationMsg("Verification Unsuccessful!")
-            setNoteMsg("Your verification token is invalid")
-            setIsVerifying(true) 
-        }
+            setNoteMsg("Your verification token has expired.")
+        });
     }
 
 
@@ -129,17 +128,15 @@ const Account = () => {
                     >
                         <strong style={{ fontSize: "25px" }}>Welcome back,</strong><br/>
                         Thank you again for joining Mtaji,<br/><br/>
-                        {isVerified?
-                            <><TaskAltIcon style={{ color: "#01bbc8", fontSize: "80px"}}/><br/></>
+                        {isVerifying?
+                            <><CircularProgress color="inherit" /><br/></>
                         :
-                            <><BlockIcon style={{ color: "red", fontSize: "80px"}}/><br/></>
-                        }
+                            isVerified?<><TaskAltIcon style={{ color: "#01bbc8", fontSize: "80px"}}/><br/></>
+                            : <><BlockIcon style={{ color: "red", fontSize: "80px"}}/><br/></>
+                        }                      
                         <strong>{verificationMsg}</strong><br/>
-                        {!setIsVerifying?
-                            <><CircularProgress color="primary" /><br/></>
-                        : "" }
                         <small>{noteMsg}</small><br/><br/>
-                        <small><strong>Note:</strong> This page will automatically be redirected.</small>
+                        <small>Go to <a href={`../login`}><strong>Login here</strong></a></small>
 
                     </Typography>
                 </Box>
