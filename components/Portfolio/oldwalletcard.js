@@ -5,7 +5,6 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
 
 const WalletCard = (props) => {
     const { isLoaded, portfolio } = props;
@@ -28,61 +27,40 @@ const WalletCard = (props) => {
     console.log("check" & invstTotal);
 
     return (
-        <Grid
-            container
-            direction="column"
-            alignItems="center"
-            justifyContent="space-around"
+        <Box
             sx={{
+                background: "white",
                 width: "100%",
-                bgcolor: "background.paper",
+                height: "200px",
                 borderRadius: "20px",
                 padding: "15px",
-                height: "100%",
-                minHeight: "30vh",
             }}
         >
-            <Grid item>
-                {" "}
+            <CardContent>
                 <Typography
-                    align="center"
                     sx={{
-                        fontSize: "1rem",
-                        fontWeight: "600",
+                        fontSize: "16px",
+                        fontWeight: "bold",
                         color: "#09062D",
                     }}
+                    color="text.secondary"
+                    gutterBottom
                 >
-                    Net worth
+                    Cash
                 </Typography>
-            </Grid>
-            <Grid item>
                 <Typography
+                    variant="h3"
                     component="div"
-                    sx={{
-                        fontWeight: "700",
-                        fontSize: "3rem",
+                    style={{
+                        fontWeight: "800",
+                        paddingTop: "15px",
                     }}
                     align="center"
                 >
                     {isLoaded ? invstTotal() : ""}
                 </Typography>
-            </Grid>
-            <Grid item>
-                <Button
-                    component="a"
-                    href=""
-                    variant="contained"
-                    style={{
-                        backgroundColor: "#2518B8",
-                        color: "white",
-                        textTransform: "none",
-                        height: "40px",
-                    }}
-                >
-                    Add Investments
-                </Button>
-            </Grid>
-        </Grid>
+            </CardContent>
+        </Box>
     );
 };
 

@@ -1,18 +1,17 @@
 import React, { useEffect, useState, useContext } from "react";
 import {
     Grid,
+    Item,
     Typography,
     Card,
     CardActions,
-    CardContent
+    CardContent,
 } from "@mui/material";
 
-import WalletCard from "./WalletCard"
-import InvestmentsCard from "./InvestmentsCard"
-
+import WalletCard from "./WalletCard";
+import InvestmentsCard from "./InvestmentsCard";
 
 const Portfolio = (props) => {
-
     const { isLoaded, userDetails } = props;
 
     // Create our number formatter.
@@ -27,57 +26,29 @@ const Portfolio = (props) => {
     const [user, setUsers] = useState([]);
 
     useEffect(() => {
-        setUsers(userDetails)
+        setUsers(userDetails);
     }, [isLoaded]);
 
     return (
-        <Grid
-            item
-
-            sx={{
-                mimHeight: "100vh",
-                width: '80vw'
-            }}
-        >
-            <Typography
-                variant="h6"
-                style={{
-                    fontWeight: "bold",
-                    paddingBottom: "10px"
-                }}
-
-            >
-                Portfolio
-            </Typography>
-            <Grid
-                container
-                sx={{
-                    display: "flex"
-                }}
-            >
-                <Grid
-                    item
-                    sx={{
-                        flex: 2
-                    }}
-                >
-                    <WalletCard balance={formatter.format(user.cashBalance)} />
-                </Grid>
-                <Grid
-                    item
-                    sx={{
-                        flex: 6,
-                        paddingLeft: "4%"
-                    }}
-                >
-                    <InvestmentsCard
-                        isLoaded={isLoaded}
-                        portfolio={userDetails.portfolio}
-                    />
-                </Grid>
+        <Grid container spacing={3} xs={12} direction="row">
+            {/* Networth */}
+            <Grid item xs={12} sm={12} md={4}>
+                
+                <WalletCard
+                    isLoaded={isLoaded}
+                    portfolio={userDetails.portfolio}
+                />
             </Grid>
-            
+            {/* All Investments */}
+            <Grid item xs={12} sm={12} md={8} >
+                
+                <InvestmentsCard
+                    isLoaded={isLoaded}
+                    portfolio={userDetails.portfolio}
+                />
+            </Grid>
         </Grid>
+        
     );
 };
 

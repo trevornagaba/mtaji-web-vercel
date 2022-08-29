@@ -3,10 +3,12 @@ import Grid from "@mui/material/Grid";
 import styles from "./Footer.module.css";
 import HomeLogo from "../HomeLogo";
 import Link from "next/link";
+import SubscribeCard from "../Blog/subscribeCard";
 
 const Footer = () => {
 
     const router = useRouter()
+    // const footerForSubscribeBlog =["/blog","/privacypolicy","/termsofservice"]
 
   return (
     <Grid
@@ -85,7 +87,7 @@ const Footer = () => {
 
                     <div className={styles.link}>
                         <img src="/assets/phone.svg" alt="phone" />
-                        <span>01222845686</span>
+                        <span>+256 759367905</span>
                     </div>
                 </div>
             </Grid>
@@ -103,8 +105,8 @@ const Footer = () => {
                 <div className={styles.otherLinks}>
                     <div>
                         <p><Link href="/about">About</Link></p>
-                        <p>FAQs</p>
-                        <p>Blog</p>
+                        <p><Link href="/faqs">FAQs</Link></p>
+                        <p><Link href="/blog">Blog</Link></p>
                     </div>
                 </div>
             </Grid>
@@ -121,8 +123,8 @@ const Footer = () => {
             >
                 <div className={styles.otherLinks}>
                     <div>
-                        <p>Terms of Service</p>
-                        <p>Privacy Policy</p>
+                        <p><Link href="/termsofservice">Terms of Service</Link></p>
+                        <p><Link href="/privacypolicy">Privacy Policy</Link></p>
                         <p><Link href="/amlpolicy">AML Policy</Link></p>
                     </div>
                 </div>

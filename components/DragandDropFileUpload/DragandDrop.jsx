@@ -1,29 +1,32 @@
-import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import React, { memo, useCallback, useContext, useEffect, useRef, useState} from "react";
+import { AppContext } from "../AppContext";
 
-const DragandDrop = () => {
-    const [file, setFile] = useState([]);
+const DragandDrop = ({ name }) => {
     const wrapperRef = useRef(null);
-
+    
     const onDragEnter = () => wrapperRef.current.classList.add("dragover");
-
+    
     const onDragLeave = () => wrapperRef.current.classList.remove("dragover");
-
+    
     const onDrop = () => wrapperRef.current.classList.remove("dragover");
-
-    const onFileDrop = (e) => {
+    const [file, setFile] = useState('') 
+    const {kycForm, setKycForm} = useContext(AppContext)
+    const onFileDrop = useCallback((e) => {
         e.preventDefault();
         e.stopPropagation();
-        let newFile = [e.target.files[0]];
-        setFile(newFile);
-    };
-    const fileRemove = () => {
-        file.pop()
-        setFile([])
-    }
-
-    useEffect(() => {
+        const newFile = e.target.files[0];
+        const name = e.target.name
+        setKycForm({...kycForm, [name]: newFile})
         
-    }, [file]);
+    });
+
+    const onFileRemove = (name) => {
+        setKycForm({...kycForm,[name]:''})
+    };
+    useEffect(()=>{
+        
+    },[file])
     return (
         <div
             className="upload-box"
@@ -32,25 +35,31 @@ const DragandDrop = () => {
             onDragLeave={onDragLeave}
             onDrop={onDrop}
         >
-            {file.length > 0 ? (
+            {kycForm[name]?.name ? (
                 <>
-                    <span className="remove-button" onClick={fileRemove}>x</span>
-                    {file[0].name}
+                    <span className="remove-button" onClick={()=>onFileRemove(name)}>
+                        x
+                    </span>
+                    {kycForm[name].name}
                 </>
             ) : (
                 <>
                     <p>Drag and drop file</p>
                     <p>OR</p>
                     <p className="flex mr-2">
-                        <img src="/assets/upload.svg" className="w-4 mr-2 text-slate-100" />
+                        <img
+                            src="/assets/upload.svg"
+                            className="w-4 mr-2 text-slate-100"
+                        />
                         Click to upload image
                     </p>
                     <input
                         type="file"
+                        name={name}
                         value=""
                         className="upload-input"
                         accept=".pdf,.jpg,.png,.jpeg,.doc.docx"
-                        onChange={(e) => onFileDrop(e)}
+                        onChange={onFileDrop}
                     />
                     <p>
                         <small>Maximum size: 5MB</small>
@@ -87,24 +96,24 @@ const DragandDrop = () => {
                         background-color: #e7e7e7;
                         opacity: 0.9;
                     }
-                    .remove-button{
-                        position:absolute;
+                    .remove-button {
+                        position: absolute;
                         top: 5px;
                         right: 5px;
                         width: 25px;
                         height: 25px;
                         border-radius: 40px;
-                        display:flex;
-                        justify-content:center;
-                        align-items:center;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                         border: 1px solid #89cff0;
-                        cursor:pointer;
+                        cursor: pointer;
                         padding-top: -10px;
-                        color:#89cff0;
+                        color: #89cff0;
                     }
-                    .remove-button:hover{
+                    .remove-button:hover {
                         background-color: #89cff0;
-                        color:#ffffff
+                        color: #ffffff;
                     }
                 `}
             </style>

@@ -12,8 +12,10 @@ export default function StatCard({
     var formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
+        notation: "compact",
+        compactDisplay: "short",
         maximumFractionDigits: 0,
-        minimumFractionDigits: 0
+        minimumFractionDigits: 0,
     });
     return (
         <div className="flex justify-center items-center mx-auto">
