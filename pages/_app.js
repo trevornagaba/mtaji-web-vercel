@@ -1,8 +1,5 @@
 import "../styles/global.css";
 import Head from "next/head";
-import Link from "next/link";
-
-import HomeLogo from "../components/HomeLogo";
 
 import AppContextProvider from "../components/AppContext";
 
