@@ -21,6 +21,7 @@ const AppContextProvider = (props) => {
         front: "",
         back: "",
     });
+    const [alerts, setAlerts]= useState({})
 
     useEffect(() => {
         checkAuth()
@@ -211,6 +212,8 @@ const AppContextProvider = (props) => {
                 getUserPortfolioDetails,
                 kycForm,
                 setKycForm,
+                alerts,
+                setAlerts
             }}
         >
             {props.children}

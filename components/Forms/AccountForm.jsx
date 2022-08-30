@@ -11,7 +11,7 @@ import axios from "axios";
 
 const AccountForm = ({ userDetails }) => {
     useEffect(() => {
-        console.log(userDetails)
+        // console.log(userDetails)
         setData(userDetails);
     }, [userDetails]);
     const [openModal, setOpenModal] = useState(false);
@@ -26,6 +26,7 @@ const AccountForm = ({ userDetails }) => {
     const [sending, setSending] = useState(false);
     const [image, setImage] = useState(null);
     const [uploading, setUploading] = useState(false);
+    const [src, setSrc] = useState(false);
 
     const onClickProfileImage = () => {
         return setOpenModal(!openModal);
@@ -42,13 +43,13 @@ const AccountForm = ({ userDetails }) => {
         });
     };
 
-
+    
     const onImageChange = (e) => {
         e.preventDefault();
         e.stopPropagation();
         const newFile = e.target.files[0];
         setImage(newFile);
-        console.log(image);
+        setSrc(URL.createObjectURL(e.target.files[0]))
     };
     const token = getToken();
     let config = {
@@ -88,10 +89,14 @@ const AccountForm = ({ userDetails }) => {
                             console.log("updated user doc");
                             setSending(false);
                             setOpenModal(false)
+                            setSrc('')
+                            setImage('')
                         })
                         .catch((e) => {
                             console.log(e);
                             setSending(false);
+                            setSrc('')
+                            setImage('')
                         });
                 }
                 setUploading(false);
@@ -150,7 +155,7 @@ const AccountForm = ({ userDetails }) => {
                 <div className="flex flex-row justify-between mx-5 h-40 pt-5">
                     <ProfileImg
                         imageUrl={
-                            userDetails?.photoUrl || "/assets/avatar2.svg"
+                            src? src : userDetails?.photoUrl ? userDetails?.photoUrl : "/assets/avatar2.svg"
                         }
                         imageSize="xlg"
                         hasEdit
