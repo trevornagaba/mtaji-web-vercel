@@ -13,7 +13,7 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import BlockIcon from '@mui/icons-material/Block';
 import navStyles from "../../components/Header/Header.module.css";
 
-const Account = () => {
+const VerifyEmail = () => {
 
     const router = useRouter();
 
@@ -26,19 +26,15 @@ const Account = () => {
     const [verificationMsg, setVerificationMsg] = useState("Verifying Account...")
     const [noteMsg, setNoteMsg] = useState("Please wait as your account is being verified.")
 
-    useEffect(() => {
-        getTokenData()
-    })
-
-    const getTokenData = async () => {
+    const handleEmail = async () => {
         setVeriToken(verificationToken)
 
         const response = await axios.patch(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/activate-account/${veriToken}`, {
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/verify-email`, {
                 headers: {
                 'Content-Type': 'Application/json'
                 },
-                isActive: true
+                email: true
             }
         )
         .then((result) => {
@@ -113,7 +109,7 @@ const Account = () => {
                             color: "#2518B8"
                         }}
                     >
-                        Account Activation
+                        Email Verification
                     </Typography>
                     <Typography
                         style={{
@@ -158,4 +154,4 @@ const Account = () => {
     )
 }
 
-export default Account;
+export default VerifyEmail;

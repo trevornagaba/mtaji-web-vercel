@@ -88,6 +88,7 @@ const AccountForm = ({ userDetails }) => {
                             console.log("updated user doc");
                             setSending(false);
                             setOpenModal(false)
+                            
                         })
                         .catch((e) => {
                             console.log(e);

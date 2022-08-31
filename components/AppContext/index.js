@@ -44,17 +44,16 @@ const AppContextProvider = (props) => {
             }
         }
         catch(err){
-            if(router.pathname!=="/" && router.pathname!=="/about" && router.pathname!=="/blogs" && router.pathname!=="/faqs"){
+            if(router.pathname==="/account" || router.pathname==="/home" || router.pathname==="/company"){
                 setIsLoaded(true)
                 setIsAuth(false)
-                router.push("/login");    
+                router.push("/login");
             }
         }
     };
 
     const handleLogin = async (userData) => {
-        //setIsLoaded(false);
-        // try {
+        
         const response = await axios
             .post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`, {
                 method: "POST",
@@ -81,7 +80,23 @@ const AppContextProvider = (props) => {
         })
     };
 
-    const VerifyEmail = () => {
+    const VerifyEmail = async (userData) => {
+        
+        const response = await axios
+            .post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/verify-email`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "Application/json",
+                },
+                email: userData.email
+            }            
+        )
+        .then(() => {
+            return true
+        })
+        .catch(() => {
+            return false
+        })
         
     }
 
@@ -211,6 +226,7 @@ const AppContextProvider = (props) => {
                 transRecords,
                 handleLogin,
                 handleLogout,
+                VerifyEmail,
                 getCompany,
                 getUserPortfolioDetails,
                 kycForm,
