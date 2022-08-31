@@ -99,7 +99,7 @@ export default function SignUp() {
         setLoading(false);        
       })
       .catch((error) => {
-          setFetchError("Email Already in use!");
+          setFetchError(error.response.data.message);
           setLoading(false);
       })
       // if (response.status === 201) {

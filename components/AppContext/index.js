@@ -32,6 +32,7 @@ const AppContextProvider = (props) => {
     
 
     const checkAuth = async () => {
+        setErrors("")
        setIsLoaded(false);
         try {
             if(jwt_decode(localStorage.getItem("token"))){
@@ -53,7 +54,7 @@ const AppContextProvider = (props) => {
     };
 
     const handleLogin = async (userData) => {
-        
+        setErrors("")        
         const response = await axios
             .post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`, {
                 method: "POST",
@@ -76,7 +77,7 @@ const AppContextProvider = (props) => {
             }
         })
         .catch((error) => {
-            setErrors(error)
+            setErrors(error.response.data.message)
         })
     };
 
@@ -146,6 +147,7 @@ const AppContextProvider = (props) => {
             })
             .catch((error) => {
                 setErrors(error);
+                console.log(error)
                 // setIsLoaded(false);
             });
     };
@@ -218,6 +220,7 @@ const AppContextProvider = (props) => {
                 isAuth,
                 checkAuth,
                 errors,
+                setErrors,
                 userDetails,
                 userPortfolioDetails,
                 companies,
