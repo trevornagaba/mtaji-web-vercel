@@ -11,7 +11,7 @@ import {
 import CircularProgress from '@mui/material/CircularProgress';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import BlockIcon from '@mui/icons-material/Block';
-import navStyles from "../../components/Header/Header.module.css";
+import navStyles from "../components/Header/Header.module.css";
 
 const VerifyEmail = () => {
 
