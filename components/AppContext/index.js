@@ -24,13 +24,15 @@ const AppContextProvider = (props) => {
 
     useEffect(() => {
         checkAuth()
-        getCompanies();
-        //getUserPortfolioDetails();
+        getCompanies()
+        getBlogs()
+        getFAQs()
     }, []);
     
     
 
     const checkAuth = async () => {
+        setErrors("")
        setIsLoaded(false);
         try {
             if(jwt_decode(localStorage.getItem("token"))){
@@ -38,22 +40,21 @@ const AppContextProvider = (props) => {
                 setIsAuth(true)
                 setIsLoaded(true)
                 if(router.pathname==="/login"){
-                    router.push("/home");    
+                    router.push("/home");
                 }
             }
         }
         catch(err){
-            if(router.pathname!=="/"){
+            if(router.pathname==="/account" || router.pathname==="/home" || router.pathname==="/company"){
                 setIsLoaded(true)
                 setIsAuth(false)
-                router.push("/login");    
+                router.push("/login");
             }
         }
     };
 
     const handleLogin = async (userData) => {
-        //setIsLoaded(false);
-        // try {
+        setErrors("")        
         const response = await axios
             .post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`, {
                 method: "POST",
@@ -69,17 +70,36 @@ const AppContextProvider = (props) => {
                 localStorage.setItem("token", result.data.token);
                 setIsAuth(true);
                 setIsLoaded(true);
+
                 router.push("/home");
             } else {
                 return result;
             }
         })
         .catch((error) => {
-            setErrors(error)
+            setErrors(error.response.data.message)
         })
     };
 
-    
+    const VerifyEmail = async (userData) => {
+        
+        const response = await axios
+            .post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/verify-email`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "Application/json",
+                },
+                email: userData.email
+            }            
+        )
+        .then(() => {
+            return true
+        })
+        .catch(() => {
+            return false
+        })
+        
+    }
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -127,6 +147,7 @@ const AppContextProvider = (props) => {
             })
             .catch((error) => {
                 setErrors(error);
+                console.log(error)
                 // setIsLoaded(false);
             });
     };
@@ -199,6 +220,7 @@ const AppContextProvider = (props) => {
                 isAuth,
                 checkAuth,
                 errors,
+                setErrors,
                 userDetails,
                 userPortfolioDetails,
                 companies,
@@ -207,6 +229,7 @@ const AppContextProvider = (props) => {
                 transRecords,
                 handleLogin,
                 handleLogout,
+                VerifyEmail,
                 getCompany,
                 getUserPortfolioDetails,
                 kycForm,

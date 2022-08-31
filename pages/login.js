@@ -9,10 +9,10 @@ import { AppContext } from "../components/AppContext";
 
 import HomeLogo from "../components/HomeLogo";
 import TextInput from "../components/TextInput/TextInput";
-import Alert from "../components/Alert/Alert";
+import Alert from '@mui/material/Alert';
 
 export default function Login() {
-  const { isLoaded, isAuth, handleLogin } = useContext(AppContext);
+  const { isLoaded, isAuth, errors, setErrors, handleLogin } = useContext(AppContext);
   
   const [formData, setFormData] = useState({
     email: "",
@@ -20,7 +20,7 @@ export default function Login() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [error, setError] = useState();
   const [fetchError, setFetchError] = useState("");
   const [touched, setTouched] = useState("");
   const router = useRouter();
@@ -106,8 +106,9 @@ export default function Login() {
             <p className="subtitle">We missed you quite a bit...</p>
           <div><br/></div>
           {/* Fetch or Server errors */}
-          {fetchError && <Alert message={fetchError} />}
-          <form className="login-form" onSubmit={handleSubmit}>
+          {/* {fetchError && <Alert message={fetchError} />} */}
+          <form className="login-form" onSubmit={handleSubmit}>            
+            {errors!=""?<Alert severity="error">{errors}</Alert>:""}
             <div className="inputs">
               <TextInput
                 type="text"
