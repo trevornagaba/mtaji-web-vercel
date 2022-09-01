@@ -5,7 +5,7 @@ import axios from "axios";
 
 import HomeLogo from "../components/HomeLogo";
 import TextInput from "../components/TextInput/TextInput";
-import Alert from "../components/Alert/Alert";
+import Alert from '@mui/material/Alert';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -85,7 +85,7 @@ export default function SignUp() {
   const handleSignUp = async (e) => {
     setFetchError("");
     setLoading(true);
-    try {
+    // try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`,
         {
@@ -93,18 +93,26 @@ export default function SignUp() {
           email: formData.email,
           password: formData.password,
         }
-      );
-      if (response.status === 201) {
+      )
+      .then((result) => {
         router.push("/login");
-        setLoading(false);
-      } else {
-        setFetchError(response.data.message);
-        setLoading(false);
-      }
-    } catch (error) {
-      setFetchError("Oops! Something went wrong. Please try again.");
-      setLoading(false);
-    }
+        setLoading(false);        
+      })
+      .catch((error) => {
+          setFetchError(error.response.data.message);
+          setLoading(false);
+      })
+      // if (response.status === 201) {
+      //   router.push("/login");
+      //   setLoading(false);
+      // } else {
+      //   setFetchError(response.data.message);
+      //   setLoading(false);
+      // }
+    // } catch (error) {
+    //   setFetchError("Oops! Something went wrong. Please try again.");
+    //   setLoading(false);
+    // }
   };
 
   const handleSubmit = async (e) => {
@@ -133,8 +141,8 @@ export default function SignUp() {
             <p className="title">Welcome! Let&apos;s get you started</p>
             <p className="subtitle">Fill in your details to get started</p>
             {/* Fetch or Server errors */}
-            {fetchError && <Alert message={fetchError} />}
             <form className="signup-form" onSubmit={handleSubmit}>
+              {fetchError && <Alert severity="error">{fetchError}</Alert>}
               <div className="inputs">
                 {/* <TextInput
                   type="text"

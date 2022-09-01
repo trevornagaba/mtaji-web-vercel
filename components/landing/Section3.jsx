@@ -50,7 +50,7 @@ const Section3 = () => {
                 </Grid>
                 <Grid
                     item
-                    sx={12}
+                    xs={12}
                     sm={12}
                     md={12}
                     lg={4}
@@ -74,7 +74,7 @@ const Section3 = () => {
                 </Grid>
                 <Grid
                     item
-                    sx={12}
+                    xs={12}
                     sm={12}
                     md={12}
                     lg={4}
@@ -100,7 +100,7 @@ const Section3 = () => {
                 </Grid>
                 <Grid
                     item
-                    sx={12}
+                    xs={12}
                     sm={12}
                     md={12}
                     lg={4}

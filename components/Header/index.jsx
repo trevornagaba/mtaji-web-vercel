@@ -209,7 +209,7 @@ const Header = (props) => {
                                     align="center"
                                     
                                 >
-                                    {/* <Typography
+                                    <Typography
                                         noWrap
                                         component="a"
                                         href={page.toLowerCase()}
@@ -219,42 +219,15 @@ const Header = (props) => {
                                             fontWeight: "400",
                                             color: "#09062D",
                                         }}
-                                    > */}
-                                        {/* {page}
+                                    >
+                                        {page}
                                     </Typography>
                                     {router.pathname===`/${page.toLowerCase()}`?
                                         <div className={styles.underline3} />
                                     : ""}
                                 </Grid>
                             ))}
-                        </Box> */}
-
-                                        <Typography
-                                            noWrap
-                                            component="a"
-                                           
-                                            href={`/${page.toLowerCase()}`}
-                                            style={{
-                                                fontFamily: "'Poppins', sans-serif",
-                                                fontSize: "16px",
-                                                fontWeight: "400",
-                                                color: "#09062D",
-                                            }}
-                                        >
-                                            {page}
-                                            
-                                        </Typography>
-                                        
-                                        
-                                        {/* extract the router pathname using split to accomodate underline for blog/slug */}
-                                        {router.pathname.split("/",2)[1]===`${page.toLowerCase()}`?
-                                            <div className={styles.underline3} />
-                                        : ""}
-                                        
-                                    </Grid>
-                                ))}
-                            </Box>
-                        {/* </Grid> */}
+                        </Box>
                     </Grid>
                     <Grid
                         item
