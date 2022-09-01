@@ -145,6 +145,13 @@ export default function Login() {
                 <p className="link">Create an account</p>
               </Link>
             </div>
+
+          <div className="sign-up-prompt">
+            <p className="question">OR have you</p>
+            <Link href="verify-email">
+              <p className="link">Forgotten your password?</p>
+            </Link>
+          </div>
           </form>
 
           </div>
