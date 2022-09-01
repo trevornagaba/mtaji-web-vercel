@@ -27,6 +27,7 @@ const ProfileImg = ({ hasEdit, onClick, imageUrl, imageSize, name, title, onChan
                             src="/assets/editicon.svg"
                             alt="edit"
                             className="absolute top-[95px] left-[95px] w-7"
+                            onClick={onClick}
                         />
                     )}
                 </div>

@@ -1,9 +1,12 @@
-import { useContext } from "react"
-import AppContext from "../components/AppContext"
+import React, { useContext } from "react"
+import {AppContext} from "../components/AppContext"
 
-export const useSetAlert = ()=>{
-    const {alerts, setAlerts} = useContext(AppContext)
+const useSetAlert = ()=>{
+    const {setAlerts, setShowModal} = useContext(AppContext)
     const setAlert =(variant, text)=>{
         setAlerts({variant, text})
+        setShowModal(true)
     }
+    return {setAlert}
 }
+export default useSetAlert

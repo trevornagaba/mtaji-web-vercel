@@ -4,14 +4,15 @@ import TextInput from "../TextInput/TextInput";
 import { getToken } from "../../utils/getToken";
 import axios from "axios";
 import FlashMessage from "../Alert/FlashMessage";
+import useSetAlert from "../../hooks/useSetAlert";
 
 const SecurityForm = ({userId}) => {
+    const {setAlert} =  useSetAlert()
     const [data, setData]= useState({
         password:'',
         cpassword:''
     })
     const [sending, setSending] = useState(false)
-    const [showAlert, setShowAlert] = useState(false);
 
     const handleChange = (e)=>{
         e.preventDefault()
@@ -28,7 +29,7 @@ const SecurityForm = ({userId}) => {
         console.log(userId)
         console.log(data[0])
         if (data.password != data.cpassword){
-            return alert('passwords are not equal')
+            return setAlert("warning", "passwords are not equal")
         }
         setSending(true)
         const token = getToken()
@@ -41,15 +42,12 @@ const SecurityForm = ({userId}) => {
         axios.patch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`,
         {password: data.password},
         config).then((res)=>{
-            console.log(res)
             setSending(false)
-            setShowAlert(false)
-            res && res.status == 200 ? setShowAlert(true): setShowAlert(false)
+            res && res.status == 200 ? setAlert("success", "Update Password Successful"): setAlert("warning", "Update Password Unsuccessful")
         }
         ).catch(e=>{
-            console.log(e)
             setSending(false)
-            setShowAlert('error')
+            setAlert("warning", "An error occurred")
         })
     }
     return (
@@ -78,10 +76,9 @@ const SecurityForm = ({userId}) => {
           <div className="mt-10 flex w-full justify-center">
             <Button primary onClick={handleSubmit}>{
                     sending ? 'Updating': 'Update Password'
-
                 }</Button>
           </div>
-          {showAlert && <FlashMessage message={showAlert =='error'?'error occurred' : 'Update successful'} type={'success'}/>}
+          
         </div>
     );
 };
