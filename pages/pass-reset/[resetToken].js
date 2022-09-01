@@ -8,37 +8,36 @@ import {
     Box,
     Typography,
     TextField,
-    Button,
-    LinearProgress,
-    Alert
+    Button,    
+    LinearProgress 
 } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import BlockIcon from '@mui/icons-material/Block';
-import navStyles from "../components/Header/Header.module.css";
+import navStyles from "../../components/Header/Header.module.css";
 
-const VerifyEmail = () => {
+const PassReset = () => {
 
     const [sent, setSent] = useState(false)
     const [sending, setSending] = useState(false)
-    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [cPassword, setCPassword] = useState("")
     const [error, setError] = useState(false)
     const [actionMsg, setActionMsg] = useState("")
 
-    const emailChange = (e) => {
-        setEmail(e.target.value)
+    const passwordChange = (e) => {
+        setPassword(e.target.value)
     }
 
-    const handleEmail = async () => {
-        setSent(false)
-        setSending(false)
-        setError(false)
-        setActionMsg("")
-        if(email==="") {
-            setError(true)
-            setActionMsg("Please enter your email")
-        } else {
-            const response = await axios.post(
+    const cPasswordChange = (e) => {
+        setCPassword(e.target.value)
+    }
+
+    const handlePassword = async () => {
+        if(password===cPassword) {
+            setError(false)
+            setActionMsg("")
+            const response = await axios.patch(
                 `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/verify-email`, {
                     headers: {
                     'Content-Type': 'Application/json'
@@ -54,8 +53,10 @@ const VerifyEmail = () => {
                 setError(true)
                 setActionMsg(error.response.data.message)
             });
+        } else {
+            setError(true)
+            setActionMsg("Passwords do not match!")
         }
-        setSending(false)
     }
 
 
@@ -108,8 +109,7 @@ const VerifyEmail = () => {
                         borderRadius: "20px",
                         marginTop: "8%",
                         overflow: "hidden",
-                        paddingBottom: "20px",
-                        color: "#2518B8"
+                        paddingBottom: "20px"
                     }}
                 >
                     <Typography
@@ -120,9 +120,8 @@ const VerifyEmail = () => {
                             color: "#2518B8"
                         }}
                     >
-                        Forgot Password
+                        Password Reset
                     </Typography>
-                    {sending?<LinearProgress color="inherit"/>:""}
                     <Typography
                         style={{
                             marginTop: "5vh",
@@ -131,31 +130,38 @@ const VerifyEmail = () => {
                         }}
                     >
                         <strong style={{ fontSize: "25px" }}>Hello!,</strong><br/>
-                        Please enter your account email here;<br/><br/>
+                        Add an new password for your account<br/><br/>
                     </Typography>
-                    {sent?
-                        <Alert
-                            severity="success"
-                            style={{
-                                width: "80%",
-                                marginBottom: "15px"
-                            }}
-                        >{actionMsg}</Alert>
-                    :""}
+                        
                     <TextField
                         required
                         id="outlined-required"
-                        label="Email"
-                        placeholder="example@gmail.com"
-                        type="email"
-                        value={email}
-                        onChange={emailChange}
-                        error={error}
-                        helperText={error?actionMsg:""}
+                        label="New Password"
+                        placeholder="************"
+                        type="password"
+                        value={password}
+                        onChange={passwordChange}
                         style={{
                             width: "80%",
                         }}
                     />
+                        
+                    <TextField
+                        required
+                        id="outlined-required"
+                        label="Confirm Password"
+                        placeholder="************"
+                        type="password"
+                        value={cPassword}
+                        onChange={cPasswordChange}
+                        error={error}
+                        helperText={actionMsg}
+                        style={{
+                            width: "80%",
+                            marginTop: "40px"
+                        }}
+                    />
+
                     <Typography
                         style={{
                             marginTop: "10px",
@@ -170,8 +176,8 @@ const VerifyEmail = () => {
                                 backgroundColor: "#2518B8",
                                 marginTop: "20px"
                             }}
-                            onClick={handleEmail}
-                        >Send Reset</Button>
+                            onClick={handlePassword}
+                        >Reset Password</Button>
                     </Typography>
                     <Typography
                         style={{
@@ -183,7 +189,9 @@ const VerifyEmail = () => {
                         align="left"
                     >                     
                         <strong>NOTE:</strong><br/>
-                        <small>A password reset token will be sent to the email you provide</small>
+                        <small>
+                            This page will become invalid within after <strong>24 hours</strong>.
+                        </small>
                     </Typography>
                     <Typography
                         style={{
@@ -226,4 +234,4 @@ const VerifyEmail = () => {
     )
 }
 
-export default VerifyEmail;
+export default PassReset;
