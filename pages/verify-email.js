@@ -31,7 +31,7 @@ const VerifyEmail = () => {
 
     const handleEmail = async () => {
         setSent(false)
-        setSending(false)
+        setSending(true)
         setError(false)
         setActionMsg("")
         if(email==="") {

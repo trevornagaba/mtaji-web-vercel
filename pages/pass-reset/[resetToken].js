@@ -8,15 +8,17 @@ import {
     Box,
     Typography,
     TextField,
-    Button,    
-    LinearProgress 
+    Button,
+    LinearProgress,
+    Alert
 } from "@mui/material";
-import CircularProgress from '@mui/material/CircularProgress';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import BlockIcon from '@mui/icons-material/Block';
 import navStyles from "../../components/Header/Header.module.css";
 
 const PassReset = () => {
+
+    const router = useRouter();
+
+    const { resetToken } = router.query;
 
     const [sent, setSent] = useState(false)
     const [sending, setSending] = useState(false)
@@ -34,15 +36,19 @@ const PassReset = () => {
     }
 
     const handlePassword = async () => {
+        setSent(false)
+        setSending(true)
+        setError(false)
+        setActionMsg("")
         if(password===cPassword) {
             setError(false)
             setActionMsg("")
             const response = await axios.patch(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/verify-email`, {
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/pass-reset/${resetToken}`, {
                     headers: {
                     'Content-Type': 'Application/json'
                     },
-                    email: email
+                    password: password
                 }
             )
             .then((result) => {
@@ -57,6 +63,7 @@ const PassReset = () => {
             setError(true)
             setActionMsg("Passwords do not match!")
         }
+        setSending(false)
     }
 
 
@@ -109,7 +116,8 @@ const PassReset = () => {
                         borderRadius: "20px",
                         marginTop: "8%",
                         overflow: "hidden",
-                        paddingBottom: "20px"
+                        paddingBottom: "20px",
+                        color: "#2518B8"
                     }}
                 >
                     <Typography
@@ -122,6 +130,7 @@ const PassReset = () => {
                     >
                         Password Reset
                     </Typography>
+                    {sending?<LinearProgress color="inherit"/>:""}
                     <Typography
                         style={{
                             marginTop: "5vh",
@@ -132,7 +141,15 @@ const PassReset = () => {
                         <strong style={{ fontSize: "25px" }}>Hello!,</strong><br/>
                         Add an new password for your account<br/><br/>
                     </Typography>
-                        
+                    {sent?
+                        <Alert
+                            severity="success"
+                            style={{
+                                width: "80%",
+                                marginBottom: "15px"
+                            }}
+                        >{actionMsg}</Alert>
+                    :""}                        
                     <TextField
                         required
                         id="outlined-required"
