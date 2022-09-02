@@ -183,8 +183,7 @@ const AppContextProvider = (props) => {
                 setErrors(error);
                 setIsLoaded(true);
             });
-    };
-   
+    };   
 
     return (
         <AppContext.Provider

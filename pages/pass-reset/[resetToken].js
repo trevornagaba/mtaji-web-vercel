@@ -15,11 +15,15 @@ import {
     InputLabel,
     OutlinedInput,
     InputAdornment,
-    IconButton
+    FormHelperText,
+    IconButton,
+    Chip
 } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import navStyles from "../../components/Header/Header.module.css";
+
+import passwordStrength from "../../utils/passwordStrength"
 
 const PassReset = () => {
 
@@ -31,6 +35,10 @@ const PassReset = () => {
     const [sending, setSending] = useState(false)
     const [password, setPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
+    const [passStrength, setPassStrength] = useState({
+        strength: "default",
+        display: "Type Password"
+    })
     const [cPassword, setCPassword] = useState("")
     const [showCPassword, setShowCPassword] = useState(false)
     const [error, setError] = useState(false)
@@ -38,6 +46,7 @@ const PassReset = () => {
 
     const passwordChange = (e) => {
         setPassword(e.target.value)
+        setPassStrength(passwordStrength(e.target.value))
     }
 
     const cPasswordChange = (e) => {
@@ -187,9 +196,36 @@ const PassReset = () => {
                             }
                             label="Password"
                         />
+                        <Typography
+                            style={{
+                                fontSize: "15px",
+                                paddingTop: "10px"
+                            }}
+                            align="left"
+                        >
+                            <strong style={{ color: "gray" }}>Strength: </strong>
+                            <Chip
+                                label={passStrength.display}
+                                color={passStrength.strength}
+                                size="small"
+                            />                            
+                        </Typography>
                     </FormControl>
-                    <FormControl sx={{ m: 1, marginTop: "40px", width: '80%' }} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
+                    <FormControl
+                        variant="outlined"
+                        sx={{
+                            m: 1,
+                            width: '80%',
+                        }}
+                    >
+                        <InputLabel
+                            htmlFor="outlined-adornment-password"
+                            style={{
+                                color: error?"red":"gray"
+                            }}
+                        >
+                            Confirm Password
+                        </InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-password"
                             type={showCPassword ? 'text' : 'password'}
@@ -206,8 +242,10 @@ const PassReset = () => {
                                 </IconButton>
                             </InputAdornment>
                             }
-                            label="Password"
+                            label="Confirm Password"                           
+                            error={error}
                         />
+                        <FormHelperText id="outlined-weight-helper-text" style={{ color: "red" }}>{actionMsg}</FormHelperText>
                     </FormControl>
                     {/* <TextField
                         required
