@@ -28,8 +28,6 @@ const AppContextProvider = (props) => {
         getBlogs()
         getFAQs()
     }, []);
-    
-    
 
     const checkAuth = async () => {
         setErrors("")
@@ -108,31 +106,6 @@ const AppContextProvider = (props) => {
         router.push("/login");
         
     };
- 
-
-    // const getuserDetails = async () => {
-    //     const response = await axios
-    //         .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`, {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "Application/json",
-    //                 Authorization: `Bearer `,
-    //             },
-    //         })
-    //         .then((result) => {
-    //             // TO-DO: Update after sorting out auth
-    //             // console.log("context:result" + result.data.userDetails);
-    //             if (result.data == "Please login") {
-    //                 setuserDetails("$");
-    //             } else {
-    //                 setuserDetails(result.data.userDetails);
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //             setuserDetails("$");
-    //         });
-    // };
 
     const getCompany = async (companyId) => {
         return companies.find((company) => company.id === companyId);

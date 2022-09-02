@@ -10,8 +10,15 @@ import {
     TextField,
     Button,
     LinearProgress,
-    Alert
+    Alert,
+    FormControl,
+    InputLabel,
+    OutlinedInput,
+    InputAdornment,
+    IconButton
 } from "@mui/material";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import navStyles from "../../components/Header/Header.module.css";
 
 const PassReset = () => {
@@ -23,7 +30,9 @@ const PassReset = () => {
     const [sent, setSent] = useState(false)
     const [sending, setSending] = useState(false)
     const [password, setPassword] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
     const [cPassword, setCPassword] = useState("")
+    const [showCPassword, setShowCPassword] = useState(false)
     const [error, setError] = useState(false)
     const [actionMsg, setActionMsg] = useState("")
 
@@ -34,6 +43,15 @@ const PassReset = () => {
     const cPasswordChange = (e) => {
         setCPassword(e.target.value)
     }
+
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleClickShowCPassword = () => {
+        setShowCPassword(!showCPassword);
+    };
+
 
     const handlePassword = async () => {
         setSent(false)
@@ -65,7 +83,6 @@ const PassReset = () => {
         }
         setSending(false)
     }
-
 
     return (
         <Grid
@@ -149,8 +166,50 @@ const PassReset = () => {
                                 marginBottom: "15px"
                             }}
                         >{actionMsg}</Alert>
-                    :""}                        
-                    <TextField
+                    :""}
+                    <FormControl sx={{ m: 1, width: '80%' }} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={password}
+                            onChange={passwordChange}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                edge="end"
+                                >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                            label="Password"
+                        />
+                    </FormControl>
+                    <FormControl sx={{ m: 1, marginTop: "40px", width: '80%' }} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            type={showCPassword ? 'text' : 'password'}
+                            value={cPassword}
+                            onChange={cPasswordChange}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowCPassword}
+                                edge="end"
+                                >
+                                {showCPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                            label="Password"
+                        />
+                    </FormControl>
+                    {/* <TextField
                         required
                         id="outlined-required"
                         label="New Password"
@@ -161,6 +220,17 @@ const PassReset = () => {
                         style={{
                             width: "80%",
                         }}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                edge="end"
+                                >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
                     />
                         
                     <TextField
@@ -177,7 +247,7 @@ const PassReset = () => {
                             width: "80%",
                             marginTop: "40px"
                         }}
-                    />
+                    /> */}
 
                     <Typography
                         style={{
@@ -188,6 +258,7 @@ const PassReset = () => {
                         align="center"
                     >
                         <Button
+                            disabled={sending}
                             variant="contained"
                             style={{
                                 backgroundColor: "#2518B8",

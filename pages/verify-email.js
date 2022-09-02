@@ -12,9 +12,6 @@ import {
     LinearProgress,
     Alert
 } from "@mui/material";
-import CircularProgress from '@mui/material/CircularProgress';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import BlockIcon from '@mui/icons-material/Block';
 import navStyles from "../components/Header/Header.module.css";
 
 const VerifyEmail = () => {
@@ -52,7 +49,7 @@ const VerifyEmail = () => {
             })
             .catch(error => {
                 setError(true)
-                setActionMsg(error.response.data.message)
+                setActionMsg("Invalid email address")
             });
         }
         setSending(false)
@@ -61,7 +58,7 @@ const VerifyEmail = () => {
 
     return (
         <Grid
-         container
+            container
         >
             <Grid
                 item
@@ -165,13 +162,14 @@ const VerifyEmail = () => {
                         align="center"
                     >
                         <Button
+                            disabled={sending}
                             variant="contained"
                             style={{
                                 backgroundColor: "#2518B8",
                                 marginTop: "20px"
                             }}
                             onClick={handleEmail}
-                        >Send Reset</Button>
+                        >Send Password Reset</Button>
                     </Typography>
                     <Typography
                         style={{

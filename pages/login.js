@@ -128,15 +128,11 @@ export default function Login() {
                 value={formData.password}
                 error={errors.password}
               />
-              <p className="password-reset">Forgot password?</p>
+              <Link href="verify-email">
+                <p className="password-reset">Forgot password?</p>
+              </Link>
             <button>{loading ? "Loading..." : "Sign In"}</button>
             </div>
-
-            {/* <div className="or-option">
-              <div></div>
-              <span>or</span>
-              <div></div>
-            </div> */}
 
             <div className="sign-up-prompt">
               <p className="question">New Here?</p>
@@ -145,13 +141,6 @@ export default function Login() {
                 <p className="link">Create an account</p>
               </Link>
             </div>
-
-          <div className="sign-up-prompt">
-            <p className="question">OR have you</p>
-            <Link href="verify-email">
-              <p className="link">Forgotten your password?</p>
-            </Link>
-          </div>
           </form>
 
           </div>

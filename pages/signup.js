@@ -25,13 +25,6 @@ export default function SignUp() {
     let touchedObject = {};
     let isValid = true;
 
-    // validate username
-    // if (!formData.username) {
-    //   errorsObject.username = "Username is required.";
-    //   touchedObject.username = false;
-    //   isValid = false;
-    // }
-
     // validate email
     const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     if (!formData.email) {
@@ -39,11 +32,6 @@ export default function SignUp() {
       touchedObject.email = false;
       isValid = false;
     }
-    // else if (!emailRegex.test(email)) {
-    //   errorsObject.email = "Invalid Email: Input correct email address format.";
-    //   touchedObject.email = false;
-    //   isValid = false;
-    // }
 
     // validate password
     if (!formData.password) {
@@ -102,17 +90,6 @@ export default function SignUp() {
           setFetchError(error.response.data.message);
           setLoading(false);
       })
-      // if (response.status === 201) {
-      //   router.push("/login");
-      //   setLoading(false);
-      // } else {
-      //   setFetchError(response.data.message);
-      //   setLoading(false);
-      // }
-    // } catch (error) {
-    //   setFetchError("Oops! Something went wrong. Please try again.");
-    //   setLoading(false);
-    // }
   };
 
   const handleSubmit = async (e) => {
@@ -144,16 +121,6 @@ export default function SignUp() {
             <form className="signup-form" onSubmit={handleSubmit}>
               {fetchError && <Alert severity="error">{fetchError}</Alert>}
               <div className="inputs">
-                {/* <TextInput
-                  type="text"
-                  name="username"
-                  label="Username"
-                  placeholder="Username"
-                  onChange={handleChange}
-                  value={formData.username}
-                  touched={touched.username}
-                  error={errors.username}
-                /> */}
                 <TextInput
                   type="text"
                   name="email"

@@ -6,7 +6,8 @@ import Image from "next/image";
 import {
     Grid,
     Box,
-    Typography
+    Typography,
+    LinearProgress
 } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
@@ -22,7 +23,6 @@ const Account = () => {
     const [isVerifying, setIsVerifying] = useState(true)
     const [isVerified, setIsVerified] = useState(false)
     const [veriToken, setVeriToken] = useState(false)
-    const [userData, setUserData] = useState({})
     const [verificationMsg, setVerificationMsg] = useState("Verifying Account...")
     const [noteMsg, setNoteMsg] = useState("Please wait as your account is being verified.")
 
@@ -57,7 +57,7 @@ const Account = () => {
 
     return (
         <Grid
-         container
+            container
         >
             <Grid
                 item
@@ -69,7 +69,7 @@ const Account = () => {
                 style={{
                     backgroundColor: "#2518B8",
                     height: "100vh",
-                    paddingTop: "8%",
+                    padding: "8% 8vw",
                 }}
                 align={"center"}
             >
@@ -79,6 +79,9 @@ const Account = () => {
                     href="/"
                     display="inline-flex"
                     alignItems="center"
+                    style={{
+                        padding: "0 10vw"
+                    }}
                 >
                     <Image
                         src="/assets/logo.svg"
@@ -98,11 +101,11 @@ const Account = () => {
                 <Box
                     style={{
                         backgroundColor: "white",
-                        width: "50%",
-                        height: "40vh",
-                        borderRadius: "5%",
+                        borderRadius: "20px",
                         marginTop: "8%",
-                        overflow: "hidden"
+                        overflow: "hidden",
+                        paddingBottom: "20px",
+                        color: "#2518B8"
                     }}
                 >
                     <Typography
@@ -115,6 +118,7 @@ const Account = () => {
                     >
                         Account Activation
                     </Typography>
+                    {isVerifying?<LinearProgress color="inherit"/>:""}
                     <Typography
                         style={{
                             marginTop: "50px",
@@ -124,11 +128,8 @@ const Account = () => {
                     >
                         <strong style={{ fontSize: "25px" }}>Welcome back,</strong><br/>
                         Thank you again for joining Mtaji,<br/><br/>
-                        {isVerifying?
-                            <><CircularProgress color="inherit" /><br/></>
-                        :
-                            isVerified?<><TaskAltIcon style={{ color: "#01bbc8", fontSize: "60px"}}/><br/></>
-                            : <><BlockIcon style={{ color: "grey", fontSize: "60px"}}/><br/></>
+                        {isVerified?<><TaskAltIcon style={{ color: "#01bbc8", fontSize: "60px"}}/><br/></>
+                        : <><BlockIcon style={{ color: "grey", fontSize: "60px"}}/><br/></>
                         }                      
                         <strong>{verificationMsg}</strong><br/>
                         <small>{noteMsg}</small><br/><br/>
@@ -139,9 +140,12 @@ const Account = () => {
             </Grid>
             <Grid
                 item
+                sx={{
+                    display: { xs: "none", sm: "none", md: "flex", lg: "flex" },
+                }}
                 xs={12}
                 sm={12}
-                md={8}
+                md={4}
                 lg={6}
                 xl={6}
                 style={{
