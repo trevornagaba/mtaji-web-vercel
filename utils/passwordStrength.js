@@ -8,7 +8,7 @@ const passwordStrength = (password) => {
     let strength = "default";
 
     if(password.length === 0) {
-        result = "Type Password";
+        result = "Password field empty";
     } else if (enoughRegex.test(password) === false) {
         result = "More Characters";
         strength = "error";
@@ -19,7 +19,7 @@ const passwordStrength = (password) => {
         result = "Medium!";
         strength = "warning"
     } else {
-        result = "Too Weak!";
+        result = "Weak!";
         strength = "error";
     }
 

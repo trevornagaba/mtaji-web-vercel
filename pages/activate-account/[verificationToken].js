@@ -7,7 +7,8 @@ import {
     Grid,
     Box,
     Typography,
-    LinearProgress
+    LinearProgress,
+    Button
 } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
@@ -67,53 +68,58 @@ const Account = () => {
                 lg={6}
                 xl={6}
                 style={{
-                    backgroundColor: "#2518B8",
-                    height: "100vh",
-                    padding: "8% 8vw",
+                    width: "100%",
+                    backgroundColor: "#928BDB",
+                    padding: "0 5vw",
+                    paddingBottom: "5%",
                 }}
                 align={"center"}
             >
                 
-                <Box
+                <Typography
                     component="a"
                     href="/"
                     display="inline-flex"
-                    alignItems="center"
                     style={{
-                        padding: "0 10vw"
+                        width: "100%",
+                        marginTop: "50px",
+                        alignItems: "left"
                     }}
                 >
                     <Image
                         src="/assets/logo.svg"
                         alt="logo"
-                        width={28}
-                        height={28}
+                        width={35}
+                        height={35}
                     />
                     <span
                         className={navStyles.appName}
                         style={{
-                            color: "white",
+                            color: "#2518B8",
                             fontSize: "22px",
-                            fontWeight: "350"
+                            fontWeight: "550"
                         }}
                     >mtaji</span>
-                </Box>
+                </Typography>
                 <Box
                     style={{
+                        width: "85%",
                         backgroundColor: "white",
                         borderRadius: "20px",
-                        marginTop: "8%",
+                        marginTop: "10%",
                         overflow: "hidden",
                         paddingBottom: "20px",
-                        color: "#2518B8"
+                        color: "#01BBC8"
                     }}
                 >
                     <Typography
                         variant="h5"
                         style={{
-                            backgroundColor: "#01bbc8",
-                            padding: "2% 0",
-                            color: "#2518B8"
+                            backgroundColor: "#2518B8",
+                            padding: "3% 0",
+                            color: "#ffffff",
+                            fontSize: '19.5px',
+                            fontFamily: "'Poppins', Courier, monospace"
                         }}
                     >
                         Account Activation
@@ -121,9 +127,11 @@ const Account = () => {
                     {isVerifying?<LinearProgress color="inherit"/>:""}
                     <Typography
                         style={{
-                            marginTop: "50px",
                             color: "#2518B8",
-                            fontSize: "18px"
+                            fontSize: "16px",
+                            fontFamily: "'Poppins', Courier, monospace",
+                            fontWeight: "400",
+                            padding: "40px 10%",
                         }}
                     >
                         <strong style={{ fontSize: "25px" }}>Welcome back,</strong><br/>
@@ -132,9 +140,22 @@ const Account = () => {
                         : <><BlockIcon style={{ color: "grey", fontSize: "60px"}}/><br/></>
                         }                      
                         <strong>{verificationMsg}</strong><br/>
-                        <small>{noteMsg}</small><br/><br/>
-                        <small>Go to <a href={`../login`}><strong>Login here</strong></a></small>
-
+                        <small>{noteMsg}</small>
+                    </Typography>
+                    <Typography
+                        style={{
+                            marginTop: "10px",
+                            color: "#2518B8",
+                            fontSize: "18px",
+                            paddingRight: "8%"
+                        }}
+                        align="right"
+                    >
+                        <small align="right">
+                            Go to <a href={`../login`}>
+                            <Button variant="outlined" size="small" style={{ color: "#ffffff", border: "1px #01bbc8 solid", backgroundColor: "#01bbc8" }}>Login</Button>
+                            </a>
+                        </small>
                     </Typography>
                 </Box>
             </Grid>
@@ -151,7 +172,7 @@ const Account = () => {
                 style={{
                     backgroundColor: "white",
                     height: "100vh",
-                    backgroundImage: "url('/assets/signup.jpg')",
+                    backgroundImage: "url('/assets/account-activation.jpg')",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover"
                 }}

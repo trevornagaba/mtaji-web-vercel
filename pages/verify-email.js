@@ -68,53 +68,58 @@ const VerifyEmail = () => {
                 lg={6}
                 xl={6}
                 style={{
-                    backgroundColor: "#2518B8",
-                    height: "100vh",
-                    padding: "8% 8vw",
+                    width: "100%",
+                    backgroundColor: "#928BDB",
+                    padding: "0 5vw",
+                    paddingBottom: "5%",
                 }}
                 align={"center"}
             >
                 
-                <Box
+                <Typography
                     component="a"
                     href="/"
                     display="inline-flex"
-                    alignItems="center"
                     style={{
-                        padding: "0 10vw"
+                        width: "100%",
+                        marginTop: "50px",
+                        alignItems: "left"
                     }}
                 >
                     <Image
                         src="/assets/logo.svg"
                         alt="logo"
-                        width={28}
-                        height={28}
+                        width={35}
+                        height={35}
                     />
                     <span
                         className={navStyles.appName}
                         style={{
-                            color: "white",
+                            color: "#2518B8",
                             fontSize: "22px",
-                            fontWeight: "350"
+                            fontWeight: "550"
                         }}
                     >mtaji</span>
-                </Box>
+                </Typography>
                 <Box
                     style={{
+                        width: "85%",
                         backgroundColor: "white",
                         borderRadius: "20px",
-                        marginTop: "8%",
+                        marginTop: "10%",
                         overflow: "hidden",
                         paddingBottom: "20px",
-                        color: "#2518B8"
+                        color: "#01BBC8"
                     }}
                 >
                     <Typography
                         variant="h5"
                         style={{
-                            backgroundColor: "#01bbc8",
-                            padding: "2% 0",
-                            color: "#2518B8"
+                            backgroundColor: "#2518B8",
+                            padding: "3% 0",
+                            color: "#ffffff",
+                            fontSize: '19.5px',
+                            fontFamily: "'Poppins', Courier, monospace"
                         }}
                     >
                         Forgot Password
@@ -122,13 +127,15 @@ const VerifyEmail = () => {
                     {sending?<LinearProgress color="inherit"/>:""}
                     <Typography
                         style={{
-                            marginTop: "5vh",
-                            color: "#2518B8",
-                            fontSize: "17px"
+                            color: "#000000",
+                            fontSize: "16px",
+                            fontFamily: "'Poppins', Courier, monospace",
+                            fontWeight: "400",
+                            padding: "40px 10%",
                         }}
+                        align="left"
                     >
-                        <strong style={{ fontSize: "25px" }}>Hello!,</strong><br/>
-                        Please enter your account email here;<br/><br/>
+                        Please provide your email address for us to send you a reset link
                     </Typography>
                     {sent?
                         <Alert
@@ -176,12 +183,12 @@ const VerifyEmail = () => {
                             marginTop: "10px",
                             color: "#2518B8",
                             fontSize: "17px",
-                            paddingLeft: "8%"
+                            padding: "0 8%"
                         }}
                         align="left"
                     >                     
                         <strong>NOTE:</strong><br/>
-                        <small>A password reset token will be sent to the email you provide</small>
+                        <small>A <strong>Password Reset Link</strong> will be sent to the email you provide, and this link expires after <strong>24 hours</strong>.</small>
                     </Typography>
                     <Typography
                         style={{
@@ -193,8 +200,8 @@ const VerifyEmail = () => {
                         align="right"
                     >
                         <small align="right">
-                            Go to <a href={`../login`}>
-                            <Button variant="outlined" size="small" style={{ color: "#01bbc8", border: "1px #01bbc8 solid" }}>Login here</Button>
+                            Go back to <a href={`../login`}>
+                            <Button variant="outlined" size="small" style={{ color: "#ffffff", border: "1px #01bbc8 solid", backgroundColor: "#01bbc8" }}>Login</Button>
                             </a>
                         </small>
                     </Typography>
@@ -213,7 +220,7 @@ const VerifyEmail = () => {
                 style={{
                     backgroundColor: "white",
                     height: "100vh",
-                    backgroundImage: "url('/assets/signup.jpg')",
+                    backgroundImage: "url('/assets/verify-email.jpg')",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover"
                 }}

@@ -37,7 +37,7 @@ const PassReset = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [passStrength, setPassStrength] = useState({
         strength: "default",
-        display: "Type Password"
+        display: "Password field empty"
     })
     const [cPassword, setCPassword] = useState("")
     const [showCPassword, setShowCPassword] = useState(false)
@@ -105,67 +105,74 @@ const PassReset = () => {
                 lg={6}
                 xl={6}
                 style={{
-                    backgroundColor: "#2518B8",
-                    height: "100vh",
-                    padding: "8% 8vw",
+                    width: "100%",
+                    backgroundColor: "#928BDB",
+                    padding: "0 5vw",
+                    paddingBottom: "5%",
                 }}
                 align={"center"}
             >
                 
-                <Box
+                <Typography
                     component="a"
                     href="/"
                     display="inline-flex"
-                    alignItems="center"
                     style={{
-                        padding: "0 10vw"
+                        width: "100%",
+                        marginTop: "50px",
+                        alignItems: "left"
                     }}
                 >
                     <Image
                         src="/assets/logo.svg"
                         alt="logo"
-                        width={28}
-                        height={28}
+                        width={35}
+                        height={35}
                     />
                     <span
                         className={navStyles.appName}
                         style={{
-                            color: "white",
+                            color: "#2518B8",
                             fontSize: "22px",
-                            fontWeight: "350"
+                            fontWeight: "550"
                         }}
                     >mtaji</span>
-                </Box>
+                </Typography>
                 <Box
                     style={{
+                        width: "85%",
                         backgroundColor: "white",
                         borderRadius: "20px",
-                        marginTop: "8%",
+                        marginTop: "10%",
                         overflow: "hidden",
                         paddingBottom: "20px",
-                        color: "#2518B8"
+                        color: "#01BBC8"
                     }}
                 >
                     <Typography
                         variant="h5"
                         style={{
-                            backgroundColor: "#01bbc8",
-                            padding: "2% 0",
-                            color: "#2518B8"
+                            backgroundColor: "#2518B8",
+                            padding: "3% 0",
+                            color: "#ffffff",
+                            fontSize: '19.5px',
+                            fontFamily: "'Poppins', Courier, monospace"
                         }}
                     >
-                        Password Reset
+                        Reset Password
                     </Typography>
                     {sending?<LinearProgress color="inherit"/>:""}
                     <Typography
                         style={{
-                            marginTop: "5vh",
-                            color: "#2518B8",
-                            fontSize: "17px"
+                            color: "#000000",
+                            fontSize: "16px",
+                            fontFamily: "'Poppins', Courier, monospace",
+                            fontWeight: "400",
+                            padding: "40px 10%",
                         }}
+                        align="left"
                     >
-                        <strong style={{ fontSize: "25px" }}>Hello!,</strong><br/>
-                        Add an new password for your account<br/><br/>
+                        Please create a new password, the new password will replace your old password.
                     </Typography>
                     {sent?
                         <Alert
@@ -176,7 +183,7 @@ const PassReset = () => {
                             }}
                         >{actionMsg}</Alert>
                     :""}
-                    <FormControl sx={{ m: 1, width: '80%' }} variant="outlined">
+                    <FormControl style={{ m: 1, width: '80%' }} variant="outlined">
                         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-password"
@@ -196,12 +203,12 @@ const PassReset = () => {
                             }
                             label="Password"
                         />
-                        <Typography
+                        <Box
                             style={{
                                 fontSize: "15px",
-                                paddingTop: "10px"
+                                padding: "10px 0",
+                                textAlign: "left"
                             }}
-                            align="left"
                         >
                             <strong style={{ color: "gray" }}>Strength: </strong>
                             <Chip
@@ -209,7 +216,7 @@ const PassReset = () => {
                                 color={passStrength.strength}
                                 size="small"
                             />                            
-                        </Typography>
+                        </Box>
                     </FormControl>
                     <FormControl
                         variant="outlined"
@@ -247,46 +254,6 @@ const PassReset = () => {
                         />
                         <FormHelperText id="outlined-weight-helper-text" style={{ color: "red" }}>{actionMsg}</FormHelperText>
                     </FormControl>
-                    {/* <TextField
-                        required
-                        id="outlined-required"
-                        label="New Password"
-                        placeholder="************"
-                        type="password"
-                        value={password}
-                        onChange={passwordChange}
-                        style={{
-                            width: "80%",
-                        }}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                edge="end"
-                                >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                    />
-                        
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="Confirm Password"
-                        placeholder="************"
-                        type="password"
-                        value={cPassword}
-                        onChange={cPasswordChange}
-                        error={error}
-                        helperText={actionMsg}
-                        style={{
-                            width: "80%",
-                            marginTop: "40px"
-                        }}
-                    /> */}
-
                     <Typography
                         style={{
                             marginTop: "10px",
@@ -303,7 +270,7 @@ const PassReset = () => {
                                 marginTop: "20px"
                             }}
                             onClick={handlePassword}
-                        >Reset Password</Button>
+                        >Reset</Button>
                     </Typography>
                     <Typography
                         style={{
@@ -316,7 +283,7 @@ const PassReset = () => {
                     >                     
                         <strong>NOTE:</strong><br/>
                         <small>
-                            This page will become invalid within after <strong>24 hours</strong>.
+                            This page will become obsolete after <strong>24 hours</strong>.
                         </small>
                     </Typography>
                     <Typography
@@ -330,7 +297,7 @@ const PassReset = () => {
                     >
                         <small align="right">
                             Go to <a href={`../login`}>
-                            <Button variant="outlined" size="small" style={{ color: "#01bbc8", border: "1px #01bbc8 solid" }}>Login here</Button>
+                            <Button variant="outlined" size="small" style={{ color: "#ffffff", border: "1px #01bbc8 solid", backgroundColor: "#01bbc8" }}>Login</Button>
                             </a>
                         </small>
                     </Typography>
@@ -349,7 +316,7 @@ const PassReset = () => {
                 style={{
                     backgroundColor: "white",
                     height: "100vh",
-                    backgroundImage: "url('/assets/signup.jpg')",
+                    backgroundImage: "url('/assets/password-reset.jpg')",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover"
                 }}
