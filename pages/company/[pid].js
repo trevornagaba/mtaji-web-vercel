@@ -36,7 +36,7 @@ export default function Company({ company }) {
     const router = useRouter();
     const { pid } = router.query;
 
-    const { isLoaded, isAuth, getCompany,checkAuth, userDetails } = useContext(AppContext);
+    const { isLoaded, isAuth, getCompany,checkAuth, userDetails, showAlert} = useContext(AppContext);
     const [user, setUser] = useState({})
     // Setup state management
     // const [company, setCompany] = useState([]);
@@ -71,7 +71,7 @@ export default function Company({ company }) {
 
     // Setup state management for Investment modal
     const [isOpen, setIsOpen] = useState(false);
-    const [showAlert, setShowAlert] = useState(false);
+    const [shwAlert, setShwAlert] = useState(false);
     const [loading, setLoading] = useState(true);
 
     const closeModal = () => {
@@ -96,11 +96,12 @@ export default function Company({ company }) {
     };
 
     const onClickShare = async () => {
-        if (showAlert) {
-            setShowAlert(false);
+        if (shwAlert) {
+            setShwAlert(false);
         }
         await navigator.clipboard.writeText(window.location.href);
-        setShowAlert(true);
+        // setShwAlert(true);
+        setAlert("success", "Url Copied","Url copied, you can now share with other amazing investors like you!")
     };
     const onClickDownload = async (filename, link) => {
         axios
@@ -170,8 +171,7 @@ export default function Company({ company }) {
                                 <Button
                                     primary
                                     onClick={()=>{
-                                        console.log('why')
-                                        !user?.isKycVerified ? setAlert('warning','please complete verification before investing'):
+                                        !user?.isKycVerified ? setAlert('warning','Verification Required','please complete verification before investing'):
                                         openModal
                                     }}
                                     className="w-[125px]"
@@ -184,7 +184,7 @@ export default function Company({ company }) {
                                 <Button
                                     primary
                                     onClick={()=>{
-                                        !user?.isKycVerified ? setAlert('warning','please complete verification before investing'):
+                                        !user?.isKycVerified ? setAlert('warning','Verification Required','please complete verification before investing'):
                                         openModal()
                                     }}
                                     className="px-14"
@@ -257,7 +257,7 @@ export default function Company({ company }) {
                                             <Button
                                                 primary
                                                 onClick={()=>{
-                                                    !user?.isKycVerified ? setAlert('warning','please complete verification before investing'):
+                                                    !user?.isKycVerified ? setAlert('warning','Verification Required','please complete verification before investing'):
                                                     openModal()
                                                 }}
                                                 className="px-14"
@@ -362,7 +362,7 @@ export default function Company({ company }) {
                                     <Button
                                         primary
                                         onClick={()=>{
-                                            !user?.isKycVerified ? setAlert('warning','please complete verification before investing'):
+                                            !user?.isKycVerified ? setAlert('warning', 'Verification Required','please complete verification before investing'):
                                             openModal()
                                         }}
                                         className="px-10 w-full"
@@ -383,7 +383,7 @@ export default function Company({ company }) {
                     companyId={pid}
                     // userId={userId} // TO-DO: Validate if logged in
                 />
-                {showAlert && (
+                {shwAlert && (
                     <FlashMessage message={"Url copied"} type={"success"} />
                 )}
 
@@ -400,6 +400,7 @@ export default function Company({ company }) {
                     `}
                 </style>
             </div>
+            {showAlert? <Modal/>: ''}
         </PageTemplate>
     );
 }

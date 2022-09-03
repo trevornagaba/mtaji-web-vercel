@@ -25,15 +25,19 @@ function Modal({ clicked, title, children, type, variant }) {
     //     }
     //     return setOpenModal(true);
     // }, [clicked]);
-    console.log(alerts);
     return (
-        <Transition appear show={showModal} as={Fragment}>
+        <Transition
+            appear
+            show={showModal || showAlert ? true : false}
+            as={Fragment}
+        >
             <Dialog
                 as="div"
                 className="relative z-10"
                 onClose={() => {
+                  setShowModal(false);
                     setAlerts("");
-                    setShowModal(false);
+                    setShowAlert(false);
                 }}
             >
                 <Transition.Child
@@ -59,10 +63,10 @@ function Modal({ clicked, title, children, type, variant }) {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
-                                {alerts ? (
+                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all pb-5">
+                                {showAlert && alerts ? (
                                     <div className="w-full  flex flex-col justify-center text-center">
-                                        <div className="w-full flex flex-col justify-center mb-10">
+                                        <div className="w-full flex flex-col justify-center mb-4">
                                             {alerts.variant.toLowerCase() ==
                                             "success" ? (
                                                 <>
@@ -70,9 +74,9 @@ function Modal({ clicked, title, children, type, variant }) {
                                                         as="h3"
                                                         className="text-lg font-medium leading-6 text-white p-6 bg-primary text-center"
                                                     >
-                                                        Success
+                                                        {alerts?.title}
                                                     </Dialog.Title>
-                                                    <div className="mt-2">
+                                                    <div className="mt-8">
                                                         <Image
                                                             src="/assets/success.svg"
                                                             height={50}
@@ -86,9 +90,9 @@ function Modal({ clicked, title, children, type, variant }) {
                                                         as="h3"
                                                         className="text-lg font-medium leading-6 text-white p-6 bg-primary text-center"
                                                     >
-                                                        Verification Required
+                                                        {alerts?.title}
                                                     </Dialog.Title>
-                                                    <div className="mt-2">
+                                                    <div className="mt-5 mb-0">
                                                         <Image
                                                             src="/assets/warning.svg"
                                                             height={50}
@@ -98,30 +102,40 @@ function Modal({ clicked, title, children, type, variant }) {
                                                 </>
                                             )}
                                         </div>
-                                        <strong>{alerts?.text}</strong>
-                                        <div className="p-8 flex items-center justify-between gap-3">
-                                            <Button
-                                                secondary
-                                                onClick={() => {
-                                                    setShowModal(false);
-                                                    setAlerts("");
-                                                }}
-                                                className="w-full border-[#8c8c8c]"
-                                            >
-                                                Back
-                                            </Button>
-                                            <Button primary className="w-full">
-                                                <Link href="/account">
-                                                    Verify
-                                                </Link>
-                                            </Button>
+                                        <div className="text-[#8c8c8c]">
+                                          {alerts?.text}
                                         </div>
+                                        {alerts.title.toLowerCase() ==
+                                        "verification required" ? (
+                                            <div className="p-8 flex items-center justify-between gap-3">
+                                                <Button
+                                                    secondary
+                                                    onClick={() => {
+                                                        setShowModal(false);
+                                                        setAlerts("");
+                                                    }}
+                                                    className="w-full border-[#8c8c8c]"
+                                                >
+                                                    Back
+                                                </Button>
+                                                <Button
+                                                    primary
+                                                    className="w-full"
+                                                >
+                                                    <Link href="/account">
+                                                        Verify
+                                                    </Link>
+                                                </Button>
+                                            </div>
+                                        ) : (
+                                            ""
+                                        )}
                                     </div>
                                 ) : (
                                     <>
                                         <Dialog.Title
                                             as="h3"
-                                            className="text-lg font-medium leading-6 text-gray-900"
+                                            className="text-lg font-medium leading-6 text-white p-6 bg-primary text-center"
                                         >
                                             {title}
                                         </Dialog.Title>

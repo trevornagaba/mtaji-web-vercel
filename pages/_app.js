@@ -20,8 +20,8 @@ function MyApp({ Component, pageProps }) {
             </Head>
             <AppContextProvider>
                 <Component {...pageProps} />
-                <Modal/>
             </AppContextProvider>
+                
         </>
     );
 }

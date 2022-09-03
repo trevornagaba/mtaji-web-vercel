@@ -1,10 +1,12 @@
-import React,{useState} from "react";
+import React,{useContext, useState} from "react";
 import Button from "../Button/Button";
 import TextInput from "../TextInput/TextInput";
 import { getToken } from "../../utils/getToken";
 import axios from "axios";
 import FlashMessage from "../Alert/FlashMessage";
 import useSetAlert from "../../hooks/useSetAlert";
+import Modal from "../ModalComponent";
+import { AppContext } from "../AppContext";
 
 const SecurityForm = ({userId}) => {
     const {setAlert} =  useSetAlert()
@@ -13,6 +15,7 @@ const SecurityForm = ({userId}) => {
         cpassword:''
     })
     const [sending, setSending] = useState(false)
+    const {showAlert} = useContext(AppContext)
 
     const handleChange = (e)=>{
         e.preventDefault()
@@ -42,12 +45,13 @@ const SecurityForm = ({userId}) => {
         axios.patch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`,
         {password: data.password},
         config).then((res)=>{
+            
             setSending(false)
-            res && res.status == 200 ? setAlert("success", "Update Password Successful"): setAlert("warning", "Update Password Unsuccessful")
+            res && res.status == 204 ? setAlert("success", "Update Successful","Update Password Successful"): setAlert("warning", "Update Unsuccessful","Update Password Unsuccessful")
         }
         ).catch(e=>{
             setSending(false)
-            setAlert("warning", "An error occurred")
+            setAlert("warning","Update Error", "An error occurred")
         })
     }
     return (
@@ -78,7 +82,7 @@ const SecurityForm = ({userId}) => {
                     sending ? 'Updating': 'Update Password'
                 }</Button>
           </div>
-          
+          {showAlert&&<Modal/>}
         </div>
     );
 };

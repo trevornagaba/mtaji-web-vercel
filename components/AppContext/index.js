@@ -240,7 +240,9 @@ const AppContextProvider = (props) => {
                 alerts,
                 setAlerts,
                 showModal,
-                setShowModal
+                setShowModal,
+                showAlert,
+                setShowAlert
             }}
         >
             {props.children}

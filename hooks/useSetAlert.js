@@ -2,11 +2,11 @@ import React, { useContext } from "react"
 import {AppContext} from "../components/AppContext"
 
 const useSetAlert = ()=>{
-    const {setAlerts, setShowModal} = useContext(AppContext)
-    const setAlert =(variant, text)=>{
-        // setShowModal(false)
-        setAlerts({variant, text})
-        setShowModal(true)
+    const {setAlerts, setShowModal, setShowAlert} = useContext(AppContext)
+    const setAlert =(variant, title, text)=>{
+        setShowAlert(true)
+        setShowModal(false)
+        setAlerts({variant, text, title})
     }
     return {setAlert}
 }
