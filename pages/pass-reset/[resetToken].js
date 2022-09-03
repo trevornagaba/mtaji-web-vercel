@@ -106,7 +106,7 @@ const PassReset = () => {
                 xl={6}
                 style={{
                     width: "100%",
-                    backgroundColor: "#928BDB",
+                    backgroundColor: "#fffff",
                     padding: "0 5vw",
                     paddingBottom: "5%",
                 }}
@@ -142,6 +142,7 @@ const PassReset = () => {
                     style={{
                         width: "85%",
                         backgroundColor: "white",
+                        border: "1px #2518B8 solid",
                         borderRadius: "20px",
                         marginTop: "10%",
                         overflow: "hidden",
@@ -256,7 +257,7 @@ const PassReset = () => {
                     </FormControl>
                     <Typography
                         style={{
-                            marginTop: "10px",
+                            paddingTop: "30px",
                             color: "#2518B8",
                             fontSize: "18px",
                         }}
@@ -267,21 +268,36 @@ const PassReset = () => {
                             variant="contained"
                             style={{
                                 backgroundColor: "#2518B8",
-                                marginTop: "20px"
+                                border: "1px #2518B8 solid",
+                                textTransform: "none",
+                                boxShadow: "none",
+                                padding: "5px 30px"
                             }}
                             onClick={handlePassword}
                         >Reset</Button>
+                        <Button
+                            component="a"
+                            href="/login"
+                            variant="contained"
+                            style={{
+                                color: "#2518B8",
+                                marginLeft: "20px",
+                                border: "1px #2518B8 solid",
+                                backgroundColor: "white",
+                                textTransform: "none",
+                                boxShadow: "none",
+                                padding: "5px 30px"
+                            }}
+                        >Login</Button>
                     </Typography>
                     <Typography
                         style={{
                             marginTop: "10px",
-                            color: "#2518B8",
-                            fontSize: "17px",
-                            paddingLeft: "8%"
+                            color: "gray",
+                            fontSize: "17px"
                         }}
-                        align="left"
-                    >                     
-                        <strong>NOTE:</strong><br/>
+                        align="center"
+                    >
                         <small>
                             This page will become obsolete after <strong>24 hours</strong>.
                         </small>
@@ -296,8 +312,7 @@ const PassReset = () => {
                         align="right"
                     >
                         <small align="right">
-                            Go to <a href={`../login`}>
-                            <Button variant="outlined" size="small" style={{ color: "#ffffff", border: "1px #01bbc8 solid", backgroundColor: "#01bbc8" }}>Login</Button>
+                            <a href={`../login`}>
                             </a>
                         </small>
                     </Typography>

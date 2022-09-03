@@ -69,7 +69,7 @@ const Account = () => {
                 xl={6}
                 style={{
                     width: "100%",
-                    backgroundColor: "#928BDB",
+                    backgroundColor: "#fffff",
                     padding: "0 5vw",
                     paddingBottom: "5%",
                 }}
@@ -105,6 +105,7 @@ const Account = () => {
                     style={{
                         width: "85%",
                         backgroundColor: "white",
+                        border: "1px #2518B8 solid",
                         borderRadius: "20px",
                         marginTop: "10%",
                         overflow: "hidden",
@@ -144,18 +145,24 @@ const Account = () => {
                     </Typography>
                     <Typography
                         style={{
-                            marginTop: "10px",
                             color: "#2518B8",
-                            fontSize: "18px",
-                            paddingRight: "8%"
+                            fontSize: "18px"
                         }}
-                        align="right"
+                        align="center"
                     >
-                        <small align="right">
-                            Go to <a href={`../login`}>
-                            <Button variant="outlined" size="small" style={{ color: "#ffffff", border: "1px #01bbc8 solid", backgroundColor: "#01bbc8" }}>Login</Button>
-                            </a>
-                        </small>
+                        <Button
+                            component="a"
+                            href="/login"
+                            variant="contained"
+                            style={{
+                                color: "#2518B8",
+                                border: "1px #2518B8 solid",
+                                backgroundColor: "white",
+                                textTransform: "none",
+                                boxShadow: "none",
+                                padding: "5px 30px"
+                            }}
+                        >Login</Button>
                     </Typography>
                 </Box>
             </Grid>

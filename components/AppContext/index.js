@@ -37,6 +37,7 @@ const AppContextProvider = (props) => {
                 setUserDetails(await jwt_decode(localStorage.getItem("token")))
                 setIsAuth(true)
                 setIsLoaded(true)
+                getUserPortfolioDetails()
                 if(router.pathname==="/login"){
                     router.push("/home");
                 }
@@ -194,6 +195,7 @@ const AppContextProvider = (props) => {
                 errors,
                 setErrors,
                 userDetails,
+                setUserDetails,
                 userPortfolioDetails,
                 companies,
                 blogs,

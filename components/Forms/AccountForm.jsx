@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import TextInput from "../TextInput/TextInput";
 import styles from "../../styles/Form.module.css";
 import Button from "../Button/Button";
@@ -10,10 +10,9 @@ import { getToken } from "../../utils/getToken";
 import axios from "axios";
 
 const AccountForm = ({ userDetails }) => {
-    useEffect(() => {
-        console.log(userDetails)
-        setData(userDetails);
-    }, [userDetails]);
+    // TO-DO
+    const { userDetails, setUserDetails } = useContext(AppContext)
+    
     const [openModal, setOpenModal] = useState(false);
     const [data, setData] = useState({
         firstName: "",
@@ -26,6 +25,11 @@ const AccountForm = ({ userDetails }) => {
     const [sending, setSending] = useState(false);
     const [image, setImage] = useState(null);
     const [uploading, setUploading] = useState(false);
+
+    useEffect(() => {
+        console.log(userDetails)
+        setData(userDetails);
+    }, [userDetails]);
 
     const onClickProfileImage = () => {
         return setOpenModal(!openModal);
@@ -88,6 +92,7 @@ const AccountForm = ({ userDetails }) => {
                             console.log("updated user doc");
                             setSending(false);
                             setOpenModal(false)
+                            
                             
                         })
                         .catch((e) => {

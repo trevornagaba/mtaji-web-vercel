@@ -69,7 +69,7 @@ const VerifyEmail = () => {
                 xl={6}
                 style={{
                     width: "100%",
-                    backgroundColor: "#928BDB",
+                    backgroundColor: "#fffff",
                     padding: "0 5vw",
                     paddingBottom: "5%",
                 }}
@@ -105,6 +105,7 @@ const VerifyEmail = () => {
                     style={{
                         width: "85%",
                         backgroundColor: "white",
+                        border: "1px #2518B8 solid",
                         borderRadius: "20px",
                         marginTop: "10%",
                         overflow: "hidden",
@@ -162,7 +163,7 @@ const VerifyEmail = () => {
                     />
                     <Typography
                         style={{
-                            marginTop: "10px",
+                            paddingTop: "30px",
                             color: "#2518B8",
                             fontSize: "18px",
                         }}
@@ -173,36 +174,39 @@ const VerifyEmail = () => {
                             variant="contained"
                             style={{
                                 backgroundColor: "#2518B8",
-                                marginTop: "20px"
+                                border: "1px #2518B8 solid",
+                                textTransform: "none",
+                                boxShadow: "none",
+                                padding: "5px 30px"
                             }}
                             onClick={handleEmail}
-                        >Send Password Reset</Button>
+                        >Send Reset</Button>
+                        <Button
+                            component="a"
+                            href="/login"
+                            variant="contained"
+                            style={{
+                                color: "#2518B8",
+                                marginLeft: "20px",
+                                border: "1px #2518B8 solid",
+                                backgroundColor: "white",
+                                textTransform: "none",
+                                boxShadow: "none",
+                                padding: "5px 30px"
+                            }}
+                        >Login</Button>
                     </Typography>
                     <Typography
                         style={{
-                            marginTop: "10px",
-                            color: "#2518B8",
+                            marginTop: "20px",
+                            color: "gray",
                             fontSize: "17px",
-                            padding: "0 8%"
+                            width: "80%"
                         }}
-                        align="left"
-                    >                     
-                        <strong>NOTE:</strong><br/>
-                        <small>A <strong>Password Reset Link</strong> will be sent to the email you provide, and this link expires after <strong>24 hours</strong>.</small>
-                    </Typography>
-                    <Typography
-                        style={{
-                            marginTop: "10px",
-                            color: "#2518B8",
-                            fontSize: "18px",
-                            paddingRight: "8%"
-                        }}
-                        align="right"
+                        align="center"
                     >
-                        <small align="right">
-                            Go back to <a href={`../login`}>
-                            <Button variant="outlined" size="small" style={{ color: "#ffffff", border: "1px #01bbc8 solid", backgroundColor: "#01bbc8" }}>Login</Button>
-                            </a>
+                        <small>
+                            A <strong>Password Reset Link</strong> will be sent to the email you provide, and this link expires after <strong>24 hours</strong>.
                         </small>
                     </Typography>
                 </Box>
