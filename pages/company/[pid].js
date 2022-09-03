@@ -400,7 +400,7 @@ export default function Company({ company }) {
                     `}
                 </style>
             </div>
-            {showAlert? <Modal/>: ''}
+            {showAlert ? <Modal/> : ''}
         </PageTemplate>
     );
 }

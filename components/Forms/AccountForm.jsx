@@ -171,14 +171,22 @@ const AccountForm = ({ userDetails }) => {
                         onChange={onImageChange}
                     />
                     <div className="flex flex-col">
-                        <Button
+                        {!image?<Button
+                            
+                            className="mb-4"
+                            onClick={handleImageUpload}
+                            disabled={true}
+                        >
+                           {sending? 'updating': uploading ? 'uploading':  'Upload Image'}
+                        </Button>
+                        :<Button
                             primary
                             className="mb-4"
                             onClick={handleImageUpload}
                             disabled={image ? false : true}
                         >
                            {sending? 'updating': uploading ? 'uploading':  'Upload Image'}
-                        </Button>
+                        </Button>}
                         <Button secondary onClick={handleDeleteImage}>
                             Delete Image
                         </Button>
