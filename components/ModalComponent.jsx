@@ -122,6 +122,11 @@ function Modal({ clicked, title, children, type, variant }) {
                                                 <Button
                                                     primary
                                                     className="w-full"
+                                                    onClick={()=>{
+                                                      setShowAlert(false)
+                                                        setShowModal(false);
+                                                        setAlerts("");
+                                                    }}
                                                 >
                                                     <Link href="/account">
                                                         Verify
