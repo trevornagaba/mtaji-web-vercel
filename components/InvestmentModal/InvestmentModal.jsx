@@ -11,6 +11,7 @@ import { InvestmentSuccessModal, InvestmentErrorModal } from "/components";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import FlwHook from "../../hooks/PaymentHook";
 import { AppContext } from "../AppContext";
+import useSetAlert from "../../hooks/useSetAlert";
 
 export default function InvestmentModal({
     isOpen,
@@ -18,6 +19,7 @@ export default function InvestmentModal({
     closeModal,
     companyId,
 }) {
+    const {setAlert} = useSetAlert()
     
     // State management for fund wallet form data
     const [formData, setFormData] = useState({
@@ -58,6 +60,9 @@ export default function InvestmentModal({
 
     const closeSuccessModal = () => {
         setIsSuccessful(false);
+        setTimeout(()=>{
+            console.log(isSuccessful)
+        }, 5000)
     };
 
     const openSuccessModal = () => {
@@ -74,6 +79,7 @@ export default function InvestmentModal({
     const openErrorModal = () => {
         setIsFailed(true);
     };
+    
 
     const handleInvestmentCallback = async (response) => {
         
@@ -96,6 +102,7 @@ export default function InvestmentModal({
                 transactionChannel: "flw",
                 currency: 'UGX'
             }
+            closeModal()
             
             axios
                 .post(
@@ -105,12 +112,16 @@ export default function InvestmentModal({
                 )
                 .then(function (response) {
                     closePaymentModal(); // this will close the flutterwave modal
-                    closeModal();
+
                     openSuccessModal();
+                
+                    // setAlert("success", "Congratulations! You made a simple boss move")
+                    
                 })
                 .catch(function (error) {
                     console.log(error)
                     openErrorModal();
+                    setAlert("warning", "An error occurred")
                 });
         } else {
             openErrorModal();
@@ -126,7 +137,7 @@ export default function InvestmentModal({
     useEffect(() => {
         checkAuth();
         setUser(userDetails);
-    }, [isLoaded]);
+    }, [isLoaded, isSuccessful]);
 
     return (
         <div>

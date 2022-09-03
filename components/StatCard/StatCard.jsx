@@ -14,7 +14,7 @@ export default function StatCard({
         currency: "USD",
         notation: "compact",
         compactDisplay: "short",
-        maximumFractionDigits: 0,
+        maximumFractionDigits: 1,
         minimumFractionDigits: 0,
     });
     var ugx = new Intl.NumberFormat("en-US", {
@@ -22,7 +22,7 @@ export default function StatCard({
         currency: "UGX",
         notation: "compact",
         compactDisplay: "short",
-        maximumFractionDigits: 0,
+        maximumFractionDigits: 1,
         minimumFractionDigits: 0,
     });
     return (

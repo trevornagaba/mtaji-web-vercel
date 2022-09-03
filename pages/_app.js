@@ -1,10 +1,8 @@
 import "../styles/global.css";
 import Head from "next/head";
-import Link from "next/link";
-
-import HomeLogo from "../components/HomeLogo";
 
 import AppContextProvider from "../components/AppContext";
+import Modal from "../components/ModalComponent";
 
 function MyApp({ Component, pageProps }) {
     return (
@@ -22,6 +20,7 @@ function MyApp({ Component, pageProps }) {
             </Head>
             <AppContextProvider>
                 <Component {...pageProps} />
+                <Modal/>
             </AppContextProvider>
         </>
     );

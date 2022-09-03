@@ -17,6 +17,8 @@ import {
 } from "/components";
 import classNames from "/utils/classnames";
 import FlashMessage from "../../components/Alert/FlashMessage";
+import useSetAlert from "../../hooks/useSetAlert";
+import Modal from "../../components/ModalComponent";
 
 export const getServerSideProps = async (context) => {
     const companyId = context.query.pid;
@@ -29,7 +31,7 @@ export const getServerSideProps = async (context) => {
     };
 };
 export default function Company({ company }) {
-    // console.log(company);
+    const {setAlert} = useSetAlert()
     // Setup use of router to get company id from url
     const router = useRouter();
     const { pid } = router.query;
@@ -64,6 +66,7 @@ export default function Company({ company }) {
     useEffect(()=>{
         checkAuth()
         setUser(userDetails)
+        // console.log(user)
     },[isLoaded])
 
     // Setup state management for Investment modal
@@ -75,7 +78,9 @@ export default function Company({ company }) {
         setIsOpen(false);
     };
 
+    
     const openModal = () => {
+        
         setIsOpen(true);
     };
 
@@ -129,6 +134,7 @@ export default function Company({ company }) {
         >
             <div className="company-page">
                 <main>
+                    {/* <Modal/> */}
                     <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8 pt-36">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
@@ -164,7 +170,8 @@ export default function Company({ company }) {
                                 <Button
                                     primary
                                     onClick={()=>{
-                                        !user?.isKycVerified ? alert('please complete verification before investing'):
+                                        console.log('why')
+                                        !user?.isKycVerified ? setAlert('warning','please complete verification before investing'):
                                         openModal
                                     }}
                                     className="w-[125px]"
@@ -177,8 +184,8 @@ export default function Company({ company }) {
                                 <Button
                                     primary
                                     onClick={()=>{
-                                        !user?.isKycVerified ? alert('please complete verification before investing'):
-                                        openModal
+                                        !user?.isKycVerified ? setAlert('warning','please complete verification before investing'):
+                                        openModal()
                                     }}
                                     className="px-14"
                                 >
@@ -231,7 +238,7 @@ export default function Company({ company }) {
                                                 className={({ selected }) =>
                                                     classNames(
                                                         "py-2 text-[16px] font-medium",
-                                                        "ring-offset- focus:outline-none focus:ring-0",
+                                                        "ring-offset- focus:outline-none focus:ring-0", 
                                                         selected
                                                             ? "border-b-2 border-green bg-white"
                                                             : "text-grey bg-white hover:bg-gray-800 hover:text-gray-800 hover:bg-white"
@@ -250,8 +257,8 @@ export default function Company({ company }) {
                                             <Button
                                                 primary
                                                 onClick={()=>{
-                                                    !user?.isKycVerified ? alert('please complete verification before investing'):
-                                                    openModal
+                                                    !user?.isKycVerified ? setAlert('warning','please complete verification before investing'):
+                                                    openModal()
                                                 }}
                                                 className="px-14"
                                             >
@@ -260,7 +267,7 @@ export default function Company({ company }) {
                                         </div>
                                     </div>
                                 </div>
-                                <Tab.Panels className="mt-10">
+                                <Tab.Panels className="mt-10  min-h-[150px]">
                                     {companyInfo.map((item) => (
                                         <Tab.Panel key={item.id}>
                                             {item.title == "Team" ? (
@@ -355,8 +362,8 @@ export default function Company({ company }) {
                                     <Button
                                         primary
                                         onClick={()=>{
-                                            !user?.isKycVerified ? alert('please complete verification before investing'):
-                                            openModal
+                                            !user?.isKycVerified ? setAlert('warning','please complete verification before investing'):
+                                            openModal()
                                         }}
                                         className="px-10 w-full"
                                     >

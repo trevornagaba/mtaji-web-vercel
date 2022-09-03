@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { memo, useContext, useState } from "react";
+import useSetAlert from "../../hooks/useSetAlert";
 import { getToken } from "../../utils/getToken";
 import { AppContext } from "../AppContext";
 import Button from "../Button/Button";
 import DragandDrop from "../DragandDropFileUpload/DragandDrop";
 
 const KycForm = ({ isKycVerified, userId }) => {
+    const {setAlert} =  useSetAlert()
     const { kycForm } = useContext(AppContext);
     const [uploading, setUploading] = useState(false);
     const [updating, setUpdating] = useState(false);
@@ -48,10 +50,12 @@ const KycForm = ({ isKycVerified, userId }) => {
                                 console.log(res);
                                 console.log('updated user doc')
                                 setUpdating(false);
+                                setAlert("success","Kyc documents submitted")
                             })
                             .catch((e) => {
                                 console.log(e);
                                 setUpdating(false);
+                                setAlert("warning", "An error occurred")
                             });
                     }
                     setUploading(false);

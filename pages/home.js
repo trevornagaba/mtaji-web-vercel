@@ -11,8 +11,18 @@ import SubscribeCard from "../components/subscribeToMailList";
 import FundWalletModal from "/components/FundWalletModal/FundWalletModal";
 
 const HomePage = () => {
-    const { isLoaded, isAuth, userDetails, companies, checkAuth } =
-        useContext(AppContext);
+    const {
+        userPortfolioDetails,
+        checkAuth,
+        isLoaded,
+        isAuth,
+        userDetails,
+        companies,
+        getUserPortfolioDetails,
+    } = useContext(AppContext);
+    
+    //Get the latest userportfolio details
+    //  const isLoaded = true;
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -26,18 +36,23 @@ const HomePage = () => {
 
     // Setup state management
     const [user, setUsers] = useState([]);
-    const [portfolio, setPortfolio] = useState([]);
-    const [comps, setComps] = useState([]);
+        const [comps, setComps] = useState([]);
     // Setup to handle modal state
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        checkAuth();
-        setUsers(userDetails);
-        setPortfolio(userDetails.portfolio);
-        setComps(companies);
+        
+        checkAuth().then((result)=>{
+            getUserPortfolioDetails();
+        });
+        //getUserPortfolioDetails();
+        
+        // setUsers(userDetails);
+        
+                setComps(companies);
     }, [isLoaded]);
-
+    
+    
     return (
         <PageTemplate
             hasNavbar={true}
@@ -54,12 +69,13 @@ const HomePage = () => {
                     }}
                 >
                     {/* Portfolio Card */}
-                    <Portfolio isLoaded={isLoaded} userDetails={userDetails} />
-                    <Companies
+
+                    <Portfolio
                         isLoaded={isLoaded}
-                        companies={comps}
-                        size={"sm"}
+                        userDetails={userDetails}
+                        userPortfolioDetails={userPortfolioDetails}
                     />
+                    <Companies />
                 </Grid>
             ) : (
                 ""

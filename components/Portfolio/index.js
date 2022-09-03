@@ -12,7 +12,9 @@ import WalletCard from "./WalletCard";
 import InvestmentsCard from "./InvestmentsCard";
 
 const Portfolio = (props) => {
-    const { isLoaded, userDetails } = props;
+    const { isLoaded, userDetails, userPortfolioDetails } = props;
+    // console.log(userDetails.portfolio);
+    // console.log(userPortfolioDetails);
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -30,25 +32,32 @@ const Portfolio = (props) => {
     }, [isLoaded]);
 
     return (
-        <Grid container spacing={3} xs={12} direction="row">
+        <Grid
+            container
+            rowSpacing={{ xs: 3, sm: 0 }}
+            columnSpacing={{ xs: 0, sm: 3 }}
+            xs={12}
+            direction="row"
+            sx={{
+                paddingTop: "15px",
+            }}
+        >
             {/* Networth */}
             <Grid item xs={12} sm={12} md={4}>
-                
                 <WalletCard
                     isLoaded={isLoaded}
-                    portfolio={userDetails.portfolio}
+                    portfolio={userPortfolioDetails}
                 />
             </Grid>
             {/* All Investments */}
-            <Grid item xs={12} sm={12} md={8} >
-                
+            <Grid item xs={12} sm={12} md={8}>
                 <InvestmentsCard
                     isLoaded={isLoaded}
                     portfolio={userDetails.portfolio}
+                    userPortfolioDetails={userPortfolioDetails}
                 />
             </Grid>
         </Grid>
-        
     );
 };
 

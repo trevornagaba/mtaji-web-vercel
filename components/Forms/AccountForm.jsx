@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TextInput from "../TextInput/TextInput";
 import styles from "../../styles/Form.module.css";
 import Button from "../Button/Button";
 import ProfileImg from "../ProfileImageIcon";
 import Modal from "../ModalComponent";
-import { Fragment } from "react";
-import { Dialog, Transition } from "@headlessui/react";
 import { getToken } from "../../utils/getToken";
 import axios from "axios";
+import useSetAlert  from "../../hooks/useSetAlert";
+import { AppContext } from "../AppContext";
 
 const AccountForm = ({ userDetails }) => {
+    const {setAlert} =  useSetAlert()
     useEffect(() => {
-        console.log(userDetails)
+        // console.log(userDetails)
         setData(userDetails);
     }, [userDetails]);
     const [openModal, setOpenModal] = useState(false);
@@ -26,9 +27,14 @@ const AccountForm = ({ userDetails }) => {
     const [sending, setSending] = useState(false);
     const [image, setImage] = useState(null);
     const [uploading, setUploading] = useState(false);
+    const [src, setSrc] = useState(false);
+    const { showModal, setShowModal } =
+        useContext(AppContext);
+
+    
 
     const onClickProfileImage = () => {
-        return setOpenModal(!openModal);
+        return setShowModal(true);
     };
     const handleChange = (e) => {
         e.preventDefault();
@@ -42,13 +48,13 @@ const AccountForm = ({ userDetails }) => {
         });
     };
 
-
+    
     const onImageChange = (e) => {
         e.preventDefault();
         e.stopPropagation();
         const newFile = e.target.files[0];
         setImage(newFile);
-        console.log(image);
+        setSrc(URL.createObjectURL(e.target.files[0]))
     };
     const token = getToken();
     let config = {
@@ -70,7 +76,8 @@ const AccountForm = ({ userDetails }) => {
                 formData
             )
             .then(async (res) => {
-                console.log(res);
+                // console.log(typeof res.data.url);
+                
                 if (res.status == 200) {
                     console.log("upload success");
                     setUploading(false)
@@ -86,10 +93,17 @@ const AccountForm = ({ userDetails }) => {
                             console.log(res);
                             console.log("updated user doc");
                             setSending(false);
+                            // setShowModal(false)
+                            setSrc('')
+                            setImage('')
+                            setAlert("success","Profile Image Upload Successful")
                         })
                         .catch((e) => {
                             console.log(e);
                             setSending(false);
+                            setSrc('')
+                            setImage('')
+                            setAlert("Warning","An error occurred")
                         });
                 }
                 setUploading(false);
@@ -97,6 +111,7 @@ const AccountForm = ({ userDetails }) => {
             .catch((e) => {
                 console.log(e);
                 setUploading(false);
+                setAlert("Warning","An error occurred")
             });
     };
     const handleDeleteImage = async() => {
@@ -135,20 +150,22 @@ const AccountForm = ({ userDetails }) => {
             .then((res) => {
                 console.log(res);
                 setSending(false);
+                setAlert("success", "Update User Success")
             })
             .catch((e) => {
                 console.log(e);
                 setSending(false);
+                setAlert("warning", "An error occurred")
             });
     };
 
     return (
         <div>
-            <Modal clicked={openModal} title={"Upload Profile image"}>
+            <Modal clicked={showModal} title={"Upload Profile Image"}>
                 <div className="flex flex-row justify-between mx-5 h-40 pt-5">
                     <ProfileImg
                         imageUrl={
-                            userDetails?.photoUrl || "/assets/avatar2.svg"
+                            src? src : userDetails?.photoUrl ? userDetails?.photoUrl : "/assets/avatar2.svg"
                         }
                         imageSize="xlg"
                         hasEdit
