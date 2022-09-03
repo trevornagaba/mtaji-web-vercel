@@ -111,6 +111,7 @@ function Modal({ clicked, title, children, type, variant }) {
                                                 <Button
                                                     secondary
                                                     onClick={() => {
+                                                      setShowAlert(false)
                                                         setShowModal(false);
                                                         setAlerts("");
                                                     }}
