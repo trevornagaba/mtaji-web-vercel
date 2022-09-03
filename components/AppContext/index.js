@@ -184,7 +184,7 @@ const AppContextProvider = (props) => {
             });
     };
 
-    console.log(userDetails["email"]);
+    // console.log(userDetails["email"]);
     console.log(userPortfolioDetails);
 
     const getBlogs = async () => {
@@ -225,6 +225,7 @@ const AppContextProvider = (props) => {
                 errors,
                 setErrors,
                 userDetails,
+                setUserDetails,
                 userPortfolioDetails,
                 companies,
                 blogs,

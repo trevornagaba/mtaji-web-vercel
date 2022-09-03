@@ -9,11 +9,8 @@ import axios from "axios";
 import useSetAlert  from "../../hooks/useSetAlert";
 import { AppContext } from "../AppContext";
 
-const AccountForm = ({ userDetails }) => {
+const AccountForm = () => {
     const {setAlert} =  useSetAlert()
-    useEffect(() => {
-        setData(userDetails);
-    }, [userDetails]);
     const [openModal, setOpenModal] = useState(false);
     const [data, setData] = useState({
         firstName: "",
@@ -27,13 +24,16 @@ const AccountForm = ({ userDetails }) => {
     const [image, setImage] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [src, setSrc] = useState(false);
-    const { showModal, setShowModal, showAlert } =
+    const { showModal, setShowModal, showAlert, userDetails, setUserDetails } =
         useContext(AppContext);
 
+        useEffect(() => {
+            setData(userDetails);
+        }, [userDetails]);
     
-
-    const onClickProfileImage = () => {
-        return setShowModal(true);
+        
+        const onClickProfileImage = () => {
+            return setShowModal(true);
     };
     const handleChange = (e) => {
         e.preventDefault();
@@ -149,6 +149,9 @@ const AccountForm = ({ userDetails }) => {
             .then((res) => {
                 console.log(res);
                 setSending(false);
+                console.log(userDetails)
+                console.log(res.userDetails)
+                setUserDetails(res.data.userDetails)
                 setAlert("success", "Update successful", "User update Successful")
             })
             .catch((e) => {

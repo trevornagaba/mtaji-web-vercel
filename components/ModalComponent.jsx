@@ -33,7 +33,7 @@ function Modal({ clicked, title, children, type, variant }) {
         >
             <Dialog
                 as="div"
-                className="relative z-10"
+                className="relative z-40"
                 onClose={() => {
                   setShowModal(false);
                     setAlerts("");
