@@ -17,6 +17,8 @@ import {
 } from "/components";
 import classNames from "/utils/classnames";
 import FlashMessage from "../../components/Alert/FlashMessage";
+import useSetAlert from "../../hooks/useSetAlert";
+import Modal from "../../components/ModalComponent";
 
 export const getServerSideProps = async (context) => {
     const companyId = context.query.pid;
@@ -29,57 +31,56 @@ export const getServerSideProps = async (context) => {
     };
 };
 export default function Company({ company }) {
-    // console.log(company);
+    const {setAlert} = useSetAlert()
     // Setup use of router to get company id from url
     const router = useRouter();
     const { pid } = router.query;
 
-    const { isLoaded, isAuth, getCompany } = useContext(AppContext);
-
+    const { isLoaded, isAuth, getCompany,checkAuth, userDetails, showAlert} = useContext(AppContext);
+    const [user, setUser] = useState({})
     // Setup state management
     // const [company, setCompany] = useState([]);
     const [companyInfo, setCompanyInfo] = useState([
         {
             id: 1,
             title: "Overview",
-            desc: "Tubayo is the first Africa focused marketplace that lets travelers book rooms and experiences with locals. An online travel marketplace that makes it easy for locals to earn money by renting out their space to host travellers or lead them on exciting experiences around the community. Save money when travelling, make money when hosting, share culture and local insights of the community, availability of local currencies and payment options.",
         },
         {
             id: 2,
             title: "Problem",
-            desc: "Travel in Africa is so expensive, it is difficult for many people to plan, book and pay for a trip. Price is a great concern for customers booking travel in Africa, Limited travel options for accomodation and experiences, Very fragmented travel industry making trip planning very stressful and hectic, No Africa focused travel marketplace exists to work around the realities on local currency, payment methods and language",
         },
         {
             id: 3,
             title: "Solution",
-            desc: "Tubayo is an online travel marketplace that makes it easy for locals to earn money by renting out their space to host travellers or lead them on exciting experiences around the community. Save money when travelling, make money when hosting, share culture and local insights of the community, availability of local currencies and payment options.",
         },
         {
             id: 4,
             title: "Team",
-            desc: "Tubayo Team.pdf",
         },
         {
             id: 5,
             title: "Documents",
-            desc: "Tubayo Mtaji June Pitch.pdf",
         },
     ]);
 
-    // useEffect(() => {
-    //     setCompany(getCompany(pid));
-    // }, []);
+    useEffect(()=>{
+        checkAuth()
+        setUser(userDetails)
+        // console.log(user)
+    },[isLoaded])
 
     // Setup state management for Investment modal
     const [isOpen, setIsOpen] = useState(false);
-    const [showAlert, setShowAlert] = useState(false);
+    const [shwAlert, setShwAlert] = useState(false);
     const [loading, setLoading] = useState(true);
 
     const closeModal = () => {
         setIsOpen(false);
     };
 
+    
     const openModal = () => {
+        
         setIsOpen(true);
     };
 
@@ -95,16 +96,35 @@ export default function Company({ company }) {
     };
 
     const onClickShare = async () => {
-        if (showAlert) {
-            setShowAlert(false);
+        if (shwAlert) {
+            setShwAlert(false);
         }
         await navigator.clipboard.writeText(window.location.href);
-        setShowAlert(true);
+        // setShwAlert(true);
+        setAlert("success", "Url Copied","Url copied, you can now share with other amazing investors like you!")
     };
+    const onClickDownload = async (filename, link) => {
+        axios
+            .get(`${link}`, {
+                responseType: "blob",
+            })
+            .then((res) => {
+                console.log(res);
 
-    const onClickDownload = async ()=>{
-        axios.get(`${company.pitch}`)
-    }
+                const url = window.URL.createObjectURL(
+                    new Blob([res.data], {
+                        type: res.headers["content-type"],
+                    })
+                );
+
+                const link = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", filename);
+                document.body.appendChild(link);
+                link.click();
+            });
+    };
+    let num = 0;
 
     return (
         <PageTemplate
@@ -115,25 +135,26 @@ export default function Company({ company }) {
         >
             <div className="company-page">
                 <main>
+                    {/* <Modal/> */}
                     <div className="max-w-6xl mx-auto px-4 mb-6 lg:px-8 pt-36">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
                                 <div className="hidden lg:block">
                                     <Image
-                                        src="/assets/tubayo_logo.png"
+                                        src={company?.logo}
                                         height={50}
                                         width={50}
                                     />
                                 </div>
                                 <div className="block lg:hidden">
                                     <Image
-                                        src="/assets/tubayo_logo.png"
+                                        src={company?.logo}
                                         height={44}
                                         width={44}
                                     />
                                 </div>
                                 <h3 className="text-[24px] font-bold leading-tight">
-                                    {company.name}
+                                    {company?.name}
                                 </h3>
                                 <div className="hidden lg:block">
                                     <Dot />
@@ -149,7 +170,10 @@ export default function Company({ company }) {
                             <div className="block lg:hidden">
                                 <Button
                                     primary
-                                    onClick={openModal}
+                                    onClick={()=>{
+                                        !user?.isKycVerified ? setAlert('warning','Verification Required','please complete verification before investing'):
+                                        openModal
+                                    }}
                                     className="w-[125px]"
                                 >
                                     Invest
@@ -159,7 +183,10 @@ export default function Company({ company }) {
                                 <ShareButton onClick={() => onClickShare()} />
                                 <Button
                                     primary
-                                    onClick={openModal}
+                                    onClick={()=>{
+                                        !user?.isKycVerified ? setAlert('warning','Verification Required','please complete verification before investing'):
+                                        openModal()
+                                    }}
                                     className="px-14"
                                 >
                                     Invest
@@ -211,7 +238,7 @@ export default function Company({ company }) {
                                                 className={({ selected }) =>
                                                     classNames(
                                                         "py-2 text-[16px] font-medium",
-                                                        "ring-offset- focus:outline-none focus:ring-0",
+                                                        "ring-offset- focus:outline-none focus:ring-0", 
                                                         selected
                                                             ? "border-b-2 border-green bg-white"
                                                             : "text-grey bg-white hover:bg-gray-800 hover:text-gray-800 hover:bg-white"
@@ -229,7 +256,10 @@ export default function Company({ company }) {
                                             />
                                             <Button
                                                 primary
-                                                onClick={openModal}
+                                                onClick={()=>{
+                                                    !user?.isKycVerified ? setAlert('warning','Verification Required','please complete verification before investing'):
+                                                    openModal()
+                                                }}
                                                 className="px-14"
                                             >
                                                 Invest
@@ -237,7 +267,7 @@ export default function Company({ company }) {
                                         </div>
                                     </div>
                                 </div>
-                                <Tab.Panels className="mt-10">
+                                <Tab.Panels className="mt-10  min-h-[150px]">
                                     {companyInfo.map((item) => (
                                         <Tab.Panel key={item.id}>
                                             {item.title == "Team" ? (
@@ -250,10 +280,18 @@ export default function Company({ company }) {
                                                             width={20}
                                                         />
                                                         <p className="ml-3">
-                                                            {item.desc}
+                                                        {company.name} Team doc
                                                         </p>
                                                     </div>
-                                                    <div className="cursor-pointer flex w-10 h-10 justify-center rounded-full hover:bg-slate-100" onClick={onClickDownload}>
+                                                    <div
+                                                        className="cursor-pointer flex w-10 h-10 justify-center rounded-full hover:bg-slate-100"
+                                                        onClick={() =>
+                                                            onClickDownload(
+                                                                `${company.name} Team`,
+                                                                company.teamUrl
+                                                            )
+                                                        }
+                                                    >
                                                         <Image
                                                             src="/assets/download.svg"
                                                             alt="file"
@@ -264,7 +302,12 @@ export default function Company({ company }) {
                                                 </div>
                                             ) : item.title == "Documents" ? (
                                                 <>
-                                                    <div className="flex flex-row w-full justify-between text-center bg-slate-50 rounded-lg p-2 px-6">
+                                                    {company?.companyDocumentsUrl?.map(document=>{
+                                                        ++num
+                                                        const no= num
+                                                        return (
+                                                            <>
+                                                            <div className="flex flex-row w-full justify-between text-center bg-slate-50 rounded-lg p-2 px-6 mb-5">
                                                         <div className="flex flex-row items-center">
                                                             <Image
                                                                 src="/assets/file.svg"
@@ -273,10 +316,17 @@ export default function Company({ company }) {
                                                                 width={20}
                                                             />
                                                             <p className="ml-3">
-                                                                {item.desc}
+                                                            {company.name} Documents {no}
                                                             </p>
                                                         </div>
-                                                        <div className="cursor-pointer flex w-10 h-10 justify-center rounded-full hover:bg-slate-100">
+                                                        <div
+                                                            className="cursor-pointer flex w-10 h-10 justify-center rounded-full hover:bg-slate-100"
+                                                            onClick={() =>
+                                                                onClickDownload(
+                                                                    `${company.name} Documents ${no}`, document
+                                                                )
+                                                            }
+                                                        >
                                                             <Image
                                                                 src="/assets/download.svg"
                                                                 alt="file"
@@ -284,7 +334,10 @@ export default function Company({ company }) {
                                                                 width={20}
                                                             />
                                                         </div>
-                                                    </div>
+                                                    </div></>
+                                                        )
+                                                    })}
+                                                    
                                                 </>
                                             ) : item.title == "Overview" ? (
                                                 <>{company?.briefDescription}</>
@@ -308,7 +361,10 @@ export default function Company({ company }) {
                                     />
                                     <Button
                                         primary
-                                        onClick={openModal}
+                                        onClick={()=>{
+                                            !user?.isKycVerified ? setAlert('warning', 'Verification Required','please complete verification before investing'):
+                                            openModal()
+                                        }}
                                         className="px-10 w-full"
                                     >
                                         Invest
@@ -327,7 +383,7 @@ export default function Company({ company }) {
                     companyId={pid}
                     // userId={userId} // TO-DO: Validate if logged in
                 />
-                {showAlert && (
+                {shwAlert && (
                     <FlashMessage message={"Url copied"} type={"success"} />
                 )}
 
@@ -344,6 +400,7 @@ export default function Company({ company }) {
                     `}
                 </style>
             </div>
+            {showAlert ? <Modal/> : ''}
         </PageTemplate>
     );
 }

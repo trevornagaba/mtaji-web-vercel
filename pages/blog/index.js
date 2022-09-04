@@ -7,6 +7,7 @@ import TextInput from "../../components/TextInput/TextInput";
 import Button from "../../components/Button/Button";
 import Link from "next/link";
 import axios from "axios";
+import SubscribeCard from "../../components/subscribeToMailList";
 
 export const getServerSideProps = async () => {
     //fetch post from B.E
@@ -142,43 +143,7 @@ const Blog = ({ posts }) => {
                     );
                 })}
                 {/* <div className={styles.paginqation}></div> */}
-                <div className={styles.subscribeSec} id="subscribe">
-                    <strong>
-                        <p className={styles.heading}>
-                            Subscribe to the mtaji Blog
-                        </p>
-                    </strong>
-                    <div>
-                        Get notifications about blog posts, company events and
-                        announcements, products and founder materials.
-                    </div>
-                    <div className={styles.rowContainer}>
-                        <div className={styles.rowContent1}>
-                            <TextInput
-                                name="FirstName"
-                                type="text"
-                                placeholder="Enter Email"
-                            />
-                        </div>
-                        <div className={styles.rowContent}>
-                            <Button
-                                primary
-                                style={{
-                                    height: "46px",
-                                    backgroundColor: "#01bbc8",
-                                }}
-                                onClick={() => {}}
-                            >
-                                Subscribe
-                            </Button>
-                        </div>
-                    </div>
-                    <img
-                        className={styles.circles}
-                        src="/assets/circles.svg"
-                        alt="circles"
-                    />
-                </div>
+                <SubscribeCard/>
             </div>
         </PageTemplate>
     );

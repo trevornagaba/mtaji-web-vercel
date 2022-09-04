@@ -12,7 +12,7 @@ const Account = () => {
     const {checkAuth, userDetails, isLoaded} = useContext(AppContext)
     const [selectedTab, setSelectedTab] = useState(tabs[0]);
     const [user, setUser] = useState({})
-
+    
     const onClickTab = (tab) => {
         setSelectedTab(tab);
     };
@@ -20,7 +20,6 @@ const Account = () => {
     useEffect(()=>{
         checkAuth()
         setUser(userDetails)
-        console.log('alert')
     },[isLoaded])
     return (
         <PageTemplate 
@@ -50,7 +49,7 @@ const Account = () => {
                 </div>
                 <div className={styles.tabContent}>
                     {selectedTab == 'Account' ?
-                    <AccountForm userDetails={user}/> : selectedTab == 'KYC' ? <KycForm/> : <SecurityForm userId={user.userId}/> 
+                    <AccountForm userDetails={user}/> : selectedTab == 'KYC' ? <KycForm userId={user.userId}/> : <SecurityForm userId={user.userId}/> 
                     }
                 </div>
             </div>
