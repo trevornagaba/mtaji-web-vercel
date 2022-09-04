@@ -5,15 +5,18 @@ import { CheckCircleIcon } from "@heroicons/react/solid";
 
 import { Button } from "..";
 import Link from "next/link";
+import { Router, useRouter } from "next/router";
 
 export default function InvestmentSuccessModal({
     isSuccessful,
     openSuccessModal,
     closeSuccessModal,
 }) {
+
+    const router = useRouter()
     return (
         <Transition appear show={isSuccessful} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={closeSuccessModal}>
+            <Dialog as="div" className="relative z-40" onClose={closeSuccessModal}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -53,10 +56,11 @@ export default function InvestmentSuccessModal({
                                     </p>
                                 </div>
                                 <div className="p-8 flex items-center justify-between gap-3">
-                                    <Button secondary onclick={closeSuccessModal} className="w-full">
+                                    <Button secondary onClick={closeSuccessModal} className="w-full">
                                         Close
                                     </Button>
-                                    <Button primary className="w-full">
+                                    <Button primary className="w-full" >
+                                        {/* See Portfolio */}
                                         <Link href="/home">See Portfolio</Link>
                                     </Button>
                                 </div>

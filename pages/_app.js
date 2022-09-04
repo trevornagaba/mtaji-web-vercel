@@ -2,6 +2,7 @@ import "../styles/global.css";
 import Head from "next/head";
 
 import AppContextProvider from "../components/AppContext";
+import Modal from "../components/ModalComponent";
 
 function MyApp({ Component, pageProps }) {
     return (
@@ -20,6 +21,7 @@ function MyApp({ Component, pageProps }) {
             <AppContextProvider>
                 <Component {...pageProps} />
             </AppContextProvider>
+                
         </>
     );
 }

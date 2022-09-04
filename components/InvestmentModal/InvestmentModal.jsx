@@ -11,6 +11,7 @@ import { InvestmentSuccessModal, InvestmentErrorModal } from "/components";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import FlwHook from "../../hooks/PaymentHook";
 import { AppContext } from "../AppContext";
+import useSetAlert from "../../hooks/useSetAlert";
 
 export default function InvestmentModal({
     isOpen,
@@ -18,7 +19,8 @@ export default function InvestmentModal({
     closeModal,
     companyId,
 }) {
-    
+    const { setAlert } = useSetAlert();
+
     // State management for fund wallet form data
     const [formData, setFormData] = useState({
         amountUSD: "",
@@ -27,30 +29,30 @@ export default function InvestmentModal({
     const handleChange = (e) => {
         const { value } = e.target;
 
-        const validated = value.match(/^(\d*\.{0,1}\d{0,2}$)/)
-    if (validated) {
-       const newvalue = value.replace(/[e\+\-]/gi, "");
-       const approx = (num)=>{
-        return Math.round(num *100)/100
-       }
-       setFormData((prevFormData) => {
-           return e.target.name == "amountUSD"
-           ? {
-               amountUSD: approx(newvalue),
-               amountUGX: approx(newvalue * 3500),
-            }
-            : {
-                amountUSD: approx(newvalue / 3500),
-                amountUGX: approx(newvalue),
+        const validated = value.match(/^(\d*\.{0,1}\d{0,2}$)/);
+        if (validated) {
+            const newvalue = value.replace(/[e\+\-]/gi, "");
+            const approx = (num) => {
+                return Math.round(num * 100) / 100;
             };
-        });
-    }
+            setFormData((prevFormData) => {
+                return e.target.name == "amountUSD"
+                    ? {
+                          amountUSD: approx(newvalue),
+                          amountUGX: approx(newvalue * 3500),
+                      }
+                    : {
+                          amountUSD: approx(newvalue / 3500),
+                          amountUGX: approx(newvalue),
+                      };
+            });
+        }
     };
     const preventSpeChar = (e) => {
         if (e.key === "e" || e.key === "-" || e.key === "+") {
-          e.preventDefault();
+            e.preventDefault();
         }
-      }
+    };
     const { checkAuth, userDetails, isLoaded } = useContext(AppContext);
     const [user, setUser] = useState({});
     // For succesful Investment modal
@@ -58,6 +60,9 @@ export default function InvestmentModal({
 
     const closeSuccessModal = () => {
         setIsSuccessful(false);
+        setTimeout(() => {
+            console.log(isSuccessful);
+        }, 5000);
     };
 
     const openSuccessModal = () => {
@@ -76,17 +81,16 @@ export default function InvestmentModal({
     };
 
     const handleInvestmentCallback = async (response) => {
-        
-        const token = localStorage.getItem("token")
-        
+        const token = localStorage.getItem("token");
+
         if (response?.status == "successful") {
             let config = {
                 headers: {
-                  'Authorization': `Bearer ${token}`,
-                  'Content-Type': 'Application/json',
-                }
-              }
-              let body = {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "Application/json",
+                },
+            };
+            let body = {
                 flw_txn_id: response.transaction_id,
                 userId: user.userId,
                 companyId: companyId,
@@ -94,9 +98,10 @@ export default function InvestmentModal({
                 creationDate: "",
                 amount: response.amount,
                 transactionChannel: "flw",
-                currency: 'UGX'
-            }
-            
+                currency: "UGX",
+            };
+            closeModal();
+
             axios
                 .post(
                     `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
@@ -105,12 +110,19 @@ export default function InvestmentModal({
                 )
                 .then(function (response) {
                     closePaymentModal(); // this will close the flutterwave modal
-                    closeModal();
+
                     openSuccessModal();
+
+                    // setAlert("success", "Congratulations! You made a simple boss move")
                 })
                 .catch(function (error) {
-                    console.log(error)
+                    console.log(error);
                     openErrorModal();
+                    setAlert(
+                        "warning",
+                        "Transaction Error",
+                        "An error occurred"
+                    );
                 });
         } else {
             openErrorModal();
@@ -126,7 +138,7 @@ export default function InvestmentModal({
     useEffect(() => {
         checkAuth();
         setUser(userDetails);
-    }, [isLoaded]);
+    }, [isLoaded, isSuccessful]);
 
     return (
         <div>
@@ -204,20 +216,26 @@ export default function InvestmentModal({
                                         >
                                             Cancel
                                         </Button>
-                                        {/* <Button
-                                            primary
-                                            onClick={handleInvestment}
-                                            className="w-full"
-                                        >
-                                            Invest
-                                        </Button> */}
-                                        <FlwHook
-                                            callback={handleInvestmentCallback}
-                                            buttonText="Invest"
-                                            customer={user}
-                                            amount={formData.amountUGX}
-                                            company={companyId}
-                                        />
+                                        {formData.amountUSD < 10 ? (
+                                            <Button
+                                                // primary
+                                                // onClick={handleInvestment}
+                                                className="w-full"
+                                                disabled={true}
+                                            >
+                                                Invest
+                                            </Button>
+                                        ) : (
+                                            <FlwHook
+                                                callback={
+                                                    handleInvestmentCallback
+                                                }
+                                                buttonText="Invest"
+                                                customer={user}
+                                                amount={formData.amountUGX}
+                                                company={companyId}
+                                            />
+                                        )}
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>

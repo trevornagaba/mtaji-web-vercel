@@ -20,7 +20,7 @@ const Footer = () => {
         align="left"
 
     >
-        {router.pathname!=="/blog" || router.pathname!=="/blog"?
+        {/* {router.pathname!=="/blog" || router.pathname!=="/blog"?
             <div className={styles.container}>
                 <div className={styles.section}>
                     <div>
@@ -42,7 +42,7 @@ const Footer = () => {
 
                 <img className={styles.circles} src="/assets/circles.svg" alt="circles" />
             </div>
-        : ""}
+        : ""} */}
         <Grid
             container
             justifyContent={"left"}

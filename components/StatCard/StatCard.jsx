@@ -9,12 +9,20 @@ export default function StatCard({
     textRight,
 }) {
     // Create our number formatter.
-    var formatter = new Intl.NumberFormat("en-US", {
+    var dollar = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
         notation: "compact",
         compactDisplay: "short",
-        maximumFractionDigits: 0,
+        maximumFractionDigits: 1,
+        minimumFractionDigits: 0,
+    });
+    var ugx = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "UGX",
+        notation: "compact",
+        compactDisplay: "short",
+        maximumFractionDigits: 1,
         minimumFractionDigits: 0,
     });
     return (
@@ -31,11 +39,11 @@ export default function StatCard({
                     {title}
                 </p>
                 <p className="text-[24px] font-extrabold lg:text-2xl">
-                    {formatter.format(dollarValue)}
+                    {dollar.format(dollarValue)}
                 </p>
                 <p className="mt-1 text-sm text-grey">
                     {/* TO-DO: Update to read real time rates from yahoo, reuters etc  */}
-                    UGX{formatter.format(dollarValue * 0.00375)}M
+                    {ugx.format(dollarValue * 3500)}
                 </p>
             </div>
         </div>

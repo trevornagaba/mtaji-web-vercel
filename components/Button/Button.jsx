@@ -12,7 +12,7 @@ export default function Button({
 }) {
     return (
         <button
-            className={disabled ? `bg-white border border-gray-300 inline-flex px-6 py-2 justify-center rounded-md mb-4` : classNames(
+            className={`bg-white border border-gray-300 inline-flex px-6 py-2 justify-center rounded-md mb-4` && classNames(
                 `inline-flex px-6 py-2 justify-center rounded-md`,
                 // `inline-flex px-6 py-2 font-medium text-white justify-center rounded-md`,
                 `border border-transparent shadow-sm`,

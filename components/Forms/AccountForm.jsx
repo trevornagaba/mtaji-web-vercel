@@ -1,18 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TextInput from "../TextInput/TextInput";
 import styles from "../../styles/Form.module.css";
 import Button from "../Button/Button";
 import ProfileImg from "../ProfileImageIcon";
 import Modal from "../ModalComponent";
-import { Fragment } from "react";
-import { Dialog, Transition } from "@headlessui/react";
 import { getToken } from "../../utils/getToken";
 import axios from "axios";
+import useSetAlert  from "../../hooks/useSetAlert";
+import { AppContext } from "../AppContext";
 
-const AccountForm = ({ userDetails }) => {
-    // TO-DO
-    const { userDetails, setUserDetails } = useContext(AppContext)
-    
+const AccountForm = () => {
+    const {setAlert} =  useSetAlert()
     const [openModal, setOpenModal] = useState(false);
     const [data, setData] = useState({
         firstName: "",
@@ -25,14 +23,17 @@ const AccountForm = ({ userDetails }) => {
     const [sending, setSending] = useState(false);
     const [image, setImage] = useState(null);
     const [uploading, setUploading] = useState(false);
+    const [src, setSrc] = useState(false);
+    const { showModal, setShowModal, showAlert, userDetails, setUserDetails } =
+        useContext(AppContext);
 
-    useEffect(() => {
-        console.log(userDetails)
-        setData(userDetails);
-    }, [userDetails]);
-
-    const onClickProfileImage = () => {
-        return setOpenModal(!openModal);
+        useEffect(() => {
+            setData(userDetails);
+        }, [userDetails]);
+    
+        
+        const onClickProfileImage = () => {
+            return setShowModal(true);
     };
     const handleChange = (e) => {
         e.preventDefault();
@@ -46,13 +47,13 @@ const AccountForm = ({ userDetails }) => {
         });
     };
 
-
+    
     const onImageChange = (e) => {
         e.preventDefault();
         e.stopPropagation();
         const newFile = e.target.files[0];
         setImage(newFile);
-        console.log(image);
+        setSrc(URL.createObjectURL(e.target.files[0]))
     };
     const token = getToken();
     let config = {
@@ -91,13 +92,17 @@ const AccountForm = ({ userDetails }) => {
                             console.log(res);
                             console.log("updated user doc");
                             setSending(false);
-                            setOpenModal(false)
-                            
-                            
+                            // setShowModal(false)
+                            setSrc('')
+                            setImage('')
+                            setAlert("success", "Upload Success","Profile Image Upload Successful")
                         })
                         .catch((e) => {
                             console.log(e);
                             setSending(false);
+                            setSrc('')
+                            setImage('')
+                            setAlert("Warning","upload error","An error occurred")
                         });
                 }
                 setUploading(false);
@@ -105,6 +110,7 @@ const AccountForm = ({ userDetails }) => {
             .catch((e) => {
                 console.log(e);
                 setUploading(false);
+                setAlert("Warning","upload error","An error occurred")
             });
     };
     const handleDeleteImage = async() => {
@@ -143,40 +149,53 @@ const AccountForm = ({ userDetails }) => {
             .then((res) => {
                 console.log(res);
                 setSending(false);
+                console.log(userDetails)
+                console.log(res.userDetails)
+                setUserDetails(res.data.userDetails)
+                setAlert("success", "Update successful", "User update Successful")
             })
             .catch((e) => {
                 console.log(e);
                 setSending(false);
+                setAlert("warning", "Update error","An error occurred")
             });
     };
 
     return (
         <div>
-            <Modal clicked={openModal} title={"Upload Profile image"}>
+            {showModal?<Modal clicked={showModal} title={"Upload Profile Image"}>
                 <div className="flex flex-row justify-between mx-5 h-40 pt-5">
                     <ProfileImg
                         imageUrl={
-                            userDetails?.photoUrl || "/assets/avatar2.svg"
+                            src? src : userDetails?.photoUrl ? userDetails?.photoUrl : "/assets/avatar2.svg"
                         }
                         imageSize="xlg"
                         hasEdit
                         onChange={onImageChange}
                     />
                     <div className="flex flex-col">
-                        <Button
+                        {!image?<Button
+                            
+                            className="mb-4"
+                            onClick={handleImageUpload}
+                            disabled={true}
+                        >
+                           {sending? 'updating': uploading ? 'uploading':  'Upload Image'}
+                        </Button>
+                        :<Button
                             primary
                             className="mb-4"
                             onClick={handleImageUpload}
                             disabled={image ? false : true}
                         >
                            {sending? 'updating': uploading ? 'uploading':  'Upload Image'}
-                        </Button>
+                        </Button>}
                         <Button secondary onClick={handleDeleteImage}>
                             Delete Image
                         </Button>
                     </div>
                 </div>
-            </Modal>
+            </Modal>: showAlert ? <Modal/> : ''}
             <div className={styles.profile}>
                 <ProfileImg
                     hasEdit={true}
