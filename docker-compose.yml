@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mtaji-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mtaji-web
+    container_name: mtaji-web
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - NEXT_PUBLIC_FLW_PUBK=$NEXT_PUBLIC_FLW_PUBK
+      - FLW_SECK=$FLW_SECK
+      - FLW_ENCK=$FLW_ENCK
+      - NEXT_PUBLIC_BACKEND_API_URL=$NEXT_PUBLIC_BACKEND_API_URL
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+  node_modules:  
