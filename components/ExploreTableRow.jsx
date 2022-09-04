@@ -8,7 +8,7 @@ const ExploreTableRow = (props) => {
         <img src="/assets/logo_in_card.svg" alt="logo" />
 
         <div>
-        {console.log(props.company)}
+        {/* {console.log(props.company)} */}
           <p className={styles.companyName}>{props.company.name}</p>
           <p className={styles.companyTag}>{props.company.industry}</p>
         </div>

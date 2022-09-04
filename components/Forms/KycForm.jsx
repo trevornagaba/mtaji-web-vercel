@@ -1,24 +1,30 @@
 import axios from "axios";
 import React, { memo, useContext, useState } from "react";
+import useSetAlert from "../../hooks/useSetAlert";
 import { getToken } from "../../utils/getToken";
 import { AppContext } from "../AppContext";
 import Button from "../Button/Button";
 import DragandDrop from "../DragandDropFileUpload/DragandDrop";
+import Modal from "../ModalComponent";
 
 const KycForm = ({ isKycVerified, userId }) => {
-    const { kycForm } = useContext(AppContext);
+    const { setAlert } = useSetAlert();
+    const { kycForm, showAlert } = useContext(AppContext);
     const [uploading, setUploading] = useState(false);
     const [updating, setUpdating] = useState(false);
 
     const uploadImg = async () => {
         if (!kycForm.front || !kycForm.back) {
-            alert("upload both front and back");
+            setAlert(
+                "warning",
+                "Documents Incomplete",
+                "You need to upload front and back image of your document"
+            );
         } else {
             let formData = new FormData();
             formData.append("file", kycForm.front);
-            formData.append("file", kycForm.back);
             formData.append("upload_preset", "uhvy5vvk");
-
+            
             setUploading(true);
             await axios
                 .post(
@@ -26,33 +32,51 @@ const KycForm = ({ isKycVerified, userId }) => {
                     formData
                 )
                 .then(async (res) => {
-                    console.log(res);
+                    console.log("upload front success");
+                    formData.append("file", kycForm.back);
+                    formData.append("upload_preset", "uhvy5vvk");
                     if (res.status == 200) {
-                        console.log("upload success");
-
-                        const token = getToken();
-                        let config = {
-                            headers: {
-                                Authorization: `Bearer ${token}`,
-                                "Content-Type": "Application/json",
-                            },
-                        };
-                        setUpdating(true)
                         await axios
-                            .patch(
-                                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`,
-                                { kycUrl: res.url },
-                                config
+                            .post(
+                                "https://api.cloudinary.com/v1_1/daat2pgem/image/upload",
+                                formData
                             )
-                            .then((res) => {
+                            .then(async (resp) => {
+                                console.log("upload back success");
                                 console.log(res);
-                                console.log('updated user doc')
-                                setUpdating(false);
+                                console.log(resp);
+                                if (res.status == 200) {
+                                    const token = getToken();
+                                    let config = {
+                                        headers: {
+                                            Authorization: `Bearer ${token}`,
+                                            "Content-Type": "Application/json",
+                                        },
+                                    };
+                                    setUpdating(true);
+                                    await axios
+                                        .patch(
+                                            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`,
+                                            {kycUrl:[res.data.url, resp.data.url ]},
+                                            config
+                                        )
+                                        .then((res) => {
+                                            console.log(res);
+                                            console.log("updated user doc");
+                                            setUpdating(false);
+                                            setAlert("success", "Documents Submitted","Kyc documents submitted");
+                                        })
+                                        .catch((e) => {
+                                            console.log(e);
+                                            setUpdating(false);
+                                            setAlert("warning", "Upload error","An error occurred");
+                                        });
+
+                                }
                             })
-                            .catch((e) => {
-                                console.log(e);
-                                setUpdating(false);
-                            });
+                            .catch((e) => console.log("error uploading back"));
+                        
+
                     }
                     setUploading(false);
                 })
@@ -114,7 +138,7 @@ const KycForm = ({ isKycVerified, userId }) => {
             </div>
             <div className="mt-10 flex w-full justify-center">
                 <Button primary onClick={uploadImg}>
-                    {updating? 'updating': uploading ? "Uploading" : "Submit"}
+                    {updating ? "updating" : uploading ? "Uploading" : "Submit"}
                 </Button>
             </div>
             <style jsx>{`
@@ -129,6 +153,7 @@ const KycForm = ({ isKycVerified, userId }) => {
                     border-left: 1px solid #01bbc8;
                 }
             `}</style>
+            {showAlert ? <Modal /> : ""}
         </div>
     );
 };

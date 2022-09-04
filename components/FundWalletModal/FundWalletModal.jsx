@@ -58,7 +58,7 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
                 }
             )
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 openSuccessModal();
             })
             .catch(function (error) {
