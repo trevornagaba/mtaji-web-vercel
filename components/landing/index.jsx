@@ -104,7 +104,7 @@ const Landing = () => {
                         next big company
                     </h1>
                     <p style={{ padding: '15px 0' }}>
-                        Be a part owner of a thriving business with as little as <br/>UGX 50,000
+                        Be a part owner of a thriving business with as little as $10
                     </p>
 
                     <Stack
