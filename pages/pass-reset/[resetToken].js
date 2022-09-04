@@ -302,20 +302,6 @@ const PassReset = () => {
                             This page will become obsolete after <strong>24 hours</strong>.
                         </small>
                     </Typography>
-                    <Typography
-                        style={{
-                            marginTop: "10px",
-                            color: "#2518B8",
-                            fontSize: "18px",
-                            paddingRight: "8%"
-                        }}
-                        align="right"
-                    >
-                        <small align="right">
-                            <a href={`../login`}>
-                            </a>
-                        </small>
-                    </Typography>
                 </Box>
             </Grid>
             <Grid
