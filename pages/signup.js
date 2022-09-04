@@ -32,20 +32,8 @@ import navStyles from "../components/Header/Header.module.css";
 import emailChecker from "../utils/emailChecker"
 import passwordStrength from "../utils/passwordStrength"
 
-export default function SignUp() {
-  const [formData, setFormData] = useState({
-    // username: "",
-    email: "",
-    password: "",
-    passwordConfirmation: "",
-  });
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [fetchError, setFetchError] = useState("");
-  const [touched, setTouched] = useState({});
-  const router = useRouter();
-
-  // ------------------------- NEW HOOKS
+const SignUp = () => {
+  
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [email, setEmail] = useState("")
@@ -84,57 +72,6 @@ export default function SignUp() {
 
   const handleClickShowCPassword = () => {
     setShowCPassword(!showCPassword);
-  };
-  // ------------------------- END OF NEW HOOKS 
-
-  const verifyUserData = () => {
-    let errorsObject = {};
-    let touchedObject = {};
-    let isValid = true;
-
-    // validate email
-    const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    if (!formData.email) {
-      errorsObject.email = "Email address is required.";
-      touchedObject.email = false;
-      isValid = false;
-    }
-
-    // validate password
-    if (!formData.password) {
-      errorsObject.password = "Password is required.";
-      touchedObject.password = false;
-      isValid = false;
-    } else if (formData.password.length < 6) {
-      errorsObject.password = "Password must be at least 6 characters.";
-      touchedObject.password = false;
-      isValid = false;
-    }
-
-    // validate password confirmation
-    if (
-      formData.password !== formData.passwordConfirmation ||
-      !formData.passwordConfirmation
-    ) {
-      errorsObject.passwordConfirmation = "Passwords do not match.";
-      isValid = false;
-    }
-
-    setTouched(touchedObject);
-    setErrors(errorsObject);
-    return isValid;
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [name]: value,
-      };
-    });
-    setTouched({ ...touched, [name]: true });
   };
 
   const handleSignUp = async (e) => {
@@ -466,3 +403,5 @@ export default function SignUp() {
     </>
   );
 }
+
+export default SignUp;

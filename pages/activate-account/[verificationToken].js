@@ -32,10 +32,9 @@ const Account = () => {
     })
 
     const getTokenData = async () => {
-        setVeriToken(verificationToken)
 
         const response = await axios.patch(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/activate-account/${veriToken}`, {
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/activate-account/${verificationToken}`, {
                 headers: {
                 'Content-Type': 'Application/json'
                 },
@@ -44,15 +43,14 @@ const Account = () => {
         )
         .then((result) => {
             setIsVerified(true)
-            setIsVerifying(false)
             setVerificationMsg(result.data.message)
             setNoteMsg("Your account has been activated, you can now login to your account.")
         })
         .catch(error => {
-            setIsVerifying(false)
             setVerificationMsg("Verification Unsuccessful!")
             setNoteMsg("Your verification token has expired.")
         });
+        setIsVerifying(false)
     }
 
 
