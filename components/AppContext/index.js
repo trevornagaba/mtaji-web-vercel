@@ -52,6 +52,45 @@ const AppContextProvider = (props) => {
         }
     };
 
+    // const handleSignUp = async (e) => {
+    //   setSent(false)
+    //   setSending(true)
+    //   setError(false)
+    //   setActionMsg("")
+      
+    //   if(password===cPassword) {
+    //     setError(false)
+    //     setActionMsg("")
+    //     const response = await axios.post(
+    //       `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`,
+    //       {
+    //         email: email,
+    //         password: password,
+    //       }
+    //     )
+    //     .then((result) => {
+    //       // router.push("/login");
+    //       setSent(true)
+    //       setActionMsg(result.data.message)
+    //     })
+    //     .catch(error => {
+    //       setActionMsg(error.data.message);
+    //     })
+    //   } else {
+    //     setError(true)
+    //     setActionMsg("Passwords do not match!")
+    //   }
+    //   setSending(false)
+    // }
+  
+    // const handleSubmit = async (e) => {
+    //   e.preventDefault();
+    //   let validData = verifyUserData();
+    //   if (validData) {
+    //     handleSignUp();
+    //   }
+    // };
+
     const handleLogin = async (userData) => {
         setErrors("")        
         const response = await axios
@@ -103,7 +142,6 @@ const AppContextProvider = (props) => {
     const handleLogout = () => {
         localStorage.removeItem("token");
         setIsAuth(false);
-        // setIsLoaded(false);
         router.push("/login");
         
     };
@@ -155,8 +193,8 @@ const AppContextProvider = (props) => {
             });
     };
 
-    console.log(userDetails["email"]);
-    console.log(userPortfolioDetails);
+    // console.log(userDetails["email"]);
+    // console.log(userPortfolioDetails);
 
     const getBlogs = async () => {
         setIsLoaded(false);
