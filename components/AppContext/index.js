@@ -21,7 +21,7 @@ const AppContextProvider = (props) => {
         front: "",
         back: "",
     });
-    const [alert, setAlert]= useState("")
+    const [alerts, setAlerts]= useState("")
     const [showModal, setShowModal]= useState(false)
     const [showAlert, setShowAlert]= useState(false)
 
@@ -261,8 +261,8 @@ const AppContextProvider = (props) => {
                 getUserPortfolioDetails,
                 kycForm,
                 setKycForm,
-                alert,
-                setAlert,
+                alerts,
+                setAlerts,
                 showModal,
                 setShowModal,
                 showAlert,

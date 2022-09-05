@@ -11,14 +11,12 @@ import useSetAlert  from "../../hooks/useSetAlert";
 import { AppContext } from "../AppContext";
 
 const AccountForm = () => {
-
+    const {setAlert} = useSetAlert()
     const {
         checkAuth,
         showModal,
         setShowModal,
         showAlert,
-        alert,
-        setAlert,
         userDetails,
         setUserDetails
     } = useContext(AppContext);
@@ -38,12 +36,13 @@ const AccountForm = () => {
     const [src, setSrc] = useState(false);
 
     useEffect(() => {
+        console.log(userDetails)
         setData(userDetails);
     }, [userDetails]);
     
 
     const onClickProfileImage = () => {
-        return setOpenModal(!openModal);
+        return setShowModal(true);
     };
     const handleChange = (e) => {
         e.preventDefault();
@@ -103,6 +102,7 @@ const AccountForm = () => {
                             console.log("updated user doc");
                             setSending(false);
                             setOpenModal(false)
+                            setAlert("success","update successful","Profile Image updated successfully")
                             
                         })
                         .catch((e) => {
