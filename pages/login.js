@@ -174,7 +174,7 @@ export default function Login() {
                 })
                 .catch((error) => {
                     setError(true);
-                    setActionMsg(error.response.message);
+                    setActionMsg(error.response.data.message);
                 });
         }
         setSending(false);
