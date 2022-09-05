@@ -28,6 +28,7 @@ import navStyles from "../components/Header/Header.module.css";
 
 import emailChecker from "../utils/emailChecker"
 import passwordStrength from "../utils/passwordStrength"
+import Logo from "../components/Logo/Logo";
 
 const SignUp = () => {
   
@@ -121,41 +122,36 @@ const SignUp = () => {
                 backgroundColor: "#ffffff",
                 padding: "0 5vw",
                 paddingBottom: "5%",
+                marginTop: "30px"
             }}
             align={"center"}
         >
             
-            <Typography
-                component="a"
-                href="/"
-                display="inline-flex"
+            <span
                 style={{
                     width: "100%",
-                    marginTop: "50px",
-                    alignItems: "left"
                 }}
+                className="logoContainer"
             >
-                <Image
-                    src="/assets/logo.svg"
-                    alt="logo"
-                    width={35}
-                    height={35}
-                />
-                <span
+              <a href="/">
+                <Logo/>
+
+              </a>
+                {/* <span
                     className={navStyles.appName}
                     style={{
                         color: "#2518B8",
                         fontSize: "22px",
                         fontWeight: "550"
                     }}
-                >mtaji</span>
-            </Typography>
+                >mtaji</span> */}
+            </span>
             <Box
                 style={{
-                    width: "85%",
+                    width: "95%",
                     backgroundColor: "white",
                     borderRadius: "20px",
-                    marginTop: "10%",
+                    // marginTop: "10%",
                     overflow: "hidden",
                     paddingBottom: "20px",
                     color: "#01BBC8"
@@ -167,7 +163,7 @@ const SignUp = () => {
                         fontSize: "16px",
                         fontFamily: "'Poppins', Courier, monospace",
                         fontWeight: "400",
-                        padding: "40px 10%",
+                        padding: "30px 10%",
                     }}
                     align="center"
                 >
@@ -187,7 +183,7 @@ const SignUp = () => {
                   <Alert
                       severity="error"
                       style={{
-                          width: "80%",
+                          width: "95%",
                           marginBottom: "15px"
                       }}
                   >{actionMsg}</Alert>
@@ -202,18 +198,18 @@ const SignUp = () => {
                     onChange={emailChange}
                     error={emailState.emailStatus==="error"}
                     style={{
-                        width: "80%",
+                        width: "95%",
                     }}
                 />
                 <Box
                   style={{
-                      width: "80%",
+                      width: "95%",
                       fontSize: "15px",
                       padding: "10px 0",
                       textAlign: "left"
                   }}
                 >
-                  <strong style={{ color: "gray" }}>Email Status: </strong>
+                  
                   <Chip
                       label={emailState.emailMsg}
                       color={emailState.emailStatus}
@@ -223,7 +219,7 @@ const SignUp = () => {
                 <FormControl
                   style={{
                     m: 1,
-                    width: '80%',
+                    width: '95%',
                     marginTop: "20px"
                   }}
                   variant="outlined"
@@ -254,7 +250,6 @@ const SignUp = () => {
                             textAlign: "left"
                         }}
                     >
-                        <strong style={{ color: "gray" }}>Strength: </strong>
                         <Chip
                             label={passStrength.display}
                             color={passStrength.strength}
@@ -267,7 +262,7 @@ const SignUp = () => {
                     sx={{
                         m: 1,
                         marginTop: "25px",
-                        width: '80%',
+                        width: '95%',
                     }}
                 >
                     <InputLabel
@@ -282,6 +277,7 @@ const SignUp = () => {
                         id="outlined-adornment-password"
                         type={showCPassword ? 'text' : 'password'}
                         value={cPassword}
+
                         onChange={cPasswordChange}
                         endAdornment={
                         <InputAdornment position="end">
@@ -300,10 +296,10 @@ const SignUp = () => {
                 </FormControl>
                 <Typography
                     style={{
-                        marginTop: "10px",
+                        marginTop: "25px",
                         color: "#2518B8",
                         fontSize: "18px",
-                        width: "80%"
+                        width: "95%"
                     }}
                     align="center"
                 >
@@ -312,16 +308,18 @@ const SignUp = () => {
                         variant="contained"
                         style={{
                           color: "white",
-                          marginLeft: "20px",
+                          // marginLeft: "20px",
                           border: "1px #2518B8 solid",
                           backgroundColor: "#2518B8",
                           textTransform: "none",
                           boxShadow: "none",
-                          padding: "5px 30px"
+                          padding: "8px 30px",
+                          width: '100%'
                         }}
+                        
                         onClick={handleSignUp}
                     >Sign up</Button>
-                    <Button
+                    {/* <Button
                         component="a"
                         href="/login"
                         variant="contained"
@@ -334,9 +332,9 @@ const SignUp = () => {
                             boxShadow: "none",
                             padding: "5px 30px"
                         }}
-                    >Login</Button>
+                    >Login</Button> */}
                 </Typography>
-                <Typography
+                {/* <Typography
                     style={{
                         marginTop: "10px",
                         color: "gray",
@@ -346,9 +344,18 @@ const SignUp = () => {
                     align="center"
                 >
                     <small>
-                        After a successful sign up, please visit your email for a confirmation email.
+                        Already have an account <a href="/login" style={{
+                          color: ""
+                        }}>Login</a>
                     </small>
-                </Typography>
+                </Typography> */}
+                <div className="sign-in-prompt">
+                  <p className="question">Already have an account?</p>
+
+                  <Link href="/login">
+                    <p className="link">Login</p>
+                  </Link>
+                </div>
             </Box>
         </Grid>
         <Grid
@@ -364,9 +371,10 @@ const SignUp = () => {
             style={{
                 backgroundColor: "white",
                 height: "100vh",
-                backgroundImage: "url('/assets/signup.jpg')",
+                backgroundImage: "url('/assets/signup.svg')",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover"
+                
             }}
         >
 
@@ -385,6 +393,33 @@ const SignUp = () => {
           .subtitle {
             text-align: center;
             color: #8c8c8c;
+          }
+          .sign-in-prompt {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 16px;
+            align-items: center;
+            margin-top: 10px
+          }
+          .sign-in-prompt .link {
+            padding-left: 8px;
+            cursor: pointer;
+            color: #2518b8;
+            
+          }
+          .sign-in-prompt .link:hover {
+            color: #01bbc8;
+            
+          }
+          .question{
+            color: #09062d;
+          }
+          @media only screen and (max-width: 600px) {
+            .logoContainer{
+
+              display: flex;
+              justify-content:center
+            }
           }
 
         `}
