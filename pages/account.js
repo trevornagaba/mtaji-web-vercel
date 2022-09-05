@@ -22,7 +22,7 @@ const Account = () => {
 
     useEffect(() => {
         checkAuth()
-    }, []);
+    }, [isLoaded]);
 
     return (
         <PageTemplate 

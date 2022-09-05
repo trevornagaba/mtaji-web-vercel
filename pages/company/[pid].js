@@ -66,6 +66,7 @@ export default function Company({ company }) {
     useEffect(()=>{
         checkAuth()
         setUser(userDetails)
+        
         // console.log(user)
     },[isLoaded])
 

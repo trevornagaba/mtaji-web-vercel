@@ -21,48 +21,71 @@ const AppContextProvider = (props) => {
         front: "",
         back: "",
     });
-    const [alerts, setAlerts]= useState("")
-    const [showModal, setShowModal]= useState(false)
-    const [showAlert, setShowAlert]= useState(false)
+    const [alerts, setAlerts] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
 
     useEffect(() => {
-        checkAuth()
+        checkAuth();
+        getCompanies();
     }, []);
 
     const checkAuth = async () => {
-        setErrors("")
+        setErrors("");
         setIsLoaded(false);
         try {
-            if(jwt_decode(localStorage.getItem("token"))) {
-                let userId = jwt_decode(localStorage.getItem("token")).userId
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`, {
-                        method: "POST",
-                        headers: {
-                            Authorization: `Bearer ${localStorage.getItem( "token")}`,
-                            "Content-Type": "Application/json",
-                        },
-                })
-                .then((result) => {
-                    setIsAuth(true)
-                    setUserDetails(result.data)
-                    getUserPortfolioDetails(userId)
-                    getCompanies()
-                    getBlogs()
-                    getFAQs()
-                })
-                .catch(error => {
-                    if(router.pathname==="/account" || router.pathname==="/home" || router.pathname==="/company"){
-                        router.push("/login");
-                    }
-                })
+            if (jwt_decode(localStorage.getItem("token"))) {
+                let userId = jwt_decode(localStorage.getItem("token")).userId;
+                const response = await axios
+                    .get(
+                        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`,
+                        {
+                            method: "POST",
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem(
+                                    "token"
+                                )}`,
+                                "Content-Type": "Application/json",
+                            },
+                        }
+                    )
+                    .then((result) => {
+                        setIsAuth(true);
+                        setUserDetails(result.data);
+                        getUserPortfolioDetails(userId);
+
+                        getBlogs();
+                        getFAQs();
+                    })
+                    .catch((error) => {
+                        const pid = router?.query?.pid;
+                        console.log(pid);
+                        if (
+                            router.pathname === "/account" ||
+                            router.pathname === "/home"
+                        ) {
+                            router.push("/login");
+                        } else if (router.pathname === `/company/${pid}`) {
+                            router.push("/signup");
+                        }
+                    });
+            }
+        } catch (err) {
+            console.log(err);
+            const pid = router?.query?.pid;
+            console.log(pid);
+            console.log(router.pathname)
+            if (
+                router.pathname === "/account" ||
+                router.pathname === "/home" ||
+                router.pathname === "/company"
+            ) {
+                router.push("/login");
+            } else if (router.pathname === `/company/[pid]`) {
+                router.push("/signup");
             }
         }
-        catch(err){
-            if(router.pathname==="/account" || router.pathname==="/home" || router.pathname==="/company"){
-                router.push("/login");
-            }
-        }        
-        setIsLoaded(true)
+        setIsLoaded(true);
     };
 
     // const handleSignUp = async (e) => {
@@ -70,7 +93,7 @@ const AppContextProvider = (props) => {
     //   setSending(true)
     //   setError(false)
     //   setActionMsg("")
-      
+
     //   if(password===cPassword) {
     //     setError(false)
     //     setActionMsg("")
@@ -95,7 +118,7 @@ const AppContextProvider = (props) => {
     //   }
     //   setSending(false)
     // }
-  
+
     // const handleSubmit = async (e) => {
     //   e.preventDefault();
     //   let validData = verifyUserData();
@@ -105,56 +128,55 @@ const AppContextProvider = (props) => {
     // };
 
     const handleLogin = async (userData) => {
-        setErrors("")        
+        setErrors("");
         const response = await axios
             .post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/json",
                 },
-                email: userData.email, 
-                password: userData.password
-            }            
-        )
-        .then((result) => {  
-            if(result.data) {
-                localStorage.setItem("token", result.data.token);
-                setIsAuth(true);
-                setIsLoaded(true);
-                router.push("/home");
-            } else {
-                return result;
-            }
-        })
-        .catch((error) => {
-            setErrors(error.response.data.message)
-        })
+                email: userData.email,
+                password: userData.password,
+            })
+            .then((result) => {
+                if (result.data) {
+                    localStorage.setItem("token", result.data.token);
+                    setIsAuth(true);
+                    setIsLoaded(true);
+                    router.push("/home");
+                } else {
+                    return result;
+                }
+            })
+            .catch((error) => {
+                setErrors(error.response.data.message);
+            });
     };
 
     const VerifyEmail = async (userData) => {
-        
         const response = await axios
-            .post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/verify-email`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "Application/json",
-                },
-                email: userData.email
-            }            
-        )
-        .then(() => {
-            return true
-        })
-        .catch(() => {
-            return false
-        })
-        
-    }
+            .post(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/verify-email`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "Application/json",
+                    },
+                    email: userData.email,
+                }
+            )
+            .then(() => {
+                return true;
+            })
+            .catch(() => {
+                return false;
+            });
+    };
 
     const handleLogout = () => {
         localStorage.removeItem("token");
         setIsAuth(false);
-        router.push("/login");        
+        router.push("/login");
     };
 
     const getCompany = async (companyId) => {
@@ -170,15 +192,15 @@ const AppContextProvider = (props) => {
             })
             .catch((error) => {
                 setErrors(error);
-                console.log(error)
+                console.log(error);
                 // setIsLoaded(false);
             });
     };
 
     const getUserPortfolioDetails = async () => {
         // setIsLoaded(false)
-        if(jwt_decode(localStorage.getItem("token"))) {
-            let userId = jwt_decode(localStorage.getItem("token")).userId
+        if (jwt_decode(localStorage.getItem("token"))) {
+            let userId = jwt_decode(localStorage.getItem("token")).userId;
             const response = await axios
                 .get(
                     `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/portfolio/user/${userId}`,
@@ -202,7 +224,7 @@ const AppContextProvider = (props) => {
                     console.log(`error: ${error}`);
                     setErrors(error);
                     // setUserPortfolioDetails("$");
-                })
+                });
         }
         // setIsLoaded(true)
     };
@@ -236,7 +258,7 @@ const AppContextProvider = (props) => {
                 setErrors(error);
                 // setIsLoaded(true);
             });
-    };   
+    };
 
     return (
         <AppContext.Provider
@@ -266,7 +288,7 @@ const AppContextProvider = (props) => {
                 showModal,
                 setShowModal,
                 showAlert,
-                setShowAlert
+                setShowAlert,
             }}
         >
             {props.children}
