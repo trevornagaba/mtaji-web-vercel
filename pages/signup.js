@@ -182,8 +182,8 @@ const SignUp = () => {
                     }}
                     align="left"
                 >
-                  <p className="title">Welcome! Let&apos;s get you started</p>
-                  <p className="subtitle">Fill in your details to get started</p>
+                  <span className="title">Welcome! Let&apos;s get you started</span>
+                  <span className="subtitle">Fill in your details to get started</span>
                 </Typography>
                 {sending?<LinearProgress color="inherit" style={{ width: "80%", marginBottom: "40px" }}/>:""}
                 {sent?
