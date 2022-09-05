@@ -21,38 +21,46 @@ const AppContextProvider = (props) => {
         front: "",
         back: "",
     });
-    const [alerts, setAlerts]= useState("")
+    const [alert, setAlert]= useState("")
     const [showModal, setShowModal]= useState(false)
     const [showAlert, setShowAlert]= useState(false)
 
     useEffect(() => {
         checkAuth()
-        getCompanies()
-        getBlogs()
-        getFAQs()
     }, []);
 
     const checkAuth = async () => {
         setErrors("")
-       setIsLoaded(false);
+        setIsLoaded(false);
         try {
-            if(jwt_decode(localStorage.getItem("token"))){
-                setUserDetails(await jwt_decode(localStorage.getItem("token")))
+            let userId = await jwt_decode(localStorage.getItem("token")).userId
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`, {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem( "token")}`,
+                        "Content-Type": "Application/json",
+                    },
+            })
+            .then((result) => {
                 setIsAuth(true)
-                setIsLoaded(true)
-                getUserPortfolioDetails()
-                if(router.pathname==="/login"){
-                    router.push("/home");
+                setUserDetails(result.data)
+                getUserPortfolioDetails(userId)
+                getCompanies()
+                getBlogs()
+                getFAQs()
+            })
+            .catch(error => {
+                if(router.pathname==="/account" || router.pathname==="/home" || router.pathname==="/company"){
+                    router.push("/login");
                 }
-            }
+            })
         }
         catch(err){
             if(router.pathname==="/account" || router.pathname==="/home" || router.pathname==="/company"){
-                setIsLoaded(true)
-                setIsAuth(false)
                 router.push("/login");
             }
-        }
+        }        
+        setIsLoaded(true)
     };
 
     // const handleSignUp = async (e) => {
@@ -111,7 +119,6 @@ const AppContextProvider = (props) => {
                 localStorage.setItem("token", result.data.token);
                 setIsAuth(true);
                 setIsLoaded(true);
-
                 router.push("/home");
             } else {
                 return result;
@@ -167,11 +174,11 @@ const AppContextProvider = (props) => {
             });
     };
 
-    const getUserPortfolioDetails = async () => {
-        //setIsLoaded(false);
+    const getUserPortfolioDetails = async (userID) => {
+        // setIsLoaded(false)
         const response = await axios
             .get(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/portfolio/user/${userDetails["userId"]}`,
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/portfolio/user/${userID}`,
                 {
                     method: "POST",
                     headers: {
@@ -186,44 +193,44 @@ const AppContextProvider = (props) => {
                 //console.log(result.data);
                 // TO-DO: Update after sorting out auth
                 setUserPortfolioDetails(result.data);
-                setIsLoaded(true);
+                // setIsLoaded(true);
             })
             .catch((error) => {
                 console.log(`error: ${error}`);
                 setErrors(error);
-                setIsLoaded(false);
                 // setUserPortfolioDetails("$");
             });
+        // setIsLoaded(true)
     };
 
     // console.log(userDetails["email"]);
     // console.log(userPortfolioDetails);
 
     const getBlogs = async () => {
-        setIsLoaded(false);
+        // setIsLoaded(false);
         const response = await axios
             .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/blogs`)
             .then((result) => {
                 setBlogs(result.data);
-                setIsLoaded(true);
+                // setIsLoaded(true);
             })
             .catch((error) => {
                 setErrors(error);
-                setIsLoaded(true);
+                // setIsLoaded(true);
             });
     };
 
     const getFAQs = async () => {
-        setIsLoaded(false);
+        // setIsLoaded(false);
         const response = await axios
             .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/faqs`)
             .then((result) => {
                 setFaqs(result.data);
-                setIsLoaded(true);
+                // setIsLoaded(true);
             })
             .catch((error) => {
                 setErrors(error);
-                setIsLoaded(true);
+                // setIsLoaded(true);
             });
     };   
 
@@ -250,8 +257,8 @@ const AppContextProvider = (props) => {
                 getUserPortfolioDetails,
                 kycForm,
                 setKycForm,
-                alerts,
-                setAlerts,
+                alert,
+                setAlert,
                 showModal,
                 setShowModal,
                 showAlert,

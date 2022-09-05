@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import jwt_decode from "jwt-decode";
 import TextInput from "../TextInput/TextInput";
 import styles from "../../styles/Form.module.css";
 import Button from "../Button/Button";
@@ -10,7 +11,18 @@ import useSetAlert  from "../../hooks/useSetAlert";
 import { AppContext } from "../AppContext";
 
 const AccountForm = () => {
-    const {setAlert} =  useSetAlert()
+
+    const {
+        checkAuth,
+        showModal,
+        setShowModal,
+        showAlert,
+        alert,
+        setAlert,
+        userDetails,
+        setUserDetails
+    } = useContext(AppContext);
+
     const [openModal, setOpenModal] = useState(false);
     const [data, setData] = useState({
         firstName: "",
@@ -24,16 +36,14 @@ const AccountForm = () => {
     const [image, setImage] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [src, setSrc] = useState(false);
-    const { showModal, setShowModal, showAlert, userDetails, setUserDetails } =
-        useContext(AppContext);
 
-        useEffect(() => {
-            setData(userDetails);
-        }, [userDetails]);
+    useEffect(() => {
+        setData(userDetails);
+    }, [userDetails]);
     
-        
-        const onClickProfileImage = () => {
-            return setShowModal(true);
+
+    const onClickProfileImage = () => {
+        return setOpenModal(!openModal);
     };
     const handleChange = (e) => {
         e.preventDefault();
@@ -92,10 +102,8 @@ const AccountForm = () => {
                             console.log(res);
                             console.log("updated user doc");
                             setSending(false);
-                            // setShowModal(false)
-                            setSrc('')
-                            setImage('')
-                            setAlert("success", "Upload Success","Profile Image Upload Successful")
+                            setOpenModal(false)
+                            
                         })
                         .catch((e) => {
                             console.log(e);
@@ -131,7 +139,8 @@ const AccountForm = () => {
             });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        let userId = await jwt_decode(localStorage.getItem("token")).userId
         setSending(true);
         const token = getToken();
         let config = {
@@ -140,18 +149,16 @@ const AccountForm = () => {
                 "Content-Type": "Application/json",
             },
         };
-        axios
+        await axios
             .patch(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userDetails.userId}`,
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`,
                 data,
                 config
             )
             .then((res) => {
-                console.log(res);
                 setSending(false);
-                console.log(userDetails)
-                console.log(res.userDetails)
-                setUserDetails(res.data.userDetails)
+                setData(res.userDetails);
+                checkAuth();
                 setAlert("success", "Update successful", "User update Successful")
             })
             .catch((e) => {
@@ -195,7 +202,7 @@ const AccountForm = () => {
                         </Button>
                     </div>
                 </div>
-            </Modal>: showAlert ? <Modal/> : ''}
+            </Modal>: showAlert ? <Modal openModal={openModal}/> : ''}
             <div className={styles.profile}>
                 <ProfileImg
                     hasEdit={true}

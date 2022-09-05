@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AppContext } from "../components/AppContext";
+import jwt_decode from "jwt-decode";
 import AccountForm from "../components/Forms/AccountForm";
 import KycForm from "../components/Forms/KycForm";
 import SecurityForm from "../components/Forms/SecurityForm";
 import Modal from "../components/ModalComponent";
 import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/account.module.css";
+
+import { AppContext } from "../components/AppContext";
+
 
 const tabs = ["Account", "KYC", "Security"];
 const Account = () => {
@@ -16,11 +19,11 @@ const Account = () => {
     const onClickTab = (tab) => {
         setSelectedTab(tab);
     };
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         checkAuth()
-        setUser(userDetails)
-    },[isLoaded])
+    }, []);
+
     return (
         <PageTemplate 
         hasNavbar={true} 
@@ -49,7 +52,7 @@ const Account = () => {
                 </div>
                 <div className={styles.tabContent}>
                     {selectedTab == 'Account' ?
-                    <AccountForm userDetails={user}/> : selectedTab == 'KYC' ? <KycForm userId={user.userId}/> : <SecurityForm userId={user.userId}/> 
+                    <AccountForm/> : selectedTab == 'KYC' ? <KycForm userId={userDetails.userId}/> : <SecurityForm userId={userDetails.userId}/> 
                     }
                 </div>
             </div>

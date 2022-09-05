@@ -3,9 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-import HomeLogo from "../components/HomeLogo";
-import TextInput from "../components/TextInput/TextInput";
-
 // NEW IMPORTS
 import Image from "next/image";
 import {
@@ -106,15 +103,7 @@ const SignUp = () => {
     }
     setSending(false)
   }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let validData = verifyUserData();
-    if (validData) {
-      handleSignUp();
-    }
-  };
-
+  
   return (
     <>
       <Grid
@@ -180,9 +169,9 @@ const SignUp = () => {
                         fontWeight: "400",
                         padding: "40px 10%",
                     }}
-                    align="left"
+                    align="center"
                 >
-                  <span className="title">Welcome! Let&apos;s get you started</span>
+                  <span className="title">Welcome! Let&apos;s get you started</span><br/>
                   <span className="subtitle">Fill in your details to get started</span>
                 </Typography>
                 {sending?<LinearProgress color="inherit" style={{ width: "80%", marginBottom: "40px" }}/>:""}
@@ -284,7 +273,7 @@ const SignUp = () => {
                     <InputLabel
                         htmlFor="outlined-adornment-password"
                         style={{
-                            color: password===cPassword?"gray":"red"
+                            color: password===cPassword?"gray":cPassword===""?"gray":"red"
                         }}
                     >
                         Confirm Password
@@ -306,7 +295,7 @@ const SignUp = () => {
                         </InputAdornment>
                         }
                         label="Confirm Password"                           
-                        error={password!==cPassword}
+                        error={password!==cPassword&&cPassword!==""}
                     />
                 </FormControl>
                 <Typography
