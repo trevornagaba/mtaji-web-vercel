@@ -33,27 +33,29 @@ const AppContextProvider = (props) => {
         setErrors("")
         setIsLoaded(false);
         try {
-            let userId = await jwt_decode(localStorage.getItem("token")).userId
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`, {
-                    method: "POST",
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem( "token")}`,
-                        "Content-Type": "Application/json",
-                    },
-            })
-            .then((result) => {
-                setIsAuth(true)
-                setUserDetails(result.data)
-                getUserPortfolioDetails(userId)
-                getCompanies()
-                getBlogs()
-                getFAQs()
-            })
-            .catch(error => {
-                if(router.pathname==="/account" || router.pathname==="/home" || router.pathname==="/company"){
-                    router.push("/login");
-                }
-            })
+            if(jwt_decode(localStorage.getItem("token"))) {
+                let userId = jwt_decode(localStorage.getItem("token")).userId
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`, {
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem( "token")}`,
+                            "Content-Type": "Application/json",
+                        },
+                })
+                .then((result) => {
+                    setIsAuth(true)
+                    setUserDetails(result.data)
+                    getUserPortfolioDetails(userId)
+                    getCompanies()
+                    getBlogs()
+                    getFAQs()
+                })
+                .catch(error => {
+                    if(router.pathname==="/account" || router.pathname==="/home" || router.pathname==="/company"){
+                        router.push("/login");
+                    }
+                })
+            }
         }
         catch(err){
             if(router.pathname==="/account" || router.pathname==="/home" || router.pathname==="/company"){
@@ -152,8 +154,7 @@ const AppContextProvider = (props) => {
     const handleLogout = () => {
         localStorage.removeItem("token");
         setIsAuth(false);
-        router.push("/login");
-        
+        router.push("/login");        
     };
 
     const getCompany = async (companyId) => {
@@ -174,32 +175,35 @@ const AppContextProvider = (props) => {
             });
     };
 
-    const getUserPortfolioDetails = async (userID) => {
+    const getUserPortfolioDetails = async () => {
         // setIsLoaded(false)
-        const response = await axios
-            .get(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/portfolio/user/${userID}`,
-                {
-                    method: "POST",
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                        "Content-Type": "Application/json",
-                    },
-                }
-            )
-            .then((result) => {
-                //console.log(result.data);
-                // TO-DO: Update after sorting out auth
-                setUserPortfolioDetails(result.data);
-                // setIsLoaded(true);
-            })
-            .catch((error) => {
-                console.log(`error: ${error}`);
-                setErrors(error);
-                // setUserPortfolioDetails("$");
-            });
+        if(jwt_decode(localStorage.getItem("token"))) {
+            let userId = jwt_decode(localStorage.getItem("token")).userId
+            const response = await axios
+                .get(
+                    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/portfolio/user/${userId}`,
+                    {
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem(
+                                "token"
+                            )}`,
+                            "Content-Type": "Application/json",
+                        },
+                    }
+                )
+                .then((result) => {
+                    //console.log(result.data);
+                    // TO-DO: Update after sorting out auth
+                    setUserPortfolioDetails(result.data);
+                    // setIsLoaded(true);
+                })
+                .catch((error) => {
+                    console.log(`error: ${error}`);
+                    setErrors(error);
+                    // setUserPortfolioDetails("$");
+                })
+        }
         // setIsLoaded(true)
     };
 
