@@ -11,7 +11,7 @@ const passwordStrength = (password) => {
     if(password.length === 0) {
         result = "Password field empty";
     } else if (enoughRegex.test(password) === false) {
-        result = "More Characters";
+        result = "Need More Characters";
         strength = "error";
     } else if (strongRegex.test(password)) {
         result = "Strong!";

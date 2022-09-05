@@ -77,30 +77,34 @@ const SignUp = () => {
     setSending(true)
     setError(false)
     setActionMsg("")
-    
-    if(password===cPassword) {
-      setError(false)
-      setActionMsg("")
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`,
-        {
-          email: email,
-          password: password,
+    if(emailState.emailStatus != 'error'){
+      if(password===cPassword) {
+        if(passStrength.strength !='error'){
+          setError(false)
+          setActionMsg("")
+          const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`,
+            {
+              email: email,
+              password: password,
+            }
+          )
+          .then((result) => {
+            setSent(true)
+            setActionMsg(result.data.message)
+          })
+          .catch(error => {
+            setError(true)
+            setActionMsg(error.response.data.message);
+          })
         }
-      )
-      .then((result) => {
-        setSent(true)
-        setActionMsg(result.data.message)
-      })
-      .catch(error => {
+      } else {
         setError(true)
-        setActionMsg(error.response.data.message);
-      })
-    } else {
-      setError(true)
-      setActionMsg("Passwords do not match!")
-      if(cPassword===""){ setActionMsg("Please confirm your password") }
-      if(password===""){ setActionMsg("Please add a new password") }
+        setActionMsg("Passwords do not match!")
+        if(cPassword===""){ setActionMsg("Please confirm your password") }
+        if(password===""){ setActionMsg("Please add a new password") }
+      }
+
     }
     setSending(false)
   }
@@ -122,11 +126,14 @@ const SignUp = () => {
                 backgroundColor: "#ffffff",
                 padding: "0 5vw",
                 paddingBottom: "5%",
-                marginTop: "30px"
+                marginTop: "30px",
+                maxHeight: '100vh',
+                
             }}
+            
             align={"center"}
         >
-            
+          <div className="formContent" style={{height: '100%', overflow: 'auto'}}>
             <span
                 style={{
                     width: "100%",
@@ -314,7 +321,9 @@ const SignUp = () => {
                           textTransform: "none",
                           boxShadow: "none",
                           padding: "8px 30px",
-                          width: '100%'
+                          width: '100%',
+                          fontFamily:'Poppins',
+                                    fontSize: '16px'
                         }}
                         
                         onClick={handleSignUp}
@@ -357,6 +366,9 @@ const SignUp = () => {
                   </Link>
                 </div>
             </Box>
+
+          </div>
+            
         </Grid>
         <Grid
             item
@@ -421,6 +433,19 @@ const SignUp = () => {
               justify-content:center
             }
           }
+          .formContent::-webkit-scrollbar {
+            width: 4px;
+        }
+         
+        .formContent::-webkit-scrollbar-track {
+            background-color: #ffffff;
+            border-radius: 100px;
+        }
+         
+        .formContent::-webkit-scrollbar-thumb {
+            background-color: #ffffff;
+            border-radius: 100px;
+        }
 
         `}
       </style>
