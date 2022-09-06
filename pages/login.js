@@ -174,6 +174,7 @@ export default function Login() {
                 })
                 .catch((error) => {
                     setError(true);
+                    console.log(error)
                     setActionMsg(error.response.data.message);
                 });
         }
@@ -205,9 +206,9 @@ export default function Login() {
                         }}
                         className="logoContainer"
                     >
-                        <a href="/">
+                        <Link href="/">
                             <Logo />
-                        </a>
+                        </Link>
                     </span>
                     <Box
                         style={{
@@ -250,7 +251,7 @@ export default function Login() {
                             <Alert
                                 severity="success"
                                 style={{
-                                    width: "80%",
+                                    width: "95%",
                                     marginBottom: "15px",
                                 }}
                             >
@@ -260,7 +261,7 @@ export default function Login() {
                             <Alert
                                 severity="error"
                                 style={{
-                                    width: "80%",
+                                    width: "95%",
                                     marginBottom: "15px",
                                 }}
                             >

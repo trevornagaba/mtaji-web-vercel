@@ -38,11 +38,12 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 const Landing = () => {
     const { isLoaded, checkAuth, companies } = useContext(AppContext);
 
+
     useEffect(() => {
         checkAuth();
         console.log(companies);
     }, []);
-    console.log(companies);
+    // console.log(companies);
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -266,7 +267,8 @@ const Landing = () => {
                         </p>
                         <div className={styles.underline2} />
                     </Grid>
-                    {companies?.map((company, index) => (
+                    {companies?.map((company, index) => {
+                        return company.isRaising == "true" ?(
                         <Grid
                             key={index}
                             item
@@ -364,7 +366,7 @@ const Landing = () => {
                                 </Box>
                             </a>
                         </Grid>
-                    ))}
+                    ): ''})}
                 </Grid>
             ) : (
                 ""
