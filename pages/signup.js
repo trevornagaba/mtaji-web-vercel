@@ -127,23 +127,25 @@ const SignUp = () => {
                 padding: "0 5vw",
                 paddingBottom: "5%",
                 marginTop: "30px",
-                maxHeight: '100vh',
+                maxHeight: '95vh',
+                overflow: 'hidden',
+                position: 'relative'
                 
             }}
             
             align={"center"}
         >
-          <div className="formContent" style={{height: '100%', overflow: 'auto'}}>
+          <div className="formContent" style={{height: '100%', overflow: 'auto', zIndex: 2}}>
             <span
                 style={{
                     width: "100%",
                 }}
                 className="logoContainer"
             >
-              <a href="/">
+              <Link href="/">
                 <Logo/>
 
-              </a>
+              </Link>
                 {/* <span
                     className={navStyles.appName}
                     style={{
@@ -366,9 +368,9 @@ const SignUp = () => {
                   </Link>
                 </div>
             </Box>
-
+                
           </div>
-            
+          <img src="/assets/signin2.svg" style={{height:'80px', position: 'absolute', bottom: 0, left: -10, zIndex: 0}} />
         </Grid>
         <Grid
             item
@@ -385,11 +387,12 @@ const SignUp = () => {
                 height: "100vh",
                 backgroundImage: "url('/assets/signup.svg')",
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "cover"
+                backgroundSize: "cover",
+                position:'relative'
                 
             }}
         >
-
+          <img src="/assets/signin.svg" style={{height:'80px', position: 'absolute', bottom: 50, left: -40}} />
         </Grid>
       </Grid>
       <style jsx>

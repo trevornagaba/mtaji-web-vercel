@@ -319,9 +319,9 @@ export default function Login() {
                                 label="Password"
                             />
 
-                            <a href="/verify-email" className="password-reset">
+                            <Link href="/verify-email" className="password-reset">
                                 Forgot password?
-                            </a>
+                            </Link>
 
                             <FormHelperText
                                 id="outlined-weight-helper-text"
@@ -376,6 +376,7 @@ export default function Login() {
                             </div>
                         </Typography>
                     </Box>
+                    <img src="/assets/signin2.svg" style={{height:'80px', position: 'absolute', bottom: 0, left: -10}} />
                 </Grid>
                 <Grid
                     item
@@ -398,8 +399,11 @@ export default function Login() {
                         backgroundImage: "url('/assets/login.svg')",
                         backgroundRepeat: "no-repeat",
                         backgroundSize: "cover",
+                        position: 'relative'
                     }}
-                ></Grid>
+                >
+                    <img src="/assets/signin.svg" style={{height:'80px', position: 'absolute', bottom: 50, left: -40}} />
+                </Grid>
             </Grid>
             <style jsx>
                 {`
