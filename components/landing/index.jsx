@@ -125,7 +125,7 @@ const Landing = () => {
                         >Get started</Button>
                         <Button
                             component="a"
-                            href="/invest"
+                            href="https://forms.gle/6B9qZWfFKASvbu289"
                             variant="outlined"
                             style={{ border: "1px #01BBC8 solid", color: "#01BBC8", textTransform: 'none', height: "40px" }}
                         >Raise funds</Button>
