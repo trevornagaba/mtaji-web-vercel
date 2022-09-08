@@ -13,7 +13,7 @@ const SubscribeCard = () => {
     const {setAlert} = useSetAlert()
     const {showAlert} = useContext(AppContext)
     const handleChange = (e) => {
-        console.log(formData);
+        // console.log(formData);
         e.preventDefault();
         const { value } = e.target;
         setFormData({ email: value });
@@ -25,7 +25,7 @@ const SubscribeCard = () => {
                 formData,
             })
             .then((res) => setAlert("success", "Added to Mail list", "You won't miss out on important investment updates"))
-            .catch((e) => console.log("error"))
+            .catch((e) => {})
         : setAlert("warning", "Empty email", "You need to enter your email addres")
     };
     return (

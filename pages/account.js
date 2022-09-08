@@ -21,7 +21,7 @@ const Account = () => {
     };
 
     useEffect(() => {
-        checkAuth()
+        // checkAuth()
     }, [isLoaded]);
 
     return (

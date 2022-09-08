@@ -113,6 +113,10 @@ const SignUp = () => {
     <>
       <Grid
       container
+      style={{
+        overflow: "hidden",
+        height: '100vh'
+      }}
       >
         <Grid
             item

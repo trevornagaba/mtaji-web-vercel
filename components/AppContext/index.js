@@ -26,6 +26,7 @@ const AppContextProvider = (props) => {
     const [showAlert, setShowAlert] = useState(false);
 
     useEffect(() => {
+        
         checkAuth();
         getCompanies();
     }, []);
@@ -33,6 +34,7 @@ const AppContextProvider = (props) => {
     const checkAuth = async () => {
         setErrors("");
         setIsLoaded(false);
+        
         try {
             if (jwt_decode(localStorage.getItem("token"))) {
                 let userId = jwt_decode(localStorage.getItem("token")).userId;
@@ -53,13 +55,13 @@ const AppContextProvider = (props) => {
                         setIsAuth(true);
                         setUserDetails(result.data);
                         getUserPortfolioDetails(userId);
-
+                        
                         getBlogs();
                         getFAQs();
                     })
                     .catch((error) => {
                         const pid = router?.query?.pid;
-                        console.log(pid);
+                        
                         if (
                             router.pathname === "/account" ||
                             router.pathname === "/home"
@@ -71,10 +73,9 @@ const AppContextProvider = (props) => {
                     });
             }
         } catch (err) {
-            console.log(err);
+            
             const pid = router?.query?.pid;
-            console.log(pid);
-            console.log(router.pathname)
+            
             if (
                 router.pathname === "/account" ||
                 router.pathname === "/home" ||
@@ -192,7 +193,7 @@ const AppContextProvider = (props) => {
             })
             .catch((error) => {
                 setErrors(error);
-                console.log(error);
+                // console.log(error);
                 // setIsLoaded(false);
             });
     };
@@ -221,7 +222,7 @@ const AppContextProvider = (props) => {
                     // setIsLoaded(true);
                 })
                 .catch((error) => {
-                    console.log(`error: ${error}`);
+                    // console.log(`error: ${error}`);
                     setErrors(error);
                     // setUserPortfolioDetails("$");
                 });

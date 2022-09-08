@@ -41,7 +41,7 @@ const Landing = () => {
 
     useEffect(() => {
         checkAuth();
-        console.log(companies);
+        // console.log(companies);
     }, []);
     // console.log(companies);
 

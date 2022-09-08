@@ -174,7 +174,7 @@ export default function Login() {
                 })
                 .catch((error) => {
                     setError(true);
-                    console.log(error)
+                    // console.log(error);
                     setActionMsg(error.response.data.message);
                 });
         }
@@ -183,7 +183,13 @@ export default function Login() {
 
     return (
         <>
-            <Grid container>
+            <Grid
+                container
+                style={{
+                    overflow: "hidden",
+                    height: "100vh",
+                }}
+            >
                 <Grid
                     item
                     xs={12}
@@ -196,7 +202,10 @@ export default function Login() {
                         backgroundColor: "#ffffff",
                         padding: "0 5vw",
                         paddingBottom: "5%",
-                        marginTop: '30px'
+                        marginTop: "30px",
+                        maxHeight: "95vh",
+                        overflow: "hidden",
+                        position: "relative",
                     }}
                     align={"center"}
                 >
@@ -319,7 +328,10 @@ export default function Login() {
                                 label="Password"
                             />
 
-                            <Link href="/verify-email" className="password-reset">
+                            <Link
+                                href="/verify-email"
+                                className="password-reset"
+                            >
                                 Forgot password?
                             </Link>
 
@@ -376,7 +388,15 @@ export default function Login() {
                             </div>
                         </Typography>
                     </Box>
-                    <img src="/assets/signin2.svg" style={{height:'80px', position: 'absolute', bottom: 0, left: -10}} />
+                    <img
+                        src="/assets/signin2.svg"
+                        style={{
+                            height: "80px",
+                            position: "absolute",
+                            bottom: 0,
+                            left: -10,
+                        }}
+                    />
                 </Grid>
                 <Grid
                     item
@@ -399,10 +419,18 @@ export default function Login() {
                         backgroundImage: "url('/assets/login.svg')",
                         backgroundRepeat: "no-repeat",
                         backgroundSize: "cover",
-                        position: 'relative'
+                        position: "relative",
                     }}
                 >
-                    <img src="/assets/signin.svg" style={{height:'80px', position: 'absolute', bottom: 50, left: -40}} />
+                    <img
+                        src="/assets/signin.svg"
+                        style={{
+                            height: "80px",
+                            position: "absolute",
+                            bottom: 50,
+                            left: -40,
+                        }}
+                    />
                 </Grid>
             </Grid>
             <style jsx>
@@ -441,11 +469,10 @@ export default function Login() {
                         color: #01bbc8;
                     }
                     @media only screen and (max-width: 600px) {
-                      .logoContainer{
-          
-                        display: flex;
-                        justify-content:center
-                      }
+                        .logoContainer {
+                            display: flex;
+                            justify-content: center;
+                        }
                     }
                 `}
             </style>

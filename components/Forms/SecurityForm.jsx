@@ -29,8 +29,8 @@ const SecurityForm = ({userId}) => {
         )
     }
     const handleSubmit =()=>{
-        console.log(userId)
-        console.log(data[0])
+        // console.log(userId)
+        // console.log(data[0])
         if (data.password != data.cpassword){
             return setAlert("warning", "passwords are not equal")
         }
@@ -47,10 +47,11 @@ const SecurityForm = ({userId}) => {
         config).then((res)=>{
             
             setSending(false)
-            res && res.status == 204 ? setAlert("success", "Update Successful","Update Password Successful"): setAlert("warning", "Update Unsuccessful","Update Password Unsuccessful")
+            res && res.status == 200 ? setAlert("success", "Update Successful","Update Password Successful"): setAlert("warning", "Update Unsuccessful","Update Password Unsuccessful")
         }
         ).catch(e=>{
             setSending(false)
+            // console.log(e)
             setAlert("warning","Update Error", "An error occurred")
         })
     }

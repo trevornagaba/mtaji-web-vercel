@@ -64,11 +64,11 @@ export default function Company({ company }) {
     ]);
 
     useEffect(()=>{
-        checkAuth()
+        // checkAuth()
         setUser(userDetails)
         
         // console.log(user)
-    },[])
+    },[userDetails])
 
     // Setup state management for Investment modal
     const [isOpen, setIsOpen] = useState(false);
@@ -110,7 +110,7 @@ export default function Company({ company }) {
                 responseType: "blob",
             })
             .then((res) => {
-                console.log(res);
+                // console.log(res);
 
                 const url = window.URL.createObjectURL(
                     new Blob([res.data], {
