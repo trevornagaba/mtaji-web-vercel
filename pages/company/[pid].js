@@ -68,7 +68,7 @@ export default function Company({ company }) {
         setUser(userDetails)
         
         // console.log(user)
-    },[userDetails])
+    },[isLoaded])
 
     // Setup state management for Investment modal
     const [isOpen, setIsOpen] = useState(false);
