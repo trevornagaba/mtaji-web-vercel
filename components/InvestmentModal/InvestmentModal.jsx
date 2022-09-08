@@ -136,7 +136,7 @@ export default function InvestmentModal({
     };
 
     useEffect(() => {
-        checkAuth();
+        // checkAuth();
         setUser(userDetails);
     }, [isLoaded, isSuccessful]);
 
