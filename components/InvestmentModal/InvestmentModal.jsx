@@ -61,7 +61,7 @@ export default function InvestmentModal({
     const closeSuccessModal = () => {
         setIsSuccessful(false);
         setTimeout(() => {
-            console.log(isSuccessful);
+            // console.log(isSuccessful);
         }, 5000);
     };
 
@@ -116,7 +116,7 @@ export default function InvestmentModal({
                     // setAlert("success", "Congratulations! You made a simple boss move")
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    // console.log(error);
                     openErrorModal();
                     setAlert(
                         "warning",
@@ -136,7 +136,7 @@ export default function InvestmentModal({
     };
 
     useEffect(() => {
-        checkAuth();
+        // checkAuth();
         setUser(userDetails);
     }, [isLoaded, isSuccessful]);
 

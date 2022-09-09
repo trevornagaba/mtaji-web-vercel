@@ -66,10 +66,10 @@ const UserCard = () => {
               >
                 <MenuItem
                     component="a"
-                    href="/home"
-                >Portifolio</MenuItem>
-                <MenuItem onClick={handleClose}>Settings</MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                    href="/about"
+                >About</MenuItem>
+                <MenuItem component="a" href="/account">Account</MenuItem>
+                <MenuItem onClick={handleLogout} >Logout</MenuItem>
               </Menu>
 
         </Badge>
