@@ -10,9 +10,20 @@ import {
     TextField,
     Button,
     LinearProgress,
-    Alert
+    Alert,
+    FormControl,
+    InputLabel,
+    OutlinedInput,
+    InputAdornment,
+    FormHelperText,
+    IconButton,
+    Chip
 } from "@mui/material";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import navStyles from "../../components/Header/Header.module.css";
+
+import passwordStrength from "../../utils/passwordStrength"
 
 const PassReset = () => {
 
@@ -23,17 +34,33 @@ const PassReset = () => {
     const [sent, setSent] = useState(false)
     const [sending, setSending] = useState(false)
     const [password, setPassword] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
+    const [passStrength, setPassStrength] = useState({
+        strength: "default",
+        display: "Password field empty"
+    })
     const [cPassword, setCPassword] = useState("")
+    const [showCPassword, setShowCPassword] = useState(false)
     const [error, setError] = useState(false)
     const [actionMsg, setActionMsg] = useState("")
 
     const passwordChange = (e) => {
         setPassword(e.target.value)
+        setPassStrength(passwordStrength(e.target.value))
     }
 
     const cPasswordChange = (e) => {
         setCPassword(e.target.value)
     }
+
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleClickShowCPassword = () => {
+        setShowCPassword(!showCPassword);
+    };
+
 
     const handlePassword = async () => {
         setSent(false)
@@ -66,7 +93,6 @@ const PassReset = () => {
         setSending(false)
     }
 
-
     return (
         <Grid
          container
@@ -79,67 +105,75 @@ const PassReset = () => {
                 lg={6}
                 xl={6}
                 style={{
-                    backgroundColor: "#2518B8",
-                    height: "100vh",
-                    padding: "8% 8vw",
+                    width: "100%",
+                    backgroundColor: "#fffff",
+                    padding: "0 5vw",
+                    paddingBottom: "5%",
                 }}
                 align={"center"}
             >
                 
-                <Box
+                <Typography
                     component="a"
                     href="/"
                     display="inline-flex"
-                    alignItems="center"
                     style={{
-                        padding: "0 10vw"
+                        width: "100%",
+                        marginTop: "50px",
+                        alignItems: "left"
                     }}
                 >
                     <Image
                         src="/assets/logo.svg"
                         alt="logo"
-                        width={28}
-                        height={28}
+                        width={35}
+                        height={35}
                     />
                     <span
                         className={navStyles.appName}
                         style={{
-                            color: "white",
+                            color: "#2518B8",
                             fontSize: "22px",
-                            fontWeight: "350"
+                            fontWeight: "550"
                         }}
                     >mtaji</span>
-                </Box>
+                </Typography>
                 <Box
                     style={{
+                        width: "85%",
                         backgroundColor: "white",
+                        border: "1px #2518B8 solid",
                         borderRadius: "20px",
-                        marginTop: "8%",
+                        marginTop: "10%",
                         overflow: "hidden",
                         paddingBottom: "20px",
-                        color: "#2518B8"
+                        color: "#01BBC8"
                     }}
                 >
                     <Typography
                         variant="h5"
                         style={{
-                            backgroundColor: "#01bbc8",
-                            padding: "2% 0",
-                            color: "#2518B8"
+                            backgroundColor: "#2518B8",
+                            padding: "3% 0",
+                            color: "#ffffff",
+                            fontSize: '19.5px',
+                            fontFamily: "'Poppins', Courier, monospace"
                         }}
                     >
-                        Password Reset
+                        Reset Password
                     </Typography>
                     {sending?<LinearProgress color="inherit"/>:""}
                     <Typography
                         style={{
-                            marginTop: "5vh",
-                            color: "#2518B8",
-                            fontSize: "17px"
+                            color: "#000000",
+                            fontSize: "16px",
+                            fontFamily: "'Poppins', Courier, monospace",
+                            fontWeight: "400",
+                            padding: "40px 10%",
                         }}
+                        align="left"
                     >
-                        <strong style={{ fontSize: "25px" }}>Hello!,</strong><br/>
-                        Add an new password for your account<br/><br/>
+                        Please create a new password, the new password will replace your old password.
                     </Typography>
                     {sent?
                         <Alert
@@ -149,80 +183,123 @@ const PassReset = () => {
                                 marginBottom: "15px"
                             }}
                         >{actionMsg}</Alert>
-                    :""}                        
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="New Password"
-                        placeholder="************"
-                        type="password"
-                        value={password}
-                        onChange={passwordChange}
-                        style={{
-                            width: "80%",
+                    :""}
+                    <FormControl style={{ m: 1, width: '80%' }} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={password}
+                            onChange={passwordChange}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                edge="end"
+                                >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                            label="Password"
+                        />
+                        <Box
+                            style={{
+                                fontSize: "15px",
+                                padding: "10px 0",
+                                textAlign: "left"
+                            }}
+                        >
+                            <strong style={{ color: "gray" }}>Strength: </strong>
+                            <Chip
+                                label={passStrength.display}
+                                color={passStrength.strength}
+                                size="small"
+                            />                            
+                        </Box>
+                    </FormControl>
+                    <FormControl
+                        variant="outlined"
+                        sx={{
+                            m: 1,
+                            width: '80%',
                         }}
-                    />
-                        
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="Confirm Password"
-                        placeholder="************"
-                        type="password"
-                        value={cPassword}
-                        onChange={cPasswordChange}
-                        error={error}
-                        helperText={actionMsg}
-                        style={{
-                            width: "80%",
-                            marginTop: "40px"
-                        }}
-                    />
-
+                    >
+                        <InputLabel
+                            htmlFor="outlined-adornment-password"
+                            style={{
+                                color: error?"red":"gray"
+                            }}
+                        >
+                            Confirm Password
+                        </InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            type={showCPassword ? 'text' : 'password'}
+                            value={cPassword}
+                            onChange={cPasswordChange}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowCPassword}
+                                edge="end"
+                                >
+                                {showCPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                            label="Confirm Password"                           
+                            error={error}
+                        />
+                        <FormHelperText id="outlined-weight-helper-text" style={{ color: "red" }}>{actionMsg}</FormHelperText>
+                    </FormControl>
                     <Typography
                         style={{
-                            marginTop: "10px",
+                            paddingTop: "30px",
                             color: "#2518B8",
                             fontSize: "18px",
                         }}
                         align="center"
                     >
                         <Button
+                            disabled={sending}
                             variant="contained"
                             style={{
                                 backgroundColor: "#2518B8",
-                                marginTop: "20px"
+                                border: "1px #2518B8 solid",
+                                textTransform: "none",
+                                boxShadow: "none",
+                                padding: "5px 30px"
                             }}
                             onClick={handlePassword}
-                        >Reset Password</Button>
+                        >Reset</Button>
+                        <Button
+                            component="a"
+                            href="/login"
+                            variant="contained"
+                            style={{
+                                color: "#2518B8",
+                                marginLeft: "20px",
+                                border: "1px #2518B8 solid",
+                                backgroundColor: "white",
+                                textTransform: "none",
+                                boxShadow: "none",
+                                padding: "5px 30px"
+                            }}
+                        >Login</Button>
                     </Typography>
                     <Typography
                         style={{
                             marginTop: "10px",
-                            color: "#2518B8",
-                            fontSize: "17px",
-                            paddingLeft: "8%"
+                            color: "gray",
+                            fontSize: "17px"
                         }}
-                        align="left"
-                    >                     
-                        <strong>NOTE:</strong><br/>
-                        <small>
-                            This page will become invalid within after <strong>24 hours</strong>.
-                        </small>
-                    </Typography>
-                    <Typography
-                        style={{
-                            marginTop: "10px",
-                            color: "#2518B8",
-                            fontSize: "18px",
-                            paddingRight: "8%"
-                        }}
-                        align="right"
+                        align="center"
                     >
-                        <small align="right">
-                            Go to <a href={`../login`}>
-                            <Button variant="outlined" size="small" style={{ color: "#01bbc8", border: "1px #01bbc8 solid" }}>Login here</Button>
-                            </a>
+                        <small>
+                            This page will become obsolete after <strong>24 hours</strong>.
                         </small>
                     </Typography>
                 </Box>
@@ -240,7 +317,7 @@ const PassReset = () => {
                 style={{
                     backgroundColor: "white",
                     height: "100vh",
-                    backgroundImage: "url('/assets/signup.jpg')",
+                    backgroundImage: "url('/assets/password-reset.jpg')",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover"
                 }}

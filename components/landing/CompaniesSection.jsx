@@ -115,9 +115,12 @@ const CompaniesSection = ({companies}) => {
                     </p>
                     <div className={styles.underline2} />
                 </Grid>
-                {companies?.map((company, index) => (
-                    <CompanyCard key={index} company={company} />
-                ))}
+                {companies?.map((company, index) => 
+                    {
+                        company?.isRaising === "true"?
+                        (<CompanyCard key={index} company={company} />):''
+                    }
+                )}
             </Grid>
         : ""
     )

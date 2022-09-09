@@ -62,7 +62,7 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
                 openSuccessModal();
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(error);
                 openErrorModal();
             });
         closePaymentModal(); // this will close the modal programmatically
@@ -110,16 +110,16 @@ export default function FundWalletModal({ isOpen, openModal, closeModal }) {
     const handleSubmit = async (e) => {
         // include preventDefault to prevent default form submission via get/post method and use custom logic defined here
         e.preventDefault();
-        console.log(formData);
+        // console.log(formData);
         config.amount = formData.amountUGX;
-        console.log(config);
+        // console.log(config);
         handleFlutterPayment({
             callback: (response) => {
-                console.log(response);
+                // console.log(response);
                 try {
                     handeCallBack(response);
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
                 }
             },
             onClose: () => {},
