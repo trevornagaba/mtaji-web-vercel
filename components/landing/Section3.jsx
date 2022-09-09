@@ -34,7 +34,7 @@ const Section3 = () => {
             >
                 <Grid
                     item
-                    sx={12}
+                    xs={12}
                     sm={12}
                     md={12}
                     lg={12}

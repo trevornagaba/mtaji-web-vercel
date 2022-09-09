@@ -90,7 +90,7 @@ function about() {
                 </div>
                 <div className={styles.storyImg}>
                     <Image
-                        src="https://res.cloudinary.com/daat2pgem/image/upload/v1659393232/mtaji/T94A6428_pj0nkt.jpg"
+                        src="/assets/group_pic.svg"
                         alt=""
                         layout="fill"
                         objectFit="cover"
@@ -113,17 +113,7 @@ function about() {
                 </div>
                 <div className={styles.experts}>
                     <ExpertProfileCard
-                        imageLink={
-                            "https://res.cloudinary.com/daat2pgem/image/upload/v1659393232/mtaji/T94A5661_wuz7qm.jpg"
-                        }
-                        name={"Trevor Nagaba"}
-                        position={"CEO & Team lead"}
-                        linkedinUrl={
-                            "https://www.linkedin.com/in/trevor-nagaba/"
-                        }
-                    />
-                    <ExpertProfileCard
-                        imageLink={"/assets/expert2.svg"}
+                        imageLink={"/assets/emmanuel_agidi.svg"}
                         name={"Emmanuel Agidi"}
                         position={"Founder & Head of Operations"}
                         linkedinUrl={
@@ -131,7 +121,16 @@ function about() {
                         }
                     />
                     <ExpertProfileCard
-                        imageLink={"/assets/expert3.svg"}
+                        imageLink={"/assets/trevor.svg"}
+                        name={"Trevor Nagaba"}
+                        position={"Founder & CEO"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/trevor-nagaba/"
+                        }
+                    />
+
+                    <ExpertProfileCard
+                        imageLink={"/assets/arnold.svg"}
                         name={"Arnold Luima"}
                         position={"Founder & Head of Investments"}
                         linkedinUrl={
@@ -139,13 +138,19 @@ function about() {
                         }
                     />
                     <ExpertProfileCard
-                        imageLink={
-                            "https://res.cloudinary.com/daat2pgem/image/upload/v1659907972/mtaji/T94A6376_2_hdvjqr.jpg"
-                        }
+                        imageLink={"/assets/conifa.svg"}
                         name={"Conifa Ndawula"}
                         position={"Head of Product"}
                         linkedinUrl={
                             "https://www.linkedin.com/in/conifa-ndawula-b58682147/"
+                        }
+                    />
+                    <ExpertProfileCard
+                        imageLink={"/assets/emma_wamibu.svg"}
+                        name={"Emmanuel Nabusiu"}
+                        position={"Head of Finance"}
+                        linkedinUrl={
+                            "https://www.linkedin.com/in/emmanuel-nabusiu-wamibu-464b73103/"
                         }
                     />
                     <ExpertProfileCard
@@ -156,14 +161,6 @@ function about() {
                         position={"Head of Growth"}
                         linkedinUrl={
                             "https://www.linkedin.com/in/sydney-rugambwa-25a61410a/"
-                        }
-                    />
-                    <ExpertProfileCard
-                        imageLink={"/assets/expert6.svg"}
-                        name={"Emmanuel Nabusiu"}
-                        position={"Finance Manager"}
-                        linkedinUrl={
-                            "https://www.linkedin.com/in/emmanuel-nabusiu-wamibu-464b73103/"
                         }
                     />
                 </div>
