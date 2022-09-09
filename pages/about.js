@@ -26,7 +26,7 @@ function about() {
                         We started mtaji to build the capital market that Africa
                         needs; one that is built for, rather than designed to
                         exclude, the micro small and medium businesses that are
-                        the backbone of Africa's economy. Our purpose is to fund
+                        the backbone of Africa&apos;s economy. Our purpose is to fund
                         the next generation of companies that will transform
                         Africa. Crowdfunding has always been a fundamental part
                         of African culture. We leverage it for business success!
@@ -83,7 +83,7 @@ function about() {
                         Flutterwave. Then for the investors who believe in the
                         potential of small business to transform Africa&apos;s
                         fortunes. For those passionate about entrepreneurship
-                        and ready to 'vote' for their favorite startup with
+                        and ready to &apos;vote&apos; for their favorite startup with
                         their hard earned shillings, naira, rand, dollar, pound.
                         Join us on our journey.
                     </p>
