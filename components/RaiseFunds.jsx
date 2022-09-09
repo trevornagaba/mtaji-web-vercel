@@ -28,7 +28,7 @@ const RaiseFunds = () => {
         </div>
 
         <a href="https://forms.gle/6B9qZWfFKASvbu289"  target="_blank" rel="noreferrer">
-          <button>Get Started</button>
+          <button>Raise Funds</button>
         </a>
       </div>
 
