@@ -78,7 +78,8 @@ const Companies = (props) => {
                 </p>
                 <div className={styles.underline2} />
             </Grid>
-            {companies?.map((company, index) => (
+            {companies?.map((company, index) => {
+                return company.isRaising == "true"?(
                 <Grid
                     key={index}
                     item
@@ -176,7 +177,7 @@ const Companies = (props) => {
                         </Box>
                     </a>
                 </Grid>
-            ))}
+            ): ''})}
         </Grid>
     ); 
    

@@ -12,9 +12,6 @@ import {
     LinearProgress,
     Alert
 } from "@mui/material";
-import CircularProgress from '@mui/material/CircularProgress';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import BlockIcon from '@mui/icons-material/Block';
 import navStyles from "../components/Header/Header.module.css";
 
 const VerifyEmail = () => {
@@ -52,7 +49,7 @@ const VerifyEmail = () => {
             })
             .catch(error => {
                 setError(true)
-                setActionMsg(error.response.data.message)
+                setActionMsg("Invalid email address")
             });
         }
         setSending(false)
@@ -61,7 +58,7 @@ const VerifyEmail = () => {
 
     return (
         <Grid
-         container
+            container
         >
             <Grid
                 item
@@ -71,53 +68,59 @@ const VerifyEmail = () => {
                 lg={6}
                 xl={6}
                 style={{
-                    backgroundColor: "#2518B8",
-                    height: "100vh",
-                    padding: "8% 8vw",
+                    width: "100%",
+                    backgroundColor: "#fffff",
+                    padding: "0 5vw",
+                    paddingBottom: "5%",
                 }}
                 align={"center"}
             >
                 
-                <Box
+                <Typography
                     component="a"
                     href="/"
                     display="inline-flex"
-                    alignItems="center"
                     style={{
-                        padding: "0 10vw"
+                        width: "100%",
+                        marginTop: "50px",
+                        alignItems: "left"
                     }}
                 >
                     <Image
                         src="/assets/logo.svg"
                         alt="logo"
-                        width={28}
-                        height={28}
+                        width={35}
+                        height={35}
                     />
                     <span
                         className={navStyles.appName}
                         style={{
-                            color: "white",
+                            color: "#2518B8",
                             fontSize: "22px",
-                            fontWeight: "350"
+                            fontWeight: "550"
                         }}
                     >mtaji</span>
-                </Box>
+                </Typography>
                 <Box
                     style={{
+                        width: "85%",
                         backgroundColor: "white",
+                        border: "1px #2518B8 solid",
                         borderRadius: "20px",
-                        marginTop: "8%",
+                        marginTop: "10%",
                         overflow: "hidden",
                         paddingBottom: "20px",
-                        color: "#2518B8"
+                        color: "#01BBC8"
                     }}
                 >
                     <Typography
                         variant="h5"
                         style={{
-                            backgroundColor: "#01bbc8",
-                            padding: "2% 0",
-                            color: "#2518B8"
+                            backgroundColor: "#2518B8",
+                            padding: "3% 0",
+                            color: "#ffffff",
+                            fontSize: '19.5px',
+                            fontFamily: "'Poppins', Courier, monospace"
                         }}
                     >
                         Forgot Password
@@ -125,13 +128,15 @@ const VerifyEmail = () => {
                     {sending?<LinearProgress color="inherit"/>:""}
                     <Typography
                         style={{
-                            marginTop: "5vh",
-                            color: "#2518B8",
-                            fontSize: "17px"
+                            color: "#000000",
+                            fontSize: "16px",
+                            fontFamily: "'Poppins', Courier, monospace",
+                            fontWeight: "400",
+                            padding: "40px 10%",
                         }}
+                        align="left"
                     >
-                        <strong style={{ fontSize: "25px" }}>Hello!,</strong><br/>
-                        Please enter your account email here;<br/><br/>
+                        Please provide your email address for us to send you a reset link
                     </Typography>
                     {sent?
                         <Alert
@@ -158,46 +163,50 @@ const VerifyEmail = () => {
                     />
                     <Typography
                         style={{
-                            marginTop: "10px",
+                            paddingTop: "30px",
                             color: "#2518B8",
                             fontSize: "18px",
                         }}
                         align="center"
                     >
                         <Button
+                            disabled={sending}
                             variant="contained"
                             style={{
                                 backgroundColor: "#2518B8",
-                                marginTop: "20px"
+                                border: "1px #2518B8 solid",
+                                textTransform: "none",
+                                boxShadow: "none",
+                                padding: "5px 30px"
                             }}
                             onClick={handleEmail}
                         >Send Reset</Button>
+                        <Button
+                            component="a"
+                            href="/login"
+                            variant="contained"
+                            style={{
+                                color: "#2518B8",
+                                marginLeft: "20px",
+                                border: "1px #2518B8 solid",
+                                backgroundColor: "white",
+                                textTransform: "none",
+                                boxShadow: "none",
+                                padding: "5px 30px"
+                            }}
+                        >Login</Button>
                     </Typography>
                     <Typography
                         style={{
-                            marginTop: "10px",
-                            color: "#2518B8",
+                            marginTop: "20px",
+                            color: "gray",
                             fontSize: "17px",
-                            paddingLeft: "8%"
+                            width: "80%"
                         }}
-                        align="left"
-                    >                     
-                        <strong>NOTE:</strong><br/>
-                        <small>A password reset token will be sent to the email you provide</small>
-                    </Typography>
-                    <Typography
-                        style={{
-                            marginTop: "10px",
-                            color: "#2518B8",
-                            fontSize: "18px",
-                            paddingRight: "8%"
-                        }}
-                        align="right"
+                        align="center"
                     >
-                        <small align="right">
-                            Go to <a href={`../login`}>
-                            <Button variant="outlined" size="small" style={{ color: "#01bbc8", border: "1px #01bbc8 solid" }}>Login here</Button>
-                            </a>
+                        <small>
+                            A <strong>Password Reset Link</strong> will be sent to the email you provide, and this link expires after <strong>24 hours</strong>.
                         </small>
                     </Typography>
                 </Box>
@@ -215,7 +224,7 @@ const VerifyEmail = () => {
                 style={{
                     backgroundColor: "white",
                     height: "100vh",
-                    backgroundImage: "url('/assets/signup.jpg')",
+                    backgroundImage: "url('/assets/verify-email.jpg')",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover"
                 }}

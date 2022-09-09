@@ -42,15 +42,15 @@ const HomePage = () => {
 
     useEffect(() => {
         
-        checkAuth().then((result)=>{
-            getUserPortfolioDetails();
-        });
+        // checkAuth().then((result)=>{
+        //     getUserPortfolioDetails();
+        // });
         //getUserPortfolioDetails();
         
         // setUsers(userDetails);
         
-                setComps(companies);
-    }, [isLoaded]);
+                // setComps(companies);
+    });
     
     
     return (
@@ -61,7 +61,7 @@ const HomePage = () => {
             hasFooter={true}
             hasRaiseFunds={true}
         >
-            {isLoaded ? (
+            {isLoaded? (
                 <Grid
                     item
                     xs={{

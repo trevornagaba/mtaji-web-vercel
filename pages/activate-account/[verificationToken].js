@@ -6,7 +6,9 @@ import Image from "next/image";
 import {
     Grid,
     Box,
-    Typography
+    Typography,
+    LinearProgress,
+    Button
 } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
@@ -22,7 +24,6 @@ const Account = () => {
     const [isVerifying, setIsVerifying] = useState(true)
     const [isVerified, setIsVerified] = useState(false)
     const [veriToken, setVeriToken] = useState(false)
-    const [userData, setUserData] = useState({})
     const [verificationMsg, setVerificationMsg] = useState("Verifying Account...")
     const [noteMsg, setNoteMsg] = useState("Please wait as your account is being verified.")
 
@@ -31,10 +32,9 @@ const Account = () => {
     })
 
     const getTokenData = async () => {
-        setVeriToken(verificationToken)
 
         const response = await axios.patch(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/activate-account/${veriToken}`, {
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/activate-account/${verificationToken}`, {
                 headers: {
                 'Content-Type': 'Application/json'
                 },
@@ -43,21 +43,20 @@ const Account = () => {
         )
         .then((result) => {
             setIsVerified(true)
-            setIsVerifying(false)
             setVerificationMsg(result.data.message)
             setNoteMsg("Your account has been activated, you can now login to your account.")
         })
         .catch(error => {
-            setIsVerifying(false)
             setVerificationMsg("Verification Unsuccessful!")
             setNoteMsg("Your verification token has expired.")
         });
+        setIsVerifying(false)
     }
 
 
     return (
         <Grid
-         container
+            container
         >
             <Grid
                 item
@@ -67,87 +66,118 @@ const Account = () => {
                 lg={6}
                 xl={6}
                 style={{
-                    backgroundColor: "#2518B8",
-                    height: "100vh",
-                    paddingTop: "8%",
+                    width: "100%",
+                    backgroundColor: "#fffff",
+                    padding: "0 5vw",
+                    paddingBottom: "5%",
                 }}
                 align={"center"}
             >
                 
-                <Box
+                <Typography
                     component="a"
                     href="/"
                     display="inline-flex"
-                    alignItems="center"
+                    style={{
+                        width: "100%",
+                        marginTop: "50px",
+                        alignItems: "left"
+                    }}
                 >
                     <Image
                         src="/assets/logo.svg"
                         alt="logo"
-                        width={28}
-                        height={28}
+                        width={35}
+                        height={35}
                     />
                     <span
                         className={navStyles.appName}
                         style={{
-                            color: "white",
+                            color: "#2518B8",
                             fontSize: "22px",
-                            fontWeight: "350"
+                            fontWeight: "550"
                         }}
                     >mtaji</span>
-                </Box>
+                </Typography>
                 <Box
                     style={{
+                        width: "85%",
                         backgroundColor: "white",
-                        width: "50%",
-                        height: "40vh",
-                        borderRadius: "5%",
-                        marginTop: "8%",
-                        overflow: "hidden"
+                        border: "1px #2518B8 solid",
+                        borderRadius: "20px",
+                        marginTop: "10%",
+                        overflow: "hidden",
+                        paddingBottom: "20px",
+                        color: "#01BBC8"
                     }}
                 >
                     <Typography
                         variant="h5"
                         style={{
-                            backgroundColor: "#01bbc8",
-                            padding: "2% 0",
-                            color: "#2518B8"
+                            backgroundColor: "#2518B8",
+                            padding: "3% 0",
+                            color: "#ffffff",
+                            fontSize: '19.5px',
+                            fontFamily: "'Poppins', Courier, monospace"
                         }}
                     >
                         Account Activation
                     </Typography>
+                    {isVerifying?<LinearProgress color="inherit"/>:""}
                     <Typography
                         style={{
-                            marginTop: "50px",
                             color: "#2518B8",
-                            fontSize: "18px"
+                            fontSize: "16px",
+                            fontFamily: "'Poppins', Courier, monospace",
+                            fontWeight: "400",
+                            padding: "40px 10%",
                         }}
                     >
                         <strong style={{ fontSize: "25px" }}>Welcome back,</strong><br/>
                         Thank you again for joining Mtaji,<br/><br/>
-                        {isVerifying?
-                            <><CircularProgress color="inherit" /><br/></>
-                        :
-                            isVerified?<><TaskAltIcon style={{ color: "#01bbc8", fontSize: "60px"}}/><br/></>
-                            : <><BlockIcon style={{ color: "grey", fontSize: "60px"}}/><br/></>
+                        {isVerified?<><TaskAltIcon style={{ color: "#01bbc8", fontSize: "60px"}}/><br/></>
+                        : <><BlockIcon style={{ color: "grey", fontSize: "60px"}}/><br/></>
                         }                      
                         <strong>{verificationMsg}</strong><br/>
-                        <small>{noteMsg}</small><br/><br/>
-                        <small>Go to <a href={`../login`}><strong>Login here</strong></a></small>
-
+                        <small>{noteMsg}</small>
+                    </Typography>
+                    <Typography
+                        style={{
+                            color: "#2518B8",
+                            fontSize: "18px"
+                        }}
+                        align="center"
+                    >
+                        <Button
+                            component="a"
+                            href="/login"
+                            variant="contained"
+                            style={{
+                                color: "#2518B8",
+                                border: "1px #2518B8 solid",
+                                backgroundColor: "white",
+                                textTransform: "none",
+                                boxShadow: "none",
+                                padding: "5px 30px"
+                            }}
+                        >Login</Button>
                     </Typography>
                 </Box>
             </Grid>
             <Grid
                 item
+                sx={{
+                    display: { xs: "none", sm: "none", md: "flex", lg: "flex" },
+                }}
                 xs={12}
                 sm={12}
-                md={8}
+                md={4}
                 lg={6}
                 xl={6}
                 style={{
                     backgroundColor: "white",
                     height: "100vh",
-                    backgroundImage: "url('/assets/signup.jpg')",
+                    backgroundImage: "url('/assets/account-activation.jpg')",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover"
                 }}

@@ -86,7 +86,7 @@ const Blog = ({ posts }) => {
         >
             <div
                 className="w-full flex flex-row justify-between mt-10 "
-                style={{ gridColumn: "1/ span 14" }}
+                style={{ gridColumn: "1/14" }}
             >
                 <p>Featured</p>
                 <Link href="#subscribe">
