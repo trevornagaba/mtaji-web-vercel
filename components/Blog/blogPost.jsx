@@ -21,7 +21,7 @@ const BlogPost = ({
     };
     
     return (
-        <div className={featured? styles. postCompFeatured : styles.postComp}>
+        <div className={featured? styles.postCompFeatured : styles.postComp}>
             <div className={styles.dateCategory}>
                 <p>{date}</p>
                 <p className="text-[#01bbc8]" style={{ cursor: "pointer" }}>

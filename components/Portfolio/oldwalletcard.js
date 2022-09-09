@@ -24,7 +24,7 @@ const WalletCard = (props) => {
             return formatter.format(total);
         } catch (err) {}
     };
-    console.log("check" & invstTotal);
+    // console.log("check" & invstTotal);
 
     return (
         <Box

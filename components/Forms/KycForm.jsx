@@ -32,7 +32,7 @@ const KycForm = ({ isKycVerified, userId }) => {
                     formData
                 )
                 .then(async (res) => {
-                    console.log("upload front success");
+                    // console.log("upload front success");
                     formData.append("file", kycForm.back);
                     formData.append("upload_preset", "uhvy5vvk");
                     if (res.status == 200) {
@@ -42,9 +42,9 @@ const KycForm = ({ isKycVerified, userId }) => {
                                 formData
                             )
                             .then(async (resp) => {
-                                console.log("upload back success");
-                                console.log(res);
-                                console.log(resp);
+                                // console.log("upload back success");
+                                // console.log(res);
+                                // console.log(resp);
                                 if (res.status == 200) {
                                     const token = getToken();
                                     let config = {
@@ -61,27 +61,27 @@ const KycForm = ({ isKycVerified, userId }) => {
                                             config
                                         )
                                         .then((res) => {
-                                            console.log(res);
-                                            console.log("updated user doc");
+                                            // console.log(res);
+                                            // console.log("updated user doc");
                                             setUpdating(false);
-                                            setAlert("success", "Documents Submitted","Kyc documents submitted");
+                                            setAlert("success", "Documents Submitted","Kyc documents submitted, you will receive an email update within the next 24 hours");
                                         })
                                         .catch((e) => {
-                                            console.log(e);
+                                            // console.log(e);
                                             setUpdating(false);
                                             setAlert("warning", "Upload error","An error occurred");
                                         });
 
                                 }
                             })
-                            .catch((e) => console.log("error uploading back"));
+                            .catch((e) => {});
                         
 
                     }
                     setUploading(false);
                 })
                 .catch((e) => {
-                    console.log(e);
+                    // console.log(e);
                     setUploading(false);
                 });
         }

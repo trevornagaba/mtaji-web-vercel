@@ -3,189 +3,367 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-import HomeLogo from "../components/HomeLogo";
-import TextInput from "../components/TextInput/TextInput";
-import Alert from '@mui/material/Alert';
+// NEW IMPORTS
+import Image from "next/image";
+import {
+  Grid,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  LinearProgress,
+  Alert,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
+  FormHelperText,
+  IconButton,
+  Chip
+} from "@mui/material";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-export default function SignUp() {
-  const [formData, setFormData] = useState({
-    // username: "",
-    email: "",
-    password: "",
-    passwordConfirmation: "",
-  });
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [fetchError, setFetchError] = useState("");
-  const [touched, setTouched] = useState({});
-  const router = useRouter();
+import navStyles from "../components/Header/Header.module.css";
 
-  const verifyUserData = () => {
-    let errorsObject = {};
-    let touchedObject = {};
-    let isValid = true;
+import emailChecker from "../utils/emailChecker"
+import passwordStrength from "../utils/passwordStrength"
+import Logo from "../components/Logo/Logo";
 
-    // validate username
-    // if (!formData.username) {
-    //   errorsObject.username = "Username is required.";
-    //   touchedObject.username = false;
-    //   isValid = false;
-    // }
+const SignUp = () => {
+  
+  const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [email, setEmail] = useState("")
+  const [emailState, setEmailState] = useState({    
+    emailStatus: "default",
+    emailMsg: "Add an Email"
+  })
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [passStrength, setPassStrength] = useState({
+      strength: "default",
+      display: "Password field empty"
+  })
+  const [cPassword, setCPassword] = useState("")
+  const [showCPassword, setShowCPassword] = useState(false)
+  const [error, setError] = useState(false)
+  const [actionMsg, setActionMsg] = useState("")
 
-    // validate email
-    const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    if (!formData.email) {
-      errorsObject.email = "Email address is required.";
-      touchedObject.email = false;
-      isValid = false;
-    }
-    // else if (!emailRegex.test(email)) {
-    //   errorsObject.email = "Invalid Email: Input correct email address format.";
-    //   touchedObject.email = false;
-    //   isValid = false;
-    // }
+  const emailChange = (e) => {
+    setEmail(e.target.value)
+    setEmailState(emailChecker(e.target.value))
+  }
 
-    // validate password
-    if (!formData.password) {
-      errorsObject.password = "Password is required.";
-      touchedObject.password = false;
-      isValid = false;
-    } else if (formData.password.length < 6) {
-      errorsObject.password = "Password must be at least 6 characters.";
-      touchedObject.password = false;
-      isValid = false;
-    }
+  const passwordChange = (e) => {
+    setPassword(e.target.value)
+    setPassStrength(passwordStrength(e.target.value))
+  }
 
-    // validate password confirmation
-    if (
-      formData.password !== formData.passwordConfirmation ||
-      !formData.passwordConfirmation
-    ) {
-      errorsObject.passwordConfirmation = "Passwords do not match.";
-      isValid = false;
-    }
+  const cPasswordChange = (e) => {
+    setCPassword(e.target.value)
+  }
 
-    setTouched(touchedObject);
-    setErrors(errorsObject);
-    return isValid;
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [name]: value,
-      };
-    });
-    setTouched({ ...touched, [name]: true });
+  const handleClickShowCPassword = () => {
+    setShowCPassword(!showCPassword);
   };
 
   const handleSignUp = async (e) => {
-    setFetchError("");
-    setLoading(true);
-    // try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`,
-        {
-          // username: formData.username,
-          email: formData.email,
-          password: formData.password,
+    setSent(false)
+    setSending(true)
+    setError(false)
+    setActionMsg("")
+    if(emailState.emailStatus != 'error'){
+      if(password===cPassword) {
+        if(passStrength.strength !='error'){
+          setError(false)
+          setActionMsg("")
+          const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`,
+            {
+              email: email,
+              password: password,
+            }
+          )
+          .then((result) => {
+            setSent(true)
+            setActionMsg(result.data.message)
+          })
+          .catch(error => {
+            setError(true)
+            setActionMsg(error.response.data.message);
+          })
         }
-      )
-      .then((result) => {
-        router.push("/login");
-        setLoading(false);        
-      })
-      .catch((error) => {
-          setFetchError(error.response.data.message);
-          setLoading(false);
-      })
-      // if (response.status === 201) {
-      //   router.push("/login");
-      //   setLoading(false);
-      // } else {
-      //   setFetchError(response.data.message);
-      //   setLoading(false);
-      // }
-    // } catch (error) {
-    //   setFetchError("Oops! Something went wrong. Please try again.");
-    //   setLoading(false);
-    // }
-  };
+      } else {
+        setError(true)
+        setActionMsg("Passwords do not match!")
+        if(cPassword===""){ setActionMsg("Please confirm your password") }
+        if(password===""){ setActionMsg("Please add a new password") }
+      }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let validData = verifyUserData();
-    if (validData) {
-      handleSignUp();
     }
-  };
-
+    setSending(false)
+  }
+  
   return (
     <>
-      <div className="main-container">
-        <div className="background-container">
-        <img src="assets/signin.svg" className="svg absolute bottom-20 w-20" style={{left:"-40px"}}/>
-        </div>
+      <Grid
+      container
+      style={{
+        overflow: "hidden",
+        height: '100vh'
+      }}
+      >
+        <Grid
+            item
+            xs={12}
+            sm={12}
+            md={8}
+            lg={6}
+            xl={6}
+            style={{
+                width: "100%",
+                backgroundColor: "#ffffff",
+                padding: "0 5vw",
+                paddingBottom: "5%",
+                marginTop: "30px",
+                maxHeight: '95vh',
+                overflow: 'hidden',
+                position: 'relative'
+                
+            }}
+            
+            align={"center"}
+        >
+          <div className="formContent" style={{height: '100%', overflow: 'auto', zIndex: 2}}>
+            <span
+                style={{
+                    width: "100%",
+                }}
+                className="logoContainer"
+            >
+              <Link href="/">
+                <Logo/>
 
-        <div className="content">
-          <div className="top-container">
-            <div className="logo-container">
-              <HomeLogo />
-            </div>
-          </div>
-          <div><br/></div>
-          <div className="formContent">
-            <p className="title">Welcome! Let&apos;s get you started</p>
-            <p className="subtitle">Fill in your details to get started</p>
-            {/* Fetch or Server errors */}
-            <form className="signup-form" onSubmit={handleSubmit}>
-              {fetchError && <Alert severity="error">{fetchError}</Alert>}
-              <div className="inputs">
-                {/* <TextInput
-                  type="text"
-                  name="username"
-                  label="Username"
-                  placeholder="Username"
-                  onChange={handleChange}
-                  value={formData.username}
-                  touched={touched.username}
-                  error={errors.username}
-                /> */}
-                <TextInput
-                  type="text"
-                  name="email"
-                  label="Email"
-                  placeholder="Email"
-                  onChange={handleChange}
-                  value={formData.email}
-                  touched={touched.email}
-                  error={errors.email}
+              </Link>
+                {/* <span
+                    className={navStyles.appName}
+                    style={{
+                        color: "#2518B8",
+                        fontSize: "22px",
+                        fontWeight: "550"
+                    }}
+                >mtaji</span> */}
+            </span>
+            <Box
+                style={{
+                    width: "95%",
+                    backgroundColor: "white",
+                    borderRadius: "20px",
+                    // marginTop: "10%",
+                    overflow: "hidden",
+                    paddingBottom: "20px",
+                    color: "#01BBC8"
+                }}
+            >
+                <Typography
+                    style={{
+                        color: "#000000",
+                        fontSize: "16px",
+                        fontFamily: "'Poppins', Courier, monospace",
+                        fontWeight: "400",
+                        padding: "30px 10%",
+                    }}
+                    align="center"
+                >
+                  <span className="title">Welcome! Let&apos;s get you started</span><br/>
+                  <span className="subtitle">Fill in your details to get started</span>
+                </Typography>
+                {sending?<LinearProgress color="inherit" style={{ width: "80%", marginBottom: "40px" }}/>:""}
+                {sent?
+                    <Alert
+                        severity="success"
+                        style={{
+                            width: "80%",
+                            marginBottom: "15px"
+                        }}
+                    >{actionMsg}</Alert>
+                : error?
+                  <Alert
+                      severity="error"
+                      style={{
+                          width: "95%",
+                          marginBottom: "15px"
+                      }}
+                  >{actionMsg}</Alert>
+                :""}
+                <TextField
+                    required
+                    id="outlined-required"
+                    label="Email"
+                    placeholder="example@gmail.com"
+                    type="email"
+                    value={email}
+                    onChange={emailChange}
+                    error={emailState.emailStatus==="error"}
+                    style={{
+                        width: "95%",
+                    }}
                 />
-                <TextInput
-                  type="password"
-                  name="password"
-                  label="Password"
-                  placeholder="Password"
-                  onChange={handleChange}
-                  value={formData.password}
-                  touched={touched.password}
-                  error={errors.password}
-                />
-                <TextInput
-                  type="password"
-                  name="passwordConfirmation"
-                  label="Confirm password"
-                  placeholder="Confirm Password"
-                  onChange={handleChange}
-                  value={formData.passwordConfirmation}
-                  touched={touched.passwordConfirmation}
-                  error={errors.passwordConfirmation}
-                />
-                <button>{loading ? "Loading..." : "Sign Up"}</button>
-                <div><br/></div>
+                <Box
+                  style={{
+                      width: "95%",
+                      fontSize: "15px",
+                      padding: "10px 0",
+                      textAlign: "left"
+                  }}
+                >
+                  
+                  <Chip
+                      label={emailState.emailMsg}
+                      color={emailState.emailStatus}
+                      size="small"
+                  />                            
+                </Box>
+                <FormControl
+                  style={{
+                    m: 1,
+                    width: '95%',
+                    marginTop: "20px"
+                  }}
+                  variant="outlined"
+                >
+                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={passwordChange}
+                        endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                            >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                        }
+                        label="Password"
+                    />
+                    <Box
+                        style={{
+                            fontSize: "15px",
+                            padding: "10px 0",
+                            textAlign: "left"
+                        }}
+                    >
+                        <Chip
+                            label={passStrength.display}
+                            color={passStrength.strength}
+                            size="small"
+                        />                            
+                    </Box>
+                </FormControl>
+                <FormControl
+                    variant="outlined"
+                    sx={{
+                        m: 1,
+                        marginTop: "25px",
+                        width: '95%',
+                    }}
+                >
+                    <InputLabel
+                        htmlFor="outlined-adornment-password"
+                        style={{
+                            color: password===cPassword?"gray":cPassword===""?"gray":"red"
+                        }}
+                    >
+                        Confirm Password
+                    </InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showCPassword ? 'text' : 'password'}
+                        value={cPassword}
+
+                        onChange={cPasswordChange}
+                        endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowCPassword}
+                            edge="end"
+                            >
+                            {showCPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                        }
+                        label="Confirm Password"                           
+                        error={password!==cPassword&&cPassword!==""}
+                    />
+                </FormControl>
+                <Typography
+                    style={{
+                        marginTop: "25px",
+                        color: "#2518B8",
+                        fontSize: "18px",
+                        width: "95%"
+                    }}
+                    align="center"
+                >
+                    <Button
+                        // disabled={sending}
+                        variant="contained"
+                        style={{
+                          color: "white",
+                          // marginLeft: "20px",
+                          border: "1px #2518B8 solid",
+                          backgroundColor: "#2518B8",
+                          textTransform: "none",
+                          boxShadow: "none",
+                          padding: "8px 30px",
+                          width: '100%',
+                          fontFamily:'Poppins',
+                                    fontSize: '16px'
+                        }}
+                        
+                        onClick={handleSignUp}
+                    >Sign up</Button>
+                    {/* <Button
+                        component="a"
+                        href="/login"
+                        variant="contained"
+                        style={{
+                            color: "#2518B8",
+                            marginLeft: "20px",
+                            border: "1px #2518B8 solid",
+                            backgroundColor: "white",
+                            textTransform: "none",
+                            boxShadow: "none",
+                            padding: "5px 30px"
+                        }}
+                    >Login</Button> */}
+                </Typography>
+                {/* <Typography
+                    style={{
+                        marginTop: "10px",
+                        color: "gray",
+                        fontSize: "17px",
+                        width: "80%"
+                    }}
+                    align="center"
+                >
+                    <small>
+                        Already have an account <a href="/login" style={{
+                          color: ""
+                        }}>Login</a>
+                    </small>
+                </Typography> */}
                 <div className="sign-in-prompt">
                   <p className="question">Already have an account?</p>
 
@@ -193,217 +371,93 @@ export default function SignUp() {
                     <p className="link">Login</p>
                   </Link>
                 </div>
-              </div>
-            </form>
-
+            </Box>
+                
           </div>
-        </div>
-        <img src="assets/signin2.svg" className="svg absolute bottom-2 w-20" style={{left:"0px"}}/>
-      </div>
-
-      <style jsx>{`
-        .main-container {
-          display: flex;
-          flex-direction: row-reverse;
-          height:100vh;
-          width: 100vw;
-        }
-
-        .background-container {
-          flex-basis: 50%;
-          background: url("/assets/signup.svg");
-          background-repeat: no-repeat;
-          background-size:cover;
-          position: relative;
-        }
-
-        .content {
-          flex-basis: 50%;
-          padding: 2vw;
-        }
-
-        .formContent{
-          width:100%;
-          height:80vh;
-          display:flex;
-          flex-direction:column;
-          align-items:center;
-          padding: 0 5vw;
-          box-sizing: border-box;
-          overflow: auto
-        }
-        .formContent::-webkit-scrollbar {
-          width: 4px;
-      }
-       
-      .formContent::-webkit-scrollbar-track {
-          background-color: #e4e4e4;
-          border-radius: 100px;
-      }
-       
-      .formContent::-webkit-scrollbar-thumb {
-          background-color: #1c2854;
-          border-radius: 100px;
-      }
-        .top-container {
-          display: flex;
-          height: 10vh
-        }
-
-        .logo-container {
-          display: inline-block;
-          margin: 0 50px;
-        }
-
-        .title {
-          text-align: center;
-          margin-bottom: 0;
-          color: #09062d;
-          font-size: 32px;
-          font-weight: bold;
-        }
-        
-        .subtitle {
-          text-align: center;
-          color: #8c8c8c;
-        }
-
-        .signup-form {
-          padding: 16px;
-          width:100%
-        }
-
-        .signup-form .inputs {
-          width: 100%;
-          margin: 0 auto;
-        }
-
-        .signup-form .inputs p:hover {
-          color: #01bbc8;
-        }
-
-        .signup-form input[type="text"] {
-          display: block;
-          border: 1px solid #b0b0b0;
-          border-radius: 10px;
-          width: 100%;
-          padding: 16px;
-          margin-bottom: 16px;
-        }
-
-        .signup-form button {
-          display: block;
-          color: white;
-          cursor: pointer;
-          font-size: 1.2rem;
-          width: 100%;
-          margin: 24px auto 0;
-          padding: 8px;
-          background: #2518b8;
-          border: none;
-          border-radius: 5px;
-        }
-
-        .signup-form button:hover {
-          background: #01bbc8;
-        }
-
-        .sign-in-prompt {
-          display: flex;
-          justify-content: center;
-          margin-bottom: 16px;
-          align-items: center;
-        }
-
-        .sign-in-prompt .link {
-          padding-left: 8px;
-          cursor: pointer;
-          color: #2518b8;
-        }
-
-        .sign-in-prompt .link:hover {
-          color: #01bbc8;
-        }
-
-        .or-option {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 24px;
-        }
-
-        .or-option div {
-          width: 20%;
-          height: 1px;
-          background-color: #c4c4c4;
-        }
-
-        .or-option span {
-          display: inline-block;
-          padding: 0 16px;
-        }
-
-        .google-button {
-          width: 100%;
-          cursor: pointer;
-          margin: 0 auto;
-          border: 1px solid #c4c4c4;
-          border-radius: 5px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 8px;
-        }
-
-        .google-button:hover {
-          border: 1px solid #01bbc8;
-          color: #01bbc8;
-        }
-
-        .google-button span {
-          padding-left: 16px;
-        }
-
-        /* Adjust for smartphone screen sizes. */
-        @media only screen and (max-width: 600px) {
-          .main-container {
-            display: block;
+          <img src="/assets/signin2.svg" style={{height:'80px', position: 'absolute', bottom: 0, left: -10, zIndex: 0}} />
+        </Grid>
+        <Grid
+            item
+            sx={{
+                display: { xs: "none", sm: "none", md: "flex", lg: "flex" },
+            }}
+            xs={12}
+            sm={12}
+            md={4}
+            lg={6}
+            xl={6}
+            style={{
+                backgroundColor: "white",
+                height: "100vh",
+                backgroundImage: "url('/assets/signup.svg')",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                position:'relative'
+                
+            }}
+        >
+          <img src="/assets/signin.svg" style={{height:'80px', position: 'absolute', bottom: 50, left: -40}} />
+        </Grid>
+      </Grid>
+      <style jsx>
+        {`
+          .title {
+            text-align: center;
+            margin-bottom: 0;
+            color: #09062d;
+            font-size: 32px;
+            font-weight: bold;
           }
-          .svg{
-            display: none;
+          
+          .subtitle {
+            text-align: center;
+            color: #8c8c8c;
           }
+          .sign-in-prompt {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 16px;
+            align-items: center;
+            margin-top: 10px
+          }
+          .sign-in-prompt .link {
+            padding-left: 8px;
+            cursor: pointer;
+            color: #2518b8;
+            
+          }
+          .sign-in-prompt .link:hover {
+            color: #01bbc8;
+            
+          }
+          .question{
+            color: #09062d;
+          }
+          @media only screen and (max-width: 600px) {
+            .logoContainer{
 
-          .background-container {
-            height: 0
+              display: flex;
+              justify-content:center
+            }
           }
-
-          .signup-form .inputs {
-            width: 100%;
-          }
-
-          .google-button,
-          .signup-form button {
-            width: 100%;
-          }
-          .logo-container{
-            margin: 0 auto
-          }
+          .formContent::-webkit-scrollbar {
+            width: 4px;
+        }
+         
+        .formContent::-webkit-scrollbar-track {
+            background-color: #ffffff;
+            border-radius: 100px;
+        }
+         
+        .formContent::-webkit-scrollbar-thumb {
+            background-color: #ffffff;
+            border-radius: 100px;
         }
 
-        /* Adjust for tablet screen sizes. */
-        @media only screen and (min-width: 600px) and (max-width: 1000px) {
-          .main-container {
-            display: block;
-          }
-
-          .background-container {
-            height: 0
-          }
-          .logo-container{
-            margin: 0 auto
-          }
-        }
-      `}</style>
+        `}
+      </style>
     </>
   );
 }
+
+export default SignUp;
