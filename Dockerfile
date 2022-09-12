@@ -1,16 +1,16 @@
 FROM node:18-alpine
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+RUN mkdir -p /home/node/app/node_modules && chown -R root:root /home/node/app
 
 WORKDIR /home/node/app
 
 COPY package*.json ./
 
-USER node
+USER root
 
 RUN npm install --legacy-peer-deps
 
-COPY --chown=node:node . .
+COPY --chown=root:root . .
 
 RUN yarn build
 

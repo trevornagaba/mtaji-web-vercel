@@ -41,9 +41,9 @@ const Landing = () => {
 
     useEffect(() => {
         checkAuth();
-        // console.log(companies);
+        // 
     }, []);
-    // console.log(companies);
+    // 
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {

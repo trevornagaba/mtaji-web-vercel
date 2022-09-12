@@ -36,7 +36,7 @@ const AccountForm = () => {
     const [src, setSrc] = useState(false);
 
     useEffect(() => {
-        // console.log(userDetails)
+        // 
         setData(userDetails);
     }, [userDetails]);
     
@@ -47,7 +47,7 @@ const AccountForm = () => {
     const handleChange = (e) => {
         e.preventDefault();
         const { name, value } = e.target;
-        // console.log(e.target.value)
+        // .target.value)
         setData((data) => {
             return {
                 ...data,
@@ -72,7 +72,7 @@ const AccountForm = () => {
         },
     };
     const handleImageUpload = async (e) => {
-        // console.log(image)
+        // 
         e.preventDefault();
         let formData = new FormData();
         formData.append("file", image);
@@ -84,7 +84,7 @@ const AccountForm = () => {
                 formData
             )
             .then(async (res) => {
-                // console.log(typeof res.data.url);
+                //  res.data.url);
                 
                 if (res.status == 200) {
                     // console.log("upload success");
@@ -98,7 +98,7 @@ const AccountForm = () => {
                             config
                         )
                         .then((res) => {
-                            // console.log(res);
+                            // 
                             // console.log("updated user doc");
                             setSending(false);
                             setOpenModal(false)
@@ -106,7 +106,7 @@ const AccountForm = () => {
                             
                         })
                         .catch((e) => {
-                            // console.log(e);
+                            // 
                             setSending(false);
                             setSrc('')
                             setImage('')
@@ -116,7 +116,7 @@ const AccountForm = () => {
                 setUploading(false);
             })
             .catch((e) => {
-                // console.log(e);
+                // 
                 setUploading(false);
                 setAlert("Warning","upload error","An error occurred")
             });
@@ -129,12 +129,12 @@ const AccountForm = () => {
                 config
             )
             .then((res) => {
-                // console.log(res);
+                // 
                 // console.log("profile image deleted");
                 setSending(false);
             })
             .catch((e) => {
-                // console.log(e);
+                // 
                 setSending(false);
             });
     };
@@ -162,7 +162,7 @@ const AccountForm = () => {
                 setAlert("success", "Update successful", "User update Successful")
             })
             .catch((e) => {
-                // console.log(e);
+                // 
                 setSending(false);
                 setAlert("warning", "Update error","An error occurred")
             });

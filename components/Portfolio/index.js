@@ -13,8 +13,8 @@ import InvestmentsCard from "./InvestmentsCard";
 
 const Portfolio = (props) => {
     const { isLoaded, userDetails, userPortfolioDetails } = props;
-    // console.log(userDetails.portfolio);
-    // console.log(userPortfolioDetails);
+    // .portfolio);
+    // 
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {

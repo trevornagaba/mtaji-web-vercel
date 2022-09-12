@@ -13,7 +13,7 @@ const SubscribeCard = () => {
     const {setAlert} = useSetAlert()
     const {showAlert} = useContext(AppContext)
     const handleChange = (e) => {
-        // console.log(formData);
+        // 
         e.preventDefault();
         const { value } = e.target;
         setFormData({ email: value });

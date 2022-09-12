@@ -90,7 +90,7 @@ export default function CompanyInfo() {
                 setCompany(result.data);
             })
             .catch((error) => {
-                // console.log(error);
+                // 
             });
     }
 
@@ -112,7 +112,7 @@ export default function CompanyInfo() {
             )
             .then((result) => {})
             .catch((error) => {
-                // console.log(error);
+                // 
             });
     }
 

@@ -22,7 +22,7 @@ import Modal from "../../components/ModalComponent";
 
 export const getServerSideProps = async (context) => {
     const companyId = context.query.pid;
-    // console.log(context)
+    // 
     const company = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/${companyId}`
     );
@@ -67,7 +67,7 @@ export default function Company({ company }) {
         // checkAuth()
         setUser(userDetails)
         
-        // console.log(user)
+        // 
     },[isLoaded])
 
     // Setup state management for Investment modal
@@ -110,7 +110,7 @@ export default function Company({ company }) {
                 responseType: "blob",
             })
             .then((res) => {
-                // console.log(res);
+                // 
 
                 const url = window.URL.createObjectURL(
                     new Blob([res.data], {

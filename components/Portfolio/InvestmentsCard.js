@@ -20,7 +20,7 @@ import defaultLogo from "../../public/assets/defaultLogo.svg";
 
 const InvestmentsCard = (props) => {
     const { isLoaded, userPortfolioDetails } = props;
-    // console.log(userPortfolioDetails.length);
+    // .length);
    
     
 
