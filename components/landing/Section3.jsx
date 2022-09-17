@@ -9,16 +9,14 @@ import landingImg from "../../public/assets/illustration_3.svg";
 import whyMtajiImg from "../../public/assets/illustration_7.png";
 
 const Section3 = () => {
-
     const [cards, setCards] = useState([
         {
             icon: cardIcon,
             title: "Diversify your portfolio",
-            description: "Add Africa&apos;s next business giant to your portfolio"
-
-
-        }
-    ])
+            description:
+                "Add Africa&apos;s next business giant to your portfolio",
+        },
+    ]);
     return (
         <Grid
             container
@@ -27,11 +25,7 @@ const Section3 = () => {
                 backgroundColor: "white",
             }}
         >
-            <Grid
-                container
-                className={styles.section3}
-                align="center"
-            >
+            <Grid container className={styles.section3} align="center">
                 <Grid
                     item
                     xs={12}
@@ -40,11 +34,11 @@ const Section3 = () => {
                     lg={12}
                     xl={12}
                     style={{
-                        padding: "5vh 0"
+                        padding: "5vh 0",
                     }}
                 >
                     <p className={styles.sectionHeader}>
-                    Mtaji is a marketplace for investors and <br/>founders in Africa
+                        Put your money to use, make a return
                     </p>
                     <div className={styles.underline} />
                 </Grid>
@@ -56,20 +50,17 @@ const Section3 = () => {
                     lg={4}
                     xl={4}
                     style={{
-                        width: "100%"
+                        width: "100%",
                     }}
                 >
-                    <Box
-                        className={styles.card}
-                    >
+                    <Box className={styles.card}>
                         <p align="center">
                             <img src="/assets/idea.svg" />
                         </p>
-                        <p className={styles.title}>Be an early investor</p>
+                        <p className={styles.title}>Interest on debt</p>
                         <p className={styles.description}>
-                            Early stage investment presents<br />
-                            higher uncertainty.<br />
-                            It could also bring higher return 
+                            Look out for companies issuing debt instruments, pay
+                            attention to their interest per annum offering
                         </p>
                     </Box>
                 </Grid>
@@ -81,19 +72,20 @@ const Section3 = () => {
                     lg={4}
                     xl={4}
                     style={{
-                        width: "100%"
+                        width: "100%",
                     }}
                 >
-                    <Box
-                        className={styles.card}
-                    >
+                    <Box className={styles.card}>
                         <p align="center">
                             <img src="/assets/idea.svg" />
                         </p>
-                        <p className={styles.title}>Diversify your portfolio</p>
+                        <p className={styles.title}>
+                            Marked to liquidity events
+                        </p>
                         <p className={styles.description}>
-                            Add Africa&apos;s next business giant(s) <br />
-                            to your portfolio
+                            Watch the value of your investment rise, as your
+                            portfolio companies goes through subsequent priced
+                            rounds a higher return.
                         </p>
                     </Box>
                 </Grid>
@@ -105,18 +97,17 @@ const Section3 = () => {
                     lg={4}
                     xl={4}
                     style={{
-                        width: "100%"
+                        width: "100%",
                     }}
                 >
-                    <Box
-                        className={styles.card}
-                    >
+                    <Box className={styles.card}>
                         <p align="center">
                             <img src="/assets/idea.svg" />
                         </p>
-                        <p className={styles.title}>Enjoy the ride</p>
+                        <p className={styles.title}>Diversify your portflio</p>
                         <p className={styles.description}>
-                        Grab a front row seat <br /> on a startup journey. <br/>Get updates first.
+                            Elect to diversify your investment portfolio ,
+                            choose from our wide selection of companies
                         </p>
                     </Box>
                 </Grid>

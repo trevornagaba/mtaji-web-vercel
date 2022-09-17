@@ -8,35 +8,42 @@ const Benefits = () => {
                 <WhyMtaji />
 
                 <p className={styles.sectionHeader}>
-                    Mtaji is a marketplace for investors and founders in Africa
+                    Put your money to use, make a return
                 </p>
 
                 <div className={styles.section}>
                     <div className={styles.card}>
                         <img src="/assets/idea.svg" />
-                        <p className={styles.title}>Diversify your portfolio</p>
+                        <p className={styles.title}>Interest on debt</p>
                         <p className={styles.description}>
-                        Add Africa&quot;s next business giant <br />
-                        to your portfolio
+                            Look out for companies issuing debt instruments{" "}
+                            <br />, pay attention to their interest per annum
+                            offering
                         </p>
                     </div>
                     <div className={styles.card}>
                         <img src="/assets/idea.svg" />
-                        <p className={styles.title}>Be an early investor</p>
+                        <p className={styles.title}>
+                            Marked to liquidity events
+                        </p>
                         <p className={styles.description}>
-                        While investment in early stage<br />
-                        businesses presents higher uncertainty, <br />
-                        it also provides an opportunity for <br />
-                        a higher return.
+                            Watch the value of your investment
+                            <br />
+                            rise as your portfolio companies <br />
+                            goes through subsequent priced rounds
+                            <br />a higher return.
                         </p>
                     </div>
                     <div className={styles.card}>
                         <img src="/assets/idea.svg" />
-                        <p className={styles.title}>Grab a front row seat <br /> on a startup journey</p>
+                        <p className={styles.title}>
+                            Grab a front row seat <br /> on a startup journey
+                        </p>
                         <p className={styles.description}>
-                        Ride the highs and wither <br /> the lows with a founding team<br />
-                        of your choice
-
+                            Ride the highs and wither <br /> the lows with a
+                            founding team
+                            <br />
+                            of your choice
                         </p>
                     </div>
                 </div>

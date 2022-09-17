@@ -15,7 +15,7 @@ services:
       - FLW_ENCK=$FLW_ENCK
       - NEXT_PUBLIC_BACKEND_API_URL=$NEXT_PUBLIC_BACKEND_API_URL
     ports:
-      - "80:80"
+      - "3000:3000"
     volumes:
       - .:/home/node/app
       - node_modules:/home/node/app/node_modules

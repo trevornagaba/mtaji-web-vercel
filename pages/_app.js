@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps }) {
                     rel="stylesheet"
                     href="https://fonts.googleapis.com/icon?family=Material+Icons"
                 />
+                <link rel="shortcut icon" href="/assets/logo.svg" />
                 <title>Mtaji</title>
             </Head>
             <AppContextProvider>
