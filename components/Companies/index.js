@@ -145,7 +145,7 @@ const Companies = (props) => {
                                 </strong>
                                 <br />
                                 <small>
-                                    Ends in:{" "}
+                                    Opens in: {" "}
                                     <span style={{ color: "#FE8686" }}>
                                         {calc_days_left(
                                             company.raiseTargetDate
