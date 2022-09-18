@@ -103,7 +103,7 @@ const InvestmentsCard = (props) => {
                                    
                                     <Grid item xs={8}>
                                         <CompanyChip
-                                            defaultLogo="/assets/defaultLogo.svg"
+                                            defaultLogo={`${company.logo}`}
                                             companyName={company.companyName}
                                             companyIndustry={company.industry}
                                         />

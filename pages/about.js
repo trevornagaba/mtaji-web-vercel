@@ -115,7 +115,7 @@ function about() {
                     <ExpertProfileCard
                         imageLink={"/assets/emmanuel_agidi.svg"}
                         name={"Emmanuel Agidi"}
-                        position={"Founder & Head of Operations"}
+                        position={"Head of Operations"}
                         linkedinUrl={
                             "https://www.linkedin.com/in/emmanuel-agidi/"
                         }
@@ -123,7 +123,7 @@ function about() {
                     <ExpertProfileCard
                         imageLink={"/assets/trevor.svg"}
                         name={"Trevor Nagaba"}
-                        position={"Founder & CEO"}
+                        position={"Team Lead"}
                         linkedinUrl={
                             "https://www.linkedin.com/in/trevor-nagaba/"
                         }
@@ -132,7 +132,7 @@ function about() {
                     <ExpertProfileCard
                         imageLink={"/assets/arnold.svg"}
                         name={"Arnold Luima"}
-                        position={"Founder & Head of Investments"}
+                        position={"Head of Investments"}
                         linkedinUrl={
                             "https://www.linkedin.com/in/arnold-luima-acca-a0747452/"
                         }
@@ -147,7 +147,7 @@ function about() {
                     />
                     <ExpertProfileCard
                         imageLink={"/assets/emma_wamibu.svg"}
-                        name={"Emmanuel Nabusiu"}
+                        name={"Emmanuel Wamibu"}
                         position={"Head of Finance"}
                         linkedinUrl={
                             "https://www.linkedin.com/in/emmanuel-nabusiu-wamibu-464b73103/"
