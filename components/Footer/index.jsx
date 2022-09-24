@@ -62,9 +62,9 @@ const Footer = () => {
                     <HomeLogo />
                     <div className={styles.imageLinks}>
                         <Link href="https://www.linkedin.com/company/mtaji-io" ><img src="/assets/linked_in.svg" alt="linkedin" /></Link>
-                        <img src="/assets/facebook.svg" alt="facebook" />
-                        <img src="/assets/twitter.svg" alt="twitter" />
-                        <img src="/assets/instagram.svg" alt="instagram" />
+                        <Link href="https://www.facebook.com/profile.php?id=100084321720444" ></Link><img src="/assets/facebook.svg" alt="facebook" /></Link>
+                        <Link href="https://twitter.com/mtaji_io" ></Link><img src="/assets/twitter.svg" alt="twitter" /></Link>
+                        <Link href="https://www.instagram.com/mtaji_io" ></Link><img src="/assets/instagram.svg" alt="instagram" /></Link>
                     </div>
                 </div>
             </Grid>
