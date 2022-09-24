@@ -229,7 +229,7 @@ const Header = (props) => {
                             display="inline-flex"
                             alignItems="center"
                         >
-                            <Image
+                            <img
                                 src="/assets/logo.svg"
                                 alt="logo"
                                 width={37}
@@ -446,7 +446,7 @@ const Header = (props) => {
                                                               "'Quicksand', sans-serif",
                                                       }}
                                                   >
-                                                      <span
+                                                      {/* <span
                                                           style={{
                                                               marginRight:
                                                                   "5px",
@@ -454,7 +454,7 @@ const Header = (props) => {
                                                           }}
                                                       >
                                                           {page.pageIcon}
-                                                      </span>
+                                                      </span> */}
                                                       <span
                                                           style={{
                                                               color:
