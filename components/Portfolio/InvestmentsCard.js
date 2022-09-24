@@ -20,7 +20,7 @@ import defaultLogo from "../../public/assets/defaultLogo.svg";
 
 const InvestmentsCard = (props) => {
     const { isLoaded, userPortfolioDetails } = props;
-    // console.log(userPortfolioDetails.length);
+    // .length);
    
     
 
@@ -103,7 +103,7 @@ const InvestmentsCard = (props) => {
                                    
                                     <Grid item xs={8}>
                                         <CompanyChip
-                                            defaultLogo="/assets/defaultLogo.svg"
+                                            defaultLogo={`${company.logo}`}
                                             companyName={company.companyName}
                                             companyIndustry={company.industry}
                                         />

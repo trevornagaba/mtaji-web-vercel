@@ -41,9 +41,9 @@ const Landing = () => {
 
     useEffect(() => {
         checkAuth();
-        // console.log(companies);
+        // 
     }, []);
-    // console.log(companies);
+    // 
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -263,7 +263,7 @@ const Landing = () => {
                         }}
                     >
                         <p className={styles.sectionHeader}>
-                            Companies currently raising capital on mtaji
+                            Companies raising soon
                         </p>
                         <div className={styles.underline2} />
                     </Grid>
@@ -283,7 +283,7 @@ const Landing = () => {
                             <a href={`/company/${company._id}`}>
                                 <Box className={styles.companyCardBox}>
                                     <img
-                                        src="/assets/companyLogo.svg"
+                                        src={`${company.logo}`}
                                         width={80}
                                     />
                                     {/* <img src={company.logo} width={80} /> */}
@@ -336,7 +336,7 @@ const Landing = () => {
                                         </strong>
                                         <br />
                                         <small>
-                                            Ends in:{" "}
+                                            Opens in: {" "}
                                             <span style={{ color: "#FE8686" }}>
                                                 {calc_days_left(
                                                     company.raiseTargetDate

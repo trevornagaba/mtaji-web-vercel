@@ -43,8 +43,8 @@ const KycForm = ({ isKycVerified, userId }) => {
                             )
                             .then(async (resp) => {
                                 // console.log("upload back success");
-                                // console.log(res);
-                                // console.log(resp);
+                                // 
+                                // 
                                 if (res.status == 200) {
                                     const token = getToken();
                                     let config = {
@@ -61,13 +61,13 @@ const KycForm = ({ isKycVerified, userId }) => {
                                             config
                                         )
                                         .then((res) => {
-                                            // console.log(res);
+                                            // 
                                             // console.log("updated user doc");
                                             setUpdating(false);
                                             setAlert("success", "Documents Submitted","Kyc documents submitted, you will receive an email update within the next 24 hours");
                                         })
                                         .catch((e) => {
-                                            // console.log(e);
+                                            // 
                                             setUpdating(false);
                                             setAlert("warning", "Upload error","An error occurred");
                                         });
@@ -81,7 +81,7 @@ const KycForm = ({ isKycVerified, userId }) => {
                     setUploading(false);
                 })
                 .catch((e) => {
-                    // console.log(e);
+                    // 
                     setUploading(false);
                 });
         }

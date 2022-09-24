@@ -8,4 +8,8 @@ npm run dev
 yarn dev
 ```
 
+Deployment guides
+* https://docs.docker.com/get-started/
+* https://towardsdatascience.com/deploying-a-docker-container-with-ecs-and-fargate-7b0cbc9cd608
+* https://www.digitalocean.com/community/tutorials/containerizing-a-node-js-application-for-development-with-docker-compose
 

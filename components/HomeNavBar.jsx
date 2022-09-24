@@ -17,7 +17,7 @@ const HomeNavBar = () => {
       );    
     router.push("/login");
   } catch (error) {
-    // console.log(error)
+    // 
   };}
 
   return (

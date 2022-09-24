@@ -4,7 +4,7 @@ const WhyMtaji = () => {
   return (
 
       <div className={styles.content}>
-        <p className={styles.title}>Why you need mtaji</p>
+        <p className={styles.title}>Mtaji is a marketplace for investors and founders in Africa</p>
         <div className={styles.underline} />
 
         <div className={styles.pointsList}>
@@ -18,15 +18,8 @@ const WhyMtaji = () => {
           <div className={styles.point}>
             <img src="/assets/info_vector.svg" alt="info" />
             <p>
-              Create a passive income stream. Let your money work for you.
-            </p>
-          </div>
-
-          <div className={styles.point}>
-            <img src="/assets/info_vector.svg" alt="info" />
-            <p>
               Micro, small and medium enterprises form the backbone of most
-              African economies. Back then!
+              African economies. Back them!
             </p>
           </div>
 

@@ -29,8 +29,8 @@ const SecurityForm = ({userId}) => {
         )
     }
     const handleSubmit =()=>{
-        // console.log(userId)
-        // console.log(data[0])
+        // 
+        // [0])
         if (data.password != data.cpassword){
             return setAlert("warning", "passwords are not equal")
         }
@@ -51,7 +51,7 @@ const SecurityForm = ({userId}) => {
         }
         ).catch(e=>{
             setSending(false)
-            // console.log(e)
+            // 
             setAlert("warning","Update Error", "An error occurred")
         })
     }

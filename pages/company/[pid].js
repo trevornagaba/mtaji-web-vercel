@@ -22,7 +22,7 @@ import Modal from "../../components/ModalComponent";
 
 export const getServerSideProps = async (context) => {
     const companyId = context.query.pid;
-    // console.log(context)
+    // 
     const company = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/${companyId}`
     );
@@ -67,7 +67,7 @@ export default function Company({ company }) {
         // checkAuth()
         setUser(userDetails)
         
-        // console.log(user)
+        // 
     },[isLoaded])
 
     // Setup state management for Investment modal
@@ -110,7 +110,7 @@ export default function Company({ company }) {
                 responseType: "blob",
             })
             .then((res) => {
-                // console.log(res);
+                // 
 
                 const url = window.URL.createObjectURL(
                     new Blob([res.data], {
@@ -169,7 +169,7 @@ export default function Company({ company }) {
                                 </div>
                             </div>
                             <div className="block lg:hidden">
-                                <Button
+                                {/* <Button
                                     primary
                                     onClick={()=>{
                                         !user?.isKycVerified ? setAlert('warning','Verification Required','please complete verification before investing'):
@@ -178,11 +178,11 @@ export default function Company({ company }) {
                                     className="w-[125px]"
                                 >
                                     Invest
-                                </Button>
+                                </Button> */}
                             </div>
                             <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
                                 <ShareButton onClick={() => onClickShare()} />
-                                <Button
+                                {/* <Button
                                     primary
                                     onClick={()=>{
                                         !user?.isKycVerified ? setAlert('warning','Verification Required','please complete verification before investing'):
@@ -191,7 +191,15 @@ export default function Company({ company }) {
                                     className="px-14"
                                 >
                                     Invest
+                                </Button> */}
+                                <a href="https://forms.gle/6vqZ5dtSC1vHGHf37"  target="_blank" rel="noreferrer">
+                                <Button
+                                    primary
+                                    className="w-[125px]"
+                                >
+                                    Invest
                                 </Button>
+                                </a>
                             </div>
                         </div>
                         <div className="max-w-full w-full h-[240px] lg:h-[500px] flex flex-col justify-center relative ">
@@ -255,7 +263,7 @@ export default function Company({ company }) {
                                             <ShareButton
                                                 onClick={() => onClickShare()}
                                             />
-                                            <Button
+                                            {/* <Button
                                                 primary
                                                 onClick={()=>{
                                                     !user?.isKycVerified ? setAlert('warning','Verification Required','please complete verification before investing'):
@@ -264,7 +272,14 @@ export default function Company({ company }) {
                                                 className="px-14"
                                             >
                                                 Invest
-                                            </Button>
+                                            </Button> */}
+                                            <a href="https://forms.gle/6vqZ5dtSC1vHGHf37"  target="_blank" rel="noreferrer">
+                                <Button
+                                    primary
+                                    className="w-[125px]"
+                                >
+                                    Invest
+                                </Button></a>
                                         </div>
                                     </div>
                                 </div>

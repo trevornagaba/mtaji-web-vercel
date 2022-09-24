@@ -193,7 +193,7 @@ const AppContextProvider = (props) => {
             })
             .catch((error) => {
                 setErrors(error);
-                // console.log(error);
+                // 
                 // setIsLoaded(false);
             });
     };
@@ -216,7 +216,7 @@ const AppContextProvider = (props) => {
                     }
                 )
                 .then((result) => {
-                    //console.log(result.data);
+                    //.data);
                     // TO-DO: Update after sorting out auth
                     setUserPortfolioDetails(result.data);
                     // setIsLoaded(true);
@@ -230,8 +230,8 @@ const AppContextProvider = (props) => {
         // setIsLoaded(true)
     };
 
-    // console.log(userDetails["email"]);
-    // console.log(userPortfolioDetails);
+    // ["email"]);
+    // 
 
     const getBlogs = async () => {
         // setIsLoaded(false);

@@ -80,7 +80,7 @@ const CompanyCard = ({company, index}) => {
                 <Typography style={{ padding: "10px 0", lineHeight: "22px" }} align={"left"}>
                     <small>Raising</small><br/>
                     <strong style={{ fontSize: "22px" }}>{formatter.format(company.targetAmount)}</strong><br/>
-                    <small>Ends in: <span style={{ color: "red" }}>21h:30min:15sec</span></small>
+                    <small>Opens in:  <span style={{ color: "red" }}>21h:30min:15sec</span></small>
                 </Typography>
 
                 <BorderLinearProgress variant="determinate" value={(company.amountRaised/company.targetAmount)*100} label={true}/>
