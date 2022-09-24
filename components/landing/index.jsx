@@ -194,7 +194,7 @@ const Landing = () => {
                     align="right"
                 >
                     <img
-                        src={landingImg}
+                        src="/assets/illustration_3.svg"
                         alt="happy investor"
                         style={{
                             width: "100%",
