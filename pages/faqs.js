@@ -55,7 +55,7 @@ const FAQs = () => {
     return (
         <>
             <Head>
-                <title>Antimoney laundering policy of Mtaji</title>
+                <title>Mtaji | Frequently asked questions on Equity Crowdfunding</title>
                 <meta
                     name="description"
                     content="Antimoney laundering policy for Mtaji's equity crowdfunding for Africans"

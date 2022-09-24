@@ -2,6 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Head from "next/head";
 
 // NEW IMPORTS
 import Image from "next/image";
@@ -114,6 +115,13 @@ const SignUp = () => {
 
     return (
         <>
+            <Head>
+                <title>Join  to Mtaji</title>
+                <meta
+                    name="description"
+                    content="Sign up for Equity Crowdfunding for Africans"
+                />
+            </Head>
             <Grid
                 container
                 style={{
