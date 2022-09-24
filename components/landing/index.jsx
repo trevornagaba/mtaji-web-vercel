@@ -193,7 +193,7 @@ const Landing = () => {
                     }}
                     align="right"
                 >
-                    <Image
+                    <img
                         src={landingImg}
                         alt="happy investor"
                         style={{
