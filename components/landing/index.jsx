@@ -164,7 +164,7 @@ const Landing = () => {
                         <Grid
                         item
                         style={{flex: 1}}>
-                            <Link><Image
+                            <Link href=""><Image
                                 src={arrow}
                                 alt="arrow"
                                 style={{
