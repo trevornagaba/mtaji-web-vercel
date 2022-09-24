@@ -1,110 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.mtaji.com/sitemap/about</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/about</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/account</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/account</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/amlpolicy</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/amlpolicy</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/faqs</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/faqs</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/home</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/home</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/login</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/login</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/privacypolicy</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/privacypolicy</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/signup</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/signup</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/termsofservice</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/termsofservice</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/testhome</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/testhome</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/verify-email</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/verify-email</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/wallet</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/wallet</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/activate-account/[verificationToken]</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/activate-account/[verificationToken]</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/blog/index</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/blog/index</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/blog/[slug]</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/blog/[slug]</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/company/[pid]</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/company/[pid]</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mtaji.com/sitemap/pass-reset/[resetToken]</loc>
-    <lastmod>2022-09-24T13:39:35.482Z</lastmod>
+    <loc>https://m-taji.netlify.app/pass-reset/[resetToken]</loc>
+    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
