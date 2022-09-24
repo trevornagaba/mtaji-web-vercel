@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.mtaji.com/sitemap
+Sitemap: https://www.mtaji-web.netlify.app/sitemap.xml
