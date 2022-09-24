@@ -2,6 +2,7 @@ import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/termsofservice.module.css";
 import SubscribeCard from "../components/subscribeToMailList";
 import Image from "next/image";
+import Head from "next/head";
 
 const TERMSOFSERVICE = () => {
     return (
