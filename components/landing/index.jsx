@@ -248,10 +248,8 @@ const Landing = () => {
             <Section3 />
 
             {/* Section 3 */}
-            {/* Remove the if no companies test */}
-            {/* {companies.length != 0 ?  */}
-            {
-                (<Grid container className={styles.section4}>
+            {companies.length != 0 ? (
+                <Grid container className={styles.section4}>
                     <Grid
                         item
                         sx={12}
@@ -369,9 +367,10 @@ const Landing = () => {
                             </a>
                         </Grid>
                     ): ''})}
-                </Grid>)}
-                {/* Remove the else section */}
-            {/* : ("") */}
+                </Grid>
+            ) : (
+                ""
+            )}
         </PageTemplate>
     );
 };
