@@ -7,7 +7,7 @@ import pointerImg from "../../public/assets/tagline_background.svg";
 import landingImg from "../../public/assets/illustration_3.svg";
 import whyMtajiImg from "../../public/assets/illustration_7.png";
 import lady_with_laptop from "../../public/assets/lady_with_laptop.svg";
-import arrow from "../../public/assets/bike.jpg";
+import arrow from "../../public/assets/arrow.svg";
 
 import { AppContext } from "../AppContext";
 
@@ -165,8 +165,12 @@ const Landing = () => {
                         item
                         style={{flex: 1}}>
                             <Image
-                                src={arrow}
+                                src="/assets/arrow.svg"
+                                // src={arrow}
                                 alt="arrow"
+                                width={"100%"}
+                                height={"100%"}
+
                                 style={{
                                     width: "100%",
                                     marginLeft: "10px"
