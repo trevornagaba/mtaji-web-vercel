@@ -36,13 +36,12 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 const Landing = () => {
-    const { isLoaded, checkAuth, companies } = useContext(AppContext);
+    //const { isLoaded, checkAuth, companies } = useContext(AppContext);
 
-
-    useEffect(() => {
-        checkAuth();
-        // 
-    }, []);
+    // useEffect(() => {
+    //     checkAuth();
+    //     // 
+    // }, []);
     // 
 
     // Create our number formatter.
@@ -165,12 +164,8 @@ const Landing = () => {
                         item
                         style={{flex: 1}}>
                             <Image
-                                src="/assets/arrow.svg"
-                                // src={arrow}
+                                src={arrow}
                                 alt="arrow"
-                                width={"100%"}
-                                height={"100%"}
-
                                 style={{
                                     width: "100%",
                                     marginLeft: "10px"
@@ -230,9 +225,8 @@ const Landing = () => {
                     <Image
                         src={lady_with_laptop}
                         alt="entreprenuer steering at a laptop screen"
-                        style={{
-                            width: "100%",
-                        }}
+                        
+                        
                     />
                 </Grid>
                 <Grid
@@ -252,129 +246,135 @@ const Landing = () => {
             <Section3 />
 
             {/* Section 3 */}
-            {companies.length != 0 ? (
-                <Grid container className={styles.section4}>
-                    <Grid
-                        item
-                        sx={12}
-                        sm={12}
-                        md={12}
-                        lg={12}
-                        xl={12}
-                        align="center"
-                        style={{
-                            padding: "0",
-                        }}
-                    >
-                        <p className={styles.sectionHeader}>
-                            Companies raising soon
-                        </p>
-                        <div className={styles.underline2} />
-                    </Grid>
-                    {companies?.map((company, index) => {
-                        return company.isRaising == "true" ?(
-                        <Grid
-                            key={index}
-                            item
-                            sx={12}
-                            sm={12}
-                            md={4}
-                            lg={4}
-                            xl={4}
-                            className={styles.companyCard}
-                            align="center"
-                        >
-                            <a href={`/company/${company._id}`}>
-                                <Box className={styles.companyCardBox}>
-                                    <img
-                                        src={`${company.logo}`}
-                                        width={80}
-                                    />
-                                    {/* <img src={company.logo} width={80} /> */}
 
-                                    <Typography
-                                        variant="h5"
-                                        style={{
-                                            margin: "15px 0px",
-                                            fontFamily: "Poppins",
-                                            fontWeight: "500",
-                                        }}
-                                    >
-                                        {company.name}
-                                    </Typography>
+            {
+            
+            // companies.length != 0 ? (
+            //     <Grid container className={styles.section4}>
+            //         <Grid
+            //             item
+            //             sx={12}
+            //             sm={12}
+            //             md={12}
+            //             lg={12}
+            //             xl={12}
+            //             align="center"
+            //             style={{
+            //                 padding: "0",
+            //             }}
+            //         >
+            //             <p className={styles.sectionHeader}>
+            //                 Companies raising soon
+            //             </p>
+            //             <div className={styles.underline2} />
+            //         </Grid>
+            //         {companies?.map((company, index) => {
+            //             return company.isRaising == "true" ?(
+            //             <Grid
+            //                 key={index}
+            //                 item
+            //                 sx={12}
+            //                 sm={12}
+            //                 md={4}
+            //                 lg={4}
+            //                 xl={4}
+            //                 className={styles.companyCard}
+            //                 align="center"
+            //             >
+            //                 <a href={`/company/${company._id}`}>
+            //                     <Box className={styles.companyCardBox}>
+            //                         <img
+            //                             src={`${company.logo}`}
+            //                             width={80}
+            //                         />
+            //                         {/* <img src={company.logo} width={80} /> */}
 
-                                    <Typography
-                                        style={{
-                                            textAlign: "left",
-                                            fontFamily: "Poppins",
-                                            color: "#666666",
-                                            margin: "10px 0px",
-                                            fontSize: "0.9rem",
-                                        }}
-                                    >
-                                        {Str(company.briefDescription)
-                                            .limit(100, "...")
-                                            .get()}
-                                    </Typography>
+            //                         <Typography
+            //                             variant="h5"
+            //                             style={{
+            //                                 margin: "15px 0px",
+            //                                 fontFamily: "Poppins",
+            //                                 fontWeight: "500",
+            //                             }}
+            //                         >
+            //                             {company.name}
+            //                         </Typography>
 
-                                    <Typography
-                                        style={{
-                                            padding: "10px 0",
-                                            lineHeight: "22px",
-                                            color: "#666666",
-                                            fontFamily: "Poppins",
-                                        }}
-                                        align={"left"}
-                                    >
-                                        <small>Raising</small>
-                                        <br />
-                                        <strong
-                                            style={{
-                                                fontSize: "1.25rem",
-                                                color: "#09062D",
-                                            }}
-                                        >
-                                            {formatter.format(
-                                                company.targetAmount
-                                            )}
-                                        </strong>
-                                        <br />
-                                        <small>
-                                            Opens in: {" "}
-                                            <span style={{ color: "#FE8686" }}>
-                                                {calc_days_left(
-                                                    company.raiseTargetDate
-                                                )}
-                                            </span>
-                                        </small>
-                                        {/* {console.log(`check: ${calc_days_left(company.raiseTargetDate)}`)} */}
-                                    </Typography>
+            //                         <Typography
+            //                             style={{
+            //                                 textAlign: "left",
+            //                                 fontFamily: "Poppins",
+            //                                 color: "#666666",
+            //                                 margin: "10px 0px",
+            //                                 fontSize: "0.9rem",
+            //                             }}
+            //                         >
+            //                             {Str(company.briefDescription)
+            //                                 .limit(100, "...")
+            //                                 .get()}
+            //                         </Typography>
 
-                                    <BorderLinearProgress
-                                        variant="determinate"
-                                        value={
-                                            (company.amountRaised /
-                                                company.targetAmount) *
-                                            100
-                                        }
-                                        label={true}
-                                    />
-                                    <small style={{ color: "#01BBC8" }}>
-                                        {Math.round(
-                                            (company.amountRaised /
-                                                company.targetAmount) *
-                                                100
-                                        )}
-                                        %
-                                    </small>
-                                </Box>
-                            </a>
-                        </Grid>
-                    ): ''})}
-                </Grid>
-            ) : (
-                ""
-            )}
+            //                         <Typography
+            //                             style={{
+            //                                 padding: "10px 0",
+            //                                 lineHeight: "22px",
+            //                                 color: "#666666",
+            //                                 fontFamily: "Poppins",
+            //                             }}
+            //                             align={"left"}
+            //                         >
+            //                             <small>Raising</small>
+            //                             <br />
+            //                             <strong
+            //                                 style={{
+            //                                     fontSize: "1.25rem",
+            //                                     color: "#09062D",
+            //                                 }}
+            //                             >
+            //                                 {formatter.format(
+            //                                     company.targetAmount
+            //                                 )}
+            //                             </strong>
+            //                             <br />
+            //                             <small>
+            //                                 Opens in: {" "}
+            //                                 <span style={{ color: "#FE8686" }}>
+            //                                     {calc_days_left(
+            //                                         company.raiseTargetDate
+            //                                     )}
+            //                                 </span>
+            //                             </small>
+            //                             {/* {console.log(`check: ${calc_days_left(company.raiseTargetDate)}`)} */}
+            //                         </Typography>
+
+            //                         <BorderLinearProgress
+            //                             variant="determinate"
+            //                             value={
+            //                                 (company.amountRaised /
+            //                                     company.targetAmount) *
+            //                                 100
+            //                             }
+            //                             label={true}
+            //                         />
+            //                         <small style={{ color: "#01BBC8" }}>
+            //                             {Math.round(
+            //                                 (company.amountRaised /
+            //                                     company.targetAmount) *
+            //                                     100
+            //                             )}
+            //                             %
+            //                         </small>
+            //                     </Box>
+            //                 </a>
+            //             </Grid>
+            //         ): ''})}
+            //     </Grid>
+            // ) : (
+            //     ""
+            // )
+            
+            }
+            
         </PageTemplate>
     );
 };
