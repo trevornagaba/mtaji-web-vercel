@@ -19,10 +19,12 @@ import classNames from "/utils/classnames";
 import FlashMessage from "../../components/Alert/FlashMessage";
 import useSetAlert from "../../hooks/useSetAlert";
 import Modal from "../../components/ModalComponent";
+import parse from "html-react-parser";
+import md from "markdown-it";
 
 export const getServerSideProps = async (context) => {
     const companyId = context.query.pid;
-    // 
+    //
     const company = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/companies/${companyId}`
     );
@@ -31,13 +33,14 @@ export const getServerSideProps = async (context) => {
     };
 };
 export default function Company({ company }) {
-    const {setAlert} = useSetAlert()
+    const { setAlert } = useSetAlert();
     // Setup use of router to get company id from url
     const router = useRouter();
     const { pid } = router.query;
 
-    const { isLoaded, isAuth, getCompany,checkAuth, userDetails, showAlert} = useContext(AppContext);
-    const [user, setUser] = useState({})
+    const { isLoaded, isAuth, getCompany, checkAuth, userDetails, showAlert } =
+        useContext(AppContext);
+    const [user, setUser] = useState({});
     // Setup state management
     // const [company, setCompany] = useState([]);
     const [companyInfo, setCompanyInfo] = useState([
@@ -63,12 +66,12 @@ export default function Company({ company }) {
         },
     ]);
 
-    useEffect(()=>{
+    useEffect(() => {
         // checkAuth()
-        setUser(userDetails)
-        
-        // 
-    },[isLoaded])
+        setUser(userDetails);
+
+        //
+    }, [isLoaded]);
 
     // Setup state management for Investment modal
     const [isOpen, setIsOpen] = useState(false);
@@ -79,9 +82,7 @@ export default function Company({ company }) {
         setIsOpen(false);
     };
 
-    
     const openModal = () => {
-        
         setIsOpen(true);
     };
 
@@ -102,7 +103,11 @@ export default function Company({ company }) {
         }
         await navigator.clipboard.writeText(window.location.href);
         // setShwAlert(true);
-        setAlert("success", "Url Copied","Url copied, you can now share with other amazing investors like you!")
+        setAlert(
+            "success",
+            "Url Copied",
+            "Url copied, you can now share with other amazing investors like you!"
+        );
     };
     const onClickDownload = async (filename, link) => {
         axios
@@ -110,7 +115,7 @@ export default function Company({ company }) {
                 responseType: "blob",
             })
             .then((res) => {
-                // 
+                //
 
                 const url = window.URL.createObjectURL(
                     new Blob([res.data], {
@@ -192,13 +197,14 @@ export default function Company({ company }) {
                                 >
                                     Invest
                                 </Button> */}
-                                <a href="https://forms.gle/6vqZ5dtSC1vHGHf37"  target="_blank" rel="noreferrer">
-                                <Button
-                                    primary
-                                    className="w-[125px]"
+                                <a
+                                    href="https://forms.gle/6vqZ5dtSC1vHGHf37"
+                                    target="_blank"
+                                    rel="noreferrer"
                                 >
-                                    Invest
-                                </Button>
+                                    <Button primary className="w-[125px]">
+                                        Invest
+                                    </Button>
                                 </a>
                             </div>
                         </div>
@@ -247,7 +253,7 @@ export default function Company({ company }) {
                                                 className={({ selected }) =>
                                                     classNames(
                                                         "py-2 text-[16px] font-medium",
-                                                        "ring-offset- focus:outline-none focus:ring-0", 
+                                                        "ring-offset- focus:outline-none focus:ring-0",
                                                         selected
                                                             ? "border-b-2 border-green bg-white"
                                                             : "text-grey bg-white hover:bg-gray-800 hover:text-gray-800 hover:bg-white"
@@ -273,13 +279,18 @@ export default function Company({ company }) {
                                             >
                                                 Invest
                                             </Button> */}
-                                            <a href="https://forms.gle/6vqZ5dtSC1vHGHf37"  target="_blank" rel="noreferrer">
-                                <Button
-                                    primary
-                                    className="w-[125px]"
-                                >
-                                    Invest
-                                </Button></a>
+                                            <a
+                                                href="https://forms.gle/6vqZ5dtSC1vHGHf37"
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                <Button
+                                                    primary
+                                                    className="w-[125px]"
+                                                >
+                                                    Invest
+                                                </Button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -296,7 +307,8 @@ export default function Company({ company }) {
                                                             width={20}
                                                         />
                                                         <p className="ml-3">
-                                                        {company.name} Team doc
+                                                            {company.name} Team
+                                                            doc
                                                         </p>
                                                     </div>
                                                     <div
@@ -318,52 +330,83 @@ export default function Company({ company }) {
                                                 </div>
                                             ) : item.title == "Documents" ? (
                                                 <>
-                                                    {company?.companyDocumentsUrl?.map(document=>{
-                                                        ++num
-                                                        const no= num
-                                                        return (
-                                                            <>
-                                                            <div className="flex flex-row w-full justify-between text-center bg-slate-50 rounded-lg p-2 px-6 mb-5">
-                                                        <div className="flex flex-row items-center">
-                                                            <Image
-                                                                src="/assets/file.svg"
-                                                                alt="file"
-                                                                height={20}
-                                                                width={20}
-                                                            />
-                                                            <p className="ml-3">
-                                                            {company.name} Documents {no}
-                                                            </p>
-                                                        </div>
-                                                        <div
-                                                            className="cursor-pointer flex w-10 h-10 justify-center rounded-full hover:bg-slate-100"
-                                                            onClick={() =>
-                                                                onClickDownload(
-                                                                    `${company.name} Documents ${no}`, document
-                                                                )
-                                                            }
-                                                        >
-                                                            <Image
-                                                                src="/assets/download.svg"
-                                                                alt="file"
-                                                                height={20}
-                                                                width={20}
-                                                            />
-                                                        </div>
-                                                    </div></>
-                                                        )
-                                                    })}
-                                                    
+                                                    {company?.companyDocumentsUrl?.map(
+                                                        (document) => {
+                                                            ++num;
+                                                            const no = num;
+                                                            return (
+                                                                <>
+                                                                    <div className="flex flex-row w-full justify-between text-center bg-slate-50 rounded-lg p-2 px-6 mb-5">
+                                                                        <div className="flex flex-row items-center">
+                                                                            <Image
+                                                                                src="/assets/file.svg"
+                                                                                alt="file"
+                                                                                height={
+                                                                                    20
+                                                                                }
+                                                                                width={
+                                                                                    20
+                                                                                }
+                                                                            />
+                                                                            <p className="ml-3">
+                                                                                {
+                                                                                    company.name
+                                                                                }{" "}
+                                                                                Documents{" "}
+                                                                                {
+                                                                                    no
+                                                                                }
+                                                                            </p>
+                                                                        </div>
+                                                                        <div
+                                                                            className="cursor-pointer flex w-10 h-10 justify-center rounded-full hover:bg-slate-100"
+                                                                            onClick={() =>
+                                                                                onClickDownload(
+                                                                                    `${company.name} Documents ${no}`,
+                                                                                    document
+                                                                                )
+                                                                            }
+                                                                        >
+                                                                            <Image
+                                                                                src="/assets/download.svg"
+                                                                                alt="file"
+                                                                                height={
+                                                                                    20
+                                                                                }
+                                                                                width={
+                                                                                    20
+                                                                                }
+                                                                            />
+                                                                        </div>
+                                                                    </div>
+                                                                </>
+                                                            );
+                                                        }
+                                                    )}
                                                 </>
                                             ) : item.title == "Overview" ? (
-                                                <>{company?.briefDescription}</>
+                                                <>
+                                                    <div className="prose lg:prose-xl max-w-none mx-0 w-full">
+                                                        {
+                                                            parse(md().render(company?.briefDescription))
+                                                        }
+                                                    </div>
+                                                </>
                                             ) : item.title === "Problem" ? (
-                                                <>{company?.problemStatement}</>
+                                                <>
+                                                    <div className="prose lg:prose-xl max-w-none mx-0 w-full">
+                                                        {
+                                                            parse(md().render(company?.problemStatement))
+                                                        }
+                                                    </div>
+                                                </>
                                             ) : (
                                                 <>
-                                                    {
-                                                        company?.detailedDescription
-                                                    }
+                                                    <div className="prose lg:prose-xl max-w-none mx-0 w-full">
+                                                        {
+                                                            parse(md().render(company?.detailedDescription))
+                                                        }
+                                                    </div>
                                                 </>
                                             )}
                                         </Tab.Panel>
@@ -377,9 +420,14 @@ export default function Company({ company }) {
                                     />
                                     <Button
                                         primary
-                                        onClick={()=>{
-                                            !user?.isKycVerified ? setAlert('warning', 'Verification Required','please complete verification before investing'):
-                                            openModal()
+                                        onClick={() => {
+                                            !user?.isKycVerified
+                                                ? setAlert(
+                                                      "warning",
+                                                      "Verification Required",
+                                                      "please complete verification before investing"
+                                                  )
+                                                : openModal();
                                         }}
                                         className="px-10 w-full"
                                     >
@@ -416,7 +464,7 @@ export default function Company({ company }) {
                     `}
                 </style>
             </div>
-            {showAlert ? <Modal/> : ''}
+            {showAlert ? <Modal /> : ""}
         </PageTemplate>
     );
 }
