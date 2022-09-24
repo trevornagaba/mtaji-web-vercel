@@ -1,110 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
-    <loc>https://m-taji.netlify.app/about</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
+    <loc>http://localhost:3000/about</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://localhost:3000/account</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://localhost:3000/amlpolicy</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://localhost:3000/faqs</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://localhost:3000/home</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://localhost:3000</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://localhost:3000/login</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://localhost:3000/privacypolicy</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://localhost:3000/signup</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:3000/termsofservice</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://m-taji.netlify.app/account</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
+    <loc>http://localhost:3000/testhome</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://m-taji.netlify.app/amlpolicy</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
+    <loc>http://localhost:3000/verify-email</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://m-taji.netlify.app/faqs</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
+    <loc>http://localhost:3000/wallet</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://m-taji.netlify.app/home</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
+    <loc>http://localhost:3000/activate-account/[verificationToken]</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://m-taji.netlify.app</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
+    <loc>http://localhost:3000/blog/index</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://m-taji.netlify.app/login</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
+    <loc>http://localhost:3000/blog/[slug]</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://m-taji.netlify.app/privacypolicy</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
+    <loc>http://localhost:3000/company/[pid]</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://m-taji.netlify.app/signup</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://m-taji.netlify.app/termsofservice</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://m-taji.netlify.app/testhome</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://m-taji.netlify.app/verify-email</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://m-taji.netlify.app/wallet</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://m-taji.netlify.app/activate-account/[verificationToken]</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://m-taji.netlify.app/blog/index</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://m-taji.netlify.app/blog/[slug]</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://m-taji.netlify.app/company/[pid]</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://m-taji.netlify.app/pass-reset/[resetToken]</loc>
-    <lastmod>2022-09-24T14:39:52.567Z</lastmod>
+    <loc>http://localhost:3000/pass-reset/[resetToken]</loc>
+    <lastmod>2022-09-24T14:49:38.659Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>

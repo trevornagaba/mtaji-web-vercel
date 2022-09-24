@@ -4,6 +4,7 @@ import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/about.module.css";
 import Image from "next/image";
 import RaiseFunds from "../components/RaiseFunds";
+import Head from "next/head";
 
 function about() {
     return (
@@ -13,6 +14,14 @@ function about() {
             hasRaiseFunds={true}
             hasFooter={true}
         >
+            <Head>
+                <title>About Mtaji</title>
+                <meta
+                    name="description"
+                    content="The team building equity crowdfunding for Africa"
+                />
+            </Head>
+
             <section className={styles.aboutSection}>
                 <div className={styles.ourStory}>
                     <p className={styles.heading}>
@@ -26,10 +35,11 @@ function about() {
                         We started mtaji to build the capital market that Africa
                         needs; one that is built for, rather than designed to
                         exclude, the micro small and medium businesses that are
-                        the backbone of Africa&apos;s economy. Our purpose is to fund
-                        the next generation of companies that will transform
-                        Africa. Crowdfunding has always been a fundamental part
-                        of African culture. We leverage it for business success!
+                        the backbone of Africa&apos;s economy. Our purpose is to
+                        fund the next generation of companies that will
+                        transform Africa. Crowdfunding has always been a
+                        fundamental part of African culture. We leverage it for
+                        business success!
                     </p>
                 </div>
                 <div className={styles.aboutImg}>
@@ -83,9 +93,9 @@ function about() {
                         Flutterwave. Then for the investors who believe in the
                         potential of small business to transform Africa&apos;s
                         fortunes. For those passionate about entrepreneurship
-                        and ready to &apos;vote&apos; for their favorite startup with
-                        their hard earned shillings, naira, rand, dollar, pound.
-                        Join us on our journey.
+                        and ready to &apos;vote&apos; for their favorite startup
+                        with their hard earned shillings, naira, rand, dollar,
+                        pound. Join us on our journey.
                     </p>
                 </div>
                 <div className={styles.storyImg}>

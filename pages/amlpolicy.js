@@ -1,6 +1,7 @@
 import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/aml.module.css";
 import SubscribeCard from "../components/subscribeToMailList";
+import Head from "next/head";
 
 const AML = () => {
     return (
@@ -11,6 +12,13 @@ const AML = () => {
             hasWrapper={true}
             hasFooter={true}
         >
+            <Head>
+                <title>Antimoney laundering policy of Mtaji</title>
+                <meta
+                    name="description"
+                    content="Antimoney laundering policy for Mtaji's equity crowdfunding for Africans"
+                />
+            </Head>
             <div className={styles.amlDiv}>
                 <h1 className={styles.heading}>AML/CFT Policy</h1>
                 <section>
