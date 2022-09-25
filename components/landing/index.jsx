@@ -160,8 +160,10 @@ const Landing = () => {
                         item
                         style={{flex: 1}}>
                             <Image
-                                src={arrow}
+                                src="/assets/arrow.svg"
                                 alt="arrow"
+                                width="100%"
+                                height="100%"
                                 style={{
                                     width: "100%",
                                     marginLeft: "10px"
@@ -188,8 +190,8 @@ const Landing = () => {
                     }}
                     align="right"
                 >
-                    <Image
-                        src={landingImg}
+                    <img
+                        src="/assets/illustration_3.svg"
                         alt="happy investor"
                         style={{
                             width: "100%",
@@ -218,8 +220,8 @@ const Landing = () => {
                         width: "100%",
                     }}
                 >
-                    <Image
-                        src={lady_with_laptop}
+                    <img
+                        src="/assets/lady_with_laptop.svg"
                         alt="entreprenuer steering at a laptop screen"
                         style={{
                             width: "100%",

@@ -229,12 +229,12 @@ const Header = (props) => {
                             display="inline-flex"
                             alignItems="center"
                         >
-                            {/* <Image
+                            <img
                                 src="/assets/logo.svg"
                                 alt="logo"
                                 width={37}
                                 height={37}
-                            /> */}
+                            />
                             <span
                                 className={navStyles.appName}
                                 style={{ color: "#5048E5" }}
