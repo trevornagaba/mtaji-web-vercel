@@ -250,7 +250,7 @@ const Landing = () => {
             <Section3 />
 
             {/* Section 3 */}
-            {companies.length != 0 ? (
+            {companies.length = 0 ? (
                 <Grid container className={styles.section4}>
                     <Grid
                         item
