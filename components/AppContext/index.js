@@ -290,6 +290,7 @@ const AppContextProvider = (props) => {
                 setShowModal,
                 showAlert,
                 setShowAlert,
+                getCompanies,
             }}
         >
             {props.children}

@@ -14,7 +14,7 @@ import { AppContext } from "../AppContext";
 import PageTemplate from "../pageTemplate";
 import WhyMtaji from "./WhyMtaji";
 import Section3 from "./Section3";
-import CompaniesSection from "./CompaniesSection";
+// import CompaniesSection from "./CompaniesSection";
 
 import LinearProgress, {
     linearProgressClasses,
@@ -36,11 +36,10 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 const Landing = () => {
-    const { isLoaded, checkAuth, companies } = useContext(AppContext);
-
-
+    const { isLoaded, checkAuth, companies, getCompanies } = useContext(AppContext);
     useEffect(() => {
         checkAuth();
+        getCompanies();
         
     }, []);
     
@@ -91,7 +90,7 @@ const Landing = () => {
                 }}
             >
                 {/* Section 1 - Invest in Africas next big company */}
-                 {companies.length != 0 ? (
+                 
                 <Grid
                     item
                     sx={
@@ -177,7 +176,7 @@ const Landing = () => {
                             />
                         </Grid>
                     </Grid>
-                </Grid>):""}
+                </Grid>
 
                 <Grid
                     item

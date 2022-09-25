@@ -2,109 +2,109 @@
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://localhost:3000/about</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/account</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/amlpolicy</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/faqs</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/home</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/login</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/privacypolicy</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/signup</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/termsofservice</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/testhome</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/verify-email</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.978Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/wallet</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.979Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/activate-account/[verificationToken]</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.979Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/blog/index</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.979Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/blog/[slug]</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.979Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/company/[pid]</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.979Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/pass-reset/[resetToken]</loc>
-    <lastmod>2022-09-25T11:17:10.517Z</lastmod>
+    <lastmod>2022-09-25T11:31:54.979Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
