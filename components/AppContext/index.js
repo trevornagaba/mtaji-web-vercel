@@ -27,7 +27,7 @@ const AppContextProvider = (props) => {
 
     useEffect(() => {
         
-        //checkAuth();
+        checkAuth();
         getCompanies();
     }, []);
 

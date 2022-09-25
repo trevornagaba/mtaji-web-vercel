@@ -39,10 +39,10 @@ const Landing = () => {
     const { isLoaded, checkAuth, companies } = useContext(AppContext);
 
 
-    // useEffect(() => {
-    //     checkAuth();
+    useEffect(() => {
+        checkAuth();
         
-    // }, []);
+    }, []);
     
 
     // Create our number formatter.
@@ -91,6 +91,7 @@ const Landing = () => {
                 }}
             >
                 {/* Section 1 - Invest in Africas next big company */}
+                 {companies.length != 0 ? (
                 <Grid
                     item
                     sx={
@@ -176,7 +177,8 @@ const Landing = () => {
                             />
                         </Grid>
                     </Grid>
-                </Grid>
+                </Grid>):""}
+
                 <Grid
                     item
                     sx={
