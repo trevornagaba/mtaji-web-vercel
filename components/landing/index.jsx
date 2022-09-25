@@ -298,7 +298,7 @@ const Landing = () => {
                                             fontWeight: "500",
                                         }}
                                     >
-                                        New Company
+                                        New Company 1
                                     </Typography>
 
                                     <Typography
@@ -367,7 +367,7 @@ const Landing = () => {
 
 
 
-            {/* {companies.length != 0 ? (
+            {/* {companies.length != 0 ? (                                                     
                 <Grid container className={styles.section4}>
                     <Grid
                         item
