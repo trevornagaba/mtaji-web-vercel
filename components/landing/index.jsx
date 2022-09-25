@@ -284,10 +284,10 @@ const Landing = () => {
                         >
                             <a href={`/company/${company._id}`}>
                                 <Box className={styles.companyCardBox}>
-                                    <img
+                                    {/* <img
                                         src={`${company.logo}`}
                                         width={80}
-                                    />
+                                    /> */}
                                     {/* <img src={company.logo} width={80} /> */}
 
                                     <Typography
@@ -298,10 +298,12 @@ const Landing = () => {
                                             fontWeight: "500",
                                         }}
                                     >
-                                        {company.name}
+                                        {/* {company.name} */}
+                                        New Company
+
                                     </Typography>
 
-                                    <Typography
+                                    {/* <Typography
                                         style={{
                                             textAlign: "left",
                                             fontFamily: "Poppins",
@@ -313,7 +315,7 @@ const Landing = () => {
                                         {Str(company.briefDescription)
                                             .limit(100, "...")
                                             .get()}
-                                    </Typography>
+                                    </Typography> */}
 
                                     <Typography
                                         style={{
@@ -332,23 +334,26 @@ const Landing = () => {
                                                 color: "#09062D",
                                             }}
                                         >
-                                            {formatter.format(
+                                            {/* {formatter.format(
                                                 company.targetAmount
-                                            )}
+                                            )} */}
+                                            20000
+
                                         </strong>
                                         <br />
                                         <small>
                                             Opens in: {" "}
                                             <span style={{ color: "#FE8686" }}>
-                                                {calc_days_left(
+                                                {/* {calc_days_left(
                                                     company.raiseTargetDate
-                                                )}
+                                                )} */}
+                                                3 days
                                             </span>
                                         </small>
                                         {/* {console.log(`check: ${calc_days_left(company.raiseTargetDate)}`)} */}
                                     </Typography>
 
-                                    <BorderLinearProgress
+                                    {/* <BorderLinearProgress
                                         variant="determinate"
                                         value={
                                             (company.amountRaised /
@@ -356,15 +361,15 @@ const Landing = () => {
                                             100
                                         }
                                         label={true}
-                                    />
-                                    <small style={{ color: "#01BBC8" }}>
+                                    /> */}
+                                    {/* <small style={{ color: "#01BBC8" }}>
                                         {Math.round(
                                             (company.amountRaised /
                                                 company.targetAmount) *
                                                 100
                                         )}
                                         %
-                                    </small>
+                                    </small> */}
                                 </Box>
                             </a>
                         </Grid>
