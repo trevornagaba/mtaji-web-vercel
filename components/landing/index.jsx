@@ -253,7 +253,7 @@ const Landing = () => {
 
             {/* Section 3 */}
             {console.log(`check: ${companies.length}`)} 
-                       {companies.length != 1 ? (                                                     
+                                                                           
                 <Grid container className={styles.section4}>
                     <Grid
                         item
@@ -374,9 +374,7 @@ const Landing = () => {
                         </Grid>
                     ): ''})}
                 </Grid>
-            ) : (
-                ""
-            )} 
+            
         </PageTemplate>
     );
 };
