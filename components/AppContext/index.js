@@ -26,7 +26,6 @@ const AppContextProvider = (props) => {
     const [showAlert, setShowAlert] = useState(false);
 
     useEffect(() => {
-        
         checkAuth();
         getCompanies();
     }, []);
@@ -34,7 +33,7 @@ const AppContextProvider = (props) => {
     const checkAuth = async () => {
         setErrors("");
         setIsLoaded(false);
-        
+
         try {
             if (jwt_decode(localStorage.getItem("token"))) {
                 let userId = jwt_decode(localStorage.getItem("token")).userId;
@@ -55,13 +54,13 @@ const AppContextProvider = (props) => {
                         setIsAuth(true);
                         setUserDetails(result.data);
                         getUserPortfolioDetails(userId);
-                        
+
                         getBlogs();
                         getFAQs();
                     })
                     .catch((error) => {
                         const pid = router?.query?.pid;
-                        
+
                         if (
                             router.pathname === "/account" ||
                             router.pathname === "/home"
@@ -73,9 +72,8 @@ const AppContextProvider = (props) => {
                     });
             }
         } catch (err) {
-            
             const pid = router?.query?.pid;
-            
+
             if (
                 router.pathname === "/account" ||
                 router.pathname === "/home" ||
@@ -193,7 +191,7 @@ const AppContextProvider = (props) => {
             })
             .catch((error) => {
                 setErrors(error);
-                // 
+                //
                 // setIsLoaded(false);
             });
     };
@@ -231,7 +229,7 @@ const AppContextProvider = (props) => {
     };
 
     // ["email"]);
-    // 
+    //
 
     const getBlogs = async () => {
         // setIsLoaded(false);
@@ -290,7 +288,6 @@ const AppContextProvider = (props) => {
                 setShowModal,
                 showAlert,
                 setShowAlert,
-                getCompanies,
             }}
         >
             {props.children}

@@ -36,10 +36,10 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 const Landing = () => {
-    const { isLoaded, checkAuth, companies, getCompanies } = useContext(AppContext);
+    const { isLoaded, checkAuth, companies } = useContext(AppContext);
     useEffect(() => {
         checkAuth();
-        getCompanies();
+        
         
     }, []);
     
