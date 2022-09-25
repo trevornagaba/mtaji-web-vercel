@@ -250,124 +250,14 @@ const Landing = () => {
             <Section3 />
 
             {/* Section 3 */}
-            {companies.length != 0 ? (
-                <Grid container className={styles.section4}>
-                    <Grid
-                        item
-                        sx={12}
-                        sm={12}
-                        md={12}
-                        lg={12}
-                        xl={12}
-                        align="center"
-                        style={{
-                            padding: "0",
-                        }}
-                    >
-                        <p className={styles.sectionHeader}>
-                            Companies raising soon
-                        </p>
-                        <div className={styles.underline2} />
-                    </Grid>
-                    
-                        
-                        <Grid
-                           
-                            item
-                            sx={12}
-                            sm={12}
-                            md={4}
-                            lg={4}
-                            xl={4}
-                            className={styles.companyCard}
-                            align="center"
-                        >
-                            <a href={""}>
-                                <Box className={styles.companyCardBox}>
-                                    {/* <img
-                                        src={`${company.logo}`}
-                                        width={80}
-                                    /> */}
-                                    {/* <img src={company.logo} width={80} /> */}
-
-                                    <Typography
-                                        variant="h5"
-                                        style={{
-                                            margin: "15px 0px",
-                                            fontFamily: "Poppins",
-                                            fontWeight: "500",
-                                        }}
-                                    >
-                                        New Company 1
-                                    </Typography>
-
-                                    <Typography
-                                        style={{
-                                            textAlign: "left",
-                                            fontFamily: "Poppins",
-                                            color: "#666666",
-                                            margin: "10px 0px",
-                                            fontSize: "0.9rem",
-                                        }}
-                                    >
-                                        Hello Hello Hello
-                                    </Typography>
-
-                                    <Typography
-                                        style={{
-                                            padding: "10px 0",
-                                            lineHeight: "22px",
-                                            color: "#666666",
-                                            fontFamily: "Poppins",
-                                        }}
-                                        align={"left"}
-                                    >
-                                        <small>Raising</small>
-                                        <br />
-                                        <strong
-                                            style={{
-                                                fontSize: "1.25rem",
-                                                color: "#09062D",
-                                            }}
-                                        >
-                                            20000
-                                        </strong>
-                                        <br />
-                                        <small>
-                                            Opens in: {" "}
-                                            <span style={{ color: "#FE8686" }}>
-                                                4 days
-                                            </span>
-                                        </small>
-                                        {/* {console.log(`check: ${calc_days_left(company.raiseTargetDate)}`)} */}
-                                    </Typography>
-
-                                    {/* <BorderLinearProgress
-                                        variant="determinate"
-                                        value={
-                                            (company.amountRaised /
-                                                company.targetAmount) *
-                                            100
-                                        }
-                                        label={true}
-                                    /> */}
-                                    <small style={{ color: "#01BBC8" }}>
-                                        60%
-                                    </small>
-                                </Box>
-                            </a>
-                        </Grid>
-                  
-                </Grid>): (
-                ""
-            )} 
+            
            
 
 
 
 
 
-            {/* {companies.length != 0 ? (                                                     
+            {companies.length != 0 ? (                                                     
                 <Grid container className={styles.section4}>
                     <Grid
                         item
@@ -407,7 +297,7 @@ const Landing = () => {
                                     />
                                     {/* <img src={company.logo} width={80} /> */}
 
-                                    {/* <Typography
+                                    <Typography
                                         variant="h5"
                                         style={{
                                             margin: "15px 0px",
@@ -416,9 +306,9 @@ const Landing = () => {
                                         }}
                                     >
                                         {company.name}
-                                    </Typography> */}
+                                    </Typography>
 
-                                    {/* <Typography
+                                    <Typography
                                         style={{
                                             textAlign: "left",
                                             fontFamily: "Poppins",
@@ -430,9 +320,9 @@ const Landing = () => {
                                         {Str(company.briefDescription)
                                             .limit(100, "...")
                                             .get()}
-                                    </Typography> */}
+                                    </Typography>
 
-                                    {/* <Typography
+                                    <Typography
                                         style={{
                                             padding: "10px 0",
                                             lineHeight: "22px",
@@ -461,11 +351,11 @@ const Landing = () => {
                                                     company.raiseTargetDate
                                                 )}
                                             </span>
-                                        </small> */}
+                                        </small>
                                         {/* {console.log(`check: ${calc_days_left(company.raiseTargetDate)}`)} */}
-                                    {/* </Typography> */}
+                                    </Typography>
 
-                                    {/* <BorderLinearProgress
+                                    <BorderLinearProgress
                                         variant="determinate"
                                         value={
                                             (company.amountRaised /
@@ -473,23 +363,23 @@ const Landing = () => {
                                             100
                                         }
                                         label={true}
-                                    /> */}
-                                    {/* <small style={{ color: "#01BBC8" }}>
+                                    />
+                                    <small style={{ color: "#01BBC8" }}>
                                         {Math.round(
                                             (company.amountRaised /
                                                 company.targetAmount) *
                                                 100
                                         )}
                                         %
-                                    </small> */}
-                                {/* </Box>
+                                    </small>
+                                </Box>
                             </a>
                         </Grid>
                     ): ''})}
                 </Grid>
             ) : (
                 ""
-            )}  */}
+            )} 
         </PageTemplate>
     );
 };
