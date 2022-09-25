@@ -1,111 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+<<<<<<< HEAD
     <loc>undefined/about</loc>
     <lastmod>2022-09-25T08:38:32.382Z</lastmod>
+=======
+    <loc>http://localhost:3000/about</loc>
+    <lastmod>2022-09-25T12:36:55.805Z</lastmod>
+>>>>>>> 43a82ee9f4b8bd6468ece53dde1eae0efbb68e8c
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>undefined/account</loc>
     <lastmod>2022-09-25T08:38:32.382Z</lastmod>
+=======
+    <loc>http://localhost:3000/account</loc>
+    <lastmod>2022-09-25T12:36:55.805Z</lastmod>
+>>>>>>> 43a82ee9f4b8bd6468ece53dde1eae0efbb68e8c
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>undefined/amlpolicy</loc>
     <lastmod>2022-09-25T08:38:32.382Z</lastmod>
+=======
+    <loc>http://localhost:3000/amlpolicy</loc>
+    <lastmod>2022-09-25T12:36:55.805Z</lastmod>
+>>>>>>> 43a82ee9f4b8bd6468ece53dde1eae0efbb68e8c
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>undefined/faqs</loc>
     <lastmod>2022-09-25T08:38:32.382Z</lastmod>
+=======
+    <loc>http://localhost:3000/faqs</loc>
+    <lastmod>2022-09-25T12:36:55.805Z</lastmod>
+>>>>>>> 43a82ee9f4b8bd6468ece53dde1eae0efbb68e8c
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>undefined/home</loc>
     <lastmod>2022-09-25T08:38:32.382Z</lastmod>
+=======
+    <loc>http://localhost:3000/home</loc>
+    <lastmod>2022-09-25T12:36:55.806Z</lastmod>
+>>>>>>> 43a82ee9f4b8bd6468ece53dde1eae0efbb68e8c
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>undefined</loc>
     <lastmod>2022-09-25T08:38:32.382Z</lastmod>
+=======
+    <loc>http://localhost:3000</loc>
+    <lastmod>2022-09-25T12:36:55.806Z</lastmod>
+>>>>>>> 43a82ee9f4b8bd6468ece53dde1eae0efbb68e8c
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>undefined/login</loc>
     <lastmod>2022-09-25T08:38:32.382Z</lastmod>
+=======
+    <loc>http://localhost:3000/login</loc>
+    <lastmod>2022-09-25T12:36:55.806Z</lastmod>
+>>>>>>> 43a82ee9f4b8bd6468ece53dde1eae0efbb68e8c
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>undefined/privacypolicy</loc>
     <lastmod>2022-09-25T08:38:32.382Z</lastmod>
+=======
+    <loc>http://localhost:3000/privacypolicy</loc>
+    <lastmod>2022-09-25T12:36:55.806Z</lastmod>
+>>>>>>> 43a82ee9f4b8bd6468ece53dde1eae0efbb68e8c
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>undefined/signup</loc>
     <lastmod>2022-09-25T08:38:32.382Z</lastmod>
+=======
+    <loc>http://localhost:3000/signup</loc>
+    <lastmod>2022-09-25T12:36:55.806Z</lastmod>
+>>>>>>> 43a82ee9f4b8bd6468ece53dde1eae0efbb68e8c
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>undefined/termsofservice</loc>
-    <lastmod>2022-09-25T08:38:32.382Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>undefined/testhome</loc>
-    <lastmod>2022-09-25T08:38:32.382Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>undefined/verify-email</loc>
-    <lastmod>2022-09-25T08:38:32.382Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>undefined/wallet</loc>
-    <lastmod>2022-09-25T08:38:32.382Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>undefined/activate-account/[verificationToken]</loc>
-    <lastmod>2022-09-25T08:38:32.382Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>undefined/blog/index</loc>
-    <lastmod>2022-09-25T08:38:32.382Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>undefined/blog/[slug]</loc>
-    <lastmod>2022-09-25T08:38:32.382Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>undefined/company/[pid]</loc>
-    <lastmod>2022-09-25T08:38:32.382Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>undefined/pass-reset/[resetToken]</loc>
-    <lastmod>2022-09-25T08:38:32.382Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-</urlset>

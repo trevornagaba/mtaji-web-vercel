@@ -1,10 +1,18 @@
 import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/privacy.module.css";
 import SubscribeCard from "../components/subscribeToMailList";
+import Head from "next/head";
 
 const PRIVACY = () => {
     return (
         <PageTemplate hasNavbar={true} hasWrapper={true} hasFooter={true}>
+            <Head>
+                <title>Mtaji | Privacy policy for equity crowd funding</title>
+                <meta
+                    name="description"
+                    content="Privacy policy for equity crowd funding"
+                />
+            </Head>
             <div className={styles.privacyDiv}>
                 <section>
                     <h1 className={styles.heading}>Privacy Policy</h1>

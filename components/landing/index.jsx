@@ -14,7 +14,7 @@ import { AppContext } from "../AppContext";
 import PageTemplate from "../pageTemplate";
 import WhyMtaji from "./WhyMtaji";
 import Section3 from "./Section3";
-import CompaniesSection from "./CompaniesSection";
+// import CompaniesSection from "./CompaniesSection";
 
 import LinearProgress, {
     linearProgressClasses,
@@ -37,13 +37,12 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 const Landing = () => {
     const { isLoaded, checkAuth, companies } = useContext(AppContext);
-
-
     useEffect(() => {
         checkAuth();
-        // 
+        
+        
     }, []);
-    // 
+    
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -91,6 +90,8 @@ const Landing = () => {
                 }}
             >
                 {/* Section 1 - Invest in Africas next big company */}
+              
+                 
                 <Grid
                     item
                     sx={
@@ -164,17 +165,20 @@ const Landing = () => {
                         <Grid
                         item
                         style={{flex: 1}}>
-                            <Image
-                                src={arrow}
+                            <img
+                                src="/assets/arrow.svg"
                                 alt="arrow"
+                                
                                 style={{
-                                    width: "100%",
+                                    maxWidth: "30%",
+                                    
                                     marginLeft: "10px"
                                 }}
                             />
                         </Grid>
                     </Grid>
                 </Grid>
+
                 <Grid
                     item
                     sx={
@@ -193,8 +197,8 @@ const Landing = () => {
                     }}
                     align="right"
                 >
-                    <Image
-                        src={landingImg}
+                    <img
+                        src="/assets/illustration_3.svg"
                         alt="happy investor"
                         style={{
                             width: "100%",
@@ -202,14 +206,14 @@ const Landing = () => {
                     />
                 </Grid>
             </Grid>
-
+ <Section3 />
             {/* Section 2 */}
             <Grid
                 container
                 spacing={4}
                 style={{
                     padding: "10vh 10%",
-                    backgroundColor: "#f7f7f7",
+                    backgroundColor: "white",
                 }}
             >
                 <Grid
@@ -223,8 +227,8 @@ const Landing = () => {
                         width: "100%",
                     }}
                 >
-                    <Image
-                        src={lady_with_laptop}
+                    <img
+                        src="/assets/lady_with_laptop.svg"
                         alt="entreprenuer steering at a laptop screen"
                         style={{
                             width: "100%",
@@ -245,10 +249,11 @@ const Landing = () => {
                     <WhyMtaji />
                 </Grid>
             </Grid>
-            <Section3 />
+           
 
             {/* Section 3 */}
-            {companies.length != 0 ? (
+            {console.log(`check: ${companies.length}`)} 
+                                                                           
                 <Grid container className={styles.section4}>
                     <Grid
                         item
@@ -285,6 +290,7 @@ const Landing = () => {
                                     <img
                                         src={`${company.logo}`}
                                         width={80}
+                                        alt="Logo"
                                     />
                                     {/* <img src={company.logo} width={80} /> */}
 
@@ -368,9 +374,7 @@ const Landing = () => {
                         </Grid>
                     ): ''})}
                 </Grid>
-            ) : (
-                ""
-            )}
+            
         </PageTemplate>
     );
 };

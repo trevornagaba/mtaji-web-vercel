@@ -6,7 +6,7 @@ import SecurityForm from "../components/Forms/SecurityForm";
 import Modal from "../components/ModalComponent";
 import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/account.module.css";
-
+import Head from "next/head";
 import { AppContext } from "../components/AppContext";
 
 
@@ -25,12 +25,20 @@ const Account = () => {
     }, [isLoaded]);
 
     return (
-        <PageTemplate 
-        hasNavbar={true} 
-        hasWrapper={false}
-        isGreyBackgound={true}
-        hasFooter={true}
+        <PageTemplate
+            hasNavbar={true}
+            hasWrapper={false}
+            isGreyBackgound={true}
+            hasFooter={true}
         >
+            <Head>
+                <title>Personalise your account</title>
+                <meta
+                    name="description"
+                    content="Set up your account to receive equity in African businesses"
+                />
+            </Head>
+
             <p className={styles.heading}>Profile</p>
             <div className={styles.contentBox}>
                 <div className={styles.tabNav}>
@@ -51,9 +59,13 @@ const Account = () => {
                     })}
                 </div>
                 <div className={styles.tabContent}>
-                    {selectedTab == 'Account' ?
-                    <AccountForm/> : selectedTab == 'KYC' ? <KycForm userId={userDetails.userId}/> : <SecurityForm userId={userDetails.userId}/> 
-                    }
+                    {selectedTab == "Account" ? (
+                        <AccountForm />
+                    ) : selectedTab == "KYC" ? (
+                        <KycForm userId={userDetails.userId} />
+                    ) : (
+                        <SecurityForm userId={userDetails.userId} />
+                    )}
                 </div>
             </div>
             {/* <Modal openModal={openModal}/> */}

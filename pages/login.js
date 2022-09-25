@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 import { AppContext } from "../components/AppContext";
+import Head from "next/head";
 
 import HomeLogo from "../components/HomeLogo";
 import TextInput from "../components/TextInput/TextInput";
@@ -183,6 +184,14 @@ export default function Login() {
 
     return (
         <>
+            <Head>
+                <title>Sign in to Mtaji</title>
+                <meta
+                    name="description"
+                    content="Equity Crowdfunding for Africans"
+                />
+            </Head>
+
             <Grid
                 container
                 style={{

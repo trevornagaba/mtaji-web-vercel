@@ -8,6 +8,7 @@ import Button from "../../components/Button/Button";
 import Link from "next/link";
 import axios from "axios";
 import SubscribeCard from "../../components/subscribeToMailList";
+import Head from "next/head";
 
 export const getServerSideProps = async () => {
     //fetch post from B.E
@@ -78,74 +79,86 @@ const Blog = ({ posts }) => {
     // }
 
     return (
-        <PageTemplate
-            hasNavbar={true}
-            hasWrapper={true}
-            isGreyBackgound={true}
-            hasFooter={true}
-        >
-            <div
-                className="w-full flex flex-row justify-between mt-10 "
-                style={{ gridColumn: "1/14" }}
+        <>
+            <Head>
+                <title>Mtaji | Get Updates on African Startups</title>
+                <meta
+                    name="description"
+                    content="Get Updates on African Startups"
+                />
+            </Head>
+            <PageTemplate
+                hasNavbar={true}
+                hasWrapper={true}
+                isGreyBackgound={true}
+                hasFooter={true}
             >
-                <p>Featured</p>
-                <Link href="#subscribe">
-                    <p className="text-[#01bbc8]" style={{ cursor: "pointer" }}>
-                        Subscribe to Mtaji Blog
-                    </p>
-                </Link>
-            </div>
+                <div
+                    className="w-full flex flex-row justify-between mt-10 "
+                    style={{ gridColumn: "1/14" }}
+                >
+                    <p>Featured</p>
+                    <Link href="#subscribe">
+                        <p
+                            className="text-[#01bbc8]"
+                            style={{ cursor: "pointer" }}
+                        >
+                            Subscribe to Mtaji Blog
+                        </p>
+                    </Link>
+                </div>
 
-            <div className={styles.container}>
-                {featuredPost && (
-                    <BlogPost
-                        authorProfileImageUrl={featuredPost.authorThumbFile}
-                        id={featuredPost._id}
-                        title={featuredPost.title}
-                        body={featuredPost.highlight}
-                        date={featuredPost.date}
-                        category={featuredPost.section}
-                        blogImage={featuredPost.imgUrl}
-                        featured
-                    />
-                )}
-                <div className={styles.categoryTab}>
-                    {tabs.map((tab) => {
+                <div className={styles.container}>
+                    {featuredPost && (
+                        <BlogPost
+                            authorProfileImageUrl={featuredPost.authorThumbFile}
+                            id={featuredPost._id}
+                            title={featuredPost.title}
+                            body={featuredPost.highlight}
+                            date={featuredPost.date}
+                            category={featuredPost.section}
+                            blogImage={featuredPost.imgUrl}
+                            featured
+                        />
+                    )}
+                    <div className={styles.categoryTab}>
+                        {tabs.map((tab) => {
+                            return (
+                                <div
+                                    key={tab}
+                                    onClick={() => onClickTab(tab)}
+                                    className={
+                                        selectedTab == tab
+                                            ? styles.selectedTab
+                                            : styles.tab
+                                    }
+                                >
+                                    {tab}
+                                </div>
+                            );
+                        })}
+                    </div>
+                    {postToRender?.map((post) => {
                         return (
-                            <div
-                                key={tab}
-                                onClick={() => onClickTab(tab)}
-                                className={
-                                    selectedTab == tab
-                                        ? styles.selectedTab
-                                        : styles.tab
-                                }
-                            >
-                                {tab}
-                            </div>
+                            <BlogPost
+                                key={post._id}
+                                author={post.author}
+                                authorProfileImageUrl={post.authorThumbFile}
+                                authorTitle={post.authorTitle}
+                                id={post._id}
+                                title={post.title}
+                                body={post.highlight}
+                                date={post.date}
+                                category={post.section}
+                                blogImage={post.imageUrl}
+                            />
                         );
                     })}
+                    {/* <div className={styles.paginqation}></div> */}
+                    <SubscribeCard />
                 </div>
-                {postToRender?.map((post) => {
-                    return (
-                        <BlogPost
-                            key={post._id}
-                            author={post.author}
-                            authorProfileImageUrl={post.authorThumbFile}
-                            authorTitle={post.authorTitle}
-                            id={post._id}
-                            title={post.title}
-                            body={post.highlight}
-                            date={post.date}
-                            category={post.section}
-                            blogImage={post.imageUrl}
-                        />
-                    );
-                })}
-                {/* <div className={styles.paginqation}></div> */}
-                <SubscribeCard/>
-            </div>
-        </PageTemplate>
+            </PageTemplate>
+        </>
     );
 };
 

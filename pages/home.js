@@ -9,6 +9,7 @@ import Companies from "/components/Companies";
 import PageTemplate from "../components/pageTemplate";
 import SubscribeCard from "../components/subscribeToMailList";
 import FundWalletModal from "/components/FundWalletModal/FundWalletModal";
+import Head from "next/head";
 
 const HomePage = () => {
     const {
@@ -61,7 +62,15 @@ const HomePage = () => {
             hasFooter={true}
             hasRaiseFunds={true}
         >
-            {isLoaded? (
+            <Head>
+                <title>Home page</title>
+                <meta
+                    name="description"
+                    content="Home page"
+                />
+            </Head>
+
+            {isLoaded ? (
                 <Grid
                     item
                     xs={{

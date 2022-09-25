@@ -103,7 +103,7 @@
 }
 
 .section3 {
-  background-color: white;
+  background-color:#f7f7f7;
 
 }
 
@@ -113,7 +113,7 @@
     min-height: 350px;
     padding: 15% 5%;
     border-radius: 12px;
-    background-color: #f7f7f7;
+    background-color: white;
     text-align: center;
     font-family: 'Poppins';
     margin: 1rem;

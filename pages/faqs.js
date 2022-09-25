@@ -6,6 +6,7 @@ import PageTemplate from "../components/pageTemplate";
 import styles from "../styles/faq.module.css";
 import axios from "axios";
 import SubscribeCard from "../components/subscribeToMailList";
+import Head from "next/head";
 
 const titleStyle = {
     fontSize: "20px",
@@ -53,6 +54,15 @@ const FAQs = () => {
     const sections = getSections();
     return (
         <>
+            <Head>
+                <title>
+                    Mtaji | Frequently asked questions on Equity Crowdfunding
+                </title>
+                <meta
+                    name="description"
+                    content="Frequently asked questions on Equity Crowdfunding in Africa"
+                />
+            </Head>
             <div className={styles.banner}>
                 <p className="text-5xl text-white font-extrabold">
                     Frequently Asked Questions
