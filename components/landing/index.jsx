@@ -38,6 +38,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 const Landing = () => {
     const { isLoaded, checkAuth, companies } = useContext(AppContext);
 
+
     useEffect(() => {
         checkAuth();
         // 
@@ -92,7 +93,11 @@ const Landing = () => {
                 {/* Section 1 - Invest in Africas next big company */}
                 <Grid
                     item
-                    
+                    sx={
+                        {
+                            // flex: 4
+                        }
+                    }
                     xs={12}
                     sm={12}
                     md={7}
@@ -159,13 +164,13 @@ const Landing = () => {
                         <Grid
                         item
                         style={{flex: 1}}>
-                            <Image
+                            <img
                                 src="/assets/arrow.svg"
                                 alt="arrow"
-                                width="100%"
-                                height="100%"
+                                
                                 style={{
-                                    width: "100%",
+                                    maxWidth: "30%",
+                                    
                                     marginLeft: "10px"
                                 }}
                             />
