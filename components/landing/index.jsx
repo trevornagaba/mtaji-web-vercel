@@ -39,11 +39,11 @@ const Landing = () => {
     const { isLoaded, checkAuth, companies } = useContext(AppContext);
 
 
-    useEffect(() => {
-        checkAuth();
-        // 
-    }, []);
-    // 
+    // useEffect(() => {
+    //     checkAuth();
+        
+    // }, []);
+    
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -251,13 +251,7 @@ const Landing = () => {
 
             {/* Section 3 */}
             
-           
-
-
-
-
-
-            {companies.length != 0 ? (                                                     
+                       {companies.length != 0 ? (                                                     
                 <Grid container className={styles.section4}>
                     <Grid
                         item
