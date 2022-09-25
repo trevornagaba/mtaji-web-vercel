@@ -90,6 +90,7 @@ const Landing = () => {
                 }}
             >
                 {/* Section 1 - Invest in Africas next big company */}
+              
                  
                 <Grid
                     item
@@ -205,14 +206,14 @@ const Landing = () => {
                     />
                 </Grid>
             </Grid>
-
+ <Section3 />
             {/* Section 2 */}
             <Grid
                 container
                 spacing={4}
                 style={{
                     padding: "10vh 10%",
-                    backgroundColor: "#f7f7f7",
+                    backgroundColor: "white",
                 }}
             >
                 <Grid
@@ -248,11 +249,11 @@ const Landing = () => {
                     <WhyMtaji />
                 </Grid>
             </Grid>
-            <Section3 />
+           
 
             {/* Section 3 */}
-            
-                       {companies.length != 0 ? (                                                     
+            {console.log(`check: ${companies.length}`)} 
+                       {companies.length != 1 ? (                                                     
                 <Grid container className={styles.section4}>
                     <Grid
                         item
@@ -289,6 +290,7 @@ const Landing = () => {
                                     <img
                                         src={`${company.logo}`}
                                         width={80}
+                                        alt="Logo"
                                     />
                                     {/* <img src={company.logo} width={80} /> */}
 

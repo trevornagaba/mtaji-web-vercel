@@ -22,7 +22,7 @@ const Section3 = () => {
             container
             style={{
                 padding: "5vh 10%",
-                backgroundColor: "white",
+                backgroundColor: "#f7f7f7",
             }}
         >
             <Grid container className={styles.section3} align="center">
