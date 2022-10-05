@@ -11,7 +11,6 @@ import LinearProgress, {
     linearProgressClasses,
 } from "@mui/material/LinearProgress";
 
-const Str = require("@supercharge/strings");
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 8,
@@ -119,9 +118,7 @@ const Companies = (props) => {
                                     fontSize: "0.9rem",
                                 }}
                             >
-                                {Str(company.briefDescription)
-                                    .limit(100, "...")
-                                    .get()}
+                                {company.briefDescription}
                             </Typography>
 
                             <Typography
