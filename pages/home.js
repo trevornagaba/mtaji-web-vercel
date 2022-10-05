@@ -5,7 +5,7 @@ import { Grid, Typography, Box } from "@mui/material";
 
 import { AppContext } from "/components/AppContext";
 import Portfolio from "/components/Portfolio";
-import Companies from "/components/Companies";
+import Companies from "../components/Companies";
 import PageTemplate from "../components/pageTemplate";
 import SubscribeCard from "../components/subscribeToMailList";
 import FundWalletModal from "/components/FundWalletModal/FundWalletModal";
