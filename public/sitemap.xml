@@ -2,109 +2,109 @@
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>undefined/about</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/account</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/amlpolicy</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/faqs</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/home</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/login</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/privacypolicy</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/signup</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/termsofservice</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/testhome</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/verify-email</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/wallet</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/activate-account/[verificationToken]</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/blog/index</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/blog/[slug]</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/company/[pid]</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>undefined/pass-reset/[resetToken]</loc>
-    <lastmod>2022-10-05T00:26:03.669Z</lastmod>
+    <lastmod>2022-10-05T01:02:36.144Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>

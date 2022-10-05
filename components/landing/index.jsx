@@ -1,8 +1,13 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Grid, Stack, Button, Typography, styled, Box } from "@mui/material";
-
+import Link from "next/link";
+import Image from "next/image";
 import styles from "./Landing.module.css";
-
+import pointerImg from "../../public/assets/tagline_background.svg";
+import landingImg from "../../public/assets/illustration_3.svg";
+import whyMtajiImg from "../../public/assets/illustration_7.png";
+import lady_with_laptop from "../../public/assets/lady_with_laptop.svg";
+import arrow from "../../public/assets/arrow.svg";
 
 import { AppContext } from "../AppContext";
 
@@ -14,7 +19,10 @@ import Section3 from "./Section3";
 import LinearProgress, {
     linearProgressClasses,
 } from "@mui/material/LinearProgress";
+import axios from "axios";
+import Companies from "../Companies";
 
+const Str = require("@supercharge/strings");
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 8,
@@ -30,7 +38,6 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 const Landing = ({companies}) => {
-    
     
 
     // Create our number formatter.
@@ -79,8 +86,7 @@ const Landing = ({companies}) => {
                 }}
             >
                 {/* Section 1 - Invest in Africas next big company */}
-              
-                 
+
                 <Grid
                     item
                     sx={
@@ -108,17 +114,19 @@ const Landing = ({companies}) => {
                     <Grid
                         container
                         spacing={2}
-                        
                         style={{
                             paddingTop: "10px",
                             display: "flex",
                             flexDirection: "row",
-                            
                         }}
                     >
                         <Grid
                             item
-                            style={{ paddingTop: "30px", flex: 4, maxWidth: '250px'}}
+                            style={{
+                                paddingTop: "30px",
+                                flex: 4,
+                                maxWidth: "250px",
+                            }}
                         >
                             <Button
                                 component="a"
@@ -129,7 +137,6 @@ const Landing = ({companies}) => {
                                     color: "white",
                                     textTransform: "none",
                                     height: "40px",
-                                    
                                 }}
                             >
                                 Get started
@@ -143,7 +150,7 @@ const Landing = ({companies}) => {
                                     color: "#01BBC8",
                                     textTransform: "none",
                                     height: "40px",
-                                    marginLeft: "10px"
+                                    marginLeft: "10px",
                                 }}
                                 target="_blank"
                             >
@@ -151,17 +158,14 @@ const Landing = ({companies}) => {
                             </Button>
                         </Grid>
 
-                        <Grid
-                        item
-                        style={{flex: 1}}>
+                        <Grid item style={{ flex: 1 }}>
                             <img
                                 src="/assets/arrow.svg"
                                 alt="arrow"
-                                
                                 style={{
                                     maxWidth: "30%",
-                                    
-                                    marginLeft: "10px"
+
+                                    marginLeft: "10px",
                                 }}
                             />
                         </Grid>
@@ -195,7 +199,7 @@ const Landing = ({companies}) => {
                     />
                 </Grid>
             </Grid>
- <Section3 />
+            <Section3 />
             {/* Section 2 */}
             <Grid
                 container
@@ -238,130 +242,30 @@ const Landing = ({companies}) => {
                     <WhyMtaji />
                 </Grid>
             </Grid>
-           
 
             {/* Section 3 */}
-            {console.log(`check: ${companies.length}`)} 
-                                                                           
-                <Grid container className={styles.section4}>
-                    <Grid
-                        item
-                        sx={12}
-                        sm={12}
-                        md={12}
-                        lg={12}
-                        xl={12}
-                        align="center"
-                        style={{
-                            padding: "0",
-                        }}
-                    >
-                        <p className={styles.sectionHeader}>
-                            Companies raising soon
-                        </p>
-                        <div className={styles.underline2} />
-                    </Grid>
-                    {companies?.map((company, index) => {
-                        return company.isRaising == "true" ?(
-                        <Grid
-                            key={index}
-                            item
-                            sx={12}
-                            sm={12}
-                            md={4}
-                            lg={4}
-                            xl={4}
-                            className={styles.companyCard}
-                            align="center"
-                        >
-                            <a href={`/company/${company._id}`}>
-                                <Box className={styles.companyCardBox}>
-                                    <img
-                                        src={`${company.logo}`}
-                                        width={80}
-                                        alt="Logo"
-                                    />
-                                    {/* <img src={company.logo} width={80} /> */}
+            {/* {console.log(`check: ${companies.length}`)} */}
 
-                                    <Typography
-                                        variant="h5"
-                                        style={{
-                                            margin: "15px 0px",
-                                            fontFamily: "Poppins",
-                                            fontWeight: "500",
-                                        }}
-                                    >
-                                        {company.name}
-                                    </Typography>
-
-                                    <Typography
-                                        style={{
-                                            textAlign: "left",
-                                            fontFamily: "Poppins",
-                                            color: "#666666",
-                                            margin: "10px 0px",
-                                            fontSize: "0.9rem",
-                                        }}
-                                    >
-                                        {company.briefDescription}
-                                    </Typography>
-
-                                    <Typography
-                                        style={{
-                                            padding: "10px 0",
-                                            lineHeight: "22px",
-                                            color: "#666666",
-                                            fontFamily: "Poppins",
-                                        }}
-                                        align={"left"}
-                                    >
-                                        <small>Raising</small>
-                                        <br />
-                                        <strong
-                                            style={{
-                                                fontSize: "1.25rem",
-                                                color: "#09062D",
-                                            }}
-                                        >
-                                            {formatter.format(
-                                                company.targetAmount
-                                            )}
-                                        </strong>
-                                        <br />
-                                        <small>
-                                            Opens in: {" "}
-                                            <span style={{ color: "#FE8686" }}>
-                                                {calc_days_left(
-                                                    company.raiseTargetDate
-                                                )}
-                                            </span>
-                                        </small>
-                                        {/* {console.log(`check: ${calc_days_left(company.raiseTargetDate)}`)} */}
-                                    </Typography>
-
-                                    <BorderLinearProgress
-                                        variant="determinate"
-                                        value={
-                                            (company.amountRaised /
-                                                company.targetAmount) *
-                                            100
-                                        }
-                                        label={true}
-                                    />
-                                    <small style={{ color: "#01BBC8" }}>
-                                        {Math.round(
-                                            (company.amountRaised /
-                                                company.targetAmount) *
-                                                100
-                                        )}
-                                        %
-                                    </small>
-                                </Box>
-                            </a>
-                        </Grid>
-                    ): ''})}
+            <Grid container className={styles.section4}>
+                <Grid
+                    item
+                    sx={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    xl={12}
+                    align="center"
+                    style={{
+                        padding: "0",
+                    }}
+                >
+                    <p className={styles.sectionHeader}>
+                        Companies raising soon
+                    </p>
+                    <div className={styles.underline2} />
                 </Grid>
-            
+                <Companies/>
+            </Grid>
         </PageTemplate>
     );
 };
