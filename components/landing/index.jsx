@@ -1,13 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { Grid, Stack, Button, Typography, styled, Box } from "@mui/material";
-import Link from "next/link";
-import Image from "next/image";
 import styles from "./Landing.module.css";
-import pointerImg from "../../public/assets/tagline_background.svg";
-import landingImg from "../../public/assets/illustration_3.svg";
-import whyMtajiImg from "../../public/assets/illustration_7.png";
-import lady_with_laptop from "../../public/assets/lady_with_laptop.svg";
-import arrow from "../../public/assets/arrow.svg";
+
 
 import { AppContext } from "../AppContext";
 
@@ -20,7 +14,6 @@ import LinearProgress, {
     linearProgressClasses,
 } from "@mui/material/LinearProgress";
 
-const Str = require("@supercharge/strings");
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 8,
@@ -314,9 +307,7 @@ const Landing = () => {
                                             fontSize: "0.9rem",
                                         }}
                                     >
-                                        {Str(company.briefDescription)
-                                            .limit(100, "...")
-                                            .get()}
+                                        {company.briefDescription}
                                     </Typography>
 
                                     <Typography
