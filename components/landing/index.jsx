@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { Grid, Stack, Button, Typography, styled, Box } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
@@ -19,10 +19,8 @@ import Section3 from "./Section3";
 import LinearProgress, {
     linearProgressClasses,
 } from "@mui/material/LinearProgress";
-import axios from "axios";
 import Companies from "../Companies";
 
-const Str = require("@supercharge/strings");
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 8,
@@ -37,7 +35,13 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     },
 }));
 
-const Landing = ({companies}) => {
+const Landing = () => {
+    const { isLoaded, checkAuth, companies } = useContext(AppContext);
+    useEffect(() => {
+        checkAuth();
+        
+        
+    }, []);
     
 
     // Create our number formatter.
@@ -86,7 +90,8 @@ const Landing = ({companies}) => {
                 }}
             >
                 {/* Section 1 - Invest in Africas next big company */}
-
+              
+                 
                 <Grid
                     item
                     sx={
@@ -114,19 +119,17 @@ const Landing = ({companies}) => {
                     <Grid
                         container
                         spacing={2}
+                        
                         style={{
                             paddingTop: "10px",
                             display: "flex",
                             flexDirection: "row",
+                            
                         }}
                     >
                         <Grid
                             item
-                            style={{
-                                paddingTop: "30px",
-                                flex: 4,
-                                maxWidth: "250px",
-                            }}
+                            style={{ paddingTop: "30px", flex: 4, maxWidth: '250px'}}
                         >
                             <Button
                                 component="a"
@@ -137,6 +140,7 @@ const Landing = ({companies}) => {
                                     color: "white",
                                     textTransform: "none",
                                     height: "40px",
+                                    
                                 }}
                             >
                                 Get started
@@ -150,7 +154,7 @@ const Landing = ({companies}) => {
                                     color: "#01BBC8",
                                     textTransform: "none",
                                     height: "40px",
-                                    marginLeft: "10px",
+                                    marginLeft: "10px"
                                 }}
                                 target="_blank"
                             >
@@ -158,14 +162,17 @@ const Landing = ({companies}) => {
                             </Button>
                         </Grid>
 
-                        <Grid item style={{ flex: 1 }}>
+                        <Grid
+                        item
+                        style={{flex: 1}}>
                             <img
                                 src="/assets/arrow.svg"
                                 alt="arrow"
+                                
                                 style={{
                                     maxWidth: "30%",
-
-                                    marginLeft: "10px",
+                                    
+                                    marginLeft: "10px"
                                 }}
                             />
                         </Grid>
@@ -199,7 +206,7 @@ const Landing = ({companies}) => {
                     />
                 </Grid>
             </Grid>
-            <Section3 />
+ <Section3 />
             {/* Section 2 */}
             <Grid
                 container
@@ -242,30 +249,32 @@ const Landing = ({companies}) => {
                     <WhyMtaji />
                 </Grid>
             </Grid>
+           
 
             {/* Section 3 */}
-            {/* {console.log(`check: ${companies.length}`)} */}
-
-            <Grid container className={styles.section4}>
-                <Grid
-                    item
-                    sx={12}
-                    sm={12}
-                    md={12}
-                    lg={12}
-                    xl={12}
-                    align="center"
-                    style={{
-                        padding: "0",
-                    }}
-                >
-                    <p className={styles.sectionHeader}>
-                        Companies raising soon
-                    </p>
-                    <div className={styles.underline2} />
+            {console.log(`check: ${companies.length}`)} 
+                                                                           
+                <Grid container className={styles.section4}>
+                    <Grid
+                        item
+                        sx={12}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                        xl={12}
+                        align="center"
+                        style={{
+                            padding: "0",
+                        }}
+                    >
+                        <p className={styles.sectionHeader}>
+                            Companies raising soon
+                        </p>
+                        <div className={styles.underline2} />
+                    </Grid>
+                    <Companies/>
                 </Grid>
-                <Companies/>
-            </Grid>
+            
         </PageTemplate>
     );
 };
