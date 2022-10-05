@@ -1,13 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { Grid, Stack, Button, Typography, styled, Box } from "@mui/material";
-import Link from "next/link";
-import Image from "next/image";
 import styles from "./Landing.module.css";
-import pointerImg from "../../public/assets/tagline_background.svg";
-import landingImg from "../../public/assets/illustration_3.svg";
-import whyMtajiImg from "../../public/assets/illustration_7.png";
-import lady_with_laptop from "../../public/assets/lady_with_laptop.svg";
-import arrow from "../../public/assets/arrow.svg";
+
 
 import { AppContext } from "../AppContext";
 
@@ -19,7 +13,6 @@ import Section3 from "./Section3";
 import LinearProgress, {
     linearProgressClasses,
 } from "@mui/material/LinearProgress";
-import Companies from "../Companies";
 
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -272,7 +265,7 @@ const Landing = () => {
                         </p>
                         <div className={styles.underline2} />
                     </Grid>
-                    <Companies/>
+                    
                 </Grid>
             
         </PageTemplate>
