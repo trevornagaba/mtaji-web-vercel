@@ -112,11 +112,16 @@ const SignUp = () => {
         }
         setSending(false);
     };
-
+    const googleSignUp = () => {
+        window.open(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/google/callback`,
+            "_self"
+        );
+    };
     return (
         <>
             <Head>
-                <title>Join  to Mtaji</title>
+                <title>Join to Mtaji</title>
                 <meta
                     name="description"
                     content="Sign up for Equity Crowdfunding for Africans"
@@ -386,6 +391,32 @@ const SignUp = () => {
                                     onClick={handleSignUp}
                                 >
                                     Sign up
+                                </Button>
+                                <Button
+                                    // disabled={sending}
+                                    variant="contained"
+                                    style={{
+                                        color: "#2518B8",
+                                        // marginLeft: "20px",
+                                        border: "1px #2518B8 solid",
+                                        textTransform: "none",
+                                        boxShadow: "none",
+                                        padding: "8px 30px",
+                                        width: "100%",
+                                        fontFamily: "Poppins",
+                                        fontSize: "16px",
+                                        flexDirection: 'row',
+                                        marginTop: "16px",
+                                        gap:8
+                                    }}
+                                    onClick={googleSignUp}
+                                >
+                                    <Image
+                                        src="/assets/google.svg"
+                                        height={25}
+                                        width={25}
+                                    />{" "}
+                                    Sign up with google
                                 </Button>
                                 {/* <Button
                         component="a"

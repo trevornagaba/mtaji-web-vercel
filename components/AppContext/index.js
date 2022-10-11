@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import jwt_decode from "jwt-decode";
+import cookie from "js-cookie"
 
 export const AppContext = createContext();
 
@@ -33,8 +34,45 @@ const AppContextProvider = (props) => {
     const checkAuth = async () => {
         setErrors("");
         setIsLoaded(false);
+        console.log(jwt_decode(cookie.get('tkn')))
 
         try {
+            if(await jwt_decode(cookie.get('tkn'))){
+                let userId = jwt_decode(cookie.get("tkn")).userId;
+                const response = await axios
+                    .get(
+                        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`,
+                        {
+                            method: "POST",
+                            headers: {
+                                Authorization: `Bearer ${cookie.get(
+                                    "tkn"
+                                )}`,
+                                "Content-Type": "Application/json",
+                            },
+                        }
+                    )
+                    .then((result) => {
+                        setIsAuth(true);
+                        setUserDetails(result.data);
+                        getUserPortfolioDetails(userId);
+
+                        getBlogs();
+                        getFAQs();
+                    })
+                    .catch((error) => {
+                        const pid = router?.query?.pid;
+
+                        if (
+                            router.pathname === "/account" ||
+                            router.pathname === "/home"
+                        ) {
+                            router.push("/login");
+                        } else if (router.pathname === `/company/${pid}`) {
+                            router.push("/signup");
+                        }
+                    });
+            }
             if (jwt_decode(localStorage.getItem("token"))) {
                 let userId = jwt_decode(localStorage.getItem("token")).userId;
                 const response = await axios

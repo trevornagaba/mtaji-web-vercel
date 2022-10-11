@@ -181,6 +181,12 @@ export default function Login() {
         }
         setSending(false);
     };
+    const googleSignIn = () => {
+        window.open(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/google/callback`,
+            "_self"
+        );
+    };
 
     return (
         <>
@@ -378,6 +384,32 @@ export default function Login() {
                             >
                                 Login
                             </Button>
+                            <Button
+                                    // disabled={sending}
+                                    variant="contained"
+                                    style={{
+                                        color: "#2518B8",
+                                        // marginLeft: "20px",
+                                        border: "1px #2518B8 solid",
+                                        textTransform: "none",
+                                        boxShadow: "none",
+                                        padding: "8px 30px",
+                                        width: "100%",
+                                        fontFamily: "Poppins",
+                                        fontSize: "16px",
+                                        flexDirection: 'row',
+                                        marginTop: "16px",
+                                        gap:8
+                                    }}
+                                    onClick={googleSignIn}
+                                >
+                                    <Image
+                                        src="/assets/google.svg"
+                                        height={25}
+                                        width={25}
+                                    />{" "}
+                                    Sign up with google
+                                </Button>
                         </Typography>
                         <Typography
                             style={{
