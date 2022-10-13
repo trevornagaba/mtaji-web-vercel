@@ -408,10 +408,10 @@ export default function Login() {
                                         height={25}
                                         width={25}
                                     />{" "}
-                                    Sign up with google
+                                    Sign in with google
                                 </Button>
                         </Typography>
-                        <Typography
+                        {/* <Typography
                             style={{
                                 marginTop: "10px",
                                 color: "gray",
@@ -420,14 +420,14 @@ export default function Login() {
                             }}
                             align="center"
                         >
-                            <div className="sign-up-prompt">
-                                <p className="question">New Here?</p>
+                        </Typography> */}
+                            <div className="sign-up-prompt" style={{marginTop: "10px"}}>
+                                <p className="question" style={{color:"gray"}}>New Here?</p>
 
                                 <Link href="/signup">
                                     <p className="link">Create an account</p>
                                 </Link>
                             </div>
-                        </Typography>
                     </Box>
                     <img
                         src="/assets/signin2.svg"

@@ -121,7 +121,7 @@ const SignUp = () => {
     return (
         <>
             <Head>
-                <title>Join to Mtaji</title>
+                <title>Join Mtaji</title>
                 <meta
                     name="description"
                     content="Sign up for Equity Crowdfunding for Africans"
