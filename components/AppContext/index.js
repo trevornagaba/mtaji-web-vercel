@@ -38,8 +38,8 @@ const AppContextProvider = (props) => {
 
         try {
             if(cookie.get('tkn')){
-                await localStorage.setItem("token", cookie.get('tkn'))
-                document.cookie = "tkn=; expires=Thu, 01 Jan 1970 00:00:00 UTC"
+                localStorage.setItem("token", cookie.get('tkn'))
+                // document.cookie = "tkn=; expires=Thu, 01 Jan 1970 00:00:00 UTC"
                 // if(await jwt_decode(cookie.get('tkn'))){
                 //     let userId = jwt_decode(cookie.get("tkn")).userId;
                 //     const response = await axios
