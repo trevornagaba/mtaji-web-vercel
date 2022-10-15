@@ -17,6 +17,7 @@
     "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.1",
+    "@react-oauth/google": "^0.2.8",
     "@supercharge/strings": "^1.28.0",
     "axios": "^0.27.2",
     "cookie-cutter": "^0.2.0",

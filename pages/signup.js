@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -30,8 +30,12 @@ import navStyles from "../components/Header/Header.module.css";
 import emailChecker from "../utils/emailChecker";
 import passwordStrength from "../utils/passwordStrength";
 import Logo from "../components/Logo/Logo";
+import { useGoogleLogin } from "@react-oauth/google";
+import { AppContext } from "../components/AppContext";
 
 const SignUp = () => {
+    const { checkAuth } = useContext(AppContext);
+    const router = useRouter();
     const [sent, setSent] = useState(false);
     const [sending, setSending] = useState(false);
     const [email, setEmail] = useState("");
@@ -112,12 +116,30 @@ const SignUp = () => {
         }
         setSending(false);
     };
-    const googleSignUp = () => {
-        window.open(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/google/callback`,
-            "_self"
-        );
-    };
+    const googleSignUp = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            const { data } = await axios({
+                url: `https://people.googleapis.com/v1/people/me?personFields=names,emailAddresses,photos`,
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${tokenResponse?.access_token}`,
+                },
+            });
+
+            await axios
+                .post(
+                    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/google/login`,
+                    { data: tokenResponse.access_token }
+                )
+                .then((res) => {
+                    localStorage.setItem("token", res.data.token);
+                    checkAuth();
+                    setSent(true);
+                    setActionMsg(res.data.message);
+                    router.push("/home");
+                });
+        },
+    });
     return (
         <>
             <Head>
@@ -405,9 +427,9 @@ const SignUp = () => {
                                         width: "100%",
                                         fontFamily: "Poppins",
                                         fontSize: "16px",
-                                        flexDirection: 'row',
+                                        flexDirection: "row",
                                         marginTop: "16px",
-                                        gap:8
+                                        gap: 8,
                                     }}
                                     onClick={googleSignUp}
                                 >

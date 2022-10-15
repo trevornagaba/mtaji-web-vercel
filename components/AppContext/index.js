@@ -34,49 +34,8 @@ const AppContextProvider = (props) => {
     const checkAuth = async () => {
         setErrors("");
         setIsLoaded(false);
-        // console.log(jwt_decode(cookie.get('tkn')))
 
         try {
-            if(cookie.get('tkn')){
-                localStorage.setItem("token", cookie.get('tkn'))
-                // document.cookie = "tkn=; expires=Thu, 01 Jan 1970 00:00:00 UTC"
-                // if(await jwt_decode(cookie.get('tkn'))){
-                //     let userId = jwt_decode(cookie.get("tkn")).userId;
-                //     const response = await axios
-                //         .get(
-                //             `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${userId}`,
-                //             {
-                //                 method: "POST",
-                //                 headers: {
-                //                     Authorization: `Bearer ${cookie.get(
-                //                         "tkn"
-                //                     )}`,
-                //                     "Content-Type": "Application/json",
-                //                 },
-                //             }
-                //         )
-                //         .then((result) => {
-                //             setIsAuth(true);
-                //             setUserDetails(result.data);
-                //             getUserPortfolioDetails(userId);
-    
-                //             getBlogs();
-                //             getFAQs();
-                //         })
-                //         .catch((error) => {
-                //             const pid = router?.query?.pid;
-    
-                //             if (
-                //                 router.pathname === "/account" ||
-                //                 router.pathname === "/home"
-                //             ) {
-                //                 router.push("/login");
-                //             } else if (router.pathname === `/company/${pid}`) {
-                //                 router.push("/signup");
-                //             }
-                //         });
-                // }
-            }
             if (jwt_decode(localStorage.getItem("token"))) {
                 let userId = jwt_decode(localStorage.getItem("token")).userId;
                 const response = await axios
@@ -128,7 +87,6 @@ const AppContextProvider = (props) => {
         }
         setIsLoaded(true);
     };
-
     // const handleSignUp = async (e) => {
     //   setSent(false)
     //   setSending(true)
