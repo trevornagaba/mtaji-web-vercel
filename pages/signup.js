@@ -419,7 +419,7 @@ const SignUp = () => {
                                     variant="contained"
                                     style={{
                                         color: "#2518B8",
-                                        // marginLeft: "20px",
+                                        backgroundColor: "#fff",
                                         border: "1px #2518B8 solid",
                                         textTransform: "none",
                                         boxShadow: "none",
