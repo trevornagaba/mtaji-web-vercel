@@ -81,7 +81,7 @@ const Blog = ({ posts }) => {
     return (
         <>
             <Head>
-                <title>Mtaji | Get Updates on African Startups</title>
+                <title>Mtaji | Get Updates on African Startups and Businesses</title>
                 <meta
                     name="description"
                     content="Get Updates on African Startups"

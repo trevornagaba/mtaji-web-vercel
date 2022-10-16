@@ -214,7 +214,7 @@ export default function Login() {
                 <title>Sign in to Mtaji</title>
                 <meta
                     name="description"
-                    content="Equity Crowdfunding for Africans"
+                    content="Login to finance African businesses and startups through Equity Crowdfunding"
                 />
             </Head>
 

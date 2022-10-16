@@ -146,7 +146,7 @@ const SignUp = () => {
                 <title>Join Mtaji</title>
                 <meta
                     name="description"
-                    content="Sign up for Equity Crowdfunding for Africans"
+                    content="Sign up to finance African businesses and startups through Equity Crowdfunding"
                 />
             </Head>
             <Grid
