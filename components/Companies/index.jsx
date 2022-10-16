@@ -27,7 +27,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 const Companies = (props) => {
     const { isLoaded, companies } = useContext(AppContext);
-    console.log(companies)
+    // console.log(companies)
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
@@ -94,7 +94,6 @@ const Companies = (props) => {
                 >
                     <a href={`/company/${company._id}`}>
                         <Box className={styles.companyCardBox}>
-                        {console.log(company)}
                             <img src={`${company.logo}`} width={80} />
                             {/* <img src={company.logo} width={80} /> */}
 

@@ -32,6 +32,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import navStyles from "../components/Header/Header.module.css";
 import Logo from "../components/Logo/Logo";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function Login() {
     const { isLoaded, isAuth, errors, setErrors, checkAuth } =
@@ -175,12 +176,37 @@ export default function Login() {
                 })
                 .catch((error) => {
                     setError(true);
-                    // 
+                    //
                     setActionMsg(error.response.data.message);
                 });
         }
         setSending(false);
     };
+
+    const googleSignIn = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            const { data } = await axios({
+                url: `https://people.googleapis.com/v1/people/me?personFields=names,emailAddresses,photos`,
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${tokenResponse?.access_token}`,
+                },
+            });
+
+            await axios
+                .post(
+                    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/google/login`,
+                    { data: tokenResponse.access_token }
+                )
+                .then((res) => {
+                    localStorage.setItem("token", res.data.token);
+                    checkAuth();
+                    setSent(true);
+                    setActionMsg(res.data.message);
+                    router.push("/home");
+                });
+        },
+    });
 
     return (
         <>
@@ -378,8 +404,34 @@ export default function Login() {
                             >
                                 Login
                             </Button>
+                            <Button
+                                // disabled={sending}
+                                variant="contained"
+                                style={{
+                                    color: "#2518B8",
+                                    // marginLeft: "20px",
+                                    border: "1px #2518B8 solid",
+                                    textTransform: "none",
+                                    boxShadow: "none",
+                                    padding: "8px 30px",
+                                    width: "100%",
+                                    fontFamily: "Poppins",
+                                    fontSize: "16px",
+                                    flexDirection: "row",
+                                    marginTop: "16px",
+                                    gap: 8,
+                                }}
+                                onClick={googleSignIn}
+                            >
+                                <Image
+                                    src="/assets/google.svg"
+                                    height={25}
+                                    width={25}
+                                />{" "}
+                                Sign in with google
+                            </Button>
                         </Typography>
-                        <Typography
+                        {/* <Typography
                             style={{
                                 marginTop: "10px",
                                 color: "gray",
@@ -388,14 +440,19 @@ export default function Login() {
                             }}
                             align="center"
                         >
-                            <div className="sign-up-prompt">
-                                <p className="question">New Here?</p>
+                        </Typography> */}
+                        <div
+                            className="sign-up-prompt"
+                            style={{ marginTop: "10px" }}
+                        >
+                            <p className="question" style={{ color: "gray" }}>
+                                New Here?
+                            </p>
 
-                                <Link href="/signup">
-                                    <p className="link">Create an account</p>
-                                </Link>
-                            </div>
-                        </Typography>
+                            <Link href="/signup">
+                                <p className="link">Create an account</p>
+                            </Link>
+                        </div>
                     </Box>
                     <img
                         src="/assets/signin2.svg"

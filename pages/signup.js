@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -30,8 +30,12 @@ import navStyles from "../components/Header/Header.module.css";
 import emailChecker from "../utils/emailChecker";
 import passwordStrength from "../utils/passwordStrength";
 import Logo from "../components/Logo/Logo";
+import { useGoogleLogin } from "@react-oauth/google";
+import { AppContext } from "../components/AppContext";
 
 const SignUp = () => {
+    const { checkAuth } = useContext(AppContext);
+    const router = useRouter();
     const [sent, setSent] = useState(false);
     const [sending, setSending] = useState(false);
     const [email, setEmail] = useState("");
@@ -112,11 +116,34 @@ const SignUp = () => {
         }
         setSending(false);
     };
+    const googleSignUp = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            const { data } = await axios({
+                url: `https://people.googleapis.com/v1/people/me?personFields=names,emailAddresses,photos`,
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${tokenResponse?.access_token}`,
+                },
+            });
 
+            await axios
+                .post(
+                    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/google/login`,
+                    { data: tokenResponse.access_token }
+                )
+                .then((res) => {
+                    localStorage.setItem("token", res.data.token);
+                    checkAuth();
+                    setSent(true);
+                    setActionMsg(res.data.message);
+                    router.push("/home");
+                });
+        },
+    });
     return (
         <>
             <Head>
-                <title>Join  to Mtaji</title>
+                <title>Join Mtaji</title>
                 <meta
                     name="description"
                     content="Sign up for Equity Crowdfunding for Africans"
@@ -386,6 +413,32 @@ const SignUp = () => {
                                     onClick={handleSignUp}
                                 >
                                     Sign up
+                                </Button>
+                                <Button
+                                    // disabled={sending}
+                                    variant="contained"
+                                    style={{
+                                        color: "#2518B8",
+                                        // marginLeft: "20px",
+                                        border: "1px #2518B8 solid",
+                                        textTransform: "none",
+                                        boxShadow: "none",
+                                        padding: "8px 30px",
+                                        width: "100%",
+                                        fontFamily: "Poppins",
+                                        fontSize: "16px",
+                                        flexDirection: "row",
+                                        marginTop: "16px",
+                                        gap: 8,
+                                    }}
+                                    onClick={googleSignUp}
+                                >
+                                    <Image
+                                        src="/assets/google.svg"
+                                        height={25}
+                                        width={25}
+                                    />{" "}
+                                    Sign up with google
                                 </Button>
                                 {/* <Button
                         component="a"
