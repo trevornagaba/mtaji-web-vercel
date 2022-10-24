@@ -50,11 +50,11 @@ export default function Company({ company }) {
         },
         {
             id: 2,
-            title: "Problem",
+            title: "Performance",
         },
         {
             id: 3,
-            title: "Solution",
+            title: "Funding",
         },
         {
             id: 4,
@@ -225,8 +225,7 @@ export default function Company({ company }) {
                         {/* Stats */}
                         <div className="flex items-center justify-between gap-4 mt-6 bg-white rounded-xl py-4 lg:mt-10">
                             <StatCard
-                                title="Current Valuation"
-                                // TO-DO: Update to read real time rates from yahoo, reuters etc
+                                title="Valuation"
                                 dollarValue={company.companyValuation}
                                 textLeft
                             />
@@ -386,25 +385,25 @@ export default function Company({ company }) {
                                                 </>
                                             ) : item.title == "Overview" ? (
                                                 <>
-                                                    <div className="prose lg:prose-xl max-w-none mx-0 w-full">
+                                                    <div className="prose lg:prose-xl max-w-none mx-0 w-full" style={{"font-size": "18px"}}>
                                                         {
-                                                            parse(md().render(company?.briefDescription))
+                                                            parse(md().render(company?.overview))
                                                         }
                                                     </div>
                                                 </>
-                                            ) : item.title === "Problem" ? (
+                                            ) : item.title === "Performance" ? (
                                                 <>
-                                                    <div className="prose lg:prose-xl max-w-none mx-0 w-full">
+                                                    <div className="prose lg:prose-xl max-w-none mx-0 w-full" style={{"font-size": "18px"}}>
                                                         {
-                                                            parse(md().render(company?.problemStatement))
+                                                            parse(md().render(company?.performance))
                                                         }
                                                     </div>
                                                 </>
                                             ) : (
                                                 <>
-                                                    <div className="prose lg:prose-xl max-w-none mx-0 w-full">
+                                                    <div className="prose lg:prose-xl max-w-none mx-0 w-full" style={{"font-size": "18px"}}>
                                                         {
-                                                            parse(md().render(company?.detailedDescription))
+                                                            parse(md().render(company?.funding))
                                                         }
                                                     </div>
                                                 </>
