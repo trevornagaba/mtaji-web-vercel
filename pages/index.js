@@ -10,7 +10,7 @@ export default function Home() {
         <>
             <Head>
                 <title>Welcome to Mtaji</title>
-                <meta name="description" content="Equity Crowdfunding for Africans" />
+                <meta name="description" content="Equity Crowdfunding for African Businesses and Startups" />
             </Head>
             <Landing />
         </>

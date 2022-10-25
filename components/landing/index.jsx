@@ -261,7 +261,7 @@ const Landing = () => {
                         }}
                     >
                         <p className={styles.sectionHeader}>
-                            Companies currently soon
+                            Companies currently raising
                         </p>
                         <div className={styles.underline2} />
                     </Grid>
@@ -333,7 +333,7 @@ const Landing = () => {
                                         </strong>
                                         <br />
                                         <small>
-                                            Opens in: {" "}
+                                            Closes in: {" "}
                                             <span style={{ color: "#FE8686" }}>
                                                 {calc_days_left(
                                                     company.raiseTargetDate

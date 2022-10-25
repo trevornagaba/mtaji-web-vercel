@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import jwt_decode from "jwt-decode";
+import cookie from "js-cookie"
 
 export const AppContext = createContext();
 
@@ -86,7 +87,6 @@ const AppContextProvider = (props) => {
         }
         setIsLoaded(true);
     };
-
     // const handleSignUp = async (e) => {
     //   setSent(false)
     //   setSending(true)
