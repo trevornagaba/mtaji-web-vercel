@@ -16,7 +16,7 @@ const AML = () => {
                 <title>Antimoney laundering policy of Mtaji</title>
                 <meta
                     name="description"
-                    content="Antimoney laundering policy for Mtaji's equity crowdfunding for Africans"
+                    content="Antimoney laundering policy for equity crowdfunding in Africa"
                 />
             </Head>
             <div className={styles.amlDiv}>

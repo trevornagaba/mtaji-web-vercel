@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import AppContextProvider from "../components/AppContext";
 import Modal from "../components/ModalComponent";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function MyApp({ Component, pageProps }) {
     return (
@@ -20,7 +21,9 @@ function MyApp({ Component, pageProps }) {
                 <title>Mtaji</title>
             </Head>
             <AppContextProvider>
+            <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
                 <Component {...pageProps} />
+            </GoogleOAuthProvider>
             </AppContextProvider>
                 
         </>

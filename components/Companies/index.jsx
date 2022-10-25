@@ -27,6 +27,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 const Companies = (props) => {
     const { isLoaded, companies } = useContext(AppContext);
+    // console.log(companies)
 
     // Create our number formatter.
     var formatter = new Intl.NumberFormat("en-US", {
