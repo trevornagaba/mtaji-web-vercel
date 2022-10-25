@@ -62,7 +62,7 @@ const PostDetails = ({ post }) => {
                             {/* {parse(post.body)} */}
                             {/* <div className="prose lg:prose-xl max-w-none mx-0" dangerouslySetInnerHTML={{ __html: md().render(post.body) }}/> */}
                         <div className={styles.body}>
-                            <div className="prose lg:prose-xl max-w-none mx-0 w-full">
+                            <div className="prose lg:prose-xl max-w-none mx-0 w-full" style={{"font-size": "18px"}}>
                                 {parse(md().render(post.body))}
 
                             </div>

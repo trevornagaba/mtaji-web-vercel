@@ -446,7 +446,7 @@ const Header = (props) => {
                                                               "'Quicksand', sans-serif",
                                                       }}
                                                   >
-                                                      <span
+                                                      {/* <span
                                                           style={{
                                                               marginRight:
                                                                   "5px",
@@ -454,7 +454,7 @@ const Header = (props) => {
                                                           }}
                                                       >
                                                           {page.pageIcon}
-                                                      </span>
+                                                      </span> */}
                                                       <span
                                                           style={{
                                                               color:
