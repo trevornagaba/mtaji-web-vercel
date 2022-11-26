@@ -43,7 +43,7 @@ export default function StatCard({
                 </p>
                 <p className="mt-1 text-sm text-grey">
                     {/* TO-DO: Update to read real time rates from yahoo, reuters etc  */}
-                    {ugx.format(dollarValue * 3500)}
+                    {ugx.format(dollarValue * 3700)}
                 </p>
             </div>
         </div>

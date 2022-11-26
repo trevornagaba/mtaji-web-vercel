@@ -9,7 +9,7 @@ import { TextInput, Button } from "../../components";
 
 import { InvestmentSuccessModal, InvestmentErrorModal } from "/components";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
-import FlwHook from "../../hooks/PaymentHook";
+import PaytotaHook from "../../hooks/PaymentHook";
 import { AppContext } from "../AppContext";
 import useSetAlert from "../../hooks/useSetAlert";
 
@@ -39,10 +39,10 @@ export default function InvestmentModal({
                 return e.target.name == "amountUSD"
                     ? {
                           amountUSD: approx(newvalue),
-                          amountUGX: approx(newvalue * 3500),
+                          amountUGX: approx(newvalue * 3700),
                       }
                     : {
-                          amountUSD: approx(newvalue / 3500),
+                          amountUSD: approx(newvalue / 3700),
                           amountUGX: approx(newvalue),
                       };
             });
@@ -226,7 +226,7 @@ export default function InvestmentModal({
                                                 Invest
                                             </Button>
                                         ) : (
-                                            <FlwHook
+                                            <PaytotaHook
                                                 callback={
                                                     handleInvestmentCallback
                                                 }

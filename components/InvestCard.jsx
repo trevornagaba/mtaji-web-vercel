@@ -9,7 +9,7 @@ const InvestCard = (props) => {
         </p>
         <div>
         {/* {.company.targetAmount)} */}
-          <p className={styles.valuationDollars}>${parseInt((props.company.targetAmount)/3500)}</p>
+          <p className={styles.valuationDollars}>${parseInt((props.company.targetAmount)/3700)}</p>
           <p className={styles.valuationUgx}>UGX {props.company.targetAmount}</p>
         </div>
       </div>
@@ -20,7 +20,7 @@ const InvestCard = (props) => {
         </p>
 
         <div className={styles.amountDetails}>
-          <p className={styles.total}>$ {(props.company.amountRaised)/3500}</p>
+          <p className={styles.total}>$ {(props.company.amountRaised)/3700}</p>
           <div className={styles.amountPercentageIndicator}>
             <div></div>
           </div>
