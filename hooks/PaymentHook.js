@@ -79,7 +79,7 @@ export default function PaytotaHook({
         brand_id: `${process.env.NEXT_PUBLIC_PAYTOTA_BRAND_ID}`,
         success_redirect: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home`,
         // TO-DO: Create a payment failed, retry page for failed payments
-        failure_redirect: "${process.env.NEXT_PUBLIC_FRONTEND_URL}/home"
+        failure_redirect: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home`
     };
 
     // Create axios request data
