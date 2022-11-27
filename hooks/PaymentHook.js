@@ -55,6 +55,7 @@ export default function PaytotaHook({
     amount,
     company,
 }) {
+    const router = useRouter();
     var data = {
         client: {
             email: "trevornagaba@gmail.com",
@@ -79,24 +80,51 @@ export default function PaytotaHook({
         url: `https://gate.paytota.com/api/v1/purchases/`,
         headers: {
             Authorization: `Bearer R3_wIM6ry35xZP3TRHkB9sSxM_LE1OsoswQk3XDI7J4nhkPCIzgk5vyzrXII8K6P181MfDOhRJLIyB5O9uEmyA==`,
-            "Referrer-Policy": "no-referrer",
+            // "Referrer-Policy": "no-referrer",
+            "content-type": "application/json",
         },
         data: data,
     };
 
     const handlePaytotaPayment = (config) => {
+        var data = {
+            client: {
+                email: "trevornagaba@gmail.com",
+                phone: "256759367905",
+            },
+            purchase: {
+                currency: "UGX",
+                products: [
+                    {
+                        name: "trevornagaba@gmail.com",
+                        price: "500",
+                    },
+                ],
+            },
+            skip_capture: false,
+            brand_id: `f6e1d6ac-df45-46b6-8952-e1fa1fffde49`,
+        };
+
         // Initiate purchase
-        console.log(config.config);
-        axios(config.config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                if (response.data.status == "created") {
-                    // window.open(response.data.checkout_url, "_blank", "noopener");
-                    router.push(response.data.checkout_url);
+        axios
+            .post(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions/paytota`,
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization:
+                            "Bearer R3_wIM6ry35xZP3TRHkB9sSxM_LE1OsoswQk3XDI7J4nhkPCIzgk5vyzrXII8K6P181MfDOhRJLIyB5O9uEmyA==",
+                        "Content-Type": "Application/json",
+                    },
+                    data: data,
                 }
+            )
+            .then((result) => {
+                console.log(result);
+                window.open(result.data.checkout_url, "_blank");
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch((error) => {
+                setErrors(error.response.data.message);
             });
 
         // return ();
