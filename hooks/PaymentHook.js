@@ -61,14 +61,14 @@ export default function PaytotaHook({
     const token = getToken();
     var data = {
         client: {
-            email: "trevornagaba@gmail.com",
-            phone: "256759367905",
+            email: "exampleone@gmail.com",
+            phone: "256700131581",
         },
         purchase: {
             currency: "UGX",
             products: [
                 {
-                    name: "trevornagaba@gmail.com",
+                    name: "exampleone@gmail.com",
                     price: "500",
                 },
             ],
@@ -102,7 +102,8 @@ export default function PaytotaHook({
             .then((result) => {
                 console.log(result);
                 // Open payment window
-                window.open(result.data.checkout_url, "_blank");
+                // window.open(result.data.checkout_url, "_blank");
+                router.push(result.data.checkout_url)
             })
             .catch((error) => {
                 setErrors(error.response.data.message);
