@@ -4,6 +4,7 @@ import { Button } from "../components";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { getToken } from "../utils/getToken";
 
 // export default function FlwHook({callback, buttonText, customer, amount, company}) {
 //   const config = {
@@ -56,6 +57,8 @@ export default function PaytotaHook({
     company,
 }) {
     const router = useRouter();
+    
+    const token = getToken();
     var data = {
         client: {
             email: "trevornagaba@gmail.com",
@@ -71,56 +74,34 @@ export default function PaytotaHook({
             ],
         },
         skip_capture: false,
-        brand_id: `f6e1d6ac-df45-46b6-8952-e1fa1fffde49`,
+        brand_id: `${process.env.NEXT_PUBLIC_PAYTOTA_BRAND_ID}`,
     };
 
     // Create axios request data
     var config = {
         method: "post",
-        url: `https://gate.paytota.com/api/v1/purchases/`,
-        headers: {
-            Authorization: `Bearer R3_wIM6ry35xZP3TRHkB9sSxM_LE1OsoswQk3XDI7J4nhkPCIzgk5vyzrXII8K6P181MfDOhRJLIyB5O9uEmyA==`,
-            // "Referrer-Policy": "no-referrer",
-            "content-type": "application/json",
-        },
+        url: `${process.env.NEXT_PUBLIC_PAYTOTA_PURCHASE_INITIATE}`,
         data: data,
     };
 
-    const handlePaytotaPayment = (config) => {
-        var data = {
-            client: {
-                email: "trevornagaba@gmail.com",
-                phone: "256759367905",
-            },
-            purchase: {
-                currency: "UGX",
-                products: [
-                    {
-                        name: "trevornagaba@gmail.com",
-                        price: "500",
-                    },
-                ],
-            },
-            skip_capture: false,
-            brand_id: `f6e1d6ac-df45-46b6-8952-e1fa1fffde49`,
-        };
+    const handlePaytotaPayment = async (config) => {
 
         // Initiate purchase
-        axios
+        await axios
             .post(
                 `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions/paytota`,
+                config,
                 {
-                    method: "POST",
+                    // method: "POST",
                     headers: {
-                        Authorization:
-                            "Bearer R3_wIM6ry35xZP3TRHkB9sSxM_LE1OsoswQk3XDI7J4nhkPCIzgk5vyzrXII8K6P181MfDOhRJLIyB5O9uEmyA==",
+                        Authorization: `Bearer ${token}`,
                         "Content-Type": "Application/json",
                     },
-                    data: data,
                 }
             )
             .then((result) => {
                 console.log(result);
+                // Open payment window
                 window.open(result.data.checkout_url, "_blank");
             })
             .catch((error) => {
