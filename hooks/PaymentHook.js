@@ -64,7 +64,7 @@ export default function PaytotaHook({
     var data = {
         client: {
             email: userEmail,
-            phone: "256759367905",
+            phone: "256700131581",
         },
         purchase: {
             currency: "UGX",
@@ -77,9 +77,9 @@ export default function PaytotaHook({
         },
         skip_capture: false,
         brand_id: `${process.env.NEXT_PUBLIC_PAYTOTA_BRAND_ID}`,
-        success_redirect: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home`,
-        // TO-DO: Create a payment failed, retry page for failed payments
-        failure_redirect: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home`
+        // success_redirect: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home`,
+        // // TO-DO: Create a payment failed, retry page for failed payments
+        // failure_redirect: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home`
     };
 
     // Create axios request data
