@@ -12,6 +12,7 @@ import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import FlwHook from "../../hooks/PaymentHook";
 import { AppContext } from "../AppContext";
 import useSetAlert from "../../hooks/useSetAlert";
+import { PaystackButton } from 'react-paystack';
 
 export default function InvestmentModal({
     isOpen,
@@ -20,6 +21,7 @@ export default function InvestmentModal({
     companyId,
 }) {
     const { setAlert } = useSetAlert();
+    
 
     // State management for fund wallet form data
     const [formData, setFormData] = useState({
@@ -48,15 +50,42 @@ export default function InvestmentModal({
             });
         }
     };
+    const { checkAuth, userDetails, isLoaded } = useContext(AppContext);
+    const [user, setUser] = useState({});
+    // For succesful Investment modal
+    const [isSuccessful, setIsSuccessful] = useState(false);
+    
+    const config = {
+        reference: (new Date()).getTime().toString(),
+        email: userDetails.email,
+        amount: formData.amountUGX,
+        publicKey: 'pk_test_b552d15b654930c99fd625b953c1681b8475476e',
+    };
+    
+   
+    // you can call this function anything
+  const onSuccess = (reference) => {
+    // Implementation for whatever you want to do with reference and after success call.
+    console.log(reference);
+  };
+
+  // you can call this function anything
+  const onClose = () => {
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    console.log('closed')
+  }
+  const componentProps = {
+    ...config,
+    text: 'Invest',
+    onSuccess: (reference) => onSuccess(reference),
+    onClose: onClose,
+};
     const preventSpeChar = (e) => {
         if (e.key === "e" || e.key === "-" || e.key === "+") {
             e.preventDefault();
         }
     };
-    const { checkAuth, userDetails, isLoaded } = useContext(AppContext);
-    const [user, setUser] = useState({});
-    // For succesful Investment modal
-    const [isSuccessful, setIsSuccessful] = useState(false);
+    
 
     const closeSuccessModal = () => {
         setIsSuccessful(false);
@@ -216,7 +245,7 @@ export default function InvestmentModal({
                                         >
                                             Cancel
                                         </Button>
-                                        {formData.amountUSD < 10 ? (
+                                        {/* {formData.amountUSD < 10 ? (
                                             <Button
                                                 // primary
                                                 // onClick={handleInvestment}
@@ -226,16 +255,33 @@ export default function InvestmentModal({
                                                 Invest
                                             </Button>
                                         ) : (
-                                            <FlwHook
-                                                callback={
-                                                    handleInvestmentCallback
-                                                }
-                                                buttonText="Invest"
-                                                customer={user}
-                                                amount={formData.amountUGX}
-                                                company={companyId}
-                                            />
-                                        )}
+                                            // <FlwHook
+                                            //     callback={
+                                            //         handleInvestmentCallback
+                                            //     }
+                                            //     buttonText="Invest"
+                                            //     customer={user}
+                                            //     amount={formData.amountUGX}
+                                            //     company={companyId}
+                                            // />
+                                            <Button
+                                                primary
+                                                onClick={initializePayment}
+                                                className="w-full"
+                                                // disabled={true}
+                                            >
+                                                Invest
+                                            </Button>
+                                        )} */}
+                                        <Button
+                                            primary
+                                            className="w-full"
+                                            // disabled={true}
+                                        >
+                                    
+                                        <PaystackButton {...componentProps} />
+                                        </Button>
+                                    
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>

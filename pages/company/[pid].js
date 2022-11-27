@@ -187,7 +187,7 @@ export default function Company({ company }) {
                             </div>
                             <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-2">
                                 <ShareButton onClick={() => onClickShare()} />
-                                {/* <Button
+                                <Button
                                     primary
                                     onClick={()=>{
                                         !user?.isKycVerified ? setAlert('warning','Verification Required','please complete verification before investing'):
@@ -196,8 +196,8 @@ export default function Company({ company }) {
                                     className="px-14"
                                 >
                                     Invest
-                                </Button> */}
-                                <a
+                                </Button>
+                                {/* <a
                                     href="https://forms.gle/6vqZ5dtSC1vHGHf37"
                                     target="_blank"
                                     rel="noreferrer"
@@ -205,7 +205,7 @@ export default function Company({ company }) {
                                     <Button primary className="w-[125px]">
                                         Invest
                                     </Button>
-                                </a>
+                                </a> */}
                             </div>
                         </div>
                         <div className="max-w-full w-full h-[240px] lg:h-[500px] flex flex-col justify-center relative ">
@@ -268,7 +268,7 @@ export default function Company({ company }) {
                                             <ShareButton
                                                 onClick={() => onClickShare()}
                                             />
-                                            {/* <Button
+                                            <Button
                                                 primary
                                                 onClick={()=>{
                                                     !user?.isKycVerified ? setAlert('warning','Verification Required','please complete verification before investing'):
@@ -277,8 +277,8 @@ export default function Company({ company }) {
                                                 className="px-14"
                                             >
                                                 Invest
-                                            </Button> */}
-                                            <a
+                                            </Button>
+                                            {/* <a
                                                 href="https://forms.gle/6vqZ5dtSC1vHGHf37"
                                                 target="_blank"
                                                 rel="noreferrer"
@@ -289,7 +289,7 @@ export default function Company({ company }) {
                                                 >
                                                     Invest
                                                 </Button>
-                                            </a>
+                                            </a> */}
                                         </div>
                                     </div>
                                 </div>
