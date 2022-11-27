@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { getToken } from "../utils/getToken";
+import jwt_decode from "jwt-decode";
 
 // export default function FlwHook({callback, buttonText, customer, amount, company}) {
 //   const config = {
@@ -55,14 +56,15 @@ export default function PaytotaHook({
     customer,
     amount,
     company,
-}) {
+}) { 
+    let userEmail = jwt_decode(localStorage.getItem("token")).email;
     const router = useRouter();
     
     const token = getToken();
     var data = {
         client: {
-            email: "exampleone@gmail.com",
-            phone: "256700131581",
+            email: userEmail,
+            phone: "256759367905",
         },
         purchase: {
             currency: "UGX",
@@ -75,6 +77,8 @@ export default function PaytotaHook({
         },
         skip_capture: false,
         brand_id: `${process.env.NEXT_PUBLIC_PAYTOTA_BRAND_ID}`,
+        success_redirect: "http://localhost:3000/home",
+        failure_redirect: "http://localhost:3000/home"
     };
 
     // Create axios request data
@@ -85,7 +89,7 @@ export default function PaytotaHook({
     };
 
     const handlePaytotaPayment = async (config) => {
-
+        console.log(userEmail)
         // Initiate purchase
         await axios
             .post(
