@@ -12,7 +12,7 @@ import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import FlwHook from "../../hooks/PaymentHook";
 import { AppContext } from "../AppContext";
 import useSetAlert from "../../hooks/useSetAlert";
-import { PaystackButton } from 'react-paystack';
+import { PaystackButton } from "react-paystack";
 
 export default function InvestmentModal({
     isOpen,
@@ -21,7 +21,6 @@ export default function InvestmentModal({
     companyId,
 }) {
     const { setAlert } = useSetAlert();
-    
 
     // State management for fund wallet form data
     const [formData, setFormData] = useState({
@@ -54,43 +53,41 @@ export default function InvestmentModal({
     const [user, setUser] = useState({});
     // For succesful Investment modal
     const [isSuccessful, setIsSuccessful] = useState(false);
-    
+    const [option, setOption] = useState(null);
     const config = {
-        reference: (new Date()).getTime().toString(),
+        reference: new Date().getTime().toString(),
         email: userDetails.email,
         amount: formData.amountUGX,
-        publicKey: 'pk_test_b552d15b654930c99fd625b953c1681b8475476e',
+        publicKey: "pk_test_b552d15b654930c99fd625b953c1681b8475476e",
     };
-    
-   
-    // you can call this function anything
-  const onSuccess = (reference) => {
-    // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
-  };
 
-  // you can call this function anything
-  const onClose = () => {
-    // implementation for  whatever you want to do when the Paystack dialog closed.
-    console.log('closed')
-  }
-  const componentProps = {
-    ...config,
-    text: 'Invest',
-    onSuccess: (reference) => onSuccess(reference),
-    onClose: onClose,
-};
+    // you can call this function anything
+    const onSuccess = (reference) => {
+        // Implementation for whatever you want to do with reference and after success call.
+        console.log(reference);
+    };
+
+    // you can call this function anything
+    const onClose = () => {
+        // implementation for  whatever you want to do when the Paystack dialog closed.
+        console.log("closed");
+    };
+    const componentProps = {
+        ...config,
+        text: "Invest",
+        onSuccess: (reference) => onSuccess(reference),
+        onClose: onClose,
+    };
     const preventSpeChar = (e) => {
         if (e.key === "e" || e.key === "-" || e.key === "+") {
             e.preventDefault();
         }
     };
-    
 
     const closeSuccessModal = () => {
         setIsSuccessful(false);
         setTimeout(() => {
-            // 
+            //
         }, 5000);
     };
 
@@ -145,7 +142,7 @@ export default function InvestmentModal({
                     // setAlert("success", "Congratulations! You made a simple boss move")
                 })
                 .catch(function (error) {
-                    // 
+                    //
                     openErrorModal();
                     setAlert(
                         "warning",
@@ -163,7 +160,9 @@ export default function InvestmentModal({
         e.preventDefault();
         closeModal();
     };
-
+    function onChangeRadio(event) {
+        console.log(event.target.value);
+    }
     useEffect(() => {
         // checkAuth();
         setUser(userDetails);
@@ -237,6 +236,36 @@ export default function InvestmentModal({
                                     <div className="px-8">
                                         <small>Transaction Fee: UGX 0</small>
                                     </div>
+                                    <div
+                                        onChange={(e) =>
+                                            setOption(e.target.value)
+                                        }
+                                        className="px-8 mt-2"
+                                    >
+                                        <div className="flex flex-row mb-3">
+                                            <input
+                                                type="radio"
+                                                value="Paystack"
+                                                name="gender"
+                                            />{" "}
+                                            <img
+                                                src="/assets/paystack.png"
+                                                className="w-20 mx-2"
+                                            />
+                                        </div>
+
+                                        <div className="flex flex-row">
+                                            <input
+                                                type="radio"
+                                                value="Paytota"
+                                                name="gender"
+                                            />{" "}
+                                            <img
+                                                src="/assets/paytota.svg"
+                                                className="w-20 mx-2"
+                                            />
+                                        </div>
+                                    </div>
                                     <div className="p-8 flex items-center justify-between gap-3">
                                         <Button
                                             secondary
@@ -245,7 +274,7 @@ export default function InvestmentModal({
                                         >
                                             Cancel
                                         </Button>
-                                        {/* {formData.amountUSD < 10 ? (
+                                        {formData.amountUSD < 10 ? (
                                             <Button
                                                 // primary
                                                 // onClick={handleInvestment}
@@ -255,33 +284,22 @@ export default function InvestmentModal({
                                                 Invest
                                             </Button>
                                         ) : (
-                                            // <FlwHook
-                                            //     callback={
-                                            //         handleInvestmentCallback
-                                            //     }
-                                            //     buttonText="Invest"
-                                            //     customer={user}
-                                            //     amount={formData.amountUGX}
-                                            //     company={companyId}
-                                            // />
-                                            <Button
-                                                primary
-                                                onClick={initializePayment}
-                                                className="w-full"
-                                                // disabled={true}
-                                            >
-                                                Invest
-                                            </Button>
-                                        )} */}
                                         <Button
                                             primary
                                             className="w-full"
                                             // disabled={true}
                                         >
-                                    
-                                        <PaystackButton {...componentProps} />
+                                            {!option ? (
+                                                "Invest"
+                                            ) : option == "Paystack" ? (
+                                                <PaystackButton
+                                                    {...componentProps}
+                                                />
+                                            ) : (
+                                                option == "Paytota" && "invest"
+                                            )}
                                         </Button>
-                                    
+                                        )}
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
