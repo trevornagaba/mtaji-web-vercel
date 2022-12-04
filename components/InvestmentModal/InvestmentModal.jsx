@@ -58,7 +58,7 @@ export default function InvestmentModal({
         reference: new Date().getTime().toString(),
         email: userDetails.email,
         amount: formData.amountUGX,
-        publicKey: "pk_test_b552d15b654930c99fd625b953c1681b8475476e",
+        publicKey: "pk_live_2cfc48f7d054815d5342bf70518e680502c7a363",
     };
 
     // you can call this function anything
