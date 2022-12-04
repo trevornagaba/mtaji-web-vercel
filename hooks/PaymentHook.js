@@ -9,8 +9,8 @@ export default function FlwHook({callback, buttonText, customer, amount, company
     // test_key: process.env.NEXT_PUBLIC_FLW_SECK,
     tx_ref: uuidv4(),
     amount: amount,
-    currency: 'USD',
-    payment_options: 'card,mobilemoneyuganda,ussd',
+    currency: 'UGX',
+    payment_options: 'card, mobilemoneyuganda, ussd',
     customer: {
       email: customer.email,
       phonenumber: customer.phonenumber,

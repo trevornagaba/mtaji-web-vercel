@@ -40,11 +40,19 @@ export default function InvestmentModal({
                 return e.target.name == "amountUSD"
                     ? {
                           amountUSD: approx(newvalue),
-                          amountUGX: approx(newvalue * 3500),
+                          amountUGX: approx(newvalue * 3748),
+                          amountNGN: approx(newvalue * 752),
+                      }
+                    : e.target.name == "amountUGX"
+                    ? {
+                          amountUSD: approx(newvalue / 3748),
+                          amountUGX: approx(newvalue),
+                          amountNGN: approx((newvalue * 752) / 3748),
                       }
                     : {
-                          amountUSD: approx(newvalue / 3500),
-                          amountUGX: approx(newvalue),
+                          amountUSD: approx(newvalue / 748),
+                          amountUGX: approx((newvalue * 3748) / 752),
+                          amountNGN: approx(newvalue),
                       };
             });
         }
@@ -57,14 +65,65 @@ export default function InvestmentModal({
     const config = {
         reference: new Date().getTime().toString(),
         email: userDetails.email,
-        amount: formData.amountUGX,
-        publicKey: "pk_live_2cfc48f7d054815d5342bf70518e680502c7a363",
+        amount: formData.amountNGN * 100,
+        publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBK,
     };
 
     // you can call this function anything
     const onSuccess = (reference) => {
         // Implementation for whatever you want to do with reference and after success call.
+        console.log("reference");
         console.log(reference);
+        console.log(reference.status);
+        console.log(reference?.status);
+
+        // Read auth token
+        const token = localStorage.getItem("token");
+
+        if (reference.status == "success") {
+            console.log("here here");
+            let paystack_config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "Application/json",
+                },
+            };
+            let body = {
+                txn_id: reference.reference,
+                userId: user.userId,
+                companyId: companyId,
+                type: "company",
+                creationDate: "",
+                amount: response.amount,
+                transactionChannel: "paystack",
+                currency: "UGX",
+            };
+            console.log(body)
+
+            axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions/paystack`,
+                    body,
+                    paystack_config
+                )
+                .then(function (response) {
+                    closePaymentModal(); // this will close the paystack modal
+
+                    openSuccessModal();
+
+                    // setAlert("success", "Congratulations! You made a simple boss move")
+                })
+                .catch(function (error) {
+                    //
+                    console.log(error);
+                    openErrorModal();
+                    setAlert(
+                        "warning",
+                        "Transaction Error",
+                        "An error occurred"
+                    );
+                });
+        } else {
+            openErrorModal();
+        }
     };
 
     // you can call this function anything
@@ -123,14 +182,14 @@ export default function InvestmentModal({
                 type: "company",
                 creationDate: "",
                 amount: response.amount,
-                transactionChannel: "flw",
-                currency: "UGX",
+                transactionChannel: "paystack",
+                currency: "NGN",
             };
             closeModal();
 
             axios
                 .post(
-                    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions`,
+                    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/transactions/flw`,
                     body,
                     config
                 )
@@ -143,6 +202,7 @@ export default function InvestmentModal({
                 })
                 .catch(function (error) {
                     //
+                    console.log(error);
                     openErrorModal();
                     setAlert(
                         "warning",
@@ -206,7 +266,7 @@ export default function InvestmentModal({
                                             label="Enter amount ($)"
                                             type="number"
                                             name="amountUSD"
-                                            placeholder="20.00"
+                                            placeholder="20"
                                             onChange={handleChange}
                                             value={formData.amountUSD}
                                             leading
@@ -218,10 +278,10 @@ export default function InvestmentModal({
                                             </small>
                                         </div> */}
                                         <TextInput
-                                            label="Enter amount (UGX)"
+                                            label="Enter amount (UGX)*"
                                             type="number"
                                             name="amountUGX"
-                                            placeholder="7000.00"
+                                            placeholder="75,000"
                                             onChange={handleChange}
                                             value={formData.amountUGX}
                                             leading
@@ -232,9 +292,23 @@ export default function InvestmentModal({
                                                 Avail Bal: UGX 2,500
                                             </small>
                                         </div> */}
-                                    </div>
-                                    <div className="px-8">
-                                        <small>Transaction Fee: UGX 0</small>
+                                        <TextInput
+                                            label="Enter amount (NGN)*"
+                                            type="number"
+                                            name="amountNGN"
+                                            placeholder="15,000"
+                                            onChange={handleChange}
+                                            value={formData.amountNGN}
+                                            leading
+                                            onKeyDown={preventSpeChar}
+                                        />
+                                        <small>
+                                            *All investments are denominated and
+                                            recorded in USD
+                                        </small>
+                                        <p>
+                                            <small>*Transaction Fee: $0</small>
+                                        </p>
                                     </div>
                                     <div
                                         onChange={(e) =>
@@ -252,18 +326,21 @@ export default function InvestmentModal({
                                                 src="/assets/paystack.png"
                                                 className="w-20 mx-2"
                                             />
+                                            <strong>for card payments</strong>
                                         </div>
 
                                         <div className="flex flex-row">
                                             <input
                                                 type="radio"
-                                                value="Paytota"
+                                                value="Flw"
                                                 name="gender"
                                             />{" "}
                                             <img
-                                                src="/assets/paytota.svg"
+                                                src="/assets/flutterwave.jpg"
                                                 className="w-20 mx-2"
                                             />
+                                            <p> </p>
+                                            <strong>for mobile money</strong>
                                         </div>
                                     </div>
                                     <div className="p-8 flex items-center justify-between gap-3">
@@ -274,7 +351,7 @@ export default function InvestmentModal({
                                         >
                                             Cancel
                                         </Button>
-                                        {formData.amountUSD < 10 ? (
+                                        {formData.amountUSD < 0 ? (
                                             <Button
                                                 // primary
                                                 // onClick={handleInvestment}
@@ -284,21 +361,31 @@ export default function InvestmentModal({
                                                 Invest
                                             </Button>
                                         ) : (
-                                        <Button
-                                            primary
-                                            className="w-full"
-                                            // disabled={true}
-                                        >
-                                            {!option ? (
-                                                "Invest"
-                                            ) : option == "Paystack" ? (
-                                                <PaystackButton
-                                                    {...componentProps}
-                                                />
-                                            ) : (
-                                                option == "Paytota" && "invest"
-                                            )}
-                                        </Button>
+                                            <Button
+                                                primary
+                                                className="w-full"
+                                                // disabled={true}
+                                            >
+                                                {!option ? (
+                                                    "Invest"
+                                                ) : option == "Paystack" ? (
+                                                    <PaystackButton
+                                                        {...componentProps}
+                                                    />
+                                                ) : (
+                                                    <FlwHook
+                                                        callback={
+                                                            handleInvestmentCallback
+                                                        }
+                                                        buttonText="Invest"
+                                                        customer={user}
+                                                        amount={
+                                                            formData.amountUGX
+                                                        }
+                                                        company={companyId}
+                                                    />
+                                                )}
+                                            </Button>
                                         )}
                                     </div>
                                 </Dialog.Panel>
